@@ -1,9 +1,9 @@
 <?php
 
 $servidor= "localhost";
-$usuario= "admin";
-$password = "admin";
-$base= "automatizacion2";
+$usuario= "informat_admin";
+$password = "HLo{Q3e{)II^";
+$base= "informat_automatizacion";
 
 $mysqli = new mysqli($servidor, $usuario,$password,$base);
 $conexion = mysqli_connect($servidor, $usuario,$password,$base) or die("Error " . mysqli_error($conexion));
