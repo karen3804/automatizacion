@@ -25,7 +25,7 @@ switch ($_GET["op"]){
 			//Correo de docente 
 			
 			//query para los datos de alumnos
-			$query = $mysqli -> query ("SELECT a.documento, a.nombre, ep.nombre_empresa, ep.direccion_empresa, pe.docente_supervisor, pe.fecha_inicio, pe.fecha_finaliza, c.valor Correo, e.valor Celular, ep.jefe_inmediato, ep.titulo_jefe_inmediato
+			$query = $mysqli -> query ("SELECT px.valor, concat(a.nombres,' ',a.apellidos) as nombre, ep.nombre_empresa, ep.direccion_empresa, pe.docente_supervisor, pe.fecha_inicio, pe.fecha_finaliza, c.valor Correo, e.valor Celular, ep.jefe_inmediato, ep.titulo_jefe_inmediato
 
 			FROM tbl_empresas_practica AS ep
 			JOIN tbl_personas AS a
@@ -36,14 +36,15 @@ switch ($_GET["op"]){
 			JOIN tbl_tipo_contactos d ON c.id_tipo_contacto = d.id_tipo_contacto AND d.descripcion = 'CORREO'
 			JOIN tbl_contactos e ON a.id_persona = e.id_persona
 			JOIN tbl_tipo_contactos f ON e.id_tipo_contacto = f.id_tipo_contacto AND f.descripcion = 'TELEFONO CELULAR'
+			join tbl_personas_extendidas as px on px.id_atributo=12 and px.id_persona=a.id_persona
             where a.id_persona='$id_supervisor'");
                    while ($supervisores = mysqli_fetch_array($query)) {
                   
 
 				
 				
-				$estudiante= $supervisores['nombre'];
-				$num_cuenta= $supervisores['documento'];
+				$estudiante= $supervisores['nombres'];
+				$num_cuenta= $supervisores['valor'];
 				$ecorreo= $supervisores['Correo'];
 				$celular= $supervisores['Celular'];
 				$empresa= $supervisores['nombre_empresa'];
@@ -56,14 +57,14 @@ switch ($_GET["op"]){
 
 		}// fin del query para los datos del alumno 
 		//querry para los datos del docente 
-		$query = $mysqli -> query ("SELECT p.nombre, c.valor FROM tbl_contactos c, tbl_personas p WHERE c.id_persona = '$docente' and c.id_tipo_contacto=4 and p.id_persona='$docente' ");
+		$query = $mysqli -> query ("SELECT p.nombres, c.valor FROM tbl_contactos c, tbl_personas p WHERE c.id_persona = '$docente' and c.id_tipo_contacto=4 and p.id_persona='$docente' ");
                    while ($supervisores = mysqli_fetch_array($query)) {
                   
 					
 					$asunto_docente="ASIGNACIÓN DE SUPERVISIÓN DE PRACTICA PROFESIONAL";
 					$asunto_estudiante="ASIGNACIÓN DE DOCENTE SUPERVISOR";
 				$destino = $supervisores['valor'];
-				$nombre_destino= $supervisores['nombre'];
+				$nombre_destino= $supervisores['nombres'];
 				   }// fin del query de los datos del docente 
 			//cuerpo del correo del docente
 			$cuerpo='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -325,7 +326,7 @@ switch ($_GET["op"]){
  		while ($reg=$rspta->fetch_object()){
 			
 			 $estado="";
-			 $botones='<center><div class="input-group mr-2" ><form  action="../vistas/asignar_docente_supervisor_vista.php" method="post"><button class="btn btn-primary btn-raised btn-sm" name="id_asignatura" value="'.$reg->id_persona.'"> <i class="fa fa-edit"></i> </button></form></div></center>';
+			 $botones='<center><div class="input-group mr-2" ><form  action="../vistas/docente_supervisor_vista.php" method="post"><button class="btn btn-primary btn-raised btn-sm" name="id_asignatura" value="'.$reg->id_persona.'"> <i class="fa fa-edit"></i> </button></form></div></center>';
 			
 			 
 				 
