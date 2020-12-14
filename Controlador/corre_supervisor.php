@@ -14,8 +14,8 @@ $mail = new PHPMailer\PHPMailer\PHPMailer();
 
 $mail->isSMTP();
 
-$correo= "dramirezr@unah.hn";
-$Password= "Albo*1912";
+$correo= "";
+$Password= "";
 $mail->SMTPDebug = 0;
 $mail->Host = 'SMTP.Office365.com';
 $mail->Port = 587;
@@ -50,8 +50,8 @@ function enviarEmailPracticante($cuerpo_estudiante,$asunto_estudiante,$ecorreo,$
 	
 	$mail->isSMTP();
 	
-	$correo= "dramirezr@unah.hn";
-	$Password= "Albo*1912";
+	$correo= "";
+	$Password= "";
 	$mail->SMTPDebug = 0;
 	$mail->Host = 'SMTP.Office365.com';
 	$mail->Port = 587;
