@@ -102,15 +102,14 @@ else
 {
     $_SESSION['btn_guardar_empresa_practica']="disabled";
  }
-
-
+ 
   $sqlexiste=("select count(Id_empresa) as existe  from tbl_empresas_practica where id_persona=$_SESSION[id_persona]");
  //Obtener la fila del query
 $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 
  if ($existe['existe']==1 ) {
 $_SESSION['Modificar_empresa']="SI";
-$sql_tabla_empresa = json_decode( file_get_contents('http://localhost:80/Automatizacion/api/empresas_practica_api.php?id_persona_='.$_SESSION['id_persona']), true );
+$sql_tabla_empresa = json_decode( file_get_contents('http://localhost:80/Automatizacion/api/empresas_practica_api.php?id_persona='.$_SESSION['id_persona']), true );
 if (isset($sql_tabla_empresa["ROWS"][0]["nombre_empresa"])) 
 {
   $_SESSION['Institucion']=$sql_tabla_empresa["ROWS"][0]["nombre_empresa"];

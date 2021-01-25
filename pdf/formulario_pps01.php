@@ -5,7 +5,25 @@
 require 'fpdf/fpdf.php';
 require_once ('../clases/Conexion.php');
 
-$sql = "select ep.nombre_empresa, ep.jefe_inmediato, ep.titulo_jefe_inmediato, ep.cargo_jefe_inmediato, ep.direccion_empresa, ep.correo_jefe_inmediato, ep.tipo_empresa, ep.labora_dentro, p.nombre, p.documento, p.identidad, p.telefono, p.direccion, p.celular,p.fecha_nacimiento,p.Correo_electronico ,pe.fecha_finaliza, pe.fecha_inicio from tbl_empresas_practica ep, tbl_personas p , tbl_practica_estudiantes pe where ep.id_persona=p.id_persona and pe.id_persona=p.id_persona and p.id_persona=$_SESSION[id_persona] ";
+$usuario=$_SESSION['id_usuario'];
+ $id=("select id_persona from tbl_usuarios where id_usuario='$usuario'");
+$result= mysqli_fetch_assoc($mysqli->query($id));
+$id_persona=$result['id_persona'];
+$sql = "SELECT px.valor, concat(a.nombres,' ',a.apellidos) as nombre, ep.nombre_empresa, ep.direccion_empresa, pe.docente_supervisor, pe.fecha_inicio, pe.fecha_finaliza, c.valor Correo, e.valor Celular, ep.tipo_empresa, ep.departamento_empresa, ep.jefe_inmediato, ep.titulo_jefe_inmediato, ep.cargo_jefe_inmediato, ep.correo_jefe_inmediato, ep.telefono_jefe_inmediato, ep.labora_dentro, a.id_persona, pe.horas, px.valor, a.identidad, a.fecha_nacimiento
+
+FROM
+
+tbl_empresas_practica AS ep
+JOIN tbl_personas AS a
+ON ep.id_persona = a.id_persona
+JOIN tbl_practica_estudiantes AS pe
+ON pe.id_persona = a.id_persona
+JOIN tbl_contactos c ON a.id_persona = c.id_persona
+JOIN tbl_tipo_contactos d ON c.id_tipo_contacto = d.id_tipo_contacto AND d.descripcion = 'CORREO'
+JOIN tbl_contactos e ON a.id_persona = e.id_persona
+JOIN tbl_tipo_contactos f ON e.id_tipo_contacto = f.id_tipo_contacto AND f.descripcion = 'TELEFONO CELULAR'
+join tbl_personas_extendidas as px on px.id_atributo=12 and px.id_persona=a.id_persona
+WHERE a.id_persona='$id_persona'";
 
 class PDF extends FPDF
 	{
@@ -60,7 +78,7 @@ $resultado = mysqli_query($connection, $sql);
     $pdf->SetFont('Arial','',12);
 	$pdf->ln(2);
 	$pdf->SetX(20);
-	$pdf->multicell(170,5,utf8_decode('Numero de cuenta: '.$row['documento'].''),0);
+	$pdf->multicell(170,5,utf8_decode('Numero de cuenta: '.$row['valor'].''),0);
 	$pdf->SetX(20);
     $pdf->ln(2);
 	$pdf->ln(2);
@@ -75,17 +93,17 @@ $resultado = mysqli_query($connection, $sql);
     $pdf->ln(2);
     $pdf->ln(2);
 	$pdf->SetX(20);
-	$pdf->multicell(170,5,utf8_decode('Fecha de nacimiento: '.$row['fecha_nacimiento'].' Tel. Fijo: '.$row['telefono'].'   Tel. Celular: '.$row['celular'].''),0);
+	$pdf->multicell(170,5,utf8_decode('Fecha de nacimiento: '.$row['fecha_nacimiento'].' Tel. Fijo:    Tel. Celular: '.$row['Celular'].''),0);
 	$pdf->SetX(20);
     $pdf->ln(2);
     $pdf->ln(2);
 	$pdf->SetX(20);
-	$pdf->multicell(170,5,utf8_decode('Dirección: '.$row['direccion'].''),0);
+	$pdf->multicell(170,5,utf8_decode('Dirección: '),0);
 	$pdf->SetX(20);
     $pdf->ln(2);
     $pdf->ln(2);
 	$pdf->SetX(20);
-	$pdf->multicell(170,5,utf8_decode('Correo electrónico: '.$row['Correo_electronico'].''),0);
+	$pdf->multicell(170,5,utf8_decode('Correo electrónico: '.$row['Correo'].''),0);
 	$pdf->SetX(20);
     $pdf->ln(10);
 

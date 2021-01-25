@@ -56,8 +56,12 @@ if ($visualizacion==0)
 
   if (isset($_POST['txt_cuenta']) )
   {
-   $_SESSION['Cuenta']=  $_POST['txt_cuenta'];
-   $sql="select nombre from tbl_personas where documento=$_SESSION[Cuenta]";
+    $usuario=$_SESSION['id_usuario'];
+    $id=("select id_persona from tbl_usuarios where id_usuario='$usuario'");
+   $result= mysqli_fetch_assoc($mysqli->query($id));
+   $id_persona=$result['id_persona'];
+   $cuenta=  $_POST['txt_cuenta'];
+   $sql="select concat(p.nombres,' ',p.apellidos) as nombre from tbl_personas p, tbl_personas_extendidas px where px.valor='$cuenta' AND px.id_atributo=12 and px.id_persona='$id_persona' and p.id_persona='$id_persona'";
  //Obtener la fila del query
    $nombre = mysqli_fetch_assoc($mysqli->query($sql));
    if (!empty($nombre['nombre']) )
@@ -263,7 +267,7 @@ if ($visualizacion==0)
    $(function () {
 
     $('#tabla').DataTable({
-      "paging": false,
+      "paging": true,
       "lengthChange": true,
       "searching": true,
       "ordering": true,

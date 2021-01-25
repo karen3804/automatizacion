@@ -8,7 +8,7 @@ require_once ('../clases/Conexion.php');
         $result = [];
 if (isset($_GET["id_persona_"])) {
 
-if ($R = $mysqli->query("select * from tbl_empresas_practica where id_persona='$_GET[id_persona_]'")) {
+if ($R = $mysqli->query("select * from tbl_empresas_practica where id_persona='$_GET[id_persona]'")) {
             $items = [];
 
             while ($row = $R->fetch_assoc()) {

@@ -4,8 +4,12 @@
 
 require 'fpdf/fpdf.php';
 require_once ('../clases/Conexion.php');
+$usuario=$_SESSION['id_usuario'];
+ $id=("select id_persona from tbl_usuarios where id_usuario='$usuario'");
+$result= mysqli_fetch_assoc($mysqli->query($id));
+$id_persona=$result['id_persona'];
 
-$sql = "select p.nombre, p.documento from tbl_personas p where id_persona and p.id_persona=$_SESSION[id_persona] ";
+$sql = "select concat(p.nombres,' ',p.apellidos) as nombre, px.valor from tbl_personas p, tbl_personas_extendidas px where px.id_persona='$id_persona' and p.id_persona='$id_persona'";
 
 
 class PDF extends FPDF
@@ -72,7 +76,7 @@ $resultado = mysqli_query($connection, $sql);
     $pdf->multicell(170,9,utf8_decode('Estimados Señores: '),0);
 	$pdf->ln(5);
 	$pdf->SetX(20);
-	$pdf->multicell(170,5,utf8_decode('Yo '.$row['nombre'].' estudiante de la Carrera de Informática Administrativa, con número de cuenta '.$row['documento'].'  respetuosamente comparezco ante usted solicitando se me autorice realizar mi Práctica Profesional Supervisada en:  '),0);
+	$pdf->multicell(170,5,utf8_decode('Yo '.$row['nombre'].' estudiante de la Carrera de Informática Administrativa, con número de cuenta '.$row['valor'].'  respetuosamente comparezco ante usted solicitando se me autorice realizar mi Práctica Profesional Supervisada en:  '),0);
 	$pdf->ln(5);
 	$pdf->SetX(20);
 	$pdf->multicell(170,5,utf8_decode('El Departamento de Informática Administrativa de la UNAH. '),0);

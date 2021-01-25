@@ -121,9 +121,12 @@ else
 
 
 
-
+        $usuario=$_SESSION['id_usuario'];
+        $id=("select id_persona from tbl_usuarios where id_usuario='$usuario'");
+       $result= mysqli_fetch_assoc($mysqli->query($id));
+       $id_persona=$result['id_persona'];
 /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
-$sqltabla="select ep.nombre_empresa, p.nombre, p.documento from tbl_empresas_practica ep, tbl_personas p where ep.id_persona=p.id_persona and p.id_persona=$_SESSION[id_persona]  ";
+$sqltabla="select ep.nombre_empresa, concat(p.nombres,'',p.apellidos)AS nombre, px.valor from tbl_empresas_practica ep, tbl_personas p, tbl_personas_extendidas px where ep.id_persona=p.id_persona and p.id_persona='$id_persona' AND px.id_atributo=12 and px.id_persona='$id_persona'";
 $resultadotabla = $mysqli->query($sqltabla);
 
 
@@ -201,7 +204,7 @@ ob_end_flush();
    <?php while($row = $resultadotabla->fetch_array(MYSQLI_ASSOC)) { ?>
                 <tr>
     <td><?php echo $row['nombre']; ?></td>
-         <td><?php echo $row['documento']; ?></td>
+         <td><?php echo $row['valor']; ?></td>
              <td><?php echo $row['nombre_empresa']; ?></td>
 
              <td style="text-align: center;">

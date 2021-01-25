@@ -37,7 +37,7 @@ else
 
 		
 
- $sqlexiste=("select count(id_persona) as usuario  from tbl_asignaturas_aprobadas where id_persona=(select id_persona from tbl_personas where documento=$cuenta)");
+ $sqlexiste=("select count(id_persona) as usuario  from tbl_asignaturas_aprobadas where id_persona=(select id_persona from tbl_personas_extendidas where valor='$cuenta')");
  //Obtener la fila del query
 $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 

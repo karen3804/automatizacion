@@ -46,13 +46,17 @@ else
 {
     $_SESSION['btn_guardar_inscripcion_charla']="disabled";
  }
-
-  $sql=("select p.nombre ,p.documento from tbl_personas p, tbl_usuarios u where  p.id_persona=u.id_persona ");
+ $usuario=$_SESSION['id_usuario'];
+ $id=("select id_persona from tbl_usuarios where id_usuario='$usuario'");
+$result= mysqli_fetch_assoc($mysqli->query($id));
+$id_persona=$result['id_persona'];
+  $sql=("select concat(p.nombres,' ', p.apellidos) as nombre ,px.valor from tbl_personas_extendidas px, tbl_personas p, tbl_usuarios u where u.id_persona='$id_persona' and p.id_persona='$id_persona' and px.id_atributo=12 and px.id_persona='$id_persona' ");
  //Obtener la fila del query
 $resultado = mysqli_fetch_assoc($mysqli->query($sql));
 
-$_SESSION['nombre_charla']=$resultado['nombre'];
-$_SESSION['cuenta_charla']=$resultado['documento'];
+$nombre=$resultado['nombre'];
+$cuenta=$resultado['valor'];
+
 
 
 }
@@ -144,7 +148,7 @@ ob_end_flush();
                <div class="col-sm-6">
                 <div class="form-group">
                   <label>Nombre Completo</label>
-                    <input class="form-control" type="text"  maxlength="60" id="txt_nombre_estudiante" name="txt_nombre_estudiante"  value="<?php echo $_SESSION['nombre_charla'];?>" required style="text-transform: uppercase"   onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" readonly >
+                    <input class="form-control" type="text"  maxlength="60" id="txt_nombre_estudiante" name="txt_nombre_estudiante"  value="<?php echo $nombre;?>" required style="text-transform: uppercase"   onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" readonly >
                 </div>
                  </div>
 
@@ -152,7 +156,7 @@ ob_end_flush();
                  <div class="col-sm-6">
                   <div class="form-group">
                   <label>Nº de Cuenta</label>
-                    <input class="form-control" type="text" id="txt_cuenta" name="txt_cuenta"  value="<?php echo $_SESSION['cuenta_charla'];?>" required  onkeyup="Espacio(this, event)"  maxlength="11" readonly>
+                    <input class="form-control" type="text" id="txt_cuenta" name="txt_cuenta"  value="<?php echo $cuenta;?>" required  onkeyup="Espacio(this, event)"  maxlength="11" readonly>
                 </div>
                  </div>
 

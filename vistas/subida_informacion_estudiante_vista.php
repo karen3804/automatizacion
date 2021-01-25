@@ -88,16 +88,19 @@ else
 {
     $_SESSION['btn_guardar_subida']="disabled";
 }
+$usuario=$_SESSION['id_usuario'];
+ $id=("select id_persona from tbl_usuarios where id_usuario='$usuario'");
+$result= mysqli_fetch_assoc($mysqli->query($id));
+$id_persona=$result['id_persona'];
 
-
-$sqlsubida=("select documento, nombre from tbl_personas where id_persona=$_SESSION[id_persona]");
+$sqlsubida=("select concat(p.nombres,' ',p.apellidos) as nombre, px.valor from tbl_personas p, tbl_personas_extendidas px where px.id_persona='$id_persona' and p.id_persona='$id_persona'");
  //Obtener la fila del query
 $datos = mysqli_fetch_assoc($mysqli->query($sqlsubida));
 
 
 
 $_SESSION['nombre_estudiante']=$datos['nombre'];
-$_SESSION['cuenta_estudiante']=$datos['documento'];
+$_SESSION['cuenta_estudiante']=$datos['valor'];
 
 
  

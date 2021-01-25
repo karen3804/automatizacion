@@ -15,15 +15,15 @@ $docente=isset($_POST["docente"])? limpiarCadena($_POST["docente"]):"";
 
 
 switch ($_GET["op"]){
-	
+
 	case 'editar':
-			
+
 			$rspta=$modelo->editar($docente, $id_supervisor);
-			
+
 
 			echo $rspta ? "DOCENTE SUPERVISOR ASIGNADO CORRECTAMENTE" : "DOCENTE SUPERVISOR NO SE PUDO ASIGNAR";
-			//Correo de docente 
-			
+			//Correo de docente
+
 			//query para los datos de alumnos
 			$query = $mysqli -> query ("SELECT px.valor, concat(a.nombres,' ',a.apellidos) as nombre, ep.nombre_empresa, ep.direccion_empresa, pe.docente_supervisor, pe.fecha_inicio, pe.fecha_finaliza, c.valor Correo, e.valor Celular, ep.jefe_inmediato, ep.titulo_jefe_inmediato
 
@@ -39,10 +39,10 @@ switch ($_GET["op"]){
 			join tbl_personas_extendidas as px on px.id_atributo=12 and px.id_persona=a.id_persona
             where a.id_persona='$id_supervisor'");
                    while ($supervisores = mysqli_fetch_array($query)) {
-                  
 
-				
-				
+
+
+
 				$estudiante= $supervisores['nombres'];
 				$num_cuenta= $supervisores['valor'];
 				$ecorreo= $supervisores['Correo'];
@@ -55,17 +55,17 @@ switch ($_GET["op"]){
 				$titulo= $supervisores['titulo_jefe_inmediato'];
 				$correo= new correo();
 
-		}// fin del query para los datos del alumno 
-		//querry para los datos del docente 
+		}// fin del query para los datos del alumno
+		//querry para los datos del docente
 		$query = $mysqli -> query ("SELECT p.nombres, c.valor FROM tbl_contactos c, tbl_personas p WHERE c.id_persona = '$docente' and c.id_tipo_contacto=4 and p.id_persona='$docente' ");
                    while ($supervisores = mysqli_fetch_array($query)) {
-                  
-					
+
+
 					$asunto_docente="ASIGNACIÓN DE SUPERVISIÓN DE PRACTICA PROFESIONAL";
 					$asunto_estudiante="ASIGNACIÓN DE DOCENTE SUPERVISOR";
 				$destino = $supervisores['valor'];
 				$nombre_destino= $supervisores['nombres'];
-				   }// fin del query de los datos del docente 
+				   }// fin del query de los datos del docente
 			//cuerpo del correo del docente
 			$cuerpo='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
@@ -73,7 +73,7 @@ switch ($_GET["op"]){
 			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 			<title>------------</title>
-			
+
 			</head>
 			<body style="-webkit-text-size-adjust: none; box-sizing: border-box; color: #74787E; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; height: 100%; line-height: 1.4; margin: 0; width: 100% !important;" bgcolor="#F2F4F6"><style type="text/css">
 			body {
@@ -104,28 +104,28 @@ switch ($_GET["op"]){
 			</h2>
 					</td>
 				</tr>
-			
+
 				<tr>
 					<td class="email-body" width="100%" cellpadding="0" cellspacing="0" style="-premailer-cellpadding: 0; -premailer-cellspacing: 0; border-bottom-color: #EDEFF2; border-bottom-style: solid; border-bottom-width: 1px; border-top-color: #EDEFF2; border-top-style: solid; border-top-width: 1px; box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; margin: 0; padding: 0; width: 100%; word-break: break-word;" bgcolor="#FFFFFF">
 						<table class="email-body_inner" align="center" width="800" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; margin: 0 auto; padding: 0; width: 570px;" bgcolor="#FFFFFF">
-			
-			
+
+
 							<tr>
 								<td class="content-cell" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; padding: 35px; word-break: break-word;">
 									<h4 style="box-sizing: border-box; color: #2F3133; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 19px; font-weight: bold; margin-top: 0;" align="left">Estimado: '.$nombre_destino.' </h4>
-			
-			
+
+
 									<table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; margin: 30px auto; padding: 0; text-align: center; width: 100%;">
 										<tr>
 											<td align="center" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; word-break: break-word;">
-			
+
 												<table width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;">
 													<tr>
 														<td align="center" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; word-break: break-word;">
 															<table border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;">
 																<tr>
 																	<td style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; word-break: break-word;">
-			
+
 																	</td>
 																</tr>
 															</table>
@@ -144,19 +144,19 @@ switch ($_GET["op"]){
 			<br> 5.	Nombre Empresa: '.$empresa.'
 			<br> 6.	Ubicada en: '.$direccion.'
 			<br> 7.	Contacto en la empresa: '.$jefe.'
-			<br> 8.	Fecha de inicio: '.$fechai.' 
-			<br> 9.	Fecha de finalización: '.$fechan.' 
+			<br> 8.	Fecha de inicio: '.$fechai.'
+			<br> 9.	Fecha de finalización: '.$fechan.'
 			<br>
 			<br>Usted puede consultar los datos dentro del Sistema de gestión administrativa del Departamento de Informática (SGADI), tambien puede comunicarse al correo uvinculacion.dia@unah.edu.hn.
 			Agradeciendo su atención,
 			</p>
 									<p style="box-sizing: border-box; color: #000000; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">
 										<br />Coordinación del Departamento de Informática</p>
-			
+
 									<table class="body-sub" style="border-top-color: #EDEFF2; border-top-style: solid; border-top-width: 1px; box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; margin-top: 25px; padding-top: 25px;">
 										<tr>
 											<td style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; word-break: break-word;">
-			
+
 											</td>
 										</tr>
 									</table>
@@ -172,7 +172,7 @@ switch ($_GET["op"]){
 								<td class="content-cell" align="center" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; padding: 35px; word-break: break-word;">
 									<p class="sub align-center" style="box-sizing: border-box; color: #000000; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 12px; line-height: 1.5em; margin-top: 0;" align="center">Facultad de Ciencias Económicas <br/>Departamento de Informatica Administrativa <br/>Comité de Vinculación Universidad Sociedad</p>
 									<p class="sub align-center" style="box-sizing: border-box; color: #000000; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 12px; line-height: 1.5em; margin-top: 0;" align="center">
-			
+
 									</p>
 								</td>
 							</tr>
@@ -194,7 +194,7 @@ switch ($_GET["op"]){
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>------------</title>
-		
+
 		</head>
 		<body style="-webkit-text-size-adjust: none; box-sizing: border-box; color: #74787E; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; height: 100%; line-height: 1.4; margin: 0; width: 100% !important;" bgcolor="#F2F4F6"><style type="text/css">
 		body {
@@ -225,28 +225,28 @@ switch ($_GET["op"]){
 		</h2>
 				</td>
 			</tr>
-		
+
 			<tr>
 				<td class="email-body" width="100%" cellpadding="0" cellspacing="0" style="-premailer-cellpadding: 0; -premailer-cellspacing: 0; border-bottom-color: #EDEFF2; border-bottom-style: solid; border-bottom-width: 1px; border-top-color: #EDEFF2; border-top-style: solid; border-top-width: 1px; box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; margin: 0; padding: 0; width: 100%; word-break: break-word;" bgcolor="#FFFFFF">
 					<table class="email-body_inner" align="center" width="800" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; margin: 0 auto; padding: 0; width: 570px;" bgcolor="#FFFFFF">
-		
-		
+
+
 						<tr>
 							<td class="content-cell" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; padding: 35px; word-break: break-word;">
 								<h4 style="box-sizing: border-box; color: #2F3133; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 19px; font-weight: bold; margin-top: 0;" align="left">Estimado estudiante: '.$estudiante.' </h4>
-		
-		
+
+
 								<table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; margin: 30px auto; padding: 0; text-align: center; width: 100%;">
 									<tr>
 										<td align="center" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; word-break: break-word;">
-		
+
 											<table width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;">
 												<tr>
 													<td align="center" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; word-break: break-word;">
 														<table border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;">
 															<tr>
 																<td style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; word-break: break-word;">
-		
+
 																</td>
 															</tr>
 														</table>
@@ -265,11 +265,11 @@ switch ($_GET["op"]){
 		</p>
 								<p style="box-sizing: border-box; color: #000000; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 16px; line-height: 1.5em; margin-top: 0;" align="left">
 									<br />Coordinación del Departamento de Informática</p>
-		
+
 								<table class="body-sub" style="border-top-color: #EDEFF2; border-top-style: solid; border-top-width: 1px; box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; margin-top: 25px; padding-top: 25px;">
 									<tr>
 										<td style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; word-break: break-word;">
-		
+
 										</td>
 									</tr>
 								</table>
@@ -285,7 +285,7 @@ switch ($_GET["op"]){
 							<td class="content-cell" align="center" style="box-sizing: border-box; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; padding: 35px; word-break: break-word;">
 								<p class="sub align-center" style="box-sizing: border-box; color: #000000; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 12px; line-height: 1.5em; margin-top: 0;" align="center">Facultad de Ciencias Económicas <br/>Departamento de Informatica Administrativa <br/>Comité de Vinculación Universidad Sociedad</p>
 								<p class="sub align-center" style="box-sizing: border-box; color: #000000; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 12px; line-height: 1.5em; margin-top: 0;" align="center">
-		
+
 								</p>
 							</td>
 						</tr>
@@ -324,26 +324,26 @@ switch ($_GET["op"]){
  		$data= Array();
 
  		while ($reg=$rspta->fetch_object()){
-			
+
 			 $estado="";
 			 $botones='<center><div class="input-group mr-2" ><form  action="../vistas/docente_supervisor_vista.php" method="post"><button class="btn btn-primary btn-raised btn-sm" name="id_asignatura" value="'.$reg->id_persona.'"> <i class="fa fa-edit"></i> </button></form></div></center>';
-			
-			 
-				 
+
+
+
  			$data[]=array(
-				 
+
  				"0"=>$botones,
-                "1"=>$reg->nombre,
+        "1"=>$reg->nombre,
  				"2"=>$reg->valor,
 				"3"=>$reg->nombre_empresa,
 				"4"=>$reg->direccion_empresa,
 				"5"=>$reg->fecha_inicio,
 				"6"=>$reg->fecha_finaliza
-				
+
 
  				);
 		 }
-		 
+
  		$results = array(
  			"sEcho"=>1, //Información para el datatables
  			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
@@ -356,4 +356,3 @@ switch ($_GET["op"]){
 
 
 ?>
-
