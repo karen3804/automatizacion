@@ -1,7 +1,208 @@
-<?php require_once ('../clases/conexion_mantenimientos.php');?>
-<?php
+<?php 
+require_once "../Modelos/estadisticas_practica_profesional_modelo.php";
+
+$estadistica = new Estadisticas();
+
+switch ($_GET["op"]){
+	    
+	case 'listar':
+
+		$fecha_inicio=$_REQUEST["fecha_inicio"];
+		$fecha_fin=$_REQUEST["fecha_fin"];
+		$empresa=$_REQUEST["empresa"];
+		$docente=$_REQUEST["docente"];
+
+		if(empty($fecha_fin) && empty($fecha_inicio) && empty($empresa) && empty($docente))
+		{
+			$rspta=$estadistica->listar();
+			//Vamos a declarar un array
+			$data= Array();
+            
+			while ($reg=$rspta->fetch_object()){
+                $primera_supervision='<center><a href="../pdf/primera_visita_pdf.php?id="'.$reg->id_persona.'"" target="_blank"  class="btn btn-secondary btn-raisedx btn-xs" >PDF</a><center>';
+                $segunda_supervicion='<center><a href="../pdf/segunda_visita_pdf.php?id="'.$reg->id_persona.'""  target="_blank" class="btn btn-secondary btn-raisedx btn-xs" >PDF</a></center>';
+                $unica_supervision='<center><a href="../pdf/unica_visita_pdf.php?id="'.$reg->id_persona.'""  target="_blank" class="btn btn-secondary btn-raisedx btn-xs" >PDF</a></center>';
+				$data[]=array(
+					"0"=>$reg->nombre,
+					"1"=>$reg->valor,
+					"2"=>$reg->nombre_empresa,
+					"3"=>$reg->direccion_empresa,
+					"4"=>$reg->docente_supervisor,
+                    "5"=>$reg->fecha_inicio,
+                    "6"=>$reg->fecha_finaliza,
+                    "7"=>$primera_supervision,
+                    "8"=>$segunda_supervicion,
+                    "9"=>$unica_supervision
+							
+					);
+			}
+			$results = array(
+				"sEcho"=>1, //Información para el datatables
+				"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+				"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+				"aaData"=>$data);
+			echo json_encode($results);
+		}
+		elseif(empty($empresa) && empty($docente))
+		{
+			$rspta=$estadistica->listar_fechas($fecha_inicio,$fecha_fin);
+			//Vamos a declarar un array
+			$data= Array();
+            
+			while ($reg=$rspta->fetch_object()){
+                $primera_supervision='<center><a href="../pdf/primera_visita_pdf.php?id="'.$reg->id_persona.'"" target="_blank"  class="btn btn-secondary btn-raisedx btn-xs" >PDF</a><center>';
+                $segunda_supervicion='<center><a href="../pdf/segunda_visita_pdf.php?id="'.$reg->id_persona.'""  target="_blank" class="btn btn-secondary btn-raisedx btn-xs" >PDF</a></center>';
+                $unica_supervision='<center><a href="../pdf/unica_visita_pdf.php?id="'.$reg->id_persona.'""  target="_blank" class="btn btn-secondary btn-raisedx btn-xs" >PDF</a></center>';
+				$data[]=array(
+					"0"=>$reg->nombre,
+					"1"=>$reg->valor,
+					"2"=>$reg->nombre_empresa,
+					"3"=>$reg->direccion_empresa,
+					"4"=>$reg->docente_supervisor,
+                    "5"=>$reg->fecha_inicio,
+                    "6"=>$reg->fecha_finaliza,
+                    "7"=>$primera_supervision,
+                    "8"=>$segunda_supervicion,
+                    "9"=>$unica_supervision
+							
+					);
+			}
+			$results = array(
+				"sEcho"=>1, //Información para el datatables
+				"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+				"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+				"aaData"=>$data);
+			echo json_encode($results);
+		}
+		elseif( empty($empresa))
+		{
+			$rspta=$estadistica->listar_fechas_docente($fecha_inicio,$fecha_fin,$docente);
+			//Vamos a declarar un array
+			$data= Array();
+            
+			while ($reg=$rspta->fetch_object()){
+                $primera_supervision='<center><a href="../pdf/primera_visita_pdf.php?id="'.$reg->id_persona.'"" target="_blank"  class="btn btn-secondary btn-raisedx btn-xs" >PDF</a><center>';
+                $segunda_supervicion='<center><a href="../pdf/segunda_visita_pdf.php?id="'.$reg->id_persona.'""  target="_blank" class="btn btn-secondary btn-raisedx btn-xs" >PDF</a></center>';
+                $unica_supervision='<center><a href="../pdf/unica_visita_pdf.php?id="'.$reg->id_persona.'""  target="_blank" class="btn btn-secondary btn-raisedx btn-xs" >PDF</a></center>';
+				$data[]=array(
+					"0"=>$reg->nombre,
+					"1"=>$reg->valor,
+					"2"=>$reg->nombre_empresa,
+					"3"=>$reg->direccion_empresa,
+					"4"=>$reg->docente_supervisor,
+                    "5"=>$reg->fecha_inicio,
+                    "6"=>$reg->fecha_finaliza,
+                    "7"=>$primera_supervision,
+                    "8"=>$segunda_supervicion,
+                    "9"=>$unica_supervision
+							
+					);
+			}
+			$results = array(
+				"sEcho"=>1, //Información para el datatables
+				"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+				"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+				"aaData"=>$data);
+			echo json_encode($results);
+		}
+		elseif(empty($fecha_fin) && empty($fecha_inicio) && empty($docente))
+		{
+			$rspta=$estadistica->listar_empresa($empresa);
+			//Vamos a declarar un array
+			$data= Array();
+            
+			while ($reg=$rspta->fetch_object()){
+                $primera_supervision='<center><a href="../pdf/primera_visita_pdf.php?id="'.$reg->id_persona.'"" target="_blank"  class="btn btn-secondary btn-raisedx btn-xs" >PDF</a><center>';
+                $segunda_supervicion='<center><a href="../pdf/segunda_visita_pdf.php?id="'.$reg->id_persona.'""  target="_blank" class="btn btn-secondary btn-raisedx btn-xs" >PDF</a></center>';
+                $unica_supervision='<center><a href="../pdf/unica_visita_pdf.php?id="'.$reg->id_persona.'""  target="_blank" class="btn btn-secondary btn-raisedx btn-xs" >PDF</a></center>';
+				$data[]=array(
+					"0"=>$reg->nombre,
+					"1"=>$reg->valor,
+					"2"=>$reg->nombre_empresa,
+					"3"=>$reg->direccion_empresa,
+					"4"=>$reg->docente_supervisor,
+                    "5"=>$reg->fecha_inicio,
+                    "6"=>$reg->fecha_finaliza,
+                    "7"=>$primera_supervision,
+                    "8"=>$segunda_supervicion,
+                    "9"=>$unica_supervision
+							
+					);
+			}
+			$results = array(
+				"sEcho"=>1, //Información para el datatables
+				"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+				"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+				"aaData"=>$data);
+			echo json_encode($results);
+		}
+		elseif(empty($fecha_fin) && empty($fecha_inicio) && empty($empresa))
+		{
+			$rspta=$estadistica->listar_docente($docente);
+			//Vamos a declarar un array
+			$data= Array();
+            
+			while ($reg=$rspta->fetch_object()){
+                $primera_supervision='<center><a href="../pdf/primera_visita_pdf.php?id="'.$reg->id_persona.'"" target="_blank"  class="btn btn-secondary btn-raisedx btn-xs" >PDF</a><center>';
+                $segunda_supervicion='<center><a href="../pdf/segunda_visita_pdf.php?id="'.$reg->id_persona.'""  target="_blank" class="btn btn-secondary btn-raisedx btn-xs" >PDF</a></center>';
+                $unica_supervision='<center><a href="../pdf/unica_visita_pdf.php?id="'.$reg->id_persona.'""  target="_blank" class="btn btn-secondary btn-raisedx btn-xs" >PDF</a></center>';
+				$data[]=array(
+					"0"=>$reg->nombre,
+					"1"=>$reg->valor,
+					"2"=>$reg->nombre_empresa,
+					"3"=>$reg->direccion_empresa,
+					"4"=>$reg->docente_supervisor,
+                    "5"=>$reg->fecha_inicio,
+                    "6"=>$reg->fecha_finaliza,
+                    "7"=>$primera_supervision,
+                    "8"=>$segunda_supervicion,
+                    "9"=>$unica_supervision
+							
+					);
+			}
+			$results = array(
+				"sEcho"=>1, //Información para el datatables
+				"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+				"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+				"aaData"=>$data);
+			echo json_encode($results);
+		}
+		else
+		{
+			$rspta=$estadistica->listar_fechas_docente_empresa($fecha_inicio,$fecha_fin,$empresa,$docente);
+			//Vamos a declarar un array
+			$data= Array();
+            
+			while ($reg=$rspta->fetch_object()){
+                $primera_supervision='<center><a href="../pdf/primera_visita_pdf.php?id="'.$reg->id_persona.'"" target="_blank"  class="btn btn-secondary btn-raisedx btn-xs" >PDF</a><center>';
+                $segunda_supervicion='<center><a href="../pdf/segunda_visita_pdf.php?id="'.$reg->id_persona.'""  target="_blank" class="btn btn-secondary btn-raisedx btn-xs" >PDF</a></center>';
+                $unica_supervision='<center><a href="../pdf/unica_visita_pdf.php?id="'.$reg->id_persona.'""  target="_blank" class="btn btn-secondary btn-raisedx btn-xs" >PDF</a></center>';
+				$data[]=array(
+					"0"=>$reg->nombre,
+					"1"=>$reg->valor,
+					"2"=>$reg->nombre_empresa,
+					"3"=>$reg->direccion_empresa,
+					"4"=>$reg->docente_supervisor,
+                    "5"=>$reg->fecha_inicio,
+                    "6"=>$reg->fecha_finaliza,
+                    "7"=>$primera_supervision,
+                    "8"=>$segunda_supervicion,
+                    "9"=>$unica_supervision
+							
+					);
+			}
+			$results = array(
+				"sEcho"=>1, //Información para el datatables
+				"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+				"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+				"aaData"=>$data);
+			echo json_encode($results);
+		}
+
+	break;
+}
     
-    if(ISSET($_POST['search'])){
+    /*if(ISSET($_POST['search'])){
 		$date1 = date("Y-m-d", strtotime($_POST['date1']));
         $date2 = date("Y-m-d", strtotime($_POST['date2']));
         $Docente = $_POST['Docente'];
@@ -179,5 +380,5 @@
 	</tr>
 <?php
 		}
-	}
+	}*/
 ?>
