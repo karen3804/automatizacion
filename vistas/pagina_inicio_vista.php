@@ -378,6 +378,14 @@ if (session_status() === PHP_SESSION_NONE) {
                 </a>
               </li>
               </ul>
+              <ul class="nav nav-treeview">
+                    <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Mesa de ayuda </p>
+                </a>
+              </li>
+              </ul>
 
           <!---- ----->
             <!----About ----->
