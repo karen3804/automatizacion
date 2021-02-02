@@ -7,6 +7,9 @@ $contrasena=$_POST['txt_clave'];
 $confirmar_contrasena=$_POST['txt_confirmar_clave'];
 $nombre_estudiante=$_POST['txt_nombre_estudiante'];
 $correo=$_POST['txt_correo_estudiante'];
+$apellido_estudiante=$_POST['txt_apellido_estudiante'];
+$sexo=$_POST['sexo'];
+print_r($_POST);
 
 if($contrasena!=$confirmar_contrasena)
 {
@@ -77,7 +80,7 @@ if(strlen($contrasena) < $tamano_min['valor']  )
 
               }else{
                 $clave=cifrado::encryption($contrasena);
-                      $sql = "call   proc_insertar_estudiante( '$numero_cuenta','$nombre_estudiante','$numero_cuenta','$correo', '$clave' )";
+                      $sql = "call   proc_insertar_estudiante( '$nombre_estudiante','$apellido_estudiante','$numero_cuenta','$correo','$clave','$sexo')";
 
                         $result = $mysqli->query($sql);
                           if($result === TRUE)

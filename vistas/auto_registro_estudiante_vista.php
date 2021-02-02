@@ -38,7 +38,27 @@
       <form action="../Controlador/guardar_auto_registro_estudiantes_controlador.php" method="post">
 
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Nombre Completo" id="txt_nombre_estudiante" name="txt_nombre_estudiante">
+          <input type="text" class="form-control" placeholder="Nombres" id="txt_nombre_estudiante" name="txt_nombre_estudiante">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Apellidos" id="txt_apellido_estudiante" name="txt_apellido_estudiante">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+        <select class="form-control" name="sexo" id="sexo" require > <option value="">Sexo</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+        </select>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
