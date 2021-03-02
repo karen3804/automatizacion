@@ -31,7 +31,7 @@
            style="opacity: .8">
         </div>
 
-      <p class="login-box-msg">Inicia Sesion</p>
+      <p class="login-box-msg">Inicia</p>
 
 <form action="Controlador/existe_usuario_controlador.php" method="post">
         <div class="input-group mb-3">
@@ -231,6 +231,19 @@ $Intento1=$_REQUEST['intentos'];
   position: "center",
   icon: "success",
   title: "Su contraseña ha actualizada correctamente",
+  showConfirmButton: false,
+  timer: 3000
+})
+                            </script>';
+                 }
+                 if ($msj==7 )
+                 {
+                   echo '<script type="text/javascript">
+                          
+                          Swal.fire({
+  position: "center",
+  icon: "warning",
+  title: "Número de cuenta o de empleado no cumple los requisitos de longitud",
   showConfirmButton: false,
   timer: 3000
 })
