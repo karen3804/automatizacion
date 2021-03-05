@@ -6,33 +6,7 @@ require_once ('../clases/Conexion.php');
 require_once ('../clases/funcion_bitacora.php');
 
 
-/*
- $sql = "call proc_actualizar_pregunta ('$Pregunta','$var','$_SESSION[usuario]','$Id_pregunta') ";
 
-  $resultado = $mysqli->query($sql);
-
-
-if ($resultado==true) {
-              bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'MODIFICO' , 'LA PREGUNTA'.$Pregunta.', Y SU ESTADO'.$var1.'');
-
-         header("location:../vistas/gestion_preguntas_vista.php?msj=2"); 
-
-
-}
-else
-{
-           header("location:../vistas/gestion_preguntas_vista.php?msj=3"); 
-
-}
-  /*
-  header("location: ../contenidos/gestionPreguntas-view.php?msj=2 ");
-
-
-                          
-           
-}
-
-*/
 
 $Id_objeto=19;
 
@@ -44,9 +18,16 @@ $datos = mysqli_fetch_assoc($mysqli->query($sqlsubida));
 
 $_SESSION['Cantidad_Archivos']=count($_FILES["txt_documentos"]['tmp_name']);
 $_SESSION['Cantidad_Archivos_parametro']=$datos['valor'];
-$carpeta='C:\xampp\htdocs\Automatizacion\Documentacion_practica';
+$carpeta='C:\xampp\htdocs\automatizacion-master-p\Documentacion_practica';
 $cuenta=$_POST['txt_cuenta_estudiante'];
-	 $sqlexiste=("select count(id_persona) as cantidad from tbl_subida_documentacion where id_persona='$_SESSION[id_persona]'");
+
+
+  $usuario=$_SESSION['id_usuario'];
+        $id=("select id_persona from tbl_usuarios where id_usuario='$usuario'");
+       $result= mysqli_fetch_assoc($mysqli->query($id));
+       $id_persona=$result['id_persona'];
+
+	 $sqlexiste=("select count(id_persona) as cantidad from tbl_subida_documentacion where id_persona='$id_persona'");
 
 
 if ($_SESSION['Cantidad_Archivos']<$_SESSION['Cantidad_Archivos_parametro'])
@@ -78,11 +59,11 @@ $peso=$_FILES['txt_documentos']['size'][$key];
 					 bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'EL DOCUMENTO'.$nombre_archivo.', EL USUARIO CON CUENTA: '.$cuenta.'');
 				
  //Obtener la fila del query
-					 	 $sqlexiste=("select count(id_persona) as cantidad from tbl_subida_documentacion where id_persona='$_SESSION[id_persona]'");
+					 	 $sqlexiste=("select count(id_persona) as cantidad from tbl_subida_documentacion where id_persona='$id_persona'");
 					$existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 					if ($existe['cantidad']==0)
 					{
-					 $sql = "call proc_insertar_subida_informacion ('$_SESSION[id_persona]') ";
+					 $sql = "call proc_insertar_subida_informacion ('$id_persona') ";
 
  					 $resultado = $mysqli->query($sql);
 
@@ -127,11 +108,11 @@ $peso=$_FILES['txt_documentos']['size'][$key];
 			|| ($_FILES["txt_documentos"]["type"][$key] == "application/msword") || ($_FILES["txt_documentos"]["type"][$key] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
 		{
 					 bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'EL DOCUMENTO'.$nombre_archivo.', EL USUARIO CON CUENTA: '.$cuenta.'');
-					 	 $sqlexiste=("select count(id_persona) as cantidad from tbl_subida_documentacion where id_persona='$_SESSION[id_persona]'");
+					 	 $sqlexiste=("select count(id_persona) as cantidad from tbl_subida_documentacion where id_persona='$id_persona'");
 					 	$existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 					if ($existe['cantidad']==0)
 					{
-					 $sql = "call proc_insertar_subida_informacion ('$_SESSION[id_persona]') ";
+					 $sql = "call proc_insertar_subida_informacion ('$id_persona') ";
 
  					 $resultado = $mysqli->query($sql);
 
@@ -186,11 +167,11 @@ $peso=$_FILES['txt_documentos']['size'][$key];
 			|| ($_FILES["txt_documentos"]["type"][$key] == "application/msword") || ($_FILES["txt_documentos"]["type"][$key] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
 		{
 					 bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'EL DOCUMENTO'.$nombre_archivo.', EL USUARIO CON CUENTA: '.$cuenta.'');
-					 	 $sqlexiste=("select count(id_persona) as cantidad from tbl_subida_documentacion where id_persona='$_SESSION[id_persona]'");
+					 	 $sqlexiste=("select count(id_persona) as cantidad from tbl_subida_documentacion where id_persona='$id_persona'");
 					 	$existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 					if ($existe['cantidad']==0)
 					{
-					 $sql = "call proc_insertar_subida_informacion ('$_SESSION[id_persona]') ";
+					 $sql = "call proc_insertar_subida_informacion ('$id_persona') ";
 
  					 $resultado = $mysqli->query($sql);
 
@@ -233,11 +214,11 @@ $peso=$_FILES['txt_documentos']['size'][$key];
 			|| ($_FILES["txt_documentos"]["type"][$key] == "application/msword") || ($_FILES["txt_documentos"]["type"][$key] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
 		{
 					 bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'EL DOCUMENTO'.$$nombre_archivo.', EL USUARIO CON CUENTA: '.$cuenta.'');
-					 	 $sqlexiste=("select count(id_persona) as cantidad from tbl_subida_documentacion where id_persona='$_SESSION[id_persona]'");
+					 	 $sqlexiste=("select count(id_persona) as cantidad from tbl_subida_documentacion where id_persona='$id_persona'");
 					 	$existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 					if ($existe['cantidad']==0)
 					{
-					 $sql = "call proc_insertar_subida_informacion ('$_SESSION[id_persona]') ";
+					 $sql = "call proc_insertar_subida_informacion ('$id_persona') ";
 
  					 $resultado = $mysqli->query($sql);
 
@@ -299,11 +280,11 @@ foreach($_FILES["txt_documentos"]['tmp_name'] as $key => $tmp_name)
 			|| ($_FILES["txt_documentos"]["type"][$key] == "application/msword") || ($_FILES["txt_documentos"]["type"][$key] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
 		{
 					 bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'EL DOCUMENTO'.$nombre_archivo.', EL USUARIO CON CUENTA: '.$cuenta.'');
-					 	 $sqlexiste=("select count(id_persona) as cantidad from tbl_subida_documentacion where id_persona='$_SESSION[id_persona]'");
+					 	 $sqlexiste=("select count(id_persona) as cantidad from tbl_subida_documentacion where id_persona='$id_persona'");
 					 	$existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 					if ($existe['cantidad']==0)
 					{
-					 $sql = "call proc_insertar_subida_informacion ('$_SESSION[id_persona]') ";
+					 $sql = "call proc_insertar_subida_informacion ('$id_persona') ";
 
  					 $resultado = $mysqli->query($sql);
 
@@ -333,11 +314,11 @@ foreach($_FILES["txt_documentos"]['tmp_name'] as $key => $tmp_name)
 			|| ($_FILES["txt_documentos"]["type"][$key] == "application/msword") || ($_FILES["txt_documentos"]["type"][$key] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
 		{
 					 bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'EL DOCUMENTO'.$nombre_archivo.', EL USUARIO CON CUENTA: '.$cuenta.'');
-					 	 $sqlexiste=("select count(id_persona) as cantidad from tbl_subida_documentacion where id_persona='$_SESSION[id_persona]'");
+					 	 $sqlexiste=("select count(id_persona) as cantidad from tbl_subida_documentacion where id_persona='$id_persona'");
 					 	$existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 					if ($existe['cantidad']==0)
 					{
-					 $sql = "call proc_insertar_subida_informacion ('$_SESSION[id_persona]') ";
+					 $sql = "call proc_insertar_subida_informacion ('$id_persona') ";
 
  					 $resultado = $mysqli->query($sql);
 

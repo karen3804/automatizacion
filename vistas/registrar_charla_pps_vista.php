@@ -257,4 +257,3 @@ END) as contador from tbl_contador_constancia where id_contador =2 ";
 </body>
 </html>
 
-

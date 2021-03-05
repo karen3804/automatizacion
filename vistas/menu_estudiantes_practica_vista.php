@@ -18,30 +18,6 @@ $_SESSION['incripcion_estudiante_charla_menu']="No
 }
 
 
-if (permiso_ver('15')=='1')
- {
-  
-  $_SESSION['registrar_clases_aprobadas_menu']="...";
-}
-else
-{
-$_SESSION['registrar_clases_aprobadas_menu']="No 
-  tiene permisos para visualizar";
-
-}
-
-if (permiso_ver('16')=='1')
- {
-  
-  $_SESSION['gestion_clases_aprobadas_menu']="...";
-}
-else
-{
-$_SESSION['gestion_clases_aprobadas_menu']="No 
-  tiene permisos para visualizar";
-
-}
-
 if (permiso_ver('17')=='1')
  {
   
@@ -54,6 +30,17 @@ $_SESSION['registrar_empresas_practica_menu']="No
 
 }
 
+if (permiso_ver('18')=='1')
+ {
+  
+  $_SESSION['historial_constancias_practica_menu']="...";
+}
+else
+{
+$_SESSION['historial_constancias_practica_menu']="No 
+  tiene permisos para visualizar";
+
+}
 
 if (permiso_ver('19')=='1')
  {
@@ -146,7 +133,6 @@ $_SESSION['gestion_solicitud_practica_menu']="No
    <p><?php  echo $_SESSION['incripcion_estudiante_charla_menu'];?></p>
   </div>
   <div class="icon">
-    <a href="../pdf/reporte_constancia_charla.php">Inicio</a> 
     <i class="fas fa-user-plus"></i>
   </div>
   <a href="../vistas/registrar_charla_pps_vista.php" class="small-box-footer">
@@ -158,44 +144,6 @@ $_SESSION['gestion_solicitud_practica_menu']="No
           <!-- /.col -->
 
 
-
-
-
-
- <div class="col-6 col-sm-6 col-md-4">
-  <div class="small-box bg-light">
-  <div class="inner">
-    <h5>Registro de Asignaturas Aprobadas</h5>
-   <p><?php  echo $_SESSION['registrar_clases_aprobadas_menu'];?></p>
-  </div>
-  <div class="icon">
-     <a href="../pdf/reporte_constancia_clases.php
-">Inicio</a> 
-    <i class="fas fa-user-plus"></i>
-  </div>
-  <a href="../vistas/registrar_asignaturas_aprobadas_vista.php" class="small-box-footer">
-   Ir <i class="fas fa-arrow-circle-right"></i>
-  </a>
-  </div>
-   <!-- /.info-box -->
-  </div>
-
-
-   <div class="col-6 col-sm-6 col-md-4">
-   <div class="small-box bg-light">
-   <div class="inner">
-    <h5>Gestión Asignaturas Aprobadas</h5>
-   <p><?php echo $_SESSION['gestion_clases_aprobadas_menu']; ?></p> 
-  </div>
-  <div class="icon">
-    <i class="fas fa-user-edit"></i>
-  </div>
-  <a href="../vistas/gestion_asignaturas_aprobadas_vista.php" class="small-box-footer">
-    Ir <i class="fas fa-arrow-circle-right"></i>
-  </a>
-</div>
-</div>
-
  <div class="col-6 col-sm-6 col-md-4">
   <div class="small-box bg-light">
   <div class="inner">
@@ -203,7 +151,6 @@ $_SESSION['gestion_solicitud_practica_menu']="No
    <p><?php  echo $_SESSION['registrar_empresas_practica_menu'];?></p>
   </div>
   <div class="icon">
-  <a href="../pdf/reporte_presentacion_empresa.php">Inicio</a> 
 
     <i class="fas fa-user-plus"></i>
   </div>
@@ -262,6 +209,22 @@ $_SESSION['gestion_solicitud_practica_menu']="No
     <i class="fas fa-user-edit"></i>
   </div>
   <a href="../vistas/subida_informacion_estudiante_vista.php" class="small-box-footer">
+    Ir <i class="fas fa-arrow-circle-right"></i>
+  </a>
+</div>
+</div>
+
+
+ <div class="col-6 col-sm-6 col-md-4">
+   <div class="small-box bg-light">
+   <div class="inner">
+    <h5>Historial de constancias y/o cartas</h5>
+   <p><?php echo $_SESSION['historial_constancias_practica_menu']; ?></p> 
+  </div>
+  <div class="icon">
+    <i class="fas fa-user-edit"></i>
+  </div>
+  <a href="../vistas/Historial_constancias_cartas_vista.php" class="small-box-footer">
     Ir <i class="fas fa-arrow-circle-right"></i>
   </a>
 </div>
