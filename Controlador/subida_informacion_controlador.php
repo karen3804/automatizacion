@@ -18,7 +18,7 @@ $datos = mysqli_fetch_assoc($mysqli->query($sqlsubida));
 
 $_SESSION['Cantidad_Archivos']=count($_FILES["txt_documentos"]['tmp_name']);
 $_SESSION['Cantidad_Archivos_parametro']=$datos['valor'];
-$carpeta='C:\xampp\htdocs\automatizacion-master-p\Documentacion_practica';
+$carpeta='../Documentacion_practica';
 $cuenta=$_POST['txt_cuenta_estudiante'];
 
 
