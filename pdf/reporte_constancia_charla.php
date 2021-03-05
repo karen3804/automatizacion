@@ -5,9 +5,14 @@
 require 'fpdf/fpdf.php';
 require_once ('../clases/Conexion.php');
 
-$sql = "select p.nombre , p.documento , cp.no_constancia, cp.fecha_valida , cp.fecha_recibida , cp.jornada as jornada from tbl_personas p, tbl_charla_practica cp WHERE p.id_persona=cp.id_persona and cp.estado_asistencia_charla=1 and p.id_persona=$_SESSION[id_persona] ";
 
 
+$usuario=$_SESSION['id_usuario'];
+        $id=("select id_persona from tbl_usuarios where id_usuario='$usuario'");
+       $result= mysqli_fetch_assoc($mysqli->query($id));
+       $id_persona=$result['id_persona'];
+/* Manda a llamar todos las datos de la tabla para llenar el gridview  */
+$sqltabla="select concat(p.nombres,'',p.apellidos)AS nombre, px.valor , cp.no_constancia, cp.fecha_valida , cp.fecha_recibida , cp.jornada as jornada from tbl_personas p, tbl_charla_practica cp, tbl_personas_extendidas px where p.id_persona=cp.id_persona and cp.estado_asistencia_charla=1 and p.id_persona='$id_persona' AND px.id_atributo=12 and px.id_persona='$id_persona'";
 
 
 class PDF extends FPDF
@@ -45,7 +50,7 @@ $fecha=date("Y-m-d H:i:s");
 //date_default_timezone_get('America/Tegucigalpa');
 
 
-	$resultado = mysqli_query($connection, $sql);
+	$resultado = mysqli_query($connection, $sqltabla);
 	$row = mysqli_fetch_array($resultado);
 
 
@@ -104,7 +109,7 @@ $_SESSION['impartida']=$Impartida["valor"] . " /".$Impartida2["valor"];
     $pdf->multicell(170,5,utf8_decode('Por este medio hacemos constar que el (la)estudiante: '),0);
 	$pdf->ln(5);
 	$pdf->SetX(20);
-    $pdf->multicell(170,5,utf8_decode('Cuenta: '.$row['documento'].'. '),0);
+    $pdf->multicell(170,5,utf8_decode('Cuenta: '.$row['valor'].'. '),0);
 	$pdf->ln(5);
 	$pdf->SetX(20);
     $pdf->multicell(170,5,utf8_decode('Nombre: '.$row['nombre'].'. '),0);

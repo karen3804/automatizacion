@@ -5,7 +5,14 @@
 require 'fpdf/fpdf.php';
 require_once ('../clases/Conexion.php');
 
-$sql = "select ep.nombre_empresa, ep.jefe_inmediato, ep.titulo_jefe_inmediato,ep.cargo_jefe_inmediato,p.nombre, p.documento from tbl_empresas_practica ep, tbl_personas p where ep.id_persona=p.id_persona and p.id_persona=$_SESSION[id_persona] ";
+
+
+$usuario=$_SESSION['id_usuario'];
+        $id=("select id_persona from tbl_usuarios where id_usuario='$usuario'");
+       $result= mysqli_fetch_assoc($mysqli->query($id));
+       $id_persona=$result['id_persona'];
+/* Manda a llamar todos las datos de la tabla para llenar el gridview  */
+$sqltabla="select ep.nombre_empresa, ep.jefe_inmediato, ep.titulo_jefe_inmediato,ep.cargo_jefe_inmediato, concat(p.nombres,'',p.apellidos)AS nombre, px.valor from tbl_empresas_practica ep, tbl_personas p, tbl_personas_extendidas px where ep.id_persona=p.id_persona and p.id_persona='$id_persona' AND px.id_atributo=12 and px.id_persona='$id_persona'";
 
 
 class PDF extends FPDF
@@ -28,7 +35,7 @@ function Footer()
 }
 //date_default_timezone_get('America/Tegucigalpa');
 
-$resultado = mysqli_query($connection, $sql);
+$resultado = mysqli_query($connection, $sqltabla);
 	$row = mysqli_fetch_array($resultado);
 
 	
@@ -60,7 +67,7 @@ $resultado = mysqli_query($connection, $sql);
     $pdf->multicell(170,9,utf8_decode('Estimado '),0);
 	$pdf->ln(5);
 	$pdf->SetX(20);
-	$pdf->multicell(170,5,utf8_decode('Por este medio me permito presentar a : '.$row['nombre'].'  con numero de cuenta '.$row['documento'].'  estudiante de la carrera de Informatica Administrativa, quien desea realizar la practica profecional en tan prestigiosa empresa. '),0);
+	$pdf->multicell(170,5,utf8_decode('Por este medio me permito presentar a : '.$row['nombre'].'  con numero de cuenta '.$row['valor'].'  estudiante de la carrera de Informatica Administrativa, quien desea realizar la practica profecional en tan prestigiosa empresa. '),0);
 	$pdf->ln(5);
 	$pdf->SetX(20);
 	$pdf->multicell(170,5,utf8_decode('La Practica Profesional es una actividad formativa del alumno, consistente en la asuncion supervisada y gradual, del rol profesional, a traves de su insercion a un arealida o ambiente laboral especifico, al mismo tiempo se convierte en un aporte desde su capacidad,habilidad y conocimientos adquiridos, cuya meta es producir algun producto o aporte significativo dentro de la institucion. '),0);
