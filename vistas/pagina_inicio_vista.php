@@ -213,7 +213,7 @@ if (session_status() === PHP_SESSION_NONE) {
               </ul>
             </li>
 
-            <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_coordinacion'] ?>">
+             <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_coordinacion'] ?>">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
@@ -231,7 +231,7 @@ if (session_status() === PHP_SESSION_NONE) {
                   </a>
                 </li>
                 <li class="nav-item" style="display:<?php echo $_SESSION['cambio_carrera'] ?>">
-                  <a href="../vistas/revision_cambio_carrera_vista.php" class="nav-link">
+                  <a href="../vistas/menu_revision_cambio.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p> Cambio de Carrera </p>
                   </a>
@@ -243,7 +243,7 @@ if (session_status() === PHP_SESSION_NONE) {
                   </a>
                 </li>
                 <li class="nav-item" style="display:<?php echo $_SESSION['equivalencias'] ?>">
-                  <a href="../vistas/revision_equivalencias_vista.php" class="nav-link">
+                  <a href="../vistas/menu_revison_equivalencias.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Equivalencias </p>
                   </a>
