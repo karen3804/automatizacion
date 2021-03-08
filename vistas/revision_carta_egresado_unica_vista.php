@@ -25,7 +25,7 @@ if($visualizacion==0){
 if (isset($_GET['alumno'])){
 
     $sqltabla = json_decode( file_get_contents("http://34.203.186.135/Automatizacion/api/carta_egresado.php?alumno=".$_GET['alumno']), true );
-    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'A REVISION CARTA DE EGRESADO ALUMNO '.$sqltabla["ROWS"][0]['nombre'].'');
+    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'A REVISION CARTA DE EGRESADO ALUMNO '.$sqltabla["ROWS"][0]['nombres'].'');
 }
 
 ob_end_flush();
@@ -88,19 +88,19 @@ ob_end_flush();
                 <div class="col-md-12">
                         <div class="form-group">
                             <label>Nombre del Alumno</label>
-                            <input class="form-control" value="<?php echo $sqltabla["ROWS"][0]['nombre'] ?>" type="text" id="txt_nombre" name="txt_nombre1" style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" readonly onmousedown="return false;" >
+                            <input class="form-control" value="<?php echo $sqltabla["ROWS"][0]['nombres'].' '.$sqltabla["ROWS"][0]['apellidos'] ?>" type="text" id="txt_nombre" name="txt_nombre1" style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" readonly onmousedown="return false;" >
                         </div>
                 </div>
                 <div class="col-md-6">
                         <div class="form-group">
                             <label>Número de Cuenta</label>
-                            <input class="form-control" value="<?php echo $sqltabla["ROWS"][0]['documento']  ?>" type="text" id="txt_cuenta" name="txt_cuenta" style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" readonly onmousedown="return false;">
+                            <input class="form-control" value="<?php echo $sqltabla["ROWS"][0]['valor']  ?>" type="text" id="txt_cuenta" name="txt_cuenta" style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" readonly onmousedown="return false;">
                         </div>
                 </div>
                 <div class="col-md-6">
                         <div class="form-group">
                             <label>Correo Electrónico</label>
-                            <input class="form-control" value="<?php echo $sqltabla["ROWS"][0]['Correo'] ?>" type="email" id="txt_correo" name="txt_correo" style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" readonly onmousedown="return false;">
+                            <input class="form-control" value="<?php echo $sqltabla["ROWS"][0]['correo'] ?>" type="email" id="txt_correo" name="txt_correo" style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" readonly onmousedown="return false;">
                         </div>
                 </div>
                 <div class="col-md-6">
@@ -192,9 +192,9 @@ ob_end_flush();
                    <div class="col-md-12">
                     <div class="form-group">
                         <label class="control-label">Nombre Completo</label>
-                        <input class="form-control" type="text"  maxlength="60" id="txt_nombre_alumno" name="txt_nombre_alumno"  value="<?php echo $sqltabla["ROWS"][0]['nombre'] ?>" required style="text-transform: uppercase"   onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" readonly>
+                        <input class="form-control" type="text"  maxlength="60" id="txt_nombre_alumno" name="txt_nombre_alumno"  value="<?php echo $sqltabla["ROWS"][0]['nombres'].' '.$sqltabla["ROWS"][0]['apellidos'] ?>" required style="text-transform: uppercase"   onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" readonly>
                         <?php 
-                        $cuenta = $sqltabla["ROWS"][0]['documento'];
+                        $cuenta = $sqltabla["ROWS"][0]['valor'];
                          $listar=null;
                          $directorio=opendir("../archivos/carta_egresado/$cuenta/");
                          while ($elemento =readdir($directorio)) 
