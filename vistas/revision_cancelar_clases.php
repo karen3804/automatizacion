@@ -95,11 +95,11 @@ $sql_tabla = json_decode( file_get_contents('http://34.203.186.135/Automatizacio
                   if($sql_tabla["ROWS"]!=""){
                   while($counter < count($sql_tabla["ROWS"])) { ?>
                 <tr>
-                <td><?php echo $sql_tabla["ROWS"][$counter]["nombre"] ?></td>
-                <td><?php echo $sql_tabla["ROWS"][$counter]["documento"] ?></td>
+                <td><?php echo $sql_tabla["ROWS"][$counter]["nombres"].' '.$sql_tabla["ROWS"][$counter]["apellidos"] ?></td>
+                <td><?php echo $sql_tabla["ROWS"][$counter]["valor"] ?></td>
                 <td><?php echo $sql_tabla["ROWS"][$counter]["correo"] ?></td>         
                 <td style="text-align: center;">                    
-                    <a href="../vistas/revision_cancelar_clases_unica.php?alumno=<?php echo $sql_tabla["ROWS"][$counter]["documento"]; ?>" class="btn btn-primary btn-raised btn-xs">
+                    <a href="../vistas/revision_cancelar_clases_unica.php?alumno=<?php echo $sql_tabla["ROWS"][$counter]["valor"]; ?>" class="btn btn-primary btn-raised btn-xs">
                     <i class="far fa-check-circle"></i>
                     </a>
                 </td>
