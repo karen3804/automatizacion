@@ -25,8 +25,10 @@ if($visualizacion==0){
   bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'A SOLICITUD DE EQUIVALENCIAS');
 }
 
-$sql=$mysqli->prepare("SELECT nombre,documento FROM tbl_usuarios u, tbl_personas p
-WHERE u.id_persona = p.id_persona
+$sql=$mysqli->prepare("SELECT p.nombres,p.apellidos,pe.valor
+FROM tbl_personas p, tbl_personas_extendidas pe,tbl_usuarios u
+WHERE pe.id_persona = p.id_persona
+AND p.id_persona = u.id_persona
 AND u.Usuario = ?");
 $sql->bind_param("s",$_SESSION['usuario']);
 $sql->execute();
@@ -92,19 +94,28 @@ ob_end_flush();
           <!-- /.card-header -->
           <div class="card-body">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input class="form-control" value="<?php echo $row['nombre'] ?>" type="text" id="txt_nombre" name="txt_nombre" style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)"  readonly onmousedown="return false;" >
+                            <input class="form-control" value="<?php echo $row['nombres'].' '.$row['apellidos'] ?>" type="text" id="txt_nombre" name="txt_nombre" style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)"  readonly onmousedown="return false;" >
                             <input class="form-control" type="hidden" id="txt_codigo" name="txt_codigo" value="codigo">
                         </div>
                 </div>
+
+
                 <div class="col-md-6">
                         <div class="form-group">
                             <label>Verifiqué su Nombre</label>
-                            <input class="form-control" type="text" id="txt_verificado" name="txt_verificado" style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" maxlength="50" placeholder="Colocar acentos en los nombres y apellidos si los lleva" >
+                            <input class="form-control" type="text" id="txt_verificado" name="txt_verificado1" style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" maxlength="50" placeholder="Colocar acentos en los nombres si los lleva" >
                         </div>
                 </div>
+                <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Verifiqué su Apellido</label>
+                            <input class="form-control" type="text" id="txt_verificado" name="txt_verificado2" style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" maxlength="50" placeholder="Colocar acentos en los apellidos si los lleva" >
+                        </div>
+                </div>
+
                 <div class="col-md-6">
                         <div class="form-group">
                             <label>Número de Cuenta</label>
