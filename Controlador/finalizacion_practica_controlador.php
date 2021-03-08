@@ -4,7 +4,8 @@ require_once ('../clases/Conexion.php');
 
         if(isset($_POST['txt_nombre'])){
             $nombre = $_POST['txt_nombre'];
-            $verificado = $_POST['txt_verificado'];
+            $verificado1 = $_POST['txt_verificado1'];
+            $verificado2 = $_POST['txt_verificado2'];
             $ncuenta = $_POST['txt_cuenta'];
             $correo = $_POST['txt_correo'];
             $empresa = $_POST['txt_empresa'];
@@ -13,15 +14,18 @@ require_once ('../clases/Conexion.php');
             if ($nombre==!""  && $ncuenta==!"" && $correo==!"" && $empresa==!"" && $encargado==!"" && $_FILES['txt_archivo']['name']!=null) 
             {
 
-                $sql=$mysqli->prepare("select * from tbl_personas where documento = ?");
+                $sql=$mysqli->prepare("select p.nombres,p.apellidos
+                                       from tbl_personas p, tbl_personas_extendidas pe
+                                       where p.id_persona = pe.id_persona
+                                       AND pe.valor = ?");
                 $sql->bind_param("i",$ncuenta);
                 $sql->execute();
                 $resultado = $sql->get_result();
 
                 if($resultado->num_rows>=1){
 
-                    if($verificado!==""){
-                        $insertanombre ="call upd_nombre('$ncuenta','$verificado')";
+                    if($verificado1!=="" && $verificado2!==""){
+                        $insertanombre ="call upd_nombre('$ncuenta','$verificado1','$verificado2')";
                         $resultadon = $mysqli->query($insertanombre);
                     }
 
