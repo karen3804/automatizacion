@@ -9,7 +9,14 @@ $nombre_estudiante=$_POST['txt_nombre_estudiante'];
 $correo=$_POST['txt_correo_estudiante'];
 $apellido_estudiante=$_POST['txt_apellido_estudiante'];
 $sexo=$_POST['sexo'];
-print_r($_POST);
+//Tomar la primera letra del string
+$letra=substr($nombre_estudiante, 0, 1);
+//Tomar la primera palabra de todo el string usando el indice[0]
+$palabra = explode (" ", $apellido_estudiante);
+//Concatenación de la primera letra del nombre y primer apellido para crear el usuario
+$usuario=$letra.$palabra[0];
+//Convertir el nombre de usuario en mayuscula
+$usuario_final = strtoupper($usuario);
 
 if($contrasena!=$confirmar_contrasena)
 {
@@ -80,7 +87,7 @@ if(strlen($contrasena) < $tamano_min['valor']  )
 
               }else{
                 $clave=cifrado::encryption($contrasena);
-                      $sql = "call   proc_insertar_estudiante( '$nombre_estudiante','$apellido_estudiante','$numero_cuenta','$correo','$clave','$sexo')";
+                      $sql = "call   proc_insertar_estudiante( '$nombre_estudiante','$apellido_estudiante','$numero_cuenta','$correo','$clave','$sexo','$usuario_final')";
 
                         $result = $mysqli->query($sql);
                           if($result === TRUE)

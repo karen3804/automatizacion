@@ -142,7 +142,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <p>Preguntas de Seguridad</p>
                   </a>
                 </li>
-                
+                  
                 <li class="nav-item" style="display:<?php echo $_SESSION['usuarios_vista'] ?>">
                   <a href="../vistas/menu_usuarios_vista.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
