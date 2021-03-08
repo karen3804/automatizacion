@@ -6,7 +6,7 @@ require_once ('../clases/funcion_bitacora.php');
 require_once ('../clases/funcion_visualizar.php');
 require_once ('../clases/funcion_permisos.php');
 
-$Id_objeto=37; 
+$Id_objeto=36; 
 $visualizacion= permiso_ver($Id_objeto);
 if($visualizacion==0){
   echo '<script type="text/javascript">
@@ -21,11 +21,11 @@ if($visualizacion==0){
 
    </script>'; 
 }else{
-  bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'A REVISION LISTA DE EQUIVALENCIAS');
+  bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'A REVISION LISTA CARTA DE EGRESADO');
 }
-$tipo = $_GET['tipo'];
+  
 $counter = 0;
-$sql_tabla = json_decode( file_get_contents('http://34.203.186.135/Automatizacion/api/equivalencias.php?tipo='.$tipo), true );
+$sql_tabla = json_decode( file_get_contents('http://34.203.186.135/Automatizacion/api/carta_egresado.php'), true );
 
 
 
@@ -51,13 +51,12 @@ $sql_tabla = json_decode( file_get_contents('http://34.203.186.135/Automatizacio
           <div class="col-sm-6">
 
 
-            <h1>Solicitudes de Equivalencias</h1>
+            <h1>Solicitudes de Carta de Egresado</h1>
           </div>
 
                 <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
-              <li class="breadcrumb-item"><a href="menu_revison_equivalencias.php">Equivalencias</a></li>
             </ol>
           </div>
 
@@ -87,7 +86,8 @@ $sql_tabla = json_decode( file_get_contents('http://34.203.186.135/Automatizacio
                   <th>NOMBRE</th>
                   <th># DE CUENTA</th>
                   <th>CORREO</th>
-                  <th>Revisar</th>
+                  <th>CELULAR</th>
+                  <th>REVISAR SOLICITUD</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -95,19 +95,17 @@ $sql_tabla = json_decode( file_get_contents('http://34.203.186.135/Automatizacio
                   if($sql_tabla["ROWS"]!=""){
                   while($counter < count($sql_tabla["ROWS"])) { ?>
                 <tr>
-                <td><?php echo $sql_tabla["ROWS"][$counter]["nombre"] ?></td>
-                <td><?php echo $sql_tabla["ROWS"][$counter]["documento"] ?></td>
-                <td><?php echo $sql_tabla["ROWS"][$counter]["correo"]  ?></td>         
+                <td><?php echo $sql_tabla["ROWS"][$counter]["nombres"].' '.$sql_tabla["ROWS"][$counter]["apellidos"] ?></td>
+                <td><?php echo  $sql_tabla["ROWS"][$counter]["valor"]  ?></td>
+                <td><?php echo  $sql_tabla["ROWS"][$counter]["correo"]  ?></td>
+                <td><?php echo  $sql_tabla["ROWS"][$counter]["celular"]  ?></td> 
                 <td style="text-align: center;">                    
-                    <a href="../vistas/revision_equivalencias_unica.php?alumno=<?php echo $sql_tabla["ROWS"][$counter]["documento"];?>&tipo=<?php echo $tipo?>" class="btn btn-primary btn-raised btn-xs">
+                    <a href="../vistas/revision_carta_egresado_unica_vista.php?alumno=<?php echo $sql_tabla["ROWS"][$counter]["valor"]; ?>" class="btn btn-primary btn-raised btn-xs">
                     <i class="far fa-check-circle"></i>
                     </a>
                 </td>
                </tr>
-                 <?php $counter = $counter +1; 
-                 }
-                }
-                 ?>
+                 <?php $counter = $counter + 1; }} ?>
              </tbody>
             </table>
          </div>
@@ -133,24 +131,24 @@ $sql_tabla = json_decode( file_get_contents('http://34.203.186.135/Automatizacio
     </form>
 
 
-
-<script type="text/javascript">
+    <script type="text/javascript">
   
 
- $(function () {
-   
-    $('#tabla').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true,
-      "responsive": true,
-    });
-  });
+  $(function () {
+    
+     $('#tabla').DataTable({
+       "paging": true,
+       "lengthChange": true,
+       "searching": true,
+       "ordering": true,
+       "info": true,
+       "autoWidth": true,
+       "responsive": true,
+     });
+   });
+ 
+ 
+ </script>
 
-
-</script>
 </body>
 </html>
