@@ -9,12 +9,15 @@ require_once ('../clases/Conexion.php');
             $razon = $_POST['txt_razon'];
             $centro = $_POST['txt_centrore'];
             $facultad = $_POST['txt_facultad'];
-            $verificado = $_POST['txt_verificado'];
+            $verificado1 = $_POST['txt_verificado1'];
+            $verificado2 = $_POST['txt_verificado2'];
             $correo = $_POST['txt_correo'];
 
             
 
-            $sql=$mysqli->prepare("select * from tbl_personas where documento = ?");
+            $sql=$mysqli->prepare("SELECT p.nombres,p.apellidos
+                                   FROM tbl_usuarios u, tbl_personas p
+                                   WHERE u.id_persona = p.id_persona  AND u.Usuario =?");
             $sql->bind_param("i",$ncuenta);
             $sql->execute();
             $resultado = $sql->get_result();
@@ -37,6 +40,13 @@ require_once ('../clases/Conexion.php');
                     $documento_nombre_temporal[] = $_FILES['txt_carne']['tmp_name'];
                     $documento_nombre_temporal[] = $_FILES['txt_conducta']['tmp_name'];
 
+                    if($verificado1!=="" && $verificado2!==""){
+                        $insertanombre ="call upd_nombre('$ncuenta','$verificado1','$verificado2')";
+                        $resultadon = $mysqli->query($insertanombre);
+                        $resultadon->free();
+                        $mysqli->next_result();
+                    }
+
                    
                     $micarpeta = '../archivos/cambio/interno/'.$ncuenta;
                     if (!file_exists($micarpeta)) {
@@ -57,10 +67,7 @@ require_once ('../clases/Conexion.php');
                     }
                     $documento = json_encode($direccion);
 
-                    if($verificado!==""){
-                        $insertanombre ="call upd_nombre('$ncuenta','$verificado')";
-                        $resultadon = $mysqli->query($insertanombre);
-                    }
+                    
                     
                     $sqlp = "call ins_cambio_carrera('$ncuenta','$razon','$centro','$facultad','$documento','INTERNO','$correo')";
                     $resultadop = $mysqli->query($sqlp);
@@ -78,7 +85,7 @@ require_once ('../clases/Conexion.php');
                         
                                     } 
                     else {
-                        echo "Error: " . $sql ;
+                        echo "Error: " . $sqlp;
                         }
                      
                     
@@ -177,13 +184,16 @@ require_once ('../clases/Conexion.php');
                             $(".FormularioAjax")[0];
                 </script>'; 
         }
-       }elseif(isset($_POST['txt_simultanea']) && $_POST['txt_nombre']!=="" && $_POST['txt_apellido']!=="" && $_POST['txt_correo']!=="" && $_POST['txt_cuenta']!=="" ){
+       }elseif(isset($_POST['txt_simultanea']) && $_POST['txt_nombre']!=="" && $_POST['txt_correo']!=="" && $_POST['txt_cuenta']!=="" ){
                
                 $ncuenta = $_POST['txt_cuenta'];
-                $verificado = $_POST['txt_verificado'];
+                $verificado1 = $_POST['txt_verificado1'];
+                $verificado2 = $_POST['txt_verificado2'];
                 $correo = $_POST['txt_correo'];
 
-                $sql=$mysqli->prepare("select * from tbl_personas where documento = ?");
+                $sql=$mysqli->prepare("SELECT p.nombres,p.apellidos
+                FROM tbl_usuarios u, tbl_personas p
+                WHERE u.id_persona = p.id_persona  AND u.Usuario =?");
                 $sql->bind_param("i",$ncuenta);
                 $sql->execute();
                 $resultado = $sql->get_result();
@@ -225,9 +235,11 @@ require_once ('../clases/Conexion.php');
                     }
                     $documento = json_encode($direccion);
 
-                    if($verificado!==""){
-                        $insertanombre ="call upd_nombre('$cuenta','$verificado')";
+                    if($verificado1!=="" && $verificado2!==""){
+                        $insertanombre ="call upd_nombre('$cuenta','$verificado1','$verificado2')";
                         $resultadon = $mysqli->query($insertanombre);
+                        $resultadon->free();
+                        $mysqli->next_result();
                     }
 
                     $sqlp = "call ins_cambio_carrera('$cuenta','','1','1','$documento','SIMULTANEA','$correo')";
@@ -339,7 +351,10 @@ require_once ('../clases/Conexion.php');
         $observacion = $_POST['txt_observacion'];
         $tipo = $_POST['txt_tipo'];
 
-            $sql=$mysqli->prepare("select * from tbl_personas where documento= ?");
+            $sql=$mysqli->prepare("select p.nombres,p.apellidos,p.id_persona
+                                   from tbl_personas p,tbl_personas_extendidas pe
+                                   where p.id_persona = pe.id_persona
+                                   AND pe.valor= ?");
             $sql->bind_param("i",$cuenta);
             $sql->execute();
             $resultado = $sql->get_result();

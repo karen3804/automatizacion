@@ -36,11 +36,9 @@ if($visualizacion==0){
 
 }
 
-$sql=$mysqli->prepare("SELECT p.nombre,p.documento, e.jefe_inmediato,e.nombre_empresa 
-FROM tbl_usuarios u, tbl_personas p, tbl_empresas_practica e
-WHERE u.id_persona = p.id_persona
-AND p.id_persona = e.id_persona
-AND u.Usuario =?");
+$sql=$mysqli->prepare("SELECT p.nombres,p.apellidos, e.jefe_inmediato,e.nombre_empresa
+FROM tbl_usuarios u, tbl_personas p, tbl_empresas_practica e 
+WHERE u.id_persona = p.id_persona AND p.id_persona = e.id_persona AND u.Usuario =?");
 $sql->bind_param("s",$_SESSION['usuario']);
 $sql->execute();
 $resultado = $sql->get_result();
@@ -102,16 +100,22 @@ ob_end_flush();
           <!-- /.card-header -->
           <div class="card-body">
             <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input class="form-control" type="text" id="txt_nombre" name="txt_nombre" style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" maxlength="50" value="<?php echo $row['nombre'] ?>" readonly onmousedown="return false;" >                           
+                            <input class="form-control" type="text" id="txt_nombre" name="txt_nombre" style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" maxlength="50" value="<?php echo $row['nombres'].' '.$row['apellidos'] ?>" readonly onmousedown="return false;" >                           
                         </div>
                 </div>
                 <div class="col-md-6">
                         <div class="form-group">
                             <label>Verifiqué su Nombre</label>
-                            <input class="form-control" type="text" id="txt_verificado" name="txt_verificado"  onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" maxlength="50" placeholder="Colocar acentos en los nombres y apellidos si los lleva">
+                            <input class="form-control" type="text" id="txt_verificado" name="txt_verificado1"  onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" maxlength="50" placeholder="Colocar acentos en los nombres si los lleva">
+                        </div>
+                </div>
+                <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Verifiqué su Apellido</label>
+                            <input class="form-control" type="text" id="txt_verificado" name="txt_verificado2"  onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" maxlength="50" placeholder="Colocar acentos en los apellidos si los lleva">
                         </div>
                 </div>
                 <div class="col-md-6">

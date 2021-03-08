@@ -23,6 +23,7 @@ $resultado_permisos = $mysqli->query($sql_permisos);
    $_SESSION['btn_solicitudes']='none';
    $_SESSION['btn_coordinacion']='none';
 
+
    /*Menu laterales*/
    $_SESSION['pregunta_vista']='none';
    $_SESSION['usuarios_vista']='none';
@@ -33,6 +34,7 @@ $resultado_permisos = $mysqli->query($sql_permisos);
    $_SESSION['practica_vista']='none';
    $_SESSION['egresados_vista']='none';
    $_SESSION['proyectos_vinculacion_vista']='none';
+   $_SESSION['supervision_vista']='none';  
    $_SESSION['final_practica']='none';
    $_SESSION['cambio_carrera']='none';
    $_SESSION['carta_egresado']='none';
@@ -44,6 +46,7 @@ $resultado_permisos = $mysqli->query($sql_permisos);
    $_SESSION['solicitud_carta_egresado']='none';
    $_SESSION['solicitud_equivalencias']='none';
    $_SESSION['solicitud_cancelar_clases']='none';
+ 
 
 
   while ($fila = $resultado_permisos->fetch_row())
@@ -85,9 +88,8 @@ $resultado_permisos = $mysqli->query($sql_permisos);
        }
 
 
-           if ($_SESSION['pantalla']=='14' or $_SESSION['pantalla']=='2
-            0'  or $_SESSION['pantalla']=='2
-            1')
+
+           if ($_SESSION['pantalla']=='14' or $_SESSION['pantalla']>='20' and $_SESSION['pantalla']<='28' )
        {
         if ( $_SESSION['confirmacion']=='block') 
         {
@@ -98,7 +100,34 @@ $resultado_permisos = $mysqli->query($sql_permisos);
 
 
 
- if ($_SESSION['pantalla']=='1' or $_SESSION['pantalla']=='2')
+         // boton de solicitudes */
+       if ($_SESSION['pantalla']>='29' and $_SESSION['pantalla']<='33' or $_SESSION['pantalla']=='13' or  $_SESSION['pantalla']>='15' and $_SESSION['pantalla']<='19' or $_SESSION['pantalla']=='39' or  $_SESSION['pantalla']=='40' )
+       {
+        if ( $_SESSION['confirmacion']=='block') 
+        {
+         $_SESSION['btn_solicitudes']="block";
+
+        }
+       }
+// boton de coordinacion */
+//** las pantallas son el id de la tbl_objetos */
+if ($_SESSION['pantalla']>='34' and $_SESSION['pantalla']<='38' )
+       {
+        if ( $_SESSION['confirmacion']=='block') 
+        {
+         $_SESSION['btn_coordinacion']="block";
+
+        }
+       } 
+
+
+
+
+
+
+
+
+         if ($_SESSION['pantalla']=='1' or $_SESSION['pantalla']=='2')
        {
         if ( $_SESSION['confirmacion']=='block') 
         {
@@ -106,6 +135,7 @@ $resultado_permisos = $mysqli->query($sql_permisos);
 
         }
        }
+
 
         if ($_SESSION['pantalla']=='3' or $_SESSION['pantalla']=='4')
        {
@@ -148,7 +178,8 @@ $resultado_permisos = $mysqli->query($sql_permisos);
 
         }
        }
-       
+
+
 
          if ($_SESSION['pantalla']=='14'  or $_SESSION['pantalla']=='18' or $_SESSION['pantalla']=='20' or $_SESSION['pantalla']=='21' or $_SESSION['pantalla']=='26'or $_SESSION['pantalla']=='27' or $_SESSION['pantalla']=='28')
        {
@@ -160,14 +191,6 @@ $resultado_permisos = $mysqli->query($sql_permisos);
        }
 
 
-         if ($_SESSION['pantalla']=='13' or $_SESSION['pantalla']=='15' or $_SESSION['pantalla']=='16' or $_SESSION['pantalla']=='17' or $_SESSION['pantalla']=='19' or $_SESSION['pantalla']=='39' or  $_SESSION['pantalla']=='40')
-       {
-        if ( $_SESSION['confirmacion']=='block') 
-        {
-         $_SESSION['solicitud_practica']="block";
-
-        }
-       }
 
            if ($_SESSION['pantalla']=='22' or $_SESSION['pantalla']=='23')
        {
@@ -185,7 +208,18 @@ $resultado_permisos = $mysqli->query($sql_permisos);
          $_SESSION['proyectos_vinculacion_vista']="block";
 
         }
-       } 
+       }
+
+
+           if ($_SESSION['pantalla']=='69' or $_SESSION['pantalla']=='70')
+       {
+        if ( $_SESSION['confirmacion']=='block') 
+        {
+         $_SESSION['supervision_vista']="block";
+         }
+       }
+
+
 
         if ($_SESSION['pantalla']=='29')
        {
@@ -278,30 +312,17 @@ $resultado_permisos = $mysqli->query($sql_permisos);
        }
 
 
-
-       // boton de solicitudes */
-       if ($_SESSION['pantalla']>='29' and $_SESSION['pantalla']<='33' or $_SESSION['pantalla']=='13' or $_SESSION['pantalla']=='15' or $_SESSION['pantalla']=='16' or $_SESSION['pantalla']=='17' or $_SESSION['pantalla']=='19' or $_SESSION['pantalla']=='39' or  $_SESSION['pantalla']=='40' )
+    if ($_SESSION['pantalla']=='13' or $_SESSION['pantalla']=='18' or $_SESSION['pantalla']=='17' or $_SESSION['pantalla']=='19' or $_SESSION['pantalla']=='39' or  $_SESSION['pantalla']=='40')
        {
         if ( $_SESSION['confirmacion']=='block') 
         {
-         $_SESSION['btn_solicitudes']="block";
+         $_SESSION['solicitud_practica']="block";
 
         }
        }
-// boton de coordinacion */
-//** las pantallas son el id de la tbl_objetos */
-if ($_SESSION['pantalla']>='34' and $_SESSION['pantalla']<='38' )
-       {
-        if ( $_SESSION['confirmacion']=='block') 
-        {
-         $_SESSION['btn_coordinacion']="block";
 
-        }
-       }                     
-                        
-	
- 
-   }
 
+
+     }
 
 ?>

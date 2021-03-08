@@ -1,4 +1,6 @@
 <?php
+
+
 header("Content-Type:application/json");
 
 require_once ('../clases/funcion_bitacora.php');
@@ -6,7 +8,7 @@ require_once ('../clases/Conexion.php');
 
 //Verificacion del modal
         $result = [];
-if (isset($_GET["id_persona_"])) {
+if (isset($_GET["id_persona"])) {
 
 if ($R = $mysqli->query("select * from tbl_empresas_practica where id_persona='$_GET[id_persona]'")) {
             $items = [];
