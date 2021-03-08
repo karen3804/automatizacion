@@ -7,9 +7,13 @@ require_once ('../clases/Conexion.php');
         
         $cuenta= $_POST['txt_cuenta'];
         $correo = $_POST['txt_correo'];
-        $verificado = $_POST['txt_verificado'];
+        $verificado1 = $_POST['txt_verificado1'];
+        $verificado2 = $_POST['txt_verificado2'];
 
-        $sql="select * from tbl_personas where documento = $cuenta";
+        $sql="SELECT p.nombres,p.apellidos,pe.valor
+             FROM tbl_personas p, tbl_personas_extendidas pe
+             WHERE pe.id_persona = p.id_persona
+             AND pe.valor = $cuenta";
         $resultado = $mysqli->query($sql);
 
         if($resultado->num_rows>=1){
@@ -39,9 +43,11 @@ require_once ('../clases/Conexion.php');
                 }
                 $documento = json_encode($direccion);
 
-                if($verificado!==""){
-                    $insertanombre ="call upd_nombre('$cuenta','$verificado')";
+                if($verificado1!=="" && $verificado2!==""){
+                    $insertanombre ="call upd_nombre('$cuenta','$verificado1','$verificado2')";
                     $resultadon = $mysqli->query($insertanombre);
+                    $resultadon->free();
+                    $mysqli->next_result();
                 }
 
                 $sqlp = "call ins_equivalencias('$cuenta','$documento','CODIGO','$correo')";
@@ -59,7 +65,7 @@ require_once ('../clases/Conexion.php');
                             </script>'; 
                         } 
                     else {
-                        echo "Error: " . $sql ;
+                        echo "Error: " . $sqlp;
                         }
             }else{
                 echo '<script type="text/javascript">
@@ -89,10 +95,14 @@ require_once ('../clases/Conexion.php');
     }elseif(isset($_POST['txt_contenido']) && $_POST['txt_contenido']!=="" && $_POST['txt_nombre']!=="" 
      && $_POST['txt_cuenta']!=="" && $_POST['txt_correo']!==""){
         $cuenta=$_POST['txt_cuenta'];
-        $verificado = $_POST['txt_verificado'];
+        $verificado1 = $_POST['txt_verificado1'];
+        $verificado2 = $_POST['txt_verificado2'];
         $correo = $_POST['txt_correo'];
 
-        $sql="select * from tbl_personas where documento = $cuenta";
+        $sql="SELECT p.nombres,p.apellidos,pe.valor
+             FROM tbl_personas p, tbl_personas_extendidas pe
+             WHERE pe.id_persona = p.id_persona
+             AND pe.valor = $cuenta";
         $resultado = $mysqli->query($sql);
 
         if($resultado->num_rows>=1){
@@ -122,9 +132,11 @@ require_once ('../clases/Conexion.php');
                 }
                 $documento = json_encode($direccion);
 
-                if($verificado!==""){
-                    $insertanombre ="call upd_nombre('$cuenta','$verificado')";
+                if($verificado1!=="" && $verificado2!==""){
+                    $insertanombre ="call upd_nombre('$cuenta','$verificado2','$verificado2')";
                     $resultadon = $mysqli->query($insertanombre);
+                    $resultadon->free();
+                    $mysqli->next_result();
                 }
     
                 $sqlp = "call ins_equivalencias('$cuenta','$documento','CONTENIDO','$correo')";
@@ -176,7 +188,10 @@ require_once ('../clases/Conexion.php');
         $observacion = $_POST['txt_observacion'];
         $tipo = $_POST['txt_tipo'];
 
-        $sql=$mysqli->prepare("select * from tbl_personas where documento= ?");
+        $sql=$mysqli->prepare("select p.id_persona,p.nombres,p.apellidos, pe.valor 
+                               from tbl_personas p,tbl_personas_extendidas pe 
+                               where p.id_persona = pe.id_persona
+                               AND pe.valor =  ?");
         $sql->bind_param("i",$cuenta);
         $sql->execute();
         $resultado = $sql->get_result();
