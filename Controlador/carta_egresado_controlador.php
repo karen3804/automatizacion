@@ -5,10 +5,16 @@ require_once ('../clases/Conexion.php');
 if(isset($_POST['txt_nombre']) && $_POST['txt_nombre']!=="" && $_POST['txt_cuenta']!=="" && $_POST['txt_correo']!==""){ 
     if($_FILES['txt_finalizacion']['name']!=null && $_FILES['txt_certificado']['name']!=null
         && $_FILES['txt_comunitario']['name']!=null && $_FILES['txt_identidad']['name']!=null){
+            
             $ncuenta = $_POST['txt_cuenta'];
             $correo = $_POST['txt_correo'];
-            $verificado = $_POST['txt_verificado'];
-            $sql="select * from tbl_personas where documento = $ncuenta";
+            $verificado1 = $_POST['txt_verificado1'];
+            $verificado2 = $_POST['txt_verificado2'];
+
+            $sql="SELECT p.nombres,p.apellidos,pe.valor
+                  FROM tbl_personas p, tbl_personas_extendidas pe
+                  WHERE p.id_persona = pe.id_persona
+                  AND pe.valor = $ncuenta";
             $resultado = $mysqli->query($sql);
 
             if($resultado->num_rows>=1){
@@ -41,9 +47,11 @@ if(isset($_POST['txt_nombre']) && $_POST['txt_nombre']!=="" && $_POST['txt_cuent
                 }
                 $documento = json_encode($direccion);
 
-                if($verificado!==""){
-                    $insertanombre ="call upd_nombre('$ncuenta','$verificado')";
+                if($verificado1!=="" && $verificado2!==""){
+                    $insertanombre ="call upd_nombre('$ncuenta','$verificado1','$verificado2')";
                     $resultadon = $mysqli->query($insertanombre);
+                    $resultadon->free();
+                    $mysqli->next_result();
                 }
 
                 $sqlp = "call ins_carta_egresado('$ncuenta','$documento','$correo')";
@@ -58,11 +66,11 @@ if(isset($_POST['txt_nombre']) && $_POST['txt_nombre']!=="" && $_POST['txt_cuent
                                         timer: 1500
                                         });
                                         $(".FormularioAjax")[0].reset();
-                                    </script>'; 
+                                       </script>'; 
                     
                                 } 
                 else {
-                    echo "Error: " . $sql ;
+                    echo "Error: " . $sqlp ;
                     }
 
 
