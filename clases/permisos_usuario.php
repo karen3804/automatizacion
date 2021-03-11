@@ -22,6 +22,8 @@ $resultado_permisos = $mysqli->query($sql_permisos);
    $_SESSION['btn_vinculacion']='none';
    $_SESSION['btn_solicitudes']='none';
    $_SESSION['btn_coordinacion']='none';
+   $_SESSION['btn_docentes']='none';
+   $_SESSION['btn_mantenimientos']='none';
 
 
    /*Menu laterales*/
@@ -89,7 +91,7 @@ $resultado_permisos = $mysqli->query($sql_permisos);
 
 
 
-           if ($_SESSION['pantalla']=='14' or $_SESSION['pantalla']>='20' and $_SESSION['pantalla']<='28' and $_SESSION['pantalla']<='69'  )
+           if ($_SESSION['pantalla']=='14' or $_SESSION['pantalla']>='20' and $_SESSION['pantalla']<='28' )
        {
         if ( $_SESSION['confirmacion']=='block') 
         {
@@ -116,6 +118,22 @@ if ($_SESSION['pantalla']>='34' and $_SESSION['pantalla']<='38' )
         if ( $_SESSION['confirmacion']=='block') 
         {
          $_SESSION['btn_coordinacion']="block";
+
+        }
+       } 
+       if ($_SESSION['pantalla']>='51')
+       {
+        if ( $_SESSION['confirmacion']=='block') 
+        {
+         $_SESSION['btn_docentes']="block";
+
+        }
+       } 
+       if ($_SESSION['pantalla']>='70')
+       {
+        if ( $_SESSION['confirmacion']=='block') 
+        {
+         $_SESSION['btn_docentes']="block";
 
         }
        } 

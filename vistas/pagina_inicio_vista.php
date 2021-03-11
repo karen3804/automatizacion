@@ -339,7 +339,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
             <!----MANTENIMIENTOS ----->
-             <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_mantenimiento'] ?>">
+             <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_mantenimientos'] ?>">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
