@@ -24,6 +24,7 @@ $resultado_permisos = $mysqli->query($sql_permisos);
    $_SESSION['btn_coordinacion']='none';
    $_SESSION['btn_docentes']='none';
    $_SESSION['btn_mantenimientos']='none';
+   $_SESSION['btn_ayuda']='none';
 
 
    /*Menu laterales*/
@@ -137,7 +138,14 @@ if ($_SESSION['pantalla']>='34' and $_SESSION['pantalla']<='38' )
 
         }
        } 
+       if ($_SESSION['pantalla']>='71')
+       {
+        if ( $_SESSION['confirmacion']=='block') 
+        {
+         $_SESSION['btn_ayuda']="block";
 
+        }
+       } 
 
 
 

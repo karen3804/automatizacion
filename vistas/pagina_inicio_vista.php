@@ -361,7 +361,7 @@ if (session_status() === PHP_SESSION_NONE) {
             </li>
               <!---- Ayuda ----->
 
-          <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_solicitudes'] ?>">
+          <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book-open"></i>
               <p>
