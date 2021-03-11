@@ -192,7 +192,7 @@ $_SESSION['perfil_persona_menu']="No
             <!-- /.col -->
 
             
-            <div class="col-6 col-sm-6 col-md-4">
+           <!-- <div class="col-6 col-sm-6 col-md-4">
               <div class="small-box bg-light">
                 <div class="inner">
                   <h4>Registro de Estudiantes </h4>
