@@ -29,6 +29,8 @@ if (!function_exists('ejecutarConsulta'))
 			return false;
 		}
 	}
+	
+	class conexion {
 	function ejecutarConsulta($sql)
 	{
 		global $conexion;
@@ -72,7 +74,7 @@ if (!function_exists('ejecutarConsulta'))
 	}
 }
 
-
+}
 
 
 ?>

@@ -333,7 +333,7 @@ switch ($_GET["op"]){
  			$data[]=array(
 
  				"0"=>$botones,
-        "1"=>$reg->nombre,
+       			"1"=>$reg->nombre,
  				"2"=>$reg->valor,
 				"3"=>$reg->nombre_empresa,
 				"4"=>$reg->direccion_empresa,
