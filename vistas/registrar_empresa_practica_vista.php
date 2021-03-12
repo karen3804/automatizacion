@@ -145,7 +145,7 @@ $_SESSION['direccionamiento']=' action="../api/empresas_practica_api.php?id_empr
  else
  {
   $_SESSION['Modificar_empresa']="NO";
-$_SESSION['direccionamiento']=' action="../controlador/guardar_empresa_practica_controlador.php"';
+$_SESSION['direccionamiento']=' action="../Controlador/guardar_empresa_practica_controlador.php"';
 
  }
 
