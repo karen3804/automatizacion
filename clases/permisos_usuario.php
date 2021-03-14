@@ -92,26 +92,25 @@ $resultado_permisos = $mysqli->query($sql_permisos);
 
 
 
-           if ($_SESSION['pantalla']=='14' or $_SESSION['pantalla']>='20' and $_SESSION['pantalla']<='28' )
+       if ($_SESSION['pantalla']=='14' or $_SESSION['pantalla']=='15' or $_SESSION['pantalla']=='16' or $_SESSION['pantalla']>='20' and $_SESSION['pantalla']<='28' )
        {
         if ( $_SESSION['confirmacion']=='block') 
         {
-         $_SESSION['btn_vinculacion']="block";
-
+         $_SESSION['btn_vinculacion']="block";  
         }
        }
 
 
 
          // boton de solicitudes */
-       if ($_SESSION['pantalla']>='29' and $_SESSION['pantalla']<='33' or $_SESSION['pantalla']=='13' or  $_SESSION['pantalla']>='15' and $_SESSION['pantalla']<='19' or $_SESSION['pantalla']=='39' or  $_SESSION['pantalla']=='40' )
-       {
-        if ( $_SESSION['confirmacion']=='block') 
-        {
-         $_SESSION['btn_solicitudes']="block";
-
-        }
-       }
+         if ($_SESSION['pantalla']>='29' and $_SESSION['pantalla']<='33' or $_SESSION['pantalla']=='13' or  $_SESSION['pantalla']>='17' and $_SESSION['pantalla']<='19' or $_SESSION['pantalla']=='39' or  $_SESSION['pantalla']=='40' )
+         {
+          if ( $_SESSION['confirmacion']=='block') 
+          {
+           $_SESSION['btn_solicitudes']="block";
+  
+          }
+         }
 // boton de coordinacion */
 //** las pantallas son el id de la tbl_objetos */
 if ($_SESSION['pantalla']>='34' and $_SESSION['pantalla']<='38' )
@@ -207,7 +206,7 @@ if ($_SESSION['pantalla']>='34' and $_SESSION['pantalla']<='38' )
 
 
 
-         if ($_SESSION['pantalla']=='14'  or $_SESSION['pantalla']=='18' or $_SESSION['pantalla']=='20' or $_SESSION['pantalla']=='21' or $_SESSION['pantalla']=='26'or $_SESSION['pantalla']=='27' or $_SESSION['pantalla']=='28')
+       if ($_SESSION['pantalla']=='14' or $_SESSION['pantalla']=='15' or $_SESSION['pantalla']=='16'  or $_SESSION['pantalla']=='18' or $_SESSION['pantalla']=='20' or $_SESSION['pantalla']=='21' or $_SESSION['pantalla']=='26'or $_SESSION['pantalla']=='27' or $_SESSION['pantalla']=='28')
        {
         if ( $_SESSION['confirmacion']=='block') 
         {

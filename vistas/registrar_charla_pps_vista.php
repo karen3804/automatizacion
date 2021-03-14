@@ -46,11 +46,14 @@ else
 {
     $_SESSION['btn_guardar_inscripcion_charla']="disabled";
  }
+ 
  $usuario=$_SESSION['id_usuario'];
  $id=("select id_persona from tbl_usuarios where id_usuario='$usuario'");
 $result= mysqli_fetch_assoc($mysqli->query($id));
 $id_persona=$result['id_persona'];
-  $sql=("select concat(p.nombres,' ', p.apellidos) as nombre ,px.valor from tbl_personas_extendidas px, tbl_personas p, tbl_usuarios u where u.id_persona='$id_persona' and p.id_persona='$id_persona' and px.id_atributo=12 and px.id_persona='$id_persona' ");
+
+
+  $sql=("select concat(p.nombres,' ', p.apellidos) as nombre ,px.valor from tbl_personas_extendidas px, tbl_personas p where  p.id_persona='$id_persona' and px.id_atributo=12 and px.id_persona=p.id_persona ");
  //Obtener la fila del query
 $resultado = mysqli_fetch_assoc($mysqli->query($sql));
 
@@ -109,7 +112,6 @@ ob_end_flush();
         
       
 <form action="../Controlador/guardar_charla_pps_controlador.php" method="post"  data-form="save" autocomplete="off" class="FormularioAjax">
-
  <div class="card card-default">
           <div class="card-header">
             <h3 class="card-title">Nuevo</h3>

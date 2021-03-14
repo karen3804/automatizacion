@@ -9,7 +9,7 @@ $usuario=$_SESSION['id_usuario'];
  $id=("select id_persona from tbl_usuarios where id_usuario='$usuario'");
 $result= mysqli_fetch_assoc($mysqli->query($id));
 $id_persona=$result['id_persona'];
-$sql = "SELECT px.valor, concat(a.nombres,' ',a.apellidos) as nombre, ep.nombre_empresa, ep.direccion_empresa, pe.docente_supervisor, pe.fecha_inicio, pe.fecha_finaliza, c.valor Correo, e.valor Celular, ep.tipo_empresa, ep.departamento_empresa, ep.jefe_inmediato, ep.titulo_jefe_inmediato, ep.cargo_jefe_inmediato, ep.correo_jefe_inmediato, ep.telefono_jefe_inmediato, ep.labora_dentro, a.id_persona, pe.horas, px.valor, a.identidad, a.fecha_nacimiento
+$sql = "SELECT px.valor, concat(a.nombres,' ',a.apellidos) as nombre, ep.nombre_empresa, ep.direccion_empresa, pe.docente_supervisor, pe.fecha_inicio, pe.fecha_finaliza, c.valor Correo, e.valor Celular, h.valor Fijo, i.valor Direccion, ep.tipo_empresa, ep.departamento_empresa, ep.jefe_inmediato, ep.titulo_jefe_inmediato, ep.cargo_jefe_inmediato, ep.correo_jefe_inmediato, ep.telefono_jefe_inmediato, ep.labora_dentro, a.id_persona, pe.horas, px.valor, a.identidad, a.fecha_nacimiento
 
 FROM
 
@@ -22,6 +22,10 @@ JOIN tbl_contactos c ON a.id_persona = c.id_persona
 JOIN tbl_tipo_contactos d ON c.id_tipo_contacto = d.id_tipo_contacto AND d.descripcion = 'CORREO'
 JOIN tbl_contactos e ON a.id_persona = e.id_persona
 JOIN tbl_tipo_contactos f ON e.id_tipo_contacto = f.id_tipo_contacto AND f.descripcion = 'TELEFONO CELULAR'
+JOIN tbl_contactos h ON a.id_persona = h.id_persona
+JOIN tbl_tipo_contactos j ON h.id_tipo_contacto = j.id_tipo_contacto AND j.descripcion = 'TELEFONO FIJO'
+JOIN tbl_contactos i ON a.id_persona = i.id_persona
+JOIN tbl_tipo_contactos k ON i.id_tipo_contacto = k.id_tipo_contacto AND k.descripcion = 'DIRECCION'
 join tbl_personas_extendidas as px on px.id_atributo=12 and px.id_persona=a.id_persona
 WHERE a.id_persona='$id_persona'";
 
@@ -93,12 +97,12 @@ $resultado = mysqli_query($connection, $sql);
     $pdf->ln(2);
     $pdf->ln(2);
 	$pdf->SetX(20);
-	$pdf->multicell(170,5,utf8_decode('Fecha de nacimiento: '.$row['fecha_nacimiento'].' Tel. Fijo:    Tel. Celular: '.$row['Celular'].''),0);
+	$pdf->multicell(170,5,utf8_decode('Fecha de nacimiento: '.$row['fecha_nacimiento'].' Tel. Fijo: '.$row['Fijo'].'   Tel. Celular: '.$row['Celular'].''),0);
 	$pdf->SetX(20);
     $pdf->ln(2);
     $pdf->ln(2);
 	$pdf->SetX(20);
-	$pdf->multicell(170,5,utf8_decode('Dirección: '),0);
+	$pdf->multicell(170,5,utf8_decode('Dirección: '.$row['Direccion'].''),0);
 	$pdf->SetX(20);
     $pdf->ln(2);
     $pdf->ln(2);

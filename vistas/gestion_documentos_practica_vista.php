@@ -103,7 +103,7 @@ if (isset($_REQUEST['msj']))
 
 
 
-        $sql_tabla_estudiantes_practica="select p.nombre,p.documento,
+        $sql_tabla_estudiantes_practica="select concat(p.nombres,' ', p.apellidos) as nombre ,px.valor,
         CASE sd.estado_vinculacion
         WHEN 0 then 'DOCUMENTACION INCOMPLETA'
         WHEN 1 THEN 'ENVIADO A VINCULACION'
@@ -113,8 +113,8 @@ if (isset($_REQUEST['msj']))
 
         ELSE
         'PENDIENTE' END AS PROCESO,sd.estado_coordinacion
-        from  tbl_personas p, tbl_subida_documentacion sd where p.id_persona=sd.id_persona";
-         $resultadotabla_estudiantes_practica = mysqli_fetch_assoc($mysqli->query($sql_tabla_estudiantes_practica));
+        from  tbl_personas p, tbl_subida_documentacion sd , tbl_personas_extendidas px  where p.id_persona=px.id_persona AND sd.id_persona=p.id_persona and px.id_atributo=12";
+         $resultadotabla_estudiantes_practica =$mysqli->query($sql_tabla_estudiantes_practica);
 
              //$_SESSION['estado_vin']=$resultadotabla_estudiantes_practica['estado_vinculacion'];
         //$_SESSION['estado_coor']=$resultadotabla_estudiantes_practica['estado_coordinacion'];
@@ -123,10 +123,10 @@ if (isset($_REQUEST['msj']))
 
         if (isset($_REQUEST['cuenta']))
         {
-          $sql_datos_modal="select p.nombre,p.documento from  tbl_personas p, tbl_subida_documentacion sd where p.id_persona=sd.id_persona and p.documento=$_REQUEST[cuenta]";
-          $resultado_datos = mysqli_fetch_assoc($mysqli->query($sql_datos_modal));
-          $_SESSION['txt_estudiante']=$resultado_datos['nombre'];
-          $_SESSION['cuenta']=$resultado_datos['documento'];
+          $sql_datos_modal="select concat(p.nombres,' ', p.apellidos) as nombre,px.valor from  tbl_personas p, tbl_subida_documentacion sd , tbl_personas_extendidas px where p.id_persona=px.id_persona AND sd.id_persona=p.id_persona AND   px.id_atributo=12 and px.valor=$_REQUEST[cuenta]";
+          $resultado_datos =mysqli_fetch_assoc($mysqli->query($sql_datos_modal));
+          $_SESSION["txt_estudiante"]=$resultado_datos['nombre'];
+          $_SESSION["cuenta"]=$resultado_datos['valor'];
 
           ?>
           <script>
@@ -165,12 +165,13 @@ if (isset($_REQUEST['msj']))
         if (isset($_REQUEST['cuentavinculacion']))
         {
 
-          $sql_datos_modal="select p.nombre,p.documento, sd.estado_vinculacion  from  tbl_personas p, tbl_subida_documentacion sd where p.id_persona=sd.id_persona and p.documento=$_REQUEST[cuentavinculacion]";
-          $resultado_datos = mysqli_fetch_assoc($mysqli->query($sql_datos_modal));
-          $_SESSION['txt_estudiante']=$resultado_datos['nombre'];
-          $_SESSION['cuenta']=$resultado_datos['documento'];
+          $sql_datos_modal="select concat(p.nombres,' ', p.apellidos) as 'nombre',px.valor, sd.estado_vinculacion  from  tbl_personas p, tbl_subida_documentacion sd , tbl_personas_extendidas px 
+      where p.id_persona=px.id_persona and sd.id_persona=p.id_persona AND   px.id_atributo=12 and px.valor=$_REQUEST[cuentavinculacion]";
+         $resultado_datos =mysqli_fetch_assoc($mysqli->query($sql_datos_modal));
+          $_SESSION["txt_estudiante"]=$resultado_datos['nombre'];
+          $_SESSION["cuenta"]=$resultado_datos['valor'];
 
-          $_SESSION['estado_vinculacion']=$resultado_datos['estado_vinculacion'];
+          $_SESSION["estado_vinculacion"]=$resultado_datos['estado_vinculacion'];
 
           if ($_SESSION['estado_vinculacion']=='1') {
               echo '<script type="text/javascript">
@@ -247,11 +248,11 @@ if (isset($_REQUEST['msj']))
                 <div class="RespuestaAjax"></div>
 
 
-
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
                     <li class="breadcrumb-item active">Vinculacion</li>
+
 
                   </ol>
                 </div>
@@ -270,7 +271,10 @@ if (isset($_REQUEST['msj']))
               <div class="card card-default">
                 <div class="card-header">
                   <h3 class="card-title">Expedientes</h3>
-                  <div class="card-tools">
+
+
+
+                      <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                   </div>
                 </div>
@@ -295,20 +299,20 @@ if ($row['estado_coordinacion']<>'1' and $row['estado_coordinacion']<>'0' ) {
                       ?>
                       <tr>
                         <td><?php echo $row['nombre']; ?></td>
-                        <td><?php echo $row['documento']; ?></td>
+                        <td><?php echo $row['valor']; ?></td>
                         <td><?php echo $row['PROCESO']; ?></td>
 
 
                         <td style="text-align: center;">
 
-                         <a href="../vistas/gestion_documentos_practica_vista.php?cuenta=<?php echo $row['documento']; ?>" class="btn btn-primary btn-raised btn-xs">
+                         <a href="../vistas/gestion_documentos_practica_vista.php?cuenta=<?php echo $row['valor']; ?>" class="btn btn-primary btn-raised btn-xs">
                           <i class="fas fa-eye"  title="Visualizar expediente"  ></i>
                         </a>
                       </td>
 
                       <td style="text-align: center;">
 
-                       <a href="../vistas/gestion_documentos_practica_vista.php?cuentavinculacion=<?php echo $row['documento']; ?>" class="btn btn-primary btn-raised btn-xs">
+                       <a href="../vistas/gestion_documentos_practica_vista.php?cuentavinculacion=<?php echo $row['valor']; ?>" class="btn btn-primary btn-raised btn-xs">
                         <i class="fas fa-edit"  title="Verificar documentacion "  ></i>
                       </a>
                     </td>
@@ -336,7 +340,7 @@ if ($row['estado_coordinacion']<>'1' and $row['estado_coordinacion']<>'0' ) {
 
   <!--Creacion del modal-->
 
-  <form action="../controlador/guardar_documentacion_practica_controlador.php" method="post"  data-form="update" autocomplete="off"  >
+  <form action="../Controlador/guardar_documentacion_practica_controlador.php" method="post"  data-form="update" autocomplete="off"  >
 
 
 
@@ -359,9 +363,11 @@ if ($row['estado_coordinacion']<>'1' and $row['estado_coordinacion']<>'0' ) {
                  <div class="col-sm-12">
                <div class="form-group">
  <label>Estudiante</label>
-          <input class="form-control" type="text" id="txt_estudiante_documento" name="txt_estudiante_documento" value="<?php echo strtoupper($_SESSION['txt_estudiante']) ?>" readonly="readonly">
+          <input class="form-control" type="text" id="txt_estudiante_documento" name="txt_estudiante_documento"  style="text-transform: uppercase"  value="<?php echo  $_SESSION['txt_estudiante'] ;?>" readonly="readonly">
+
+
 </div></div>
-   <input class="form-control" type="text" id="txt_estudiante_cuenta" name="txt_estudiante_cuenta" hidden="true"value="<?php echo strtoupper( $_SESSION['cuenta']) ?>" readonly="readonly">
+   <input class="form-control" type="text" id="txt_estudiante_cuenta" name="txt_estudiante_cuenta" hidden="true"value="<?php echo strtoupper($_SESSION['cuenta']) ?>" readonly="readonly">
 
  
 
@@ -431,7 +437,7 @@ if ($row['estado_coordinacion']<>'1' and $row['estado_coordinacion']<>'0' ) {
 
 <form action="" method="post"  data-form="update" autocomplete="off"  >
 
-
+                 
 
  <div class="modal fade" id="modal_documentacion_estudiante">
   <div class="modal-dialog">
@@ -451,9 +457,7 @@ if ($row['estado_coordinacion']<>'1' and $row['estado_coordinacion']<>'0' ) {
         <div class="card-body">
 
           <label>Estudiante</label>
-          <input class="form-control" type="text" id="txt_estudiante" name="txt_estudiante" value="<?php echo strtoupper($_SESSION['txt_estudiante']) ?>" readonly="readonly">
-
-
+          <input class="form-control" type="text" id="txt_estudiante" name="txt_estudiante" style="text-transform: uppercase"  value="<?php echo  $_SESSION['txt_estudiante'] ;?>"  readonly="readonly">
           <ul>
             <?php echo $listar ?>
 
@@ -529,4 +533,3 @@ document.getElementById("txt_observacion_documentacion").value ="";
 </body>
 
 </html>
-

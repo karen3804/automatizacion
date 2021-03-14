@@ -8,12 +8,14 @@ if (isset($_POST['cb_practica']))
 {
 
 	$_SESSION['cb_practica']=strtoupper ($_POST['cb_practica']);
+		$_SESSION['cb_horas_practica']=strtoupper ($_POST['cb_horas_practica']);
+
 
 	$_SESSION['txt_estudiante_cuenta']=strtoupper ($_POST['txt_estudiante_cuenta']);
 	$_SESSION['empresa']=strtoupper ($_POST['txt_empresa']);
 
 //Cuando practica es sin seleccionar
-	if ($_SESSION['cb_practica']=='0')
+	if ($_SESSION['cb_practica']=='0' and $_SESSION['cb_horas_practica']=='0')
 	{
 		header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=1"); 
 
@@ -26,7 +28,7 @@ if (isset($_POST['cb_practica']))
 $_SESSION['txt_motivo']="APROBADA";
 
 // tipo 1 de aprobado
-		$sql = "call proc_aprobacion_practica($_SESSION[txt_estudiante_cuenta],' $_SESSION[txt_motivo]',1,'	$_SESSION[empresa]') ";
+		$sql = "call proc_aprobacion_practica($_SESSION[txt_estudiante_cuenta],' $_SESSION[txt_motivo]',1,'	$_SESSION[empresa]', '$_SESSION[cb_horas_practica]') ";
 
 		$resultado = $mysqli->query($sql);
 		if ($resultado==true) {
@@ -59,7 +61,7 @@ $_SESSION['txt_motivo']="APROBADA";
 		{
 			//tipo 2 rechazo
 			$_SESSION['txt_motivo']=strtoupper ($_POST['txt_motivo_rechazo']);
-			$sql = "call proc_aprobacion_practica($_SESSION[txt_estudiante_cuenta],' $_SESSION[txt_motivo]',0,'	$_SESSION[empresa]') ";
+			$sql = "call proc_aprobacion_practica($_SESSION[txt_estudiante_cuenta],' $_SESSION[txt_motivo]',0,'	$_SESSION[empresa]','$_SESSION[cb_horas_practica]') ";
 
 		$resultado = $mysqli->query($sql);
 		if ($resultado==true) {
@@ -98,7 +100,7 @@ $_SESSION['txt_motivo']="APROBADA";
 		{
 			//Tipo distinto a 0 o 1
 			$_SESSION['txt_motivo']=strtoupper ($_POST['txt_motivo_rechazo']);
-	$sql = "call proc_aprobacion_practica($_SESSION[txt_estudiante_cuenta],' $_SESSION[txt_motivo]',2,'	$_SESSION[empresa]') ";
+	$sql = "call proc_aprobacion_practica($_SESSION[txt_estudiante_cuenta],' $_SESSION[txt_motivo]',2,'	$_SESSION[empresa]','$_SESSION[cb_horas_practica]') ";
 
 		$resultado = $mysqli->query($sql);
 		if ($resultado==true) {
