@@ -35,6 +35,7 @@ class Estadisticas
         }
         public function listar_fechas($fecha_inicio,$fecha_fin)
         {
+                global $instancia_conexion;
                 $sql="SELECT px.valor, concat(a.nombres,' ',a.apellidos) as nombre, ep.nombre_empresa, ep.direccion_empresa, pe.docente_supervisor, pe.fecha_inicio, pe.fecha_finaliza, c.valor Correo, e.valor Celular, ep.tipo_empresa, ep.departamento_empresa, ep.jefe_inmediato, ep.titulo_jefe_inmediato, ep.cargo_jefe_inmediato, ep.correo_jefe_inmediato, ep.telefono_jefe_inmediato, ep.labora_dentro, a.id_persona, pe.horas
 
                 FROM tbl_empresas_practica AS ep
@@ -52,6 +53,7 @@ class Estadisticas
         }
         public function listar_fechas_docente($fecha_inicio,$fecha_fin,$docente)
         {
+                global $instancia_conexion;
                 $sql="SELECT px.valor, concat(a.nombres,' ',a.apellidos) as nombre, ep.nombre_empresa, ep.direccion_empresa, pe.docente_supervisor, pe.fecha_inicio, pe.fecha_finaliza, c.valor Correo, e.valor Celular, ep.tipo_empresa, ep.departamento_empresa, ep.jefe_inmediato, ep.titulo_jefe_inmediato, ep.cargo_jefe_inmediato, ep.correo_jefe_inmediato, ep.telefono_jefe_inmediato, ep.labora_dentro, a.id_persona, pe.horas
 
                 FROM tbl_empresas_practica AS ep
@@ -69,6 +71,7 @@ class Estadisticas
         }
         public function listar_empresa($empresa)
         {
+                global $instancia_conexion;
                 $sql="SELECT px.valor, concat(a.nombres,' ',a.apellidos) as nombre, ep.nombre_empresa, ep.direccion_empresa, pe.docente_supervisor, pe.fecha_inicio, pe.fecha_finaliza, c.valor Correo, e.valor Celular, ep.tipo_empresa, ep.departamento_empresa, ep.jefe_inmediato, ep.titulo_jefe_inmediato, ep.cargo_jefe_inmediato, ep.correo_jefe_inmediato, ep.telefono_jefe_inmediato, ep.labora_dentro, a.id_persona, pe.horas
 
                 FROM tbl_empresas_practica AS ep
@@ -86,6 +89,7 @@ class Estadisticas
         }
         public function listar_docente($docente)
         {
+                global $instancia_conexion;
                 $sql="SELECT px.valor, concat(a.nombres,' ',a.apellidos) as nombre, ep.nombre_empresa, ep.direccion_empresa, pe.docente_supervisor, pe.fecha_inicio, pe.fecha_finaliza, c.valor Correo, e.valor Celular, ep.tipo_empresa, ep.departamento_empresa, ep.jefe_inmediato, ep.titulo_jefe_inmediato, ep.cargo_jefe_inmediato, ep.correo_jefe_inmediato, ep.telefono_jefe_inmediato, ep.labora_dentro, a.id_persona, pe.horas
 
                 FROM tbl_empresas_practica AS ep
@@ -103,6 +107,7 @@ class Estadisticas
         }
         public function listar_fechas_docente_empresa($fecha_inicio,$fecha_fin,$empresa,$docente)
         {
+                global $instancia_conexion;
                 $sql="SELECT px.valor, concat(a.nombres,' ',a.apellidos) as nombre, ep.nombre_empresa, ep.direccion_empresa, pe.docente_supervisor, pe.fecha_inicio, pe.fecha_finaliza, c.valor Correo, e.valor Celular, ep.tipo_empresa, ep.departamento_empresa, ep.jefe_inmediato, ep.titulo_jefe_inmediato, ep.cargo_jefe_inmediato, ep.correo_jefe_inmediato, ep.telefono_jefe_inmediato, ep.labora_dentro, a.id_persona, pe.horas
 
                 FROM tbl_empresas_practica AS ep
