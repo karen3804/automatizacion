@@ -119,7 +119,7 @@ function mostrar(id_supervisor)
 		$("#id_supervisor").val(data.id_persona);
 		$("#docente").val(data.nombre);
 	
-		
+		console.log(data.id_persona);
 
 	
 	 })

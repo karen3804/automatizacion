@@ -14,12 +14,12 @@ $mail = new PHPMailer\PHPMailer\PHPMailer();
 
 $mail->isSMTP();
 
-$correo= "vinculacionunah@informaticaunah.com";
-$Password= "Hola#*1234";
+$correo= "automatizacionunah2021@gmail.com";
+$Password= "Hola*1234";
 $mail->SMTPDebug = 0;
-$mail->Host = 'mail.informaticaunah.com';
-$mail->Port = 465;
-$mail->SMTPSecure = 'ssl';
+$mail->Host = 'smtp.gmail.com';
+$mail->Port = 587;
+$mail->SMTPSecure = 'TSL';
 $mail->SMTPAuth = true;
 $mail->Username = $correo;
 $mail->Password = $Password;
@@ -50,12 +50,12 @@ function enviarEmailPracticante($cuerpo_estudiante,$asunto_estudiante,$ecorreo,$
 	
 	$mail->isSMTP();
 	
-	$correo= "vinculacionunah@informaticaunah.com";
-    $Password= "Hola#*1234";
-	$mail->SMTPDebug = 0;
-	$mail->Host = 'mail.informaticaunah.com';
-	$mail->Port = 465;
-	$mail->SMTPSecure = 'ssl';
+	$correo= "automatizacionunah2021@gmail.com";
+    $Password= "Hola*1234";
+	$mail->SMTPDebug =0;
+	$mail->Host = 'smtp.gmail.com';
+	$mail->Port = 587;
+	$mail->SMTPSecure = 'TSL';
 	$mail->SMTPAuth = true;
 	$mail->Username = $correo;
 	$mail->Password = $Password;

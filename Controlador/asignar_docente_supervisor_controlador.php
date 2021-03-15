@@ -3,69 +3,61 @@ require_once "../Modelos/asignar_docente_supervisor_modelo.php";
 require_once "corre_supervisor.php";
 
 
+
 $modelo=new asignaturas();
+$id_supervisor=isset($_POST["id_supervisor"])? $instancia_conexion->limpiarCadena($_POST["id_supervisor"]):"";
+$nombre_alumno=isset($_POST["nombre_alumno"]);
+$cuenta=isset($_POST["cuenta"]);
+$docente=isset($_POST["docente"])? $instancia_conexion->limpiarCadena($_POST["docente"]):"";
 
-
-
-
-$id_supervisor=isset($_POST["id_supervisor"])? limpiarCadena($_POST["id_supervisor"]):"";
-$nombre_alumno=isset($_POST["nombre_alumno"])? limpiarCadena($_POST["nombre_asignatura"]):"";
-$cuenta=isset($_POST["cuenta"])? limpiarCadena($_POST["id_codigo"]):"";
-$docente=isset($_POST["docente"])? limpiarCadena($_POST["docente"]):"";
 
 
 switch ($_GET["op"]){
 
+	
+
 	case 'editar':
 
-			$rspta=$modelo->editar($docente, $id_supervisor);
+			$rspta=$modelo->editar($docente,$id_supervisor);
 
 
-			echo $rspta ? "DOCENTE SUPERVISOR ASIGNADO CORRECTAMENTE" : "DOCENTE SUPERVISOR NO SE PUDO ASIGNAR";
+			echo $rspta ? "DOCENTE SUPERVISOR ASIGNADO CORRECTAMENTE." : "DOCENTE SUPERVISOR NO SE PUDO ASIGNAR";
+			//query para los datos de alumnos
+		
+
+			$rspta1=$modelo->mostrar_datos_alumno($id_supervisor)->fetch_all();
+				foreach ($rspta1 as $key => $value) {
+
+				$estudiante= $value[1];
+				$num_cuenta= $value[0];
+				$ecorreo= $value[6];
+				$celular= $value[7];
+				$empresa= $value[2];
+				$direccion= $value[3];
+				$fechai= $value[4];
+				$fechan= $value[5];
+				$jefe= $value[8];
+				$titulo= $value[9];
+				$correo= new correo();
+					
+				
+				
+			} // fin del query para los datos del alumno
+//query para los datos del docente
+				$rspta2=$modelo->mostrar_datos_docente($docente)->fetch_all();
+			foreach ($rspta2 as $key => $value)
+			 {
+				$asunto_docente="ASIGNACIÓN DE SUPERVISIÓN DE PRACTICA PROFESIONAL";
+				$asunto_estudiante="ASIGNACIÓN DE DOCENTE SUPERVISOR";
+				$destino = $value[1];
+				$nombre_destino= $value[0];
+			
+	   		}// fin del query de los datos del docente
+
 			//Correo de docente
 
-			//query para los datos de alumnos
-			$query = $mysqli -> query ("SELECT px.valor, concat(a.nombres,' ',a.apellidos) as nombre, ep.nombre_empresa, ep.direccion_empresa, pe.docente_supervisor, pe.fecha_inicio, pe.fecha_finaliza, c.valor Correo, e.valor Celular, ep.jefe_inmediato, ep.titulo_jefe_inmediato
-
-			FROM tbl_empresas_practica AS ep
-			JOIN tbl_personas AS a
-			ON ep.id_persona = a.id_persona
-			JOIN tbl_practica_estudiantes AS pe
-			ON pe.id_persona = a.id_persona
-			JOIN tbl_contactos c ON a.id_persona = c.id_persona
-			JOIN tbl_tipo_contactos d ON c.id_tipo_contacto = d.id_tipo_contacto AND d.descripcion = 'CORREO'
-			JOIN tbl_contactos e ON a.id_persona = e.id_persona
-			JOIN tbl_tipo_contactos f ON e.id_tipo_contacto = f.id_tipo_contacto AND f.descripcion = 'TELEFONO CELULAR'
-			join tbl_personas_extendidas as px on px.id_atributo=12 and px.id_persona=a.id_persona
-            where a.id_persona='$id_supervisor'");
-                   while ($supervisores = mysqli_fetch_array($query)) {
-
-
-
-
-				$estudiante= $supervisores['nombres'];
-				$num_cuenta= $supervisores['valor'];
-				$ecorreo= $supervisores['Correo'];
-				$celular= $supervisores['Celular'];
-				$empresa= $supervisores['nombre_empresa'];
-				$direccion= $supervisores['direccion_empresa'];
-				$fechai= $supervisores['fecha_inicio'];
-				$fechan= $supervisores['fecha_finaliza'];
-				$jefe= $supervisores['jefe_inmediato'];
-				$titulo= $supervisores['titulo_jefe_inmediato'];
-				$correo= new correo();
-
-		}// fin del query para los datos del alumno
-		//querry para los datos del docente
-		$query = $mysqli -> query ("SELECT p.nombres, c.valor FROM tbl_contactos c, tbl_personas p WHERE c.id_persona = '$docente' and c.id_tipo_contacto=4 and p.id_persona='$docente' ");
-                   while ($supervisores = mysqli_fetch_array($query)) {
-
-
-					$asunto_docente="ASIGNACIÓN DE SUPERVISIÓN DE PRACTICA PROFESIONAL";
-					$asunto_estudiante="ASIGNACIÓN DE DOCENTE SUPERVISOR";
-				$destino = $supervisores['valor'];
-				$nombre_destino= $supervisores['nombres'];
-				   }// fin del query de los datos del docente
+			
+			//print_r($->fetch_all());
 			//cuerpo del correo del docente
 			$cuerpo='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
@@ -326,7 +318,7 @@ switch ($_GET["op"]){
  		while ($reg=$rspta->fetch_object()){
 
 			 $estado="";
-			 $botones='<center><div class="input-group mr-2" ><form  action="../vistas/docente_supervisor_vista.php" method="post"><button class="btn btn-primary btn-raised btn-sm" name="id_asignatura" value="'.$reg->id_persona.'"> <i class="fa fa-edit"></i> </button></form></div></center>';
+			 $botones='<center><div class="input-group mr-2" ><form  action="../vistas/docente_supervisor_vista.php?id_persona='.$reg->id_persona.'" method="post"><button class="btn btn-primary btn-raised btn-sm" onclick="mostrar('.$reg->id_persona.')" name="id_asignatura" value="'.$reg->id_persona.'"> <i class="fa fa-edit"></i> </button></form></div></center>';
 
 
 
