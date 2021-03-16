@@ -2,25 +2,25 @@
 require_once "../Modelos/reporte_carga_modelo.php";
 
 
-$Id_asignatura = isset($_POST["Id_asignatura"]) ? limpiarCadena($_POST["Id_asignatura"]) : "";
-$id_persona = isset($_POST["id_persona"]) ? limpiarCadena($_POST["id_persona"]) : "";
-$Id_dia = isset($_POST["Id_dia"]) ? limpiarCadena($_POST["Id_dia"]) : "";
-$id_edificio = isset($_POST["id_edificio"]) ? limpiarCadena($_POST["id_edificio"]) : "";
-$Id_modalidad = isset($_POST["id_modalidad"]) ? limpiarCadena($_POST["id_modalidad"]) : "";
-$id_hora = isset($_POST["hora"]) ? limpiarCadena($_POST["hora"]) : "";
-$num_periodo = isset($_POST["num_periodo"]) ? limpiarCadena($_POST["num_periodo"]) : "";
-$num_anno = isset($_POST["num_anno"]) ? limpiarCadena($_POST["num_anno"]) : "";
-$fecha_inicio = isset($_POST["fecha_inicio"]) ? limpiarCadena($_POST["fecha_inicio"]) : "";
-$fecha_final = isset($_POST["fecha_final"]) ? limpiarCadena($_POST["fecha_final"]) : "";
-$id_periodo = isset($_POST["id_periodo"]) ? limpiarCadena($_POST["id_periodo"]) : "";
-$aula = isset($_POST["id_aula"]) ? limpiarCadena($_POST["id_aula"]) : "";
-$id_tipo_periodo = isset($_POST["id_tipo_periodo"]) ? limpiarCadena($_POST["id_tipo_periodo"]) : "";
-$fecha_adic_canc = isset($_POST["fecha_adic_canc"]) ? limpiarCadena($_POST["fecha_adic_canc"]) : "";
-$seccion = isset($_POST["seccion"]) ? limpiarCadena($_POST["seccion"]) : "";
-$hora_inicial = isset($_POST["hora_inicial"]) ? limpiarCadena($_POST["hora_inicial"]) : "";
-$dias = isset($_POST["dias"]) ? limpiarCadena($_POST["dias"]) : "";
-$hora_inicial = isset($_POST["hora_inicial"]) ? limpiarCadena($_POST["hora_inicial"]) : "";
-$hora_final = isset($_POST["hora_final"]) ? limpiarCadena($_POST["hora_final"]) : "";
+$Id_asignatura = isset($_POST["Id_asignatura"]);
+$id_persona = isset($_POST["id_persona"]);
+$Id_dia = isset($_POST["Id_dia"]);
+$id_edificio = isset($_POST["id_edificio"]);
+$Id_modalidad = isset($_POST["id_modalidad"]);
+$id_hora = isset($_POST["hora"]);
+$num_periodo = isset($_POST["num_periodo"]);
+$num_anno = isset($_POST["num_anno"]);
+$fecha_inicio = isset($_POST["fecha_inicio"]);
+$fecha_final = isset($_POST["fecha_final"]);
+$id_periodo = isset($_POST["id_periodo"]);
+$aula = isset($_POST["id_aula"]);
+$id_tipo_periodo = isset($_POST["id_tipo_periodo"]);
+$fecha_adic_canc = isset($_POST["fecha_adic_canc"]);
+$seccion = isset($_POST["seccion"]);
+$hora_inicial = isset($_POST["hora_inicial"]);
+$dias = isset($_POST["dias"]) ? ($_POST["dias"]) : "";
+$hora_inicial = isset($_POST["hora_inicial"]);
+$hora_final = isset($_POST["hora_final"]);
 
 
 
