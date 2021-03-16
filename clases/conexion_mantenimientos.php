@@ -1,7 +1,7 @@
 <?php
 require_once "global.php";
 
-$conexion = new mysqli(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+$conexion = new mysqli('167.114.169.207','informat_admin','HLo{Q3e{)II^','informat_automatizacion');
 
 mysqli_query( $conexion, 'SET NAMES "'.DB_ENCODE.'"');
 
@@ -53,7 +53,7 @@ if (!function_exists('ejecutarConsulta'))
 		return $conexion->insert_id;
 	}
 
-	function limpiarCadena($str)
+	public function limpiarCadena($str)
 	{
 		global $conexion;
 		$str = mysqli_real_escape_string($conexion,trim($str));

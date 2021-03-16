@@ -8,8 +8,9 @@ ob_start();
 require_once ('../vistas/pagina_inicio_vista.php');
 require_once ('../clases/Conexion.php');
 require_once ('../clases/funcion_visualizar.php');
-
-
+$id_persona="";
+$id_persona=$_GET["id_persona"];
+print_r($_GET);
  
 
 ob_end_flush();
@@ -22,7 +23,7 @@ ob_end_flush();
 <html>
 <head>
 
-<script type="text/javascript" src="../js/supervisiones/docente_supervisor.js"></script>
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php 
             if (isset($_POST) && isset($_POST['id_asignatura'])) {
@@ -79,14 +80,15 @@ ob_end_flush();
           </div>
 
           <?php
-  $mysqli = new mysqli('localhost', 'admin', 'admin', 'automatizacion4');
+  $mysqli = new mysqli('167.114.169.207', 'informat_admin', 'HLo{Q3e{)II^', 'informat_automatizacion');
+    
 ?>
           <!-- /.card-header -->
           <div class="card-body">
             <div class="row">
                   <div class="col-sm-12">
                   <div class="form-group">
-                  <input hidden="true" name="id_supervisor" id="id_supervisor">
+                  <input Type="hidden" name="id_supervisor" id="id_supervisor"  value="<?php echo $id_persona?>">
                   <label>Docente supervisor</label>
                   <select class="form-control" name="docente" id="docente"> 
                   <option value="" selected hidden>Seleccione</option>
@@ -126,3 +128,4 @@ ob_end_flush();
 </html>
 
 
+<script type="text/javascript" src="../js/supervisiones/docente_supervisor.js"></script>

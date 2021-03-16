@@ -9,9 +9,11 @@ require_once ('../clases/funcion_bitacora.php');
 
   $No_constancia=strtoupper ($_POST['txt_constancia_charla']);
   $promedio_global_=strtoupper ($_POST['txt_promedio']);
-  $clases_aprobadas_=strtoupper ($_POST['txt_clases_aprobadas']);
-  $porcentaje=($clases_aprobadas_*100)/52;
+  $clases_aprobadas_=($_POST['txt_clases_aprobadas']);
+  $porcentaje=(($clases_aprobadas_) *100)/52;
+  $porcentaje = number_format($porcentaje, 2, "d", "@");
   $jornada_=strtoupper ($_POST['cb_jornada']);
+//  $clases_aprobadas_=44;
 
 
 
@@ -47,10 +49,16 @@ $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
     {
      $Id_objeto=13 ; 
 
-	   
+	    $usuario=$_SESSION['id_usuario'];
+ $id=("select id_persona from tbl_usuarios where id_usuario='$usuario'");
+$result= mysqli_fetch_assoc($mysqli->query($id));
+$id_persona=$result['id_persona'];
 
     			/* Query para que haga el insert*/
-				$sql = "call proc_insertar_inscripcion_charla('$_SESSION[id_persona]', '$No_constancia' ,'$promedio_global_','$clases_aprobadas_','$porcentaje','$jornada_')";
+				$sql = "call proc_insertar_inscripcion_charla('$id_persona', '$No_constancia' ,'$promedio_global_','$clases_aprobadas_','$porcentaje','$jornada_');";
+
+//call proc_insertar_inscripcion_charla('6', '$No_constancia' ,'$promedio_global_','$clases_aprobadas_','$porcentaje','Prueba')
+  
 				$resultado = $mysqli->query($sql);
 
 
@@ -110,7 +118,7 @@ else
   echo '<script type="text/javascript">
                                     swal({
                                        title:"",
-                                       text:"Lo sentimos no se pudo guardar su incripcion, intente de nuevo",
+                                       text:"Lo sentimos no se pudo guardar su incripcion, intente de nuevo.",
                                        type: "error",
                                        showConfirmButton: false,
                                        timer: 3000

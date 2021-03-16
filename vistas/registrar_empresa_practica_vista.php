@@ -122,7 +122,7 @@ $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 
  if ($existe['existe']==1 ) {
 $_SESSION['Modificar_empresa']="SI";
-$sql_tabla_empresa = json_decode( file_get_contents('http://localhost/automatizacion2/api/empresas_practica_api.php?id_persona='.$id_persona), true );
+$sql_tabla_empresa = json_decode( file_get_contents('http://informaticaunah.com/automatizacion/api/empresas_practica_api.php?id_persona='.$id_persona), true );
 if (isset($sql_tabla_empresa["ROWS"][0]["nombre_empresa"])) 
 {
   $_SESSION['Institucion']=$sql_tabla_empresa["ROWS"][0]["nombre_empresa"];
@@ -145,7 +145,7 @@ $_SESSION['direccionamiento']=' action="../api/empresas_practica_api.php?id_empr
  else
  {
   $_SESSION['Modificar_empresa']="NO";
-$_SESSION['direccionamiento']=' action="../controlador/guardar_empresa_practica_controlador.php"';
+$_SESSION['direccionamiento']=' action="../Controlador/guardar_empresa_practica_controlador.php"';
 
  }
 

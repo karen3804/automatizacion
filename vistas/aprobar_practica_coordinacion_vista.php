@@ -101,20 +101,33 @@ if ($msj==2)
           $_SESSION['btn_aprobacion_rechazo_practica']="disabled";
         }
 
-        $sql_tabla_estudiantes_practica="select p.nombre,p.documento,
+
+          
+
+
+
+        $sql_tabla_estudiantes_practica="SELECT px.valor as valor, concat(p.nombres,' ',p.apellidos) as nombre,
         CASE 
         WHEN (sd.estado_coordinacion IS NULL and sd.estado_vinculacion='1') then
         'PENDIENTE' 
-               END AS proceso,case when sd.estado_vinculacion IS NULL then 'PROCESO'
+        END AS proceso,
+        case
+        when sd.estado_vinculacion IS NULL then 'PROCESO'
         else
-        sd.estado_vinculacion end as estado_vinculacion, case when sd.estado_coordinacion IS NULL then 'PROCESO'
+        sd.estado_vinculacion end as estado_vinculacion, 
+        case 
+        when sd.estado_coordinacion IS NULL then 'PROCESO'
         else
         sd.estado_coordinacion end as estado_coordinacion
-        from  tbl_personas p, tbl_subida_documentacion sd where p.id_persona=sd.id_persona and sd.estado_coordinacion IS NULL ";
+        from  tbl_personas p, tbl_subida_documentacion sd, tbl_personas_extendidas px where sd.id_persona=p.id_persona AND px.id_atributo=12 and px.id_persona=p.id_persona and estado_coordinacion IS NULL ";
+
+
+
+
   $resultadotabla_estudiantes_practica = mysqli_fetch_assoc($mysqli->query($sql_tabla_estudiantes_practica));
 
         $_SESSION['txt_estudiante']=$resultadotabla_estudiantes_practica['nombre'];
-        $_SESSION['cuenta']=$resultadotabla_estudiantes_practica['documento'];
+        $_SESSION['cuenta']=$resultadotabla_estudiantes_practica['valor'];
         $_SESSION['Estado_proceso']=$resultadotabla_estudiantes_practica['proceso'];
         $_SESSION['estado_vin']=$resultadotabla_estudiantes_practica['estado_vinculacion'];
         $_SESSION['estado_coor']=$resultadotabla_estudiantes_practica['estado_coordinacion'];
@@ -126,10 +139,10 @@ if ($msj==2)
  if (isset($_REQUEST['cuenta']))
         {
   
-$sql_datos_modal="select p.nombre,p.documento from  tbl_personas p, tbl_subida_documentacion sd where p.id_persona=sd.id_persona and p.documento=$_REQUEST[cuenta]";
+$sql_datos_modal="SELECT px.valor as valor, concat(p.nombres,' ',p.apellidos) as nombre from  tbl_personas p, tbl_subida_documentacion sd , tbl_personas_extendidas px where sd.id_persona=p.id_persona AND px.id_atributo=12 and px.id_persona=p.id_persona and px.valor=$_REQUEST[cuenta]";
           $resultado_datos = mysqli_fetch_assoc($mysqli->query($sql_datos_modal));
           $_SESSION['txt_estudiante']=$resultado_datos['nombre'];
-          $_SESSION['cuenta']=$resultado_datos['documento'];
+          $_SESSION['cuenta']=$resultado_datos['valor'];
 
         ?>
         <script>
@@ -167,10 +180,10 @@ $sql_datos_modal="select p.nombre,p.documento from  tbl_personas p, tbl_subida_d
      if (isset($_REQUEST['cuenta_coordinacion']))
         {
 
-          $sql_datos_modal="select p.nombre,p.documento, sd.estado_vinculacion,ep.nombre_empresa   from  tbl_personas p, tbl_subida_documentacion sd,tbl_empresas_practica ep where p.id_persona=sd.id_persona and p.documento=$_REQUEST[cuenta_coordinacion]";
+          $sql_datos_modal="SELECT px.valor as valor, concat(p.nombres,' ',p.apellidos) as nombre , sd.estado_vinculacion,ep.nombre_empresa   from  tbl_personas p, tbl_subida_documentacion sd,tbl_empresas_practica ep ,tbl_personas_extendidas px where p.id_persona=sd.id_persona AND px.id_atributo=12 and px.id_persona=p.id_persona and px.valor=$_REQUEST[cuenta_coordinacion]";
           $resultado_datos = mysqli_fetch_assoc($mysqli->query($sql_datos_modal));
           $_SESSION['txt_estudiante']=$resultado_datos['nombre'];
-          $_SESSION['cuenta']=$resultado_datos['documento'];
+          $_SESSION['cuenta']=$resultado_datos['valor'];
           $_SESSION['empresa']=$resultado_datos['nombre_empresa'];
 
        
@@ -266,20 +279,20 @@ $sql_datos_modal="select p.nombre,p.documento from  tbl_personas p, tbl_subida_d
                      while($row = $resultadotabla_estudiantes_practica->fetch_array(MYSQLI_ASSOC)) { ?>
                       <tr>
                         <td><?php echo strtoupper($row['nombre']); ?></td>
-                        <td><?php echo $row['documento']; ?></td>
+                        <td><?php echo $row['valor']; ?></td>
                         <td><?php echo $row['proceso']; ?></td>
 
 
                         <td style="text-align: center;">
 
-                         <a href="../vistas/aprobar_practica_coordinacion_vista.php?cuenta=<?php echo $row['documento']; ?>" class="btn btn-primary btn-raised btn-xs">
+                         <a href="../vistas/aprobar_practica_coordinacion_vista.php?cuenta=<?php echo $row['valor']; ?>" class="btn btn-primary btn-raised btn-xs">
                           <i class="fas fa-eye"  title=""  ></i>
                         </a>
                       </td>
 
                       <td style="text-align: center;">
 
-                       <a href="../vistas/aprobar_practica_coordinacion_vista.php?cuenta_coordinacion=<?php echo $row['documento']; ?>" class="btn btn-primary btn-raised btn-xs">
+                       <a href="../vistas/aprobar_practica_coordinacion_vista.php?cuenta_coordinacion=<?php echo $row['valor']; ?>" class="btn btn-primary btn-raised btn-xs">
                         <i class="fas fa-edit"  title=""  ></i>
                       </a>
                     </td>
@@ -309,7 +322,7 @@ $sql_datos_modal="select p.nombre,p.documento from  tbl_personas p, tbl_subida_d
 
 <!--Creacion del modal-->
 
-<form action="../controlador/aprobar_practica_coordinacion_controlador.php" method="post"  data-form="update" autocomplete="off"  >
+<form action="../Controlador/aprobar_practica_coordinacion_controlador.php" method="post"  data-form="update" autocomplete="off"  >
 
 
 
@@ -335,8 +348,25 @@ $sql_datos_modal="select p.nombre,p.documento from  tbl_personas p, tbl_subida_d
                <label>Estudiante</label>
                <input class="form-control" type="text" id="txt_estudiante_documento" name="txt_estudiante_documento" value="<?php echo strtoupper($_SESSION['txt_estudiante']) ?>" readonly="readonly">
              </div></div>
+
+
              <input class="form-control" type="text" id="txt_estudiante_cuenta" name="txt_estudiante_cuenta" hidden="true"value="<?php echo strtoupper( $_SESSION['cuenta']) ?>" readonly="readonly">
              <input class="form-control" type="text" id="txt_empresa" name="txt_empresa" hidden="true"value="<?php echo strtoupper( $_SESSION['empresa']) ?>" readonly="readonly">
+
+
+              <div class="col-sm-12">
+               <div class="form-group">
+                <label>Horas Practica</label>
+                <select class="form-control" name="cb_horas_practica" id="cb_horas_practica">
+                  <option value="0">Seleccione una opción :</option>
+                  <option value="400">400</option>
+                  <option value="800">800</option>
+                 
+
+
+                </select>
+              </div>
+            </div>
 
              <div class="col-sm-12">
                <div class="form-group">
@@ -510,4 +540,3 @@ function Mostrar_motivo()
 </body>
 
 </html>
-

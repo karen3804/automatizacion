@@ -19,8 +19,7 @@ $usuario=$_SESSION['id_usuario'];
  $id=("select id_persona from tbl_usuarios where id_usuario='$usuario'");
 $result= mysqli_fetch_assoc($mysqli->query($id));
 $id_persona=$result['id_persona'];
-$sql_estudiante=("SELECT px.valor, concat(a.nombres,' ',a.apellidos) as nombre, c.valor Correo, e.valor Celular
-
+$sql_estudiante=("SELECT px.valor, concat(a.nombres,' ',a.apellidos) as nombre, c.valor Correo
 FROM
 
   tbl_empresas_practica AS ep
@@ -28,10 +27,8 @@ JOIN tbl_personas AS a
 ON ep.id_persona = a.id_persona
 JOIN tbl_contactos c ON a.id_persona = c.id_persona
 JOIN tbl_tipo_contactos d ON c.id_tipo_contacto = d.id_tipo_contacto AND d.descripcion = 'CORREO'
-JOIN tbl_contactos e ON a.id_persona = e.id_persona
-JOIN tbl_tipo_contactos f ON e.id_tipo_contacto = f.id_tipo_contacto AND f.descripcion = 'TELEFONO CELULAR'
             join tbl_personas_extendidas as px on px.id_atributo=12 and px.id_persona=a.id_persona
-            WHERE a.id_persona='$id_persona' ");
+            WHERE a.id_persona='$id_persona'");
  //Obtener la fila del query
 $datos_estudiante = mysqli_fetch_assoc($mysqli->query($sql_estudiante));
 
@@ -40,7 +37,7 @@ $sql_empresa=(
 "SELECT  ep.nombre_empresa, ep.direccion_empresa, ep.jefe_inmediato, ep.titulo_jefe_inmediato, ep.cargo_jefe_inmediato, ep.telefono_jefe_inmediato
 FROM
 tbl_empresas_practica AS ep
-WHERE ep.id_persona=6");
+WHERE ep.id_persona='$id_persona'");
  //Obtener la fila del query
 $datos_empresa = mysqli_fetch_assoc($mysqli->query($sql_empresa));
 
@@ -347,5 +344,4 @@ ob_end_flush();
 
 </body>
 </html>
-
 

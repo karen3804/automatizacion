@@ -95,7 +95,7 @@ $_SESSION['impartida']=$Impartida["valor"] . " /".$Impartida2["valor"];
 
     $counter = 0;
 
-   $sql_tabla_control = json_decode( file_get_contents("http://localhost:80/Automatizacion/api/asistencia_charla_api.php?control=".$jornada), true );
+   $sql_tabla_control = json_decode( file_get_contents("http://informaticaunah.com/automatizacion/api/asistencia_charla_api.php?control=".$jornada), true );
   }
 
 
@@ -105,7 +105,7 @@ else
   $_SESSION['impartida']="";
     $counter = 0;
 
-   $sql_tabla_control = json_decode( file_get_contents("http://localhost:80/Automatizacion/api/asistencia_charla_api.php"), true );
+   $sql_tabla_control = json_decode( file_get_contents("http://informaticaunah.com/automatizacion/api/asistencia_charla_api.php"), true );
 }
 
 
@@ -280,7 +280,7 @@ ob_end_flush();
                    
 
  <td><?php echo $sql_tabla_control["ROWS"][$counter]["nombre"]; ?></td>
-  <td><?php echo $sql_tabla_control["ROWS"][$counter]["documento"]; ?></td>
+  <td><?php echo $sql_tabla_control["ROWS"][$counter]["valor"]; ?></td>
 
                   <td style="text-align: center;">
                  <input type="checkbox" name="asistencia[]"  data-bootstrap-switch value="<?php echo $sql_tabla_control["ROWS"][$counter]["Id_charla"]; ?>">
