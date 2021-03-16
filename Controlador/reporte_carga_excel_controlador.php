@@ -1,7 +1,6 @@
 <?php
 //BA5A41
 require_once('../clases/conexion_mantenimientos.php');
-require_once "../Modelos/gestion_ca_modelo.php";
 header("Content-Type: application/vnd.ms-excel; charset=utf-8");
 header("Content-Disposition: attachment; filename=reporte-carga.xls");
 header("Pragma: no-cache");
