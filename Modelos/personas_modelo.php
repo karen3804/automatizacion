@@ -27,9 +27,11 @@ class personas
 	public function listar()
 	{
         global $instancia_conexion;
-		$sql="SELECT id_persona, nombres, apellidos, sexo, identidad, nacionalidad, estado_civil, fecha_nacimiento FROM tbl_personas";
+		$sql="SELECT  nombres, apellidos, sexo, identidad, nacionalidad, estado_civil, fecha_nacimiento FROM tbl_personas";
 		return $instancia_conexion->ejecutarConsulta($sql);
 	}
+
+	
     
 	
 

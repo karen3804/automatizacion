@@ -48,8 +48,9 @@ function guardar() {
 }
 
 
+//Función Listar
 function listar() {
-    $('#tbllistadoPersonas').DataTable({
+    $('#tbllistado').DataTable({
         "language": {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
