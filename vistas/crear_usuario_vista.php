@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
               <div class="col-md-12">
                 <div class="form-group">
-                  <label>Nombre Completo</label>
+                  <label>Nombre</label>
                     <input class="form-control" type="text" readonly  maxlength="60" id="txt_nombre" name="txt_nombre"  value="" required style="text-transform: uppercase"   onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)">
                 </div>
 
