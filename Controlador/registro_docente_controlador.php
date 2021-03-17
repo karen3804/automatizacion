@@ -290,7 +290,11 @@ break;
       
   // break;
 
-    
+  case 'mayoria_edad':
+    $rspta = $instancia_modelo->mayoria_edad();
+    //Codificar el resultado utilizando json
+    echo json_encode($rspta);
+    break;
   }
 
   

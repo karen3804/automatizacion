@@ -99,6 +99,7 @@ ob_end_flush();
 
     <section>
 
+    <input type="text" name="mayoria_edad" id="mayoria_edad" readonly onload="mayoria_edad()">
 
       <!-- Main content -->
       <section class="content">

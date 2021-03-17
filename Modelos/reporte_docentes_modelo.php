@@ -84,9 +84,6 @@ class modelo_reporte
         return $instancia_conexion->ejecutarConsulta($sql);
     }
 
-
-
-
 }
 
 
