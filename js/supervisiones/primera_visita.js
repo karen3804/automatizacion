@@ -62,6 +62,7 @@ $(function() {
             $('#telefono_pv').val(ui.item.telefono_pv);
             $('#estudiante_pv').val(ui.item.estudiante_pv);
 
+
             $("#cuenta_busqueda_pv").focus();
         }
     });
