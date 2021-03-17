@@ -154,7 +154,13 @@ class modelo_registro_docentes
 
     }
 
-    
+     //INGRESADO POR LUIS
+     function mayoria_edad()
+     {
+         global $instancia_conexion;
+         $sql = 'SELECT valor FROM tbl_parametros WHERE parametro = "mayoria_edad"';
+         return $instancia_conexion->ejecutarConsultaSimpleFila($sql);
+     }
 
 
 }

@@ -644,6 +644,7 @@ function ValidarIdentidad(identidad) {
 	//console.log(n);
 	var n = identidad.search('_');
 	console.log(n);
+	var mayor_edad = $("#mayoria_edad").val();
 	var depto = identidad.substring(0, 2);
 	var muni = identidad.substring(2, 4);
 
@@ -888,7 +889,7 @@ function ValidarIdentidad(identidad) {
 		var year = currentTime.getFullYear();
 		var anio = identidad.substring(5, 9);
 		//console.log(year-anio);
-		if (year - anio < 18) {
+		if (year - anio < mayor_edad) {
 			swal('Aviso', 'Debe ser mayor de edad', 'warning');
 			$('#identidad').val(depto + muni);
 		}
@@ -1034,9 +1035,11 @@ function calcularEdad() {
 	}
 	$('#age').val(edad);
 }
+
+//MODIFICADO LUIS
 function valida_mayoria() {
 	var valor = new Date();
-	var mayoria = 18;
+	var mayoria = $("#id_select").val();;
 	var edad = document.getElementById('age').value;
 	if (edad < mayoria) {
 		$('#Textofecha').removeAttr('hidden');
@@ -1106,3 +1109,20 @@ function valida_horario_edita() {
 		}
 	}
 }
+
+
+//INGRESADO POR PACHECO
+
+$(document).ready(function(){
+
+	$.post("../Controlador/registro_docente_controlador.php?op=mayoria_edad", function (data) {
+		data = JSON.parse(data);
+		// console.log(data);
+		$("#mayoria_edad").val(data.valor);
+	  });
+
+
+
+});
+
+	
