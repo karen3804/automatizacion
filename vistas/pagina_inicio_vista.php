@@ -336,29 +336,6 @@ if (session_status() === PHP_SESSION_NONE) {
                 </li>
               </ul>
             </li>
-
-
-            <!----MANTENIMIENTOS ----->
-             <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_mantenimientos'] ?>">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Mantenimiento
-                  <i class="fas fa-angle-left right"></i>
-                  <span class="badge badge-info right"></span>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-
-                <li class="nav-item" style="display:<?php echo $_SESSION['mantemiento_carga_academica'] ?>">
-                  <a href="../vistas/menu_mantenimiento.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p> Mantenimiento</p>
-                  </a>
-                </li>
-
-              </ul>
-            </li>
               <!---- Ayuda ----->
 
           <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
@@ -409,6 +386,28 @@ if (session_status() === PHP_SESSION_NONE) {
               </ul>
 
           <!---- ----->
+
+          <!----MANTENIMIENTOS ----->
+              <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_mantenimiento'] ?>">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                  Mantenimiento
+                  <i class="fas fa-angle-left right"></i>
+                  <span class="badge badge-info right"></span>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+
+                <li class="nav-item" style="display:<?php echo $_SESSION['mantemiento_carga_academica'] ?>">
+                  <a href="../vistas/menu_mantenimiento.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p> Mantenimiento</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
 
           </ul>
         </nav>
