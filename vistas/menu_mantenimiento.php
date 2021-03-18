@@ -151,7 +151,7 @@ if (permiso_ver('75') == '1') {
   tiene permisos para visualizar";
 }
 
-if (permiso_ver('77') == '1') {
+if (permiso_ver('80') == '1') {
 
   $_SESSION['mantenimiento_atributos_vista'] = "...";
 } else {
@@ -159,7 +159,7 @@ if (permiso_ver('77') == '1') {
   tiene permisos para visualizar";
 }
 
-if (permiso_ver('78') == '1') {
+if (permiso_ver('81') == '1') {
 
   $_SESSION['mantenimiento_crear_atributo_vista'] = "...";
 } else {
@@ -184,7 +184,7 @@ if (permiso_ver('75') == '1') {
   tiene permisos para visualizar";
 }
 
-if (permiso_ver('81') == '1') {
+if (permiso_ver('60') == '1') {
 
   $_SESSION['mantenimiento_aula_vista'] = "...";
 } else {
