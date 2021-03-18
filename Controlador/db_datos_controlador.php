@@ -1,8 +1,8 @@
 <?php
 class DBController {
-	private $host = "167.114.169.207";
-	private $user = "informat_admin";
-	private $password = "HLo{Q3e{)II";
+	private $host = "localhost";
+	private $user = "root";
+	private $password = "";
 	private $database = "informat_automatizacion";
 	private $conn;
 	
