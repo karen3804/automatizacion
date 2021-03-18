@@ -92,13 +92,16 @@ $resultado_permisos = $mysqli->query($sql_permisos);
 
 
 
-       if ($_SESSION['pantalla']=='14' or $_SESSION['pantalla']=='15' or $_SESSION['pantalla']=='16' or $_SESSION['pantalla']>='20' and $_SESSION['pantalla']<='28' )
-       {
-        if ( $_SESSION['confirmacion']=='block') 
-        {
-         $_SESSION['btn_vinculacion']="block";  
-        }
-       }
+       if ($_SESSION['pantalla']=='14' or $_SESSION['pantalla']=='2
+       0'  or $_SESSION['pantalla']=='2
+       1')
+  {
+   if ( $_SESSION['confirmacion']=='block') 
+   {
+    $_SESSION['btn_vinculacion']="block";
+
+   }
+  }
 
 
 
