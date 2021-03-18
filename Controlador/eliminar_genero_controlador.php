@@ -11,7 +11,7 @@ if (isset($_GET['genero'])) {
     $genero = $_GET['genero'];
 }
 
-$Id_objeto=71;
+$Id_objeto=84;
 
 if (permisos::permiso_eliminar($Id_objeto)=='0') {
 

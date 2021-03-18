@@ -11,7 +11,7 @@ if (isset($_GET['hora'])) {
     $hora = $_GET['hora'];
 }
 
-$Id_objeto=69;
+$Id_objeto=85;
 
 if (permisos::permiso_eliminar($Id_objeto)=='0') {
 

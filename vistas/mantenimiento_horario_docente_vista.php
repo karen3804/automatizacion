@@ -60,7 +60,7 @@ FROM tbl_hora";
 }
 
 
-$Id_objeto = 69;
+$Id_objeto = 85;
 $visualizacion = permiso_ver($Id_objeto);
 
 
@@ -88,7 +88,7 @@ if ($visualizacion == 0) {
   } else {
     $_SESSION['btn_modificar_hora'] = "disabled";
   }
-  
+
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
   $sqltabla = "select hora FROM tbl_hora";
@@ -116,7 +116,7 @@ FROM tbl_hora";
     /* Aqui obtengo el id_estado_civil de la tabla de la base el cual me sirve para enviarla a la pagina actualizar.php para usarla en el where del update   */
     $_SESSION['idhora'] = $row['hora'];
     $_SESSION['hora'] = $row['hora'];
-    
+
 
 
     /*Aqui levanto el modal*/
@@ -131,7 +131,7 @@ FROM tbl_hora";
 
         })
       </script>;
-      
+
       <?php
       ?>
 
@@ -187,9 +187,12 @@ ob_end_flush();
 
     <div class="card card-default">
       <div class="card-header">
-        <h3 class="card-title">Horarios  Existentes</h3>
+        <h3 class="card-title">Horarios Existentes</h3>
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+        </div>
+        <div class=" px-12">
+          <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
         </div>
       </div>
       <div class="card-body">
@@ -201,16 +204,16 @@ ob_end_flush();
           <thead>
             <tr>
               <th>HORAS</th>
-               <th>MODIFICAR</th>
+              <th>MODIFICAR</th>
               <th>ELIMINAR</th>
             </tr>
           </thead>
           <tbody>
 
-           <?php while ($row = $resultadotabla->fetch_array(MYSQLI_ASSOC)) { ?>
+            <?php while ($row = $resultadotabla->fetch_array(MYSQLI_ASSOC)) { ?>
               <tr>
                 <td><?php echo $row['hora']; ?></td>
-                
+
 
                 <td style="text-align: center;">
 
@@ -289,9 +292,9 @@ ob_end_flush();
 
 
                   <div class="form-group">
-                    
 
-                    
+
+
 
                   </div>
 
@@ -319,11 +322,16 @@ ob_end_flush();
 
     <!--mosdal crear -->
 
-            
+
 
   </form>
+  <script type="text/javascript" language="javascript">
+    function ventana() {
+      window.open("../Controlador/reporte_mantenimiento_horarios_controlador.php", "REPORTE");
+    }
+  </script>
 
-<script type="text/javascript">
+  <script type="text/javascript">
     $(function() {
 
       $('#tabla').DataTable({
@@ -340,7 +348,7 @@ ob_end_flush();
 
 
 
- 
+
 
 
 </body>

@@ -88,7 +88,7 @@ if ($visualizacion == 0) {
   } else {
     $_SESSION['btn_modificar_estado'] = "disabled";
   }
-  
+
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
   $sqltabla = "select estado_civil, descripcion FROM tbl_estadocivil";
@@ -131,7 +131,7 @@ FROM tbl_estadocivil";
 
         })
       </script>;
-      
+
       <?php
       ?>
 
@@ -190,6 +190,9 @@ ob_end_flush();
         <h3 class="card-title">Estado Civil Existentes</h3>
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+        </div>
+        <div class=" px-12">
+          <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
         </div>
       </div>
       <div class="card-body">
@@ -322,7 +325,11 @@ ob_end_flush();
 
 
   </form>
-
+  <script type="text/javascript" language="javascript">
+    function ventana() {
+      window.open("../Controlador/reporte_mantenimiento_estado_civil_controlador.php", "REPORTE");
+    }
+  </script>
 
 
 

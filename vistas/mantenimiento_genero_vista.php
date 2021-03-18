@@ -59,7 +59,7 @@ if (isset($_REQUEST['msj'])) {
 }
 
 
-$Id_objeto = 71;
+$Id_objeto = 84;
 $visualizacion = permiso_ver($Id_objeto);
 
 
@@ -87,7 +87,7 @@ if ($visualizacion == 0) {
   } else {
     $_SESSION['btn_modificar_genero'] = "disabled";
   }
-  
+
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
   $sqltabla = "select genero FROM tbl_genero";
@@ -115,7 +115,7 @@ FROM tbl_genero";
     /* Aqui obtengo el id_estado_civil de la tabla de la base el cual me sirve para enviarla a la pagina actualizar.php para usarla en el where del update   */
     $_SESSION['id_genero'] = $row['id_genero'];
     $_SESSION['genero'] = $row['genero'];
-   
+
 
 
     /*Aqui levanto el modal*/
@@ -130,7 +130,7 @@ FROM tbl_genero";
 
         })
       </script>;
-      
+
       <?php
       ?>
 
@@ -189,6 +189,9 @@ ob_end_flush();
         <h3 class="card-title">Generos Existentes</h3>
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+        </div>
+        <div class=" px-12">
+          <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
         </div>
       </div>
       <div class="card-body">
@@ -312,6 +315,11 @@ ob_end_flush();
 
 
   </form>
+  <script type="text/javascript" language="javascript">
+    function ventana() {
+      window.open("../Controlador/reporte_mantenimiento_generos_controlador.php", "REPORTE");
+    }
+  </script>
 
 
 

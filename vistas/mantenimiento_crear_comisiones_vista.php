@@ -14,7 +14,7 @@ require_once('../clases/funcion_permisos.php');
 
 
 
-$Id_objeto = 57;
+$Id_objeto = 64;
 
 bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A Mantenimiento/Crear Comision');
 

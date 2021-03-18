@@ -94,28 +94,28 @@ if (permiso_ver('68') == '1') {
   $_SESSION['mantenimiento_crear_estado_civil_vista'] = "No 
   tiene permisos para visualizar";
 }
-if (permiso_ver('69') == '1') {
+if (permiso_ver('85') == '1') {
 
   $_SESSION['mantenimiento_horario_docente_vista'] = "...";
 } else {
   $_SESSION['mantenimiento_horario_docente_vista'] = "No 
   tiene permisos para visualizar";
 }
-if (permiso_ver('70') == '1') {
+if (permiso_ver('86') == '1') {
 
   $_SESSION['mantenimiento_crear_horario_docente_vista'] = "...";
 } else {
   $_SESSION['mantenimiento_crear_horario_docente_vista'] = "No 
   tiene permisos para visualizar";
 }
-if (permiso_ver('71') == '1') {
+if (permiso_ver('84') == '1') {
 
   $_SESSION['mantenimiento_genero_vista'] = "...";
 } else {
   $_SESSION['mantenimiento_genero_vista'] = "No 
   tiene permisos para visualizar";
 }
-if (permiso_ver('72') == '1') {
+if (permiso_ver('73') == '1') {
 
   $_SESSION['mantenimiento_crear_genero_vista'] = "...";
 } else {
@@ -143,7 +143,7 @@ if (permiso_ver('58') == '1') {
   $_SESSION['mantenimiento_edificio_vista'] = "No 
   tiene permisos para visualizar";
 }
-if (permiso_ver('75') == '1') {
+if (permiso_ver('83') == '1') {
 
   $_SESSION['mantenimiento_crear_edificio_vista'] = "...";
 } else {
