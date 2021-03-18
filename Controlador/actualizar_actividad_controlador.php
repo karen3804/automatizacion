@@ -61,7 +61,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
         }
     } elseif ($valor_viejo['actividad'] <> $actividad) {
 
-        $Id_objeto = 79;
+        $Id_objeto = 74;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', 'LA ACTIVIDAD ' . $valor_viejo['actividad'] . ' POR ' . $actividad. ' ');
         /* Hace el query para que actualize*/
 

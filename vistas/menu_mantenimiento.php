@@ -167,7 +167,7 @@ if (permiso_ver('78') == '1') {
   tiene permisos para visualizar";
 }
 
-if (permiso_ver(79) == '1') {
+if (permiso_ver('74') == '1') {
 
   $_SESSION['mantenimiento_actividades_vista'] = "...";
 } else {
@@ -176,7 +176,7 @@ if (permiso_ver(79) == '1') {
 }
 
 
-if (permiso_ver('80') == '1') {
+if (permiso_ver('75') == '1') {
 
   $_SESSION['mantenimiento_crear_actividades_vista'] = "...";
 } else {

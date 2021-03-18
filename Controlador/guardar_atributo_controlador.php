@@ -4,7 +4,7 @@
  require_once ('../clases/Conexion.php');
  require_once ('../clases/funcion_bitacora.php'); 
 
-        $Id_objeto=78 ;
+        $Id_objeto=81 ;
 
 
 $atributo=strtoupper ($_POST['txt_atributo1']);

@@ -11,7 +11,7 @@ if (isset($_GET['id_aula'])) {
     $aula = $_GET['id_aula'];
 }
 
-$Id_objeto=81;
+$Id_objeto=60;
 
 if (permisos::permiso_eliminar($Id_objeto)=='0') {
 
