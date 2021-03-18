@@ -192,7 +192,7 @@ $_SESSION['perfil_persona_menu']="No
             <!-- /.col -->
 
             
-           <!-- <div class="col-6 col-sm-6 col-md-4">
+            <div class="col-6 col-sm-6 col-md-4">
               <div class="small-box bg-light">
                 <div class="inner">
                   <h4>Registro de Estudiantes </h4>
@@ -207,13 +207,13 @@ $_SESSION['perfil_persona_menu']="No
               </div>
               <!-- /.info-box -->
             </div>
-            <!-- /.col -->
+            <!-- /.col 
 
 
-            <!-- fix for small devices only -->
+            <!-- fix for small devices only 
     <div class="clearfix hidden-md-up"></div>
 
-      <!--  <div class="col-12 col-sm-6 col-md-4">
+        <div class="col-12 col-sm-6 col-md-4">
 <div class="small-box bg-primary">
 <div class="inner">
 <h4>Perfil </h4>
@@ -228,29 +228,7 @@ Ir <i class="fas fa-arrow-circle-right"></i>
 </div>
 </div>-->
 
-         
-    <!-- fix for small devices only 
-    <div class="clearfix hidden-md-up"></div>
-
-<div class="col-12 col-sm-6 col-md-4">
-<div class="small-box bg-primary">
-<div class="inner">
-<h4>Gestión Personas </h4>
-<p><?php echo $_SESSION['gestion_persona_menu'];?></p>
-</div>
-<div class="icon">
-<i class="fas fa-user-edit"></i>
-</div>
-<a href="../vistas/gestion_personas_vista.php" class="small-box-footer">
-Ir <i class="fas fa-arrow-circle-right"></i>
-</a>
-</div>
-</div>-->
-
-            <!-- /.row -->
-      </div><!--/. container-fluid -->
-      </div>
-
+    
 
       
 

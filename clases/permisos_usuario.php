@@ -25,7 +25,7 @@ $resultado_permisos = $mysqli->query($sql_permisos);
    $_SESSION['btn_docentes']='none';
    $_SESSION['btn_mantenimientos']='none';
    $_SESSION['btn_ayuda']='none';
-
+   $_SESSION['btn_mantenimiento']='none';
 
    /*Menu laterales*/
    $_SESSION['pregunta_vista']='none';
@@ -49,8 +49,9 @@ $resultado_permisos = $mysqli->query($sql_permisos);
    $_SESSION['solicitud_carta_egresado']='none';
    $_SESSION['solicitud_equivalencias']='none';
    $_SESSION['solicitud_cancelar_clases']='none';
- 
-
+   $_SESSION['carga_academica_vista'] = 'none';
+   $_SESSION['docentes_vista'] = 'none';
+   $_SESSION['mantemiento_carga_academica']='none';
 
   while ($fila = $resultado_permisos->fetch_row())
    {
@@ -148,12 +149,6 @@ if ($_SESSION['pantalla']>='34' and $_SESSION['pantalla']<='38' )
 
         }
        } 
-
-
-
-
-
-
 
          if ($_SESSION['pantalla']=='1' or $_SESSION['pantalla']=='2')
        {
@@ -320,6 +315,45 @@ if ($_SESSION['pantalla']>='34' and $_SESSION['pantalla']<='38' )
 
         }
        }
+
+   //AGREGANDO CARGA ACADEMICA
+   if ($_SESSION['pantalla'] == '46' or $_SESSION['pantalla'] == '47' or $_SESSION['pantalla'] == '48') {
+      if ($_SESSION['confirmacion'] == 'block') {
+         $_SESSION['carga_academica_vista'] = "block";
+      }
+   }
+
+   if ($_SESSION['pantalla'] == '50' or $_SESSION['pantalla'] == '51' or $_SESSION['pantalla'] == '52' or $_SESSION['pantalla'] == '53' or $_SESSION['pantalla'] == '54') {
+      if ($_SESSION['confirmacion'] == 'block') {
+         $_SESSION['docentes_vista'] = "block";
+      }
+   }
+
+
+   if ($_SESSION['pantalla'] == '55') {
+      if ($_SESSION['confirmacion'] == 'block') {
+         $_SESSION['mantemiento_carga_academica'] = "block";
+      }
+   }
+
+   if ($_SESSION['pantalla']='55')
+   {
+    if ( $_SESSION['confirmacion']=='block') 
+    {
+     $_SESSION['btn_mantenimiento']="block";
+
+    }
+   }   
+   
+   // if ($_SESSION['pantalla']=='55')
+   // {
+   //  if ( $_SESSION['confirmacion']=='block') 
+   //  {
+   //   $_SESSION['mantemiento_carga_academica']="block";
+
+   //  }
+   // }
+       //--------------------------
 
         if ($_SESSION['pantalla']=='37')
        {

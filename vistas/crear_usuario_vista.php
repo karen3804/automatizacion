@@ -63,6 +63,44 @@ ob_end_flush();
 <html>
 <head>
   <title></title>
+
+<!-- Bootstrap core CSS -->
+<link href="dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="assets/sticky-footer-navbar.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+<script type="text/javascript">
+
+$(function() {
+    $("#curso").autocomplete({
+        source: "../Controlador/seleccionar_datos_controlador.php",
+        minLength: 2,
+        select: function(event, ui) {
+            event.preventDefault();
+            $('#curso').val(ui.item.nombres);
+            $('#txt_id').val(ui.item.txt_id);
+            $('#txt_nombre').val(ui.item.txt_nombre);
+
+
+
+            $("#curso").focus();
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('input[type=text]').forEach(node => node.addEventListener('keypress', e => {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+        }
+    }))
+});
+
+</script>
+
+ 
 </head>
 <body >
 
@@ -107,28 +145,45 @@ ob_end_flush();
             </div>
           </div>
 
+     
+          <tbody>
+    <tr>
+
+     
+    </tr>
+  </tbody>  
+
 
           <!-- /.card-header -->
           <div class="card-body">
             <div class="row">
+
+            <div class="col-md-12">
+                <div class="form-group">
+                  <label> Buscar Persona</label>
+                    <input autofocus class="form-control" type="text"  maxlength="60" id="curso" name="curso"  value="" required style="text-transform: uppercase"   onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)">
+                </div>
+
               <div class="col-md-12">
                 <div class="form-group">
-                  <label>Nombre Completo</label>
-                    <input class="form-control" type="text"  maxlength="60" id="txt_nombreusuario" name="txt_nombreusuario"  value="" required style="text-transform: uppercase"   onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)">
+                  <label>Nombre</label>
+                    <input class="form-control" type="text" readonly  maxlength="60" id="txt_nombre" name="txt_nombre"  value="" required style="text-transform: uppercase"   onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)">
                 </div>
+
+
+                <div class="col-md-12">
+                <div class="form-group">
+                    <input hidden class="form-control" type="text" readonly maxlength="60" id="txt_id" name="txt_id"  value="" required style="text-transform: uppercase"   onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)">
+                </div>
+
 
                   <div class="form-group">
                   <label>Usuario</label>
                     <input class="form-control" type="text" id="txt_usuario" name="txt_usuario"  value="" required style="text-transform: uppercase" onkeyup="Espacio(this, event)"  onkeypress="return Letras(event)" onkeypress="return comprobar(this.value, event, this.id)"  maxlength="30">
                 </div>
 
-                <div class="form-group clearfix">
-                      <div class="icheck-success d-inline">
-                        <input type="checkbox"  id="checkboxactivo" name="checkboxactivo" value="true">
-                        <label for="checkboxactivo">Nuevo
-                        </label>
-                      </div>
-                </div>
+             
+             
 
                   <label>Contraseña</label>
 
@@ -168,10 +223,7 @@ ob_end_flush();
                 </select>
                 </div>
 
-                 <div class="form-group">
-                  <label>Correo Electronico</label>
-                    <input class="form-control" type="email" id="txt_correoe" name="txt_correoe" value="" required onkeypress="return ValidaMail($Correo_electronico)" onkeyup="Espacio(this, event)" maxlength="50" onkeypress="return comprobar(this.value, event, this.id)">
-                </div>
+                
 
               <p class="text-center" style="margin-top: 20px;">
                 <button type="submit" class="btn btn-primary" id="btn_guardar_usuario" name="btn_guardar_usuario">  <?php echo $_SESSION['btn_guardar_usuario']; ?><i class="zmdi zmdi-floppy"></i>Guardar</button>
@@ -243,7 +295,12 @@ ob_end_flush();
 
 
 
+
+
     </script>
+
+
+  
 
 </body>
 </html>

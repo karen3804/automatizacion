@@ -2,9 +2,9 @@
 
 
 
-    $servidor= "167.114.169.207";
-    $usuario= "informat_admin";
-    $password = "HLo{Q3e{)II^";
+    $servidor= "localhost";
+    $usuario= "root";
+    $password = "";
     $base= "informat_automatizacion";
 
 	$mysqli = new mysqli($servidor, $usuario,$password,$base);

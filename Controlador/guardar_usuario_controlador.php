@@ -10,7 +10,7 @@ require_once ('../clases/Conexion.php');
             
 
 
-
+   $id_persona=strtoupper ($_POST['txt_id']);
 	$Usuario=strtoupper ($_POST['txt_usuario']);
 	$Nombre=strtoupper ($_POST['txt_nombreusuario']);
 	$Correo_electronico=$_POST['txt_correoe'];
@@ -57,15 +57,7 @@ $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
     else
     {
         /* Condicion para el checkbox si esta activo o no*/
-		if (isset($_POST['checkboxactivo']) && $_POST['checkboxactivo'] == 'true') 
-	    {
-	    $var=2;
-	    }
-	    else
-	    {
-	    $var=0;
-	    }
-
+		
 
 
 
@@ -79,7 +71,11 @@ $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 
 	    				    
     			/* Query para que haga el insert*/
-				$sql = "call proc_insertar_usuario ('$Usuario', '$Nombre','$Id_rol', '$Contrasena','$Correo_electronico','$var',' $_SESSION[usuario] ')" ;
+            $sql = "call proc_insertar_usuario ('$id_persona',
+                                                  '$Usuario', 
+                                                 '$Id_rol',
+                                                  '$Contrasena',
+                                                 ' $_SESSION[usuario] ')" ;
         $resultado = $mysqli->query($sql);
 
 
