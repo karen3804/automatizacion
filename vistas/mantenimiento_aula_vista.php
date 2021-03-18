@@ -39,7 +39,7 @@ if (isset($_REQUEST['msj'])) {
 </script>';
 
 
-    
+
     $sqltabla = "select id_aula,  codigo, descripcion, capacidad, id_edificio, id_tipo_aula
 FROM tbl_aula";
     $resultadotabla = $mysqli->query($sqltabla);
@@ -60,7 +60,7 @@ FROM tbl_aula";
 }
 
 
-$Id_objeto = 81;
+$Id_objeto = 60;
 $visualizacion = permiso_ver($Id_objeto);
 
 
@@ -88,7 +88,7 @@ if ($visualizacion == 0) {
   } else {
     $_SESSION['btn_modificar_aula'] = "disabled";
   }
-  
+
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
   $sqltabla = "select id_aula, codigo, descripcion, capacidad, id_edificio, id_tipo_aula FROM tbl_aula";
@@ -132,7 +132,7 @@ if ($visualizacion == 0) {
 
         })
       </script>;
-      
+
       <?php
       ?>
 
@@ -192,6 +192,9 @@ ob_end_flush();
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
         </div>
+        <div class=" px-12">
+          <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
+        </div>
       </div>
       <div class="card-body">
 
@@ -201,7 +204,7 @@ ob_end_flush();
 
           <thead>
             <tr>
-              <th hidden >ID </th>
+              <th hidden>ID </th>
               <th>CODIGO AULAS</th>
               <th>DESCRIPCION </th>
               <th>CAPACIDAD </th>
@@ -214,7 +217,7 @@ ob_end_flush();
           <tbody>
             <?php while ($row = $resultadotabla->fetch_array(MYSQLI_ASSOC)) { ?>
               <tr>
-              <td hidden ><?php echo $row['id_aula']; ?></td>
+                <td hidden><?php echo $row['id_aula']; ?></td>
                 <td><?php echo $row['codigo']; ?></td>
                 <td><?php echo $row['descripcion']; ?></td>
                 <td><?php echo $row['capacidad']; ?></td>
@@ -316,21 +319,21 @@ ob_end_flush();
                   </div>
 
                   <div class="form-group">
-                                        <label>Edificio</label>
-                                        <select class="form-control-lg select2" type="text" id="cbm_edificio" name="ccbm_edificio" style="width: 100%;" >
-                                        <option value="">Seleccione una opción</option>
-                                        </select>
+                    <label>Edificio</label>
+                    <select class="form-control-lg select2" type="text" id="cbm_edificio" name="ccbm_edificio" style="width: 100%;">
+                      <option value="">Seleccione una opción</option>
+                    </select>
                   </div>
-                  <input class="form-control"  id="edificio"  name="edificio" value="<?php echo $_SESSION['id_edificio']; ?>" hidden>
+                  <input class="form-control" id="edificio" name="edificio" value="<?php echo $_SESSION['id_edificio']; ?>" hidden>
 
 
                   <div class="form-group">
-                                        <label>Tipo Aula</label>
-                                        <select class="form-control-lg select2" type="text" id="cbm_aula" name="cbm_aula" style="width: 100%;" >
-                                        <option value="">Seleccione una opción</option>
-                                        </select>
+                    <label>Tipo Aula</label>
+                    <select class="form-control-lg select2" type="text" id="cbm_aula" name="cbm_aula" style="width: 100%;">
+                      <option value="">Seleccione una opción</option>
+                    </select>
                   </div>
-                  <input class="form-control"  id="aula"  name="aula" value="<?php echo $_SESSION['id_tipo_aula']; ?>" hidden>
+                  <input class="form-control" id="aula" name="aula" value="<?php echo $_SESSION['id_tipo_aula']; ?>" hidden>
 
                 </div>
               </div>
@@ -382,16 +385,21 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" language="javascript">
+  function ventana() {
+    window.open("../Controlador/reporte_mantenimiento_aula_controlador.php", "REPORTE");
+  }
+</script>
 
 <script type="text/javascript" src="../js/funciones_mantenimientos.js"></script>
 <script type="text/javascript" language="javascript">
-    $(document).ready(function() {
+  $(document).ready(function() {
 
-        $('.select2').select2({
-            placeholder: 'Seleccione una opcion',
-            theme: 'bootstrap4',
-            tags: true,
-        });
-
+    $('.select2').select2({
+      placeholder: 'Seleccione una opcion',
+      theme: 'bootstrap4',
+      tags: true,
     });
+
+  });
 </script>

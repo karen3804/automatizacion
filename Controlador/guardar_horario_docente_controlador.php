@@ -4,7 +4,7 @@
  require_once ('../clases/Conexion.php');
  require_once ('../clases/funcion_bitacora.php'); 
 
-        $Id_objeto=69 ;
+        $Id_objeto=86 ;
 
 
 $hora=strtoupper ($_POST['txt_hora']);

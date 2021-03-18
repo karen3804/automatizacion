@@ -1,23 +1,21 @@
 <?php
 require_once "../Modelos/registro_docente_modelo.php";
 
-$nombre=isset($_POST["nombre"])? limpiarCadena($_POST["nombre"]):"";
-$apellidos=isset($_POST["apellidos"])? limpiarCadena($_POST["apellidos"]):"";
-$identidad=isset($_POST["identidad"])? limpiarCadena($_POST["identidad"]):"";
-$nacionalidad=isset($_POST["nacionalidad"])? limpiarCadena($_POST["nacionalidad"]):"";
-$fecha_nacimiento=isset($_POST["fecha_nacimiento"])? limpiarCadena($_POST["fecha_nacimiento"]):"";
-$estado=isset($_POST["estado"])? limpiarCadena($_POST["estado"]):"";
-$sexo=isset($_POST["sexo"])? limpiarCadena($_POST["sexo"]):"";
-$nempleado=isset($_POST["nempleado"])? limpiarCadena($_POST["nempleado"]):"";
-$fecha_ingreso=isset($_POST["fecha_ingreso"])? limpiarCadena($_POST["fecha_ingreso"]):"";
-$idjornada=isset($_POST["idjornada"])? limpiarCadena($_POST["idjornada"]):"";
-$idcategoria=isset($_POST["idcategoria"])? limpiarCadena($_POST["idcategoria"]):"";
+$nombre=isset($_POST["nombre"]) ? limpiarCadena1($_POST["nombre"]) : "";
+$apellidos=isset($_POST["apellidos"]) ? limpiarCadena1($_POST["apellidos"]) : "";
+$identidad=isset($_POST["identidad"]) ? limpiarCadena1($_POST["identidad"]) : "";
+$nacionalidad=isset($_POST["nacionalidad"]) ? limpiarCadena1($_POST["nacionalidad"]) : "";
+$fecha_nacimiento=isset($_POST["fecha_nacimiento"]) ? limpiarCadena1($_POST["fecha_nacimiento"]) : "";
+$estado=isset($_POST["estado"]) ? limpiarCadena1($_POST["estado"]) : "";
+$sexo=isset($_POST["sexo"]) ? limpiarCadena1($_POST["sexo"]) : "";
+$nempleado=isset($_POST["nempleado"]) ? limpiarCadena1($_POST["nempleado"]) : "";
+$fecha_ingreso=isset($_POST["fecha_ingreso"]) ? limpiarCadena1($_POST["fecha_ingreso"]) : "";
+$idjornada=isset($_POST["idjornada"]) ? limpiarCadena1($_POST["idjornada"]) : "";
+$idcategoria=isset($_POST["idcategoria"]) ? limpiarCadena1($_POST["idcategoria"]) : "";
 
-
-
-
-$hi=isset($_POST["hi"])? limpiarCadena($_POST["hi"]):"";
-$hf=isset($_POST["hf"])? limpiarCadena($_POST["hf"]):"";
+$hi=isset($_POST["hi"]) ? limpiarCadena1($_POST["hi"]) : "";
+$hf=isset($_POST["hf"]) ? limpiarCadena1($_POST["hf"]) : "";
+$codigo = isset($_POST["codigo"])?limpiarCadena1($_POST["codigo"]):"";
 
 
 
@@ -295,7 +293,11 @@ break;
     //Codificar el resultado utilizando json
     echo json_encode($rspta);
     break;
-  }
 
-  
-  ?>
+  case 'validar_depto':
+    $respuesta = $instancia_modelo->validardepto($codigo);
+    echo json_encode($respuesta);
+
+    break;
+    
+}

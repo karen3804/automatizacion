@@ -39,7 +39,7 @@ if (isset($_REQUEST['msj'])) {
 </script>';
 
 
-   
+
     $sqltabla = "select  actividad, descripcion, nombre_proyecto, horas_semanales, id_comisiones
 FROM tbl_actividades";
     $resultadotabla = $mysqli->query($sqltabla);
@@ -60,7 +60,7 @@ FROM tbl_actividades";
 }
 
 
-$Id_objeto = 79;
+$Id_objeto = 74;
 $visualizacion = permiso_ver($Id_objeto);
 
 
@@ -88,7 +88,7 @@ if ($visualizacion == 0) {
   } else {
     $_SESSION['btn_modificar_actividad'] = "disabled";
   }
-  
+
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
   $sqltabla = "select  actividad, descripcion, nombre_proyecto, horas_semanales, id_comisiones FROM tbl_actividades";
@@ -132,7 +132,7 @@ if ($visualizacion == 0) {
 
         })
       </script>;
-      
+
       <?php
       ?>
 
@@ -191,6 +191,9 @@ ob_end_flush();
         <h3 class="card-title">Actividades Existentes</h3>
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+        </div>
+        <div class=" px-12">
+          <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
         </div>
       </div>
       <div class="card-body">
@@ -318,12 +321,12 @@ ob_end_flush();
                   </div>
 
                   <div class="form-group">
-                                        <label>Tipo Comision</label>
-                                        <select class="form-control-lg select2" type="text" id="cbm_comision1" name="cbm_comision1" style="width: 100%;" >
-                                        <option value="">Seleccione una opción</option>
-                                        </select>
+                    <label>Tipo Comision</label>
+                    <select class="form-control-lg select2" type="text" id="cbm_comision1" name="cbm_comision1" style="width: 100%;">
+                      <option value="">Seleccione una opción</option>
+                    </select>
                   </div>
-                  <input class="form-control"  id="comision1"  name="comision1" value="<?php echo $_SESSION['id_comisiones']; ?>" hidden>
+                  <input class="form-control" id="comision1" name="comision1" value="<?php echo $_SESSION['id_comisiones']; ?>" hidden>
 
                 </div>
               </div>
@@ -375,16 +378,22 @@ ob_end_flush();
 </body>
 
 </html>
-
-<script type="text/javascript" src="../js/funciones_mantenimientos.js"></script>
 <script type="text/javascript" language="javascript">
+  function ventana() {
+    window.open("../Controlador/reporte_mantenimiento_actividades_controlador.php", "REPORTE");
+  }
+</script>
+
+<script type="text/javascript" src="../js/funciones_mantenimientos.js">
+  </script>
+  <script type="text/javascript" language="javascript">
     $(document).ready(function() {
 
-        $('.select2').select2({
-            placeholder: 'Seleccione una opcion',
-            theme: 'bootstrap4',
-            tags: true,
-        });
+      $('.select2').select2({
+        placeholder: 'Seleccione una opcion',
+        theme: 'bootstrap4',
+        tags: true,
+      });
 
     });
-</script>
+  </script>

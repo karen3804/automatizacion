@@ -46,7 +46,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
 
     if ($valor_viejo['codigo'] <> $codigo and $valor_viejo['descripcion'] <> $descripcion and $valor_viejo['capacidad'] <> $capacidad and $valor_viejo['id_edifico'] <> $edificio and $valor_viejo['id_tipo_aula'] <> $tipoaula) {
 
-        $Id_objeto = 81;
+        $Id_objeto = 60;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' EL AULA ' . $valor_viejo['codigo'] . 'Y POR ' . $codigo . ', LA DESCRIPCION DEL AULA A ' . $codigo . ' ');
 
 

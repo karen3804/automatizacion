@@ -4,7 +4,7 @@ session_start();
 require_once('../clases/Conexion.php');
 require_once('../clases/funcion_bitacora.php');
 
-$Id_objeto = 57;
+$Id_objeto = 64;
 
 
 $comision = strtoupper($_POST['txt_comision']);

@@ -1,7 +1,7 @@
 <?php
 require_once "../clases/conexion_mantenimientos.php";
-require_once "../clases/Conexion.php";
 //require_once "../clases/Conexion.php";
+
 $instancia_conexion = new conexion();
 
 
@@ -162,5 +162,13 @@ class modelo_registro_docentes
          return $instancia_conexion->ejecutarConsultaSimpleFila($sql);
      }
 
+
+
+    function validardepto($codigo)
+    {
+        global $instancia_conexion;
+        $sql4 = "call proc_existe_municipio_depto($codigo)";
+        return $instancia_conexion->ejecutarConsultaSimpleFila($sql4);
+    }
 
 }
