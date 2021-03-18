@@ -96,7 +96,7 @@ ob_end_flush();
                   <!-- APELLIDOS -->
                     <label>Apellidos </label>
 
-                    <input class="form-control" type="text" id="apellido_persona" name="apellido_persona" maxlength="25" value="" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return sololetras(event)" ;>
+                    <input class="form-control" type="text" id="apellido_persona" name="apellido_persona" maxlength="25" value=""  style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return sololetras(event)" ;>
 
 
                   </div>
@@ -106,7 +106,7 @@ ob_end_flush();
                   <!-- IDENTIDAD -->
                     <label>Identidad </label>
 
-                    <input class="form-control" type="text" id="identidad_persona" name="identidad_persona"  value="" data-inputmask='"mask": " 9999-9999-99999"' data-mask onkeyup="ValidarIdentidad($('#identidad').val());" required >
+                    <input class="form-control" type="text" id="identidad_persona" name="identidad_persona"  value="" data-inputmask='"mask": " 9999-9999-99999"' data-mask onkeyup="ValidarIdentidad($('#identidad').val());"  >
 
 
                   </div>
@@ -118,7 +118,7 @@ ob_end_flush();
                   <div class="form-group">
                   <!-- NACIONALIDAD -->
                     <label>Nacionalidad</label>
-                    <select class="form-control" name="nacionalidad_persona" id="nacionalidad_persona" style="text-transform: uppercase" required>
+                    <select class="form-control" name="nacionalidad_persona" id="nacionalidad_persona" style="text-transform: uppercase" >
                     <option value="" selected hidden>Seleccione</option>
                     <?php
                     $query = $mysqli -> query ("SELECT * FROM tbl_nacionalidad");
@@ -135,7 +135,7 @@ ob_end_flush();
                   <div class="form-group">
                   <!-- FECHA DE NACIMIENTO -->
                     <label>Fecha de nacimiento</label>
-                    <input class="form-control" type="date" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" id="fecha_persona" name="fecha_persona" required>
+                    <input class="form-control" type="date" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" id="fecha_persona" name="fecha_persona" >
                   </div>
                 </div>
 
@@ -143,7 +143,7 @@ ob_end_flush();
                   <div class="form-group">
                   <!-- ESTADO CIVIL -->
                     <label>Estado civil</label>
-                    <select class="form-control" name="estado_civil_persona" id="estado_civil_persona" style="text-transform: uppercase" required>
+                    <select class="form-control" name="estado_civil_persona" id="estado_civil_persona" style="text-transform: uppercase" >
                     <option value="" selected hidden>Seleccione</option>
                     <?php
                     $query = $mysqli -> query ("SELECT * FROM tbl_estadocivil");
@@ -158,7 +158,7 @@ ob_end_flush();
                   <div class="form-group">
                   <!-- GENERO -->
                     <label>Género</label>
-                    <select class="form-control" name="genero_persona" id="genero_persona" style="text-transform: uppercase" required>
+                    <select class="form-control" name="genero_persona" id="genero_persona" style="text-transform: uppercase" >
                     <option value="" selected hidden>Seleccione</option>
                     <?php
                     $query = $mysqli -> query ("SELECT * FROM tbl_genero");
@@ -184,7 +184,7 @@ ob_end_flush();
                   <!-- IDENTIDAD -->
                     <label>Telefono </label>
 
-                    <input class="form-control" type="text" id="telefono_persona" name="telefono_persona"  value="" data-inputmask='"mask": " 9999-9999"' data-mask onkeyup="ValidarIdentidad($('#identidad').val());" required >
+                    <input class="form-control" type="text" id="telefono_persona" name="telefono_persona"  value="" data-inputmask='"mask": " 9999-9999"' data-mask onkeyup="ValidarIdentidad($('#identidad').val());"  >
 
 
                   </div>
@@ -196,7 +196,7 @@ ob_end_flush();
                   <!-- APELLIDOS -->
                     <label> Correo Electrónico </label>
 
-                    <input class="form-control" type="text" id="correo_persona" name="correo_persona" maxlength="25" value="" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)"  ;>
+                    <input class="form-control" type="text" id="correo_persona" name="correo_persona" maxlength="" value="" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)"  ;>
 
 
                   </div>
@@ -207,7 +207,7 @@ ob_end_flush();
                   <!-- APELLIDOS -->
                     <label> Direccion </label>
 
-                    <input class="form-control" type="text" id="direccion_persona" name="direccion_persona" maxlength="25" value="" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)"  ;>
+                    <input class="form-control" type="text" id="direccion_persona" name="direccion_persona" maxlength="25" value=""  style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)"  ;>
 
 
                   </div>
@@ -224,7 +224,7 @@ ob_end_flush();
                   <div class="form-group">
                   <!-- GENERO -->
                     <label>Tipo Persona</label>
-                    <select class="form-control" name="tipo_persona" id="tipo_persona" style="text-transform: uppercase" required>
+                    <select class="form-control" name="tipo_persona" id="tipo_persona" style="text-transform: uppercase" >
                     <option value="" selected hidden>Seleccione</option>
                     <?php
                     $query = $mysqli -> query ("SELECT * FROM tbl_tipos_persona");
