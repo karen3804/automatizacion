@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['term'])){
 	# conectare la base de datos
- include('db_datos_controlador.php');
+ include('../Clases/buscar_datos.php');
 $db_handle = new DBController();
 
 $return_arr = array();

@@ -3,8 +3,8 @@
 //Unica visita visita conecta con la funcion jquery que se encuentra en la vista de la unica visita
 if (isset($_GET['term'])){
 	# conectare la base de datos
- include('db_datos_controlador.php');
-$db_handle = new DBController();
+	include('../Clases/buscar_datos.php');
+	$db_handle = new DBController();
 
 $return_arr = array();
 
