@@ -96,6 +96,30 @@ case 'listar_aula':
      
 break;
 
+
+case 'listar_carrera':
+  if (isset($_POST['activar'])) {
+      $data=array();
+      $respuesta=$instancia_modelo->listar_carrera();
+     
+        while ($r=$respuesta->fetch_object()) {
+     
+           
+             # code...
+             echo "<option value='". $r->carrera."'> ".$r->descripcion." </option>";
+             
+         }
+
+      
+       }
+       else{
+         echo 'No hay informacion';
+       }
+     
+break;
+
+}
+
 }
 
   

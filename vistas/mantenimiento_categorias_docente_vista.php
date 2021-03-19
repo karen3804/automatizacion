@@ -287,7 +287,7 @@ ob_end_flush();
                                         <label>Modificar Categoria</label>
 
 
-                                        <input class="form-control" type="text" id="txtcategoria" name="txtcategoria" value="<?php echo $_SESSION['categoria']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return LetrasNumeros(event)" maxlength="30">
+                                        <input class="form-control" type="text" id="txtcategoria" name="txtcategoria" value="<?php echo $_SESSION['categoria']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_categoria');" onkeypress="return LetrasyNumeros(event)" maxlength="30">
 
                                     </div>
 
@@ -295,7 +295,7 @@ ob_end_flush();
                                     <div class="form-group">
                                         <label class="control-label">Descripcion</label>
 
-                                        <input class="form-control" type="text" id="txtdescripcion" name="txtdescripcion" value="<?php echo $_SESSION['descripcion']; ?>" required style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
+                                        <input class="form-control" type="text" id="txtdescripcion" name="txtdescripcion" value="<?php echo $_SESSION['descripcion']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txtdescripcion');" onkeypress="return sololetras(event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
 
                                     </div>
 
@@ -352,3 +352,5 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
+  <script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>

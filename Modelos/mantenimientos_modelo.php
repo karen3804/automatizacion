@@ -44,5 +44,15 @@ class modelo_mantenimientos
     }
 
 
+  function listar_carrera(){
+        global $instancia_conexion;
+        $consulta=$instancia_conexion->ejecutarConsulta('select * from tbl_carrera');
+
+        return $consulta;
+
+    }
+
+
+
 }
 

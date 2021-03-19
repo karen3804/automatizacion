@@ -7,7 +7,7 @@ require_once('../clases/funcion_bitacora.php');
 
 
 $comision = strtoupper($_POST['txtcomision']);
-$carrera = strtoupper($_POST['txtcarrera']);
+$carrera = strtoupper($_POST['carrera1']);
 $id_comisiones = $_GET['id_comisiones'];
 
 

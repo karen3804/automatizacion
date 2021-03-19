@@ -139,12 +139,12 @@ ob_end_flush();
                                 <div class="col-md-6">
                                     <div class="form-group ">
                                         <label>Ingrese el Grado Academico</label>
-                                        <input class="form-control " type="text" id="txtgradoacademico" name="txtgradoacademico" required="" maxlength="30" style="text-transform: uppercase" onkeypress="return Letras(event)" onkeypress="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)">
+                                        <input class="form-control " type="text" id="txtgradoacademico" name="txtgradoacademico" required="" maxlength="30" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txtgradoacademico');" onkeypress="return sololetras(event)"  onkeypress="return comprobar(this.value, event, this.id)">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Descripcion</label>
-                                        <input class="form-control" type="text" id="txtdescripcion" name="txtdescripcion" required="" maxlength="30" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Letras(event)" onkeypress="return comprobar(this.value, event, this.id)">
+                                        <input class="form-control" type="text" id="txtdescripcion" name="txtdescripcion" required="" maxlength="30" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txtdescripcion');" onkeypress="return sololetras(event)"  onkeypress="return comprobar(this.value, event, this.id)">
                                     </div>
 
 
@@ -181,3 +181,5 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
+  <script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>

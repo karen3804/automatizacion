@@ -139,13 +139,17 @@ ob_end_flush();
                                 <div class="col-md-6">
                                     <div class="form-group ">
                                         <label>Ingrese la Nueva Comision</label>
-                                        <input class="form-control " type="text" id="txt_comision" name="txt_comision" required="" maxlength="30" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Letras(event)" onkeypress="return comprobar(this.value, event, this.id)">
+                                        <input class="form-control " type="text" id="txt_comision" name="txt_comision" required="" maxlength="30" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_comision');" onkeypress="return sololetras(event)"  onkeypress="return comprobar(this.value, event, this.id)">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Ingrese la Carrera </label>
-                                        <input class="form-control" type="text" id="txt_carrera" name="txt_carrera" required="" maxlength="30" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Letras(event)" onkeypress="return comprobar(this.value, event, this.id)">
+                                        <label>Ingrese la Carrera</label>
+                                        <select class="form-control-lg select2" type="text" id="cbm_carrera" name="cmb_carrera" style="width: 100%;">
+                                        <option value="">Seleccione una opción</option>
+                                        </select>
                                     </div>
+                                    <input class="form-control"  id="carrera1" name="carrera1" >
+
 
 
                                     <p class="text-center" style="margin-top: 20px;">
@@ -181,3 +185,18 @@ ob_end_flush();
 </body>
 
 </html>
+
+<script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
+<script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>
+<script type="text/javascript" src="../js/funciones_mantenimientos.js"></script>
+<script type="text/javascript" language="javascript">
+    $(document).ready(function() {
+
+        $('.select2').select2({
+            placeholder: 'Seleccione una opcion',
+            theme: 'bootstrap4',
+            tags: true,
+        });
+
+    });
+</script>

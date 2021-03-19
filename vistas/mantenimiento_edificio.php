@@ -285,7 +285,7 @@ ob_end_flush();
                                         <label>Modificar Edificio</label>
 
 
-                                        <input class="form-control" type="text" id="txtedificio" name="txtedificio" value="<?php echo $_SESSION['nombre']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return LetrasyNumeros(event)" maxlength="30">
+                                        <input class="form-control" type="text" id="txtedificio" name="txtedificio" value="<?php echo $_SESSION['nombre']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txtedificio');" onkeypress="return LetrasyNumeroos(event)" maxlength="30">
 
                                     </div>
 
@@ -293,7 +293,7 @@ ob_end_flush();
                                     <div class="form-group">
                                         <label class="control-label">Código</label>
 
-                                        <input class="form-control" type="text" id="txtcodigo" name="txtcodigo" value="<?php echo $_SESSION['codigo']; ?>" required style="text-transform: uppercase" onkeypress="return LetrasyNumeros(event)" onkeyup="DobleEspacio(this, event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
+                                        <input class="form-control" type="text" id="txtcodigo" name="txtcodigo" value="<?php echo $_SESSION['codigo']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txtcodigo');" onkeypress="return LetrasyNumeros(event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
 
                                     </div>
 
@@ -351,3 +351,5 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
+  <script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>

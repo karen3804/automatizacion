@@ -280,7 +280,7 @@ ob_end_flush();
                     <label>Nacionalidad</label>
 
 
-                    <input class="form-control" type="text" id="txt_nacionalidad" name="txt_nacionalidad" value="<?php echo $_SESSION['nacionalidad']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Letras(event)" maxlength="30">
+                    <input class="form-control" type="text" id="txt_nacionalidad" name="txt_nacionalidad" value="<?php echo $_SESSION['nacionalidad']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_nacionalidad');" onkeypress="return sololetras(event)" maxlength="30">
 
                   </div>
 
@@ -288,7 +288,7 @@ ob_end_flush();
                   <div class="form-group">
                     <label class="control-label">PAIS</label>
 
-                    <input class="form-control" type="text" id="txt_pais" name="txt_pais" value="<?php echo $_SESSION['PAIS_NAC']; ?>" required style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
+                    <input class="form-control" type="text" id="txt_pais" name="txt_pais" value="<?php echo $_SESSION['PAIS_NAC']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_pais');" onkeypress="return sololetras(event)"maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
 
                   </div>
 
@@ -342,3 +342,5 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
+<script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>

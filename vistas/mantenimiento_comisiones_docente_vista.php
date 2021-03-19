@@ -289,17 +289,18 @@ ob_end_flush();
                                         <label>Modificar Comision</label>
 
 
-                                        <input class="form-control" type="text" id="txtcomision" name="txtcomision" value="<?php echo $_SESSION['comision']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Letras(event)" maxlength="30">
+                                        <input class="form-control" type="text" id="txtcomision" name="txtcomision" value="<?php echo $_SESSION['comision']; ?>" required style="text-transform: uppercase"onkeyup="DobleEspacio(this, event); MismaLetra('txt_atributo');" onkeypress="return sololetras(event)" maxlength="30">
 
                                     </div>
-
 
                                     <div class="form-group">
-                                        <label class="control-label">Carrera</label>
-
-                                        <input class="form-control" type="text" id="txtcarrera" name="txtcarrera" value="<?php echo $_SESSION['carrera']; ?>" required style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
-
+                                        <label>Carrera</label>
+                                        <select class="form-control-lg select2" type="text" id="cbm_carrera" name="cmb_carrera" style="width: 100%;">
+                                        <option value="">Seleccione una opción</option>
+                                        </select>
                                     </div>
+                                    <input class="form-control"  id="carrera1" name="carrera1" value="<?php echo $_SESSION['carrera']; ?>" >
+                                    
 
                                 </div>
                             </div>
@@ -354,3 +355,16 @@ ob_end_flush();
 </body>
 
 </html>
+
+<script type="text/javascript" src="../js/funciones_mantenimientos.js"></script>
+<script type="text/javascript" language="javascript">
+    $(document).ready(function() {
+
+        $('.select2').select2({
+            placeholder: 'Seleccione una opcion',
+            theme: 'bootstrap4',
+            tags: true,
+        });
+
+    });
+</script>

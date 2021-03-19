@@ -3,15 +3,19 @@ if ((document.getElementsByName = 'cbm_persona')) {
 }
 
 if ((document.getElementsByName = 'cbm_comision1')) {
-	llenar_persona();
+	llenar_comision();
 }
 
 if ((document.getElementsByName = 'cbm_edificio')) {
-	llenar_persona();
+	llenar_edificio();
 }
 
 if ((document.getElementsByName = 'cbm_aulal')) {
-	llenar_persona();
+	llenar_tipoaula();
+}
+
+if ((document.getElementsByName = 'cbm_carrera')) {
+	llenar_carrera();
 }
 
 function llenar_persona() {
@@ -97,3 +101,24 @@ $("#cbm_aula").change(function () {
   $("#aula").val(aula);
   
 });
+
+function llenar_carrera() {
+	var cadena = "&activar=activar";
+	$.ajax({
+	  url: "../Controlador/mantenimientos_controlador.php?op=listar_carrera",
+	  type: "POST",
+	  data: cadena,
+	  success: function (r) {
+		// console.log(r);
+		$("#cbm_carrera").html(r).fadeIn();
+	  },
+	});
+  }
+  llenar_carrera();
+  
+  $("#cbm_carrera").change(function () {
+	var carrera = $(this).val();
+	console.log(carrera);
+	$("#carrera1").val(carrera);
+	
+  });

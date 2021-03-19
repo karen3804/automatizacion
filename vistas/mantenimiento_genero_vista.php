@@ -283,7 +283,7 @@ ob_end_flush();
                     <label>Modificar Género</label>
 
 
-                    <input class="form-control" type="text" id="txt_genero" name="txt_genero" value="<?php echo $_SESSION['genero']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Letras(event)" maxlength="30">
+                    <input class="form-control" type="text" id="txt_genero" name="txt_genero" value="<?php echo $_SESSION['genero']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_genero');" onkeypress="return sololetras(event)" maxlength="30">
 
                   </div>
 
@@ -343,3 +343,5 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
+  <script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>

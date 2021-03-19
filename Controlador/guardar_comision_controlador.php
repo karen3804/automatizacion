@@ -8,7 +8,7 @@ $Id_objeto = 64;
 
 
 $comision = strtoupper($_POST['txt_comision']);
-$carrera = strtoupper($_POST['txt_carrera']);
+$carrera = strtoupper($_POST['carrera1']);
 
 
 ///Logica para el que se repite
@@ -19,7 +19,7 @@ $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 
 
 /* Logica para que no acepte campos vacios */
-if ($_POST['txt_comision']  <> ' ' and  $_POST['txt_carrera'] <> '') {
+if ($_POST['txt_comision']  <> ' ' and  $_POST['carrera1'] <> '') {
 
 
     /* Condicion para que no se repita el rol*/

@@ -289,7 +289,7 @@ ob_end_flush();
                     <label>Modificar Atributo</label>
 
 
-                    <input class="form-control" type="text" id="txt_atributo" name="txt_atributo" value="<?php echo $_SESSION['atributo']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Letras(event)" maxlength="30">
+                    <input class="form-control" type="text" id="txt_atributo" name="txt_atributo" value="<?php echo $_SESSION['atributo']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_atributo');" onkeypress="return sololetras(event)" maxlength="30">
 
                   </div>
 
@@ -360,6 +360,9 @@ ob_end_flush();
 </body>
 
 </html>
+
+<script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
+<script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>
 <script type="text/javascript" language="javascript">
   function ventana() {
     window.open("../Controlador/reporte_mantenimiento_atributos_controlador.php", "REPORTE");

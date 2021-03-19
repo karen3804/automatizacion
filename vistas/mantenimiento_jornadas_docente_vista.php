@@ -283,7 +283,7 @@ ob_end_flush();
                     <label>Modificar Jornada</label>
 
 
-                    <input class="form-control" type="text" id="txt_jornada" name="txt_jornada" value="<?php echo $_SESSION['jornada']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Letras(event)" maxlength="30">
+                    <input class="form-control" type="text" id="txt_jornada" name="txt_jornada" value="<?php echo $_SESSION['jornada']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_jornada');" onkeypress="return sololetras(event)" maxlength="30">
 
                   </div>
 
@@ -291,7 +291,7 @@ ob_end_flush();
                   <div class="form-group">
                     <label class="control-label">Descripcion</label>
 
-                    <input class="form-control" type="text" id="txt_descripcion" name="txt_descripcion" value="<?php echo $_SESSION['descripcion']; ?>" required style="text-transform: uppercase" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
+                    <input class="form-control" type="text" id="txt_descripcion" name="txt_descripcion" value="<?php echo $_SESSION['descripcion']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_descripcion');" onkeypress="return sololetras(event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
 
                   </div>
 
@@ -345,3 +345,5 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
+  <script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>
