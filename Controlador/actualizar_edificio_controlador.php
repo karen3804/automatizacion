@@ -51,9 +51,9 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
         $resultado = $mysqli->query($sql);
 
         if ($resultado == true) {
-            header("location:../vistas/mantenimiento_edificio.php?msj=2");
+            header("location:../vistas/mantenimiento_edificio_vista.php?msj=2");
         } else {
-            header("location:../vistas/mantenimiento_edificio.php?msj=3");
+            header("location:../vistas/mantenimiento_edificio_vista.php?msj=3");
         }
     } elseif ($valor_viejo['nombre'] <> $edificio) {
 
@@ -64,9 +64,9 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
         $resultado = $mysqli->query($sql);
 
         if ($resultado == true) {
-            header("location:../vistas/mantenimiento_edificio.php?msj=2");
+            header("location:../vistas/mantenimiento_edificio_vista.php?msj=2");
         } else {
-            header("location:../vistas/mantenimiento_edificio.php?msj=3");
+            header("location:../vistas/mantenimiento_edificio_vista.php?msj=3");
         }
     } elseif ($valor_viejo['codigo'] <> $codigo) 
     {
@@ -78,12 +78,12 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
         $resultado = $mysqli->query($sql);
 
         if ($resultado == true) {
-            header("location:../vistas/mantenimiento_edificio.php?msj=2");
+            header("location:../vistas/mantenimiento_edificio_vista.php?msj=2");
         } else {
-            header("location:../vistas/mantenimiento_edificio.php?msj=3");
+            header("location:../vistas/mantenimiento_edificio_vista.php?msj=3");
         }
     } else {
         /*header("location: ../contenidos/editarRoles-view.php?msj=3&Rol=$Rol2 ");*/
-        header("location:../vistas/mantenimiento_edificio.php?msj=3");
+        header("location:../vistas/mantenimiento_edificio_vista.php?msj=3");
     }
 }

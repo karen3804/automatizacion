@@ -48,7 +48,7 @@ else
                                    timer: 3000
                                 });
                                 $(".FormularioAjax")[0].reset();
-               window.location = "../vistas/mantenimiento_edificio.php";
+               window.location = "../vistas/mantenimiento_edificio_vista.php";
 
                             </script>'
                             ;                      

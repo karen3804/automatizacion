@@ -57,7 +57,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
         }
     } elseif ($valor_viejo['nacionalidad'] <> $nacionalidad) {
 
-        $Id_objeto = 73;
+        $Id_objeto = 90;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', 'LA NACIONALIDAD ' . $valor_viejo['nacionalidad'] . ' POR ' . $nacionalidad . ' ');
         /* Hace el query para que actualize*/
 

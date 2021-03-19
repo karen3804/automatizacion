@@ -4,7 +4,7 @@
  require_once ('../clases/Conexion.php');
  require_once ('../clases/funcion_bitacora.php'); 
 
-        $Id_objeto=74 ;
+        $Id_objeto=91 ;
 
 
 $nacionalidad=strtoupper ($_POST['txt_nacionalidad1']);

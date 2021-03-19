@@ -190,6 +190,7 @@ ob_end_flush();
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 </div>
+                <br>
                 <div class=" px-12">
                     <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
                 </div>
@@ -216,7 +217,7 @@ ob_end_flush();
 
                                 <td style="text-align: center;">
 
-                                    <a href="../vistas/mantenimiento_edificio.php?nombre=<?php echo $row['nombre']; ?>" class="btn btn-primary btn-raised btn-xs">
+                                    <a href="../vistas/mantenimiento_edificio_vista.php?nombre=<?php echo $row['nombre']; ?>" class="btn btn-primary btn-raised btn-xs">
                                         <i class="far fa-edit" style="display:<?php echo $_SESSION['modificar_edificio'] ?> "></i>
                                     </a>
                                 </td>

@@ -59,7 +59,7 @@ if (isset($_REQUEST['msj'])) {
 }
 
 
-$Id_objeto = 73;
+$Id_objeto = 90;
 $visualizacion = permiso_ver($Id_objeto);
 
 
@@ -87,7 +87,7 @@ if ($visualizacion == 0) {
   } else {
     $_SESSION['btn_modificar_nacionalidad'] = "disabled";
   }
-  
+
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
   $sqltabla = "select nacionalidad, PAIS_NAC FROM tbl_nacionalidad";
@@ -129,7 +129,7 @@ if ($visualizacion == 0) {
 
         })
       </script>;
-      
+
       <?php
       ?>
 
@@ -187,6 +187,10 @@ ob_end_flush();
         <h3 class="card-title">Nacionalidad Existentes</h3>
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+        </div>
+        <br>
+        <div class=" px-12">
+          <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
         </div>
       </div>
       <div class="card-body">
@@ -319,7 +323,11 @@ ob_end_flush();
 
 
   </form>
-
+  <script type="text/javascript" language="javascript">
+    function ventana() {
+      window.open("../Controlador/reporte_mantenimiento_nacionalidad_controlador.php", "REPORTE");
+    }
+  </script>
 
 
 

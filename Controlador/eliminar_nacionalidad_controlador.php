@@ -11,7 +11,7 @@ if (isset($_GET['nacionalidad'])) {
     $nacionalidad = $_GET['nacionalidad'];
 }
 
-$Id_objeto=73;
+$Id_objeto=90;
 
 if (permisos::permiso_eliminar($Id_objeto)=='0') {
 

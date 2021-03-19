@@ -122,14 +122,14 @@ if (permiso_ver('73') == '1') {
   $_SESSION['mantenimiento_crear_genero_vista'] = "No 
   tiene permisos para visualizar";
 }
-if (permiso_ver('73') == '1') {
+if (permiso_ver('90') == '1') {
 
   $_SESSION['mantenimiento_nacionalidad_vista'] = "...";
 } else {
   $_SESSION['mantenimiento_nacionalidad_vista'] = "No 
   tiene permisos para visualizar";
 }
-if (permiso_ver('74') == '1') {
+if (permiso_ver('91') == '1') {
 
   $_SESSION['mantenimiento_crear_nacionalidad_vista'] = "...";
 } else {

@@ -103,7 +103,7 @@ ob_end_flush();
 </head>
 
 
-<body onload="TablaCarga1();" >
+<body onload="TablaCarga1();">
 
   <div class="content-wrapper">
 
@@ -156,6 +156,14 @@ ob_end_flush();
       <!--  <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;"  onclick="ventana1()">Reporte Carga Académica a PDF</a> </button>
 
       <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()"> Reporte Actividades a PDF</a> </button> -->
+      <div class=" px-12">
+        <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana3()">Exportar a PDF</a> </button>
+      </div>
+      <script type="text/javascript" language="javascript">
+        function ventana3() {
+          window.open("../Controlador/reporte_mantenimiento_nacionalidad_controlador.php", "REPORTE");
+        }
+      </script>
 
       <br>
 
@@ -191,8 +199,8 @@ ob_end_flush();
       <h1 class="hidden-print"></h1>
 
       <!-- /.card-header -->
-      <input type="text" id="id_sesion" name="id_sesion" value="<?php echo $id; ?>"hidden>
-      <input type="text" id="id_persona" name="id_persona" value="<?php echo $id_persona; ?>"hidden>
+      <input type="text" id="id_sesion" name="id_sesion" value="<?php echo $id; ?>" hidden>
+      <input type="text" id="id_persona" name="id_persona" value="<?php echo $id_persona; ?>" hidden>
 
       <div class="card-body">
 
