@@ -127,23 +127,7 @@ require_once ('../clases/funcion_visualizar.php');
    <!-- /.info-box -->
   </div>
 
-  <div class="col-6 col-sm-6 col-md-4">
-  <div class="small-box bg-light">
-  <div class="inner">
-    <h5>Supervisiones Realizadas Docentes </h5>
-    <br>
-  <br>
-  </div>
-  <div class="icon">
-
-    <i class="fas fa-user-plus"></i>
-  </div>
-  <a href="../vistas/supervisiones_realizadas_vista.php" class="small-box-footer">
-   Ir <i class="fas fa-arrow-circle-right"></i>
-  </a>
-  </div>
-   <!-- /.info-box -->
-  </div>
+ 
 
   <div class="col-6 col-sm-6 col-md-4">
    <div class="small-box bg-primary">
