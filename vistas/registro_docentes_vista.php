@@ -631,7 +631,7 @@ ob_end_flush();
     //formData.append('nombrearchivo',nombrearchivo);
 
     $.ajax({
-      url: 'subirimagen.php',
+      url: '../Controlador/subirimagen.php',
       type: 'post',
       data: formData,
       contentType: false,
@@ -672,7 +672,7 @@ ob_end_flush();
     //formData.append('nombrearchivo',nombrearchivo);
 
     $.ajax({
-      url: 'subirdocumento.php',
+      url: '../Controlador/subirdocumento.php',
       type: 'post',
       data: formData,
       contentType: false,
