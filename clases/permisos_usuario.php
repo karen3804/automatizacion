@@ -326,10 +326,46 @@ if ($_SESSION['pantalla']>='34' and $_SESSION['pantalla']<='38' )
          $_SESSION['btn_coordinacion']="block";
 
         }
-       }                     
-                        
-	
- 
+       }
+
+
+
+
+   //AGREGANDO CARGA ACADEMICA
+   if ($_SESSION['pantalla'] == '45' or $_SESSION['pantalla'] == '47' or $_SESSION['pantalla'] == '48') {
+      if ($_SESSION['confirmacion'] == 'block') {
+         $_SESSION['carga_academica_vista'] = "block";
+      }
+   }
+
+   if ($_SESSION['pantalla'] == '49' or $_SESSION['pantalla'] == '50' or $_SESSION['pantalla'] == '54' or $_SESSION['pantalla'] == '53' or $_SESSION['pantalla'] == '51') {
+      if ($_SESSION['confirmacion'] == 'block') {
+         $_SESSION['docentes_vista'] = "block";
+      }
+   }
+
+
+   if ($_SESSION['pantalla'] == '70') {
+      if ($_SESSION['confirmacion'] == 'block') {
+         $_SESSION['mantemiento_carga_academica'] = "block";
+      }
+   }
+
+   if ($_SESSION['pantalla'] = '55') {
+      if ($_SESSION['confirmacion'] == 'block') {
+         $_SESSION['btn_mantenimiento'] = "block";
+      }
+   }   
+   
+   // if ($_SESSION['pantalla']=='55')
+   // {
+   //  if ( $_SESSION['confirmacion']=='block') 
+   //  {
+   //   $_SESSION['mantemiento_carga_academica']="block";
+
+   //  }
+   // }
+       //--------------------------
    }
 
 
