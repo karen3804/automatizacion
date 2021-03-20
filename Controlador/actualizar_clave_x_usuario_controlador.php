@@ -54,10 +54,10 @@ if ($_POST)
 
                                	
                                		   	
-								
+									header("Location: http://www.informaticaunah.com");
 	                            $sql = "UPDATE tbl_usuarios SET    Contrasena='$Clave_nueva' WHERE Id_usuario= ".$_SESSION['id_usuario']." ";
 						$resultado = $mysqli->query($sql);
-						header("location:  http://informaticaunah.com");	
+							
                                	}
 
  						}
