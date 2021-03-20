@@ -229,7 +229,7 @@ else { echo('nada') ;} ?>" method="post">
                           showConfirmButton: false,
                           timer: 3000
                           }).then(function() {
-                            location.href = "../login.php";   </script>';
+                            location.href = "../login.php"; });  </script>';
                     }
                     if ($msj==3) 
                     {
