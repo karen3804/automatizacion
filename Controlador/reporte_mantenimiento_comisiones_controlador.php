@@ -54,15 +54,16 @@ class myPDF extends FPDF
     function viewTable()
     {
         global $instancia_conexion;
-        $sql = "select comision, id_carrera           
-FROM tbl_comisiones";
+        $sql = "SELECT comision, Descripcion
+FROM tbl_comisiones co
+INNER JOIN  tbl_carrera c ON co.id_carrera=c.id_carrera";
         $stmt = $instancia_conexion->ejecutarConsulta($sql);
 
         while ($reg = $stmt->fetch_array(MYSQLI_ASSOC)) {
 
             $this->SetFont('Times', '', 12);
             $this->Cell(130, 7, utf8_decode($reg['comision']), 1, 0, 'C');
-            $this->Cell(70, 7, utf8_decode($reg['id_carrera']), 1, 0, 'C');
+            $this->Cell(70, 7, utf8_decode($reg['Descripcion']), 1, 0, 'C');
 
             $this->ln();
         }
