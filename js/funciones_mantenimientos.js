@@ -18,6 +18,14 @@ if ((document.getElementsByName = 'cbm_carrera')) {
 	llenar_carrera();
 }
 
+if ((document.getElementsByName = 'cbm_departamento')) {
+	llenar_departamento();
+}
+if ((document.getElementsByName = 'cbm_facultad')) {
+	llenar_facultad();
+}
+
+
 function llenar_persona() {
 	var cadena = '&activar=activar';
 	$.ajax({
@@ -122,3 +130,48 @@ function llenar_carrera() {
 	$("#carrera1").val(carrera);
 	
   });
+
+function llenar_departamento() {
+	var cadena = '&activar=activar';
+	$.ajax({
+		url: '../Controlador/mantenimientos_controlador.php?op=listar_departamento',
+		type: 'POST',
+		data: cadena,
+		success: function (r) {
+			// console.log(r);
+			$('#cbm_departamento').html(r).fadeIn();
+		}
+	});
+}
+llenar_departamento();
+
+$('#cbm_departamento').change(function () {
+	var departamento = $(this).val();
+	console.log(departamento);
+	$('#departamento1').val(departamento);
+});
+
+
+function llenar_facultad() {
+	var cadena = "&activar=activar";
+	$.ajax({
+		url: "../Controlador/mantenimientos_controlador.php?op=listar_facultad",
+		type: "POST",
+		data: cadena,
+		success: function (r) {
+			// console.log(r);
+			$("#cbm_facultad").html(r).fadeIn();
+		},
+	});
+}
+llenar_facultad();
+
+$("#cbm_facultad").change(function () {
+	var nombre = $(this).val();
+	console.log(nombre);
+	$("#facultad1").val(nombre);
+
+});
+
+
+

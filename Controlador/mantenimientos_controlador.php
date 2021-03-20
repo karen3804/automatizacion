@@ -118,7 +118,51 @@ case 'listar_carrera':
      
 break;
 
-}
+case 'listar_departamento':
+    if (isset($_POST['activar'])) {
+        $data=array();
+        $respuesta=$instancia_modelo->listar_departamento();
+       
+          while ($r=$respuesta->fetch_object()) {
+       
+             
+               # code...
+               echo "<option value='". $r->id_departamento."'> ".$r->departamento." </option>";
+               
+           }
+  
+        
+         }
+         else{
+           echo 'No hay informacion';
+         }
+       
+break;
+
+case 'listar_facultad':
+  if (isset($_POST['activar'])) {
+      $data=array();
+      $respuesta=$instancia_modelo->listar_facultad();
+     
+        while ($r=$respuesta->fetch_object()) {
+     
+           
+             # code...
+             echo "<option value='". $r->Id_facultad."'> ".$r->nombre." </option>";
+             
+         }
+
+      
+       }
+       else{
+         echo 'No hay informacion';
+       }
+     
+break;
+
+
+
+
 
 
   
