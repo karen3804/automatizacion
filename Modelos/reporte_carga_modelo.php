@@ -213,13 +213,7 @@ class modelo_modal
         return $instancia_conexion->ejecutarConsultaSimpleFila($sql);
     }
 
-    function descripcion($id_jornada)
-    {
-        global $instancia_conexion;
-        $consulta = $instancia_conexion->ejecutarConsulta('SELECT descripcion FROM tbl_jornadas WHERE id_jornada = ' . $id_jornada . '');
-
-        return $consulta;
-    }
+   
     
 }
    

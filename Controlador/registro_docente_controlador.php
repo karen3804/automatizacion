@@ -16,6 +16,7 @@ $idcategoria=isset($_POST["idcategoria"]) ? limpiarCadena1($_POST["idcategoria"]
 $hi=isset($_POST["hi"]) ? limpiarCadena1($_POST["hi"]) : "";
 $hf=isset($_POST["hf"]) ? limpiarCadena1($_POST["hf"]) : "";
 $codigo = isset($_POST["codigo"])?limpiarCadena1($_POST["codigo"]):"";
+$id_jornada = isset($_POST["id_jornada"]) ? limpiarCadena1($_POST["id_jornada"]) : "";
 
 
 
@@ -298,6 +299,12 @@ break;
     $respuesta = $instancia_modelo->validardepto($codigo);
     echo json_encode($respuesta);
 
+    break;
+
+  case 'descripcion':
+    $rspta = $instancia_modelo->descripcion_jornada($id_jornada);
+    //Codificar el resultado utilizando json
+    echo json_encode($rspta);
     break;
     
 }

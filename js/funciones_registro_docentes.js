@@ -1006,7 +1006,8 @@ function valida_jornada_hora() {
 }
 
 $("#jornada").change(function () {
-    var jornada = $(this).val();
+	var jornada = $(this).val();
+	console.log(jornada);
 
     $.post(
       "../Controlador/reporte_carga_controlador.php?op=descripcion",
@@ -1018,4 +1019,4 @@ $("#jornada").change(function () {
         $("#jornada_id").val(data_.jornada);
       }
     );
-  });
+});

@@ -2,26 +2,25 @@
 require_once "../Modelos/reporte_carga_modelo.php";
 
 
-$Id_asignatura = isset($_POST["Id_asignatura"])?limpiarCadena1($_POST["Id_asignatura"]):"";
-$id_persona = isset($_POST["id_persona"])?limpiarCadena1($_POST["id_persona"]):"";
-$Id_dia = isset($_POST["Id_dia"])?limpiarCadena1($_POST["Id_dia"]):"";
-$id_edificio = isset($_POST["id_edificio"])?limpiarCadena1($_POST["id_edificio"]):"";
-$Id_modalidad = isset($_POST["id_modalidad"])?limpiarCadena1($_POST["id_modalidad"]):"";
-$id_hora = isset($_POST["hora"])?limpiarCadena1($_POST["hora"]):"";
-$num_periodo = isset($_POST["num_periodo"])?limpiarCadena1($_POST["num_periodo"]):"";
-$num_anno = isset($_POST["num_anno"])?limpiarCadena1($_POST["num_anno"]):"";
-$fecha_inicio = isset($_POST["fecha_inicio"])?limpiarCadena1($_POST["fecha_inicio"]):"";
-$fecha_final = isset($_POST["fecha_final"])?limpiarCadena1($_POST["fecha_final"]):"";
-$id_periodo = isset($_POST["id_periodo"])?limpiarCadena1($_POST["id_periodo"]):"";
-$aula = isset($_POST["id_aula"])?limpiarCadena1($_POST["id_aula"]):"";
-$id_tipo_periodo = isset($_POST["id_tipo_periodo"])?limpiarCadena1($_POST["id_tipo_periodo"]):"";
-$fecha_adic_canc = isset($_POST["fecha_adic_canc"])?limpiarCadena1($_POST["fecha_adic_canc"]):"";
-$seccion = isset($_POST["seccion"])?limpiarCadena1($_POST["seccion"]):"";
-$hora_inicial = isset($_POST["hora_inicial"])?limpiarCadena1($_POST["hora_inicial"]):"";
-$dias = isset($_POST["dias"])?limpiarCadena1($_POST["dias"]):"";
-$hora_inicial = isset($_POST["hora_inicial"])?limpiarCadena1($_POST["hora_inicial"]):"";
-$hora_final = isset($_POST["hora_final"])?limpiarCadena1($_POST["hora_final"]):"";
-$jornada = isset($_POST["id_jornada"])?limpiarCadena1($_POST["id_jornada"]):"";
+$Id_asignatura = isset($_POST["Id_asignatura"]) ? limpiarCadena1($_POST["Id_asignatura"]) : "";
+$id_persona = isset($_POST["id_persona"]) ? limpiarCadena1($_POST["id_persona"]) : "";
+$Id_dia = isset($_POST["Id_dia"]) ? limpiarCadena1($_POST["Id_dia"]) : "";
+$id_edificio = isset($_POST["id_edificio"]) ? limpiarCadena1($_POST["id_edificio"]) : "";
+$Id_modalidad = isset($_POST["id_modalidad"]) ? limpiarCadena1($_POST["id_modalidad"]) : "";
+$id_hora = isset($_POST["hora"]) ? limpiarCadena1($_POST["hora"]) : "";
+$num_periodo = isset($_POST["num_periodo"]) ? limpiarCadena1($_POST["num_periodo"]) : "";
+$num_anno = isset($_POST["num_anno"]) ? limpiarCadena1($_POST["num_anno"]) : "";
+$fecha_inicio = isset($_POST["fecha_inicio"]) ? limpiarCadena1($_POST["fecha_inicio"]) : "";
+$fecha_final = isset($_POST["fecha_final"]) ? limpiarCadena1($_POST["fecha_final"]) : "";
+$id_periodo = isset($_POST["id_periodo"]) ? limpiarCadena1($_POST["id_periodo"]) : "";
+$aula = isset($_POST["id_aula"]) ? limpiarCadena1($_POST["id_aula"]) : "";
+$id_tipo_periodo = isset($_POST["id_tipo_periodo"]) ? limpiarCadena1($_POST["id_tipo_periodo"]) : "";
+$fecha_adic_canc = isset($_POST["fecha_adic_canc"]) ? limpiarCadena1($_POST["fecha_adic_canc"]) : "";
+$seccion = isset($_POST["seccion"]) ? limpiarCadena1($_POST["seccion"]) : "";
+$hora_inicial = isset($_POST["hora_inicial"]) ? limpiarCadena1($_POST["hora_inicial"]) : "";
+$dias = isset($_POST["dias"]) ? limpiarCadena1($_POST["dias"]) : "";
+$hora_inicial = isset($_POST["hora_inicial"]) ? limpiarCadena1($_POST["hora_inicial"]) : "";
+$hora_final = isset($_POST["hora_final"]) ? limpiarCadena1($_POST["hora_final"]) : "";
 
 
 
@@ -247,9 +246,5 @@ switch ($_GET["op"]) {
         echo json_encode($rspta);
         break;
 
-        case 'descripcion':
-            $rspta = $instancia_modelo->descripcion($jornada);
-            //Codificar el resultado utilizando json
-            echo json_encode($rspta);
-            break;
+   
 }

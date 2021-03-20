@@ -171,4 +171,10 @@ class modelo_registro_docentes
         return $instancia_conexion->ejecutarConsultaSimpleFila($sql4);
     }
 
+    function descripcion_jornada($id_jornada)
+    {
+        global $instancia_conexion;
+        $sql = "call sel_jornada_docente('$id_jornada')";
+        return $instancia_conexion->ejecutarConsultaSimpleFila($sql);
+    }
 }

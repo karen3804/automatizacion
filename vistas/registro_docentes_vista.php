@@ -100,7 +100,6 @@ ob_end_flush();
       <section>
 
         <input type="text" name="mayoria_edad" id="mayoria_edad" readonly onload="mayoria_edad()" hidden>
-        <input type="text" name="jornada_id" id="jornada_id" readonly>
 
         <!-- Main content -->
         <section class="content">
@@ -471,6 +470,8 @@ ob_end_flush();
                       <select class="form-control" name="jornada" id="jornada" value="" style="text-transform: uppercase">
                       </select>
                     </div>
+                    <input type="text" name="jornada_id" id="jornada_id" readonly>
+
                   </div>
 
                   <div class="col-sm-3">
