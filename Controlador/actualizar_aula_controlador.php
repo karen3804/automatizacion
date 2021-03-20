@@ -19,7 +19,7 @@ $id_aula = $_GET['id_aula'];
 
 
 ///Logica para el rol que se repite
-$sqlexiste = ("select count(codigo) as codigo  from tbl_aula where codigo='$codigo' and id_aula<>'$id_aula' ;");
+$sqlexiste = ("select count(codigo) as codigo  from tbl_aula where codigo='$codigo' and id_aula<>'$id_aula'  ;");
 //Obtener la fila del query
 $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 
@@ -61,7 +61,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
         }
     } elseif ($valor_viejo['codigo'] <> $codigo) {
 
-        $Id_objeto = 81;
+        $Id_objeto = 60;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', 'EL AULA' . $valor_viejo['codigo'] . ' POR ' . $codigo. ' ');
         /* Hace el query para que actualize*/
 
@@ -75,7 +75,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
     } elseif ($valor_viejo['descripcion'] <> $descripcion) 
     {
 
-        $Id_objeto = 81;
+        $Id_objeto = 60;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' LA DESCRIPCION DEL AULA A ' . $descripcion. ' ');
         /* Hace el query para que actualize*/
 
@@ -89,7 +89,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
     } elseif ($valor_viejo['capacidad'] <> $capacidad) 
     {
 
-        $Id_objeto = 81;
+        $Id_objeto = 60;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' lA CAPACIDAD DEL AULA A  ' . $capacidad. ' ');
         /* Hace el query para que actualize*/
 
@@ -103,7 +103,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
     }elseif ($valor_viejo['id_edificio'] <> $edificio) 
     {
 
-        $Id_objeto = 81;
+        $Id_objeto = 60;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', 'EL EDIFICIO DEL AULA A  ' . $edificio. ' ');
         /* Hace el query para que actualize*/
 
@@ -117,7 +117,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
     }elseif ($valor_viejo['id_tipo_a-ula'] <> $tipoaula) 
     {
 
-        $Id_objeto = 81;
+        $Id_objeto = 60;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' EL TIPO DE AULA A ' . $tipoaula. ' ');
         /* Hace el query para que actualize*/
 
