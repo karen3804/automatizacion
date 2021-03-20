@@ -106,7 +106,7 @@ case 'listar_carrera':
      
            
              # code...
-             echo "<option value='". $r->carrera."'> ".$r->descripcion." </option>";
+             echo "<option value='". $r->id_carrera."'> ".$r->Descripcion." </option>";
              
          }
 
@@ -120,7 +120,6 @@ break;
 
 }
 
-}
 
   
 ?>

@@ -40,8 +40,7 @@ if (isset($_REQUEST['msj'])) {
 
 
 
-        $sqltabla = "select comision, carrera
-FROM tbl_comisiones";
+        $sqltabla = "select comision, id_carrera FROM tbl_comisiones";
         $resultadotabla = $mysqli->query($sqltabla);
     }
     if ($msj == 3) {
@@ -92,15 +91,14 @@ if ($visualizacion == 0) {
 
 
     /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
-    $sqltabla = "select comision, carrera FROM tbl_comisiones";
+    $sqltabla = "select comision, id_carrera FROM tbl_comisiones";
     $resultadotabla = $mysqli->query($sqltabla);
 
 
 
     /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
     if (isset($_GET['comision'])) {
-        $sqltabla = "select comision, carrera           
-FROM tbl_comisiones";
+        $sqltabla = "select comision, id_carrera FROM tbl_comisiones";
         $resultadotabla = $mysqli->query($sqltabla);
 
         /* Esta variable recibe el estado de modificar */
@@ -117,7 +115,7 @@ FROM tbl_comisiones";
         /* Aqui obtengo el id_estado_civil de la tabla de la base el cual me sirve para enviarla a la pagina actualizar.php para usarla en el where del update   */
         $_SESSION['id_comisiones'] = $row['id_comisiones'];
         $_SESSION['comision'] = $row['comision'];
-        $_SESSION['carrera'] = $row['carrera'];
+        $_SESSION['id_carrera'] = $row['id_carrera'];
 
 
         /*Aqui levanto el modal*/
@@ -172,8 +170,7 @@ ob_end_flush();
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
-                            <li class="breadcrumb-item active"><a href="../vistas/menu_mantenimiento.php">Menu
-                                    Mantenimiento</a></li>
+                            <li class="breadcrumb-item active"><a href="../vistas/menu_mantenimiento.php">Menu Mantenimiento</a></li>
                             <li class="breadcrumb-item active"><a href="../vistas/mantenimiento_crear_comisiones_vista.php">Nueva Comision</a></li>
                         </ol>
                     </div>
@@ -216,7 +213,7 @@ ob_end_flush();
                         <?php while ($row = $resultadotabla->fetch_array(MYSQLI_ASSOC)) { ?>
                             <tr>
                                 <td><?php echo $row['comision']; ?></td>
-                                <td><?php echo $row['carrera']; ?></td>
+                                <td><?php echo $row['id_carrera']; ?></td>
 
                                 <td style="text-align: center;">
 
@@ -289,17 +286,17 @@ ob_end_flush();
                                         <label>Modificar Comision</label>
 
 
-                                        <input class="form-control" type="text" id="txtcomision" name="txtcomision" value="<?php echo $_SESSION['comision']; ?>" required style="text-transform: uppercase"onkeyup="DobleEspacio(this, event); MismaLetra('txt_atributo');" onkeypress="return sololetras(event)" maxlength="30">
+                                        <input class="form-control" type="text" id="txtcomision" name="txtcomision" value="<?php echo $_SESSION['comision']; ?>" required style="text-transform: uppercase"onkeyup="DobleEspacio(this, event); MismaLetra('txtcomision');" onkeypress="return sololetras(event)" maxlength="30">
 
                                     </div>
 
                                     <div class="form-group">
                                         <label>Carrera</label>
-                                        <select class="form-control-lg select2" type="text" id="cbm_carrera" name="cmb_carrera" style="width: 100%;">
+                                        <select class="form-control-lg select2" type="text" id="cbm_carrera" name="cbm_carrera" style="width: 100%;">
                                         <option value="">Seleccione una opción</option>
                                         </select>
                                     </div>
-                                    <input class="form-control"  id="carrera1" name="carrera1" value="<?php echo $_SESSION['carrera']; ?>" >
+                                    <input class="form-control"  id="carrera1" name="carrera1" value="<?php echo $_SESSION['id_carrera']; ?>" >
                                     
 
                                 </div>

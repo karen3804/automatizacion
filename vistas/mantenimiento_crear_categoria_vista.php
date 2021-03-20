@@ -106,7 +106,7 @@ ob_end_flush();
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
                             <li class="breadcrumb-item"><a href="../vistas/menu_mantenimiento.php">Menu Mantenimiento</a></li>
-                            <li class="breadcrumb-item"><a href="../vistas/mantenimiento_categoria_vista.php"> Mantenimiento Categoría</a></li>
+                            <li class="breadcrumb-item"><a href="../vistas/mantenimiento_categorias_vista.php"> Mantenimiento Categoría</a></li>
                         </ol>
                     </div>
 

@@ -54,7 +54,7 @@ class myPDF extends FPDF
     function viewTable()
     {
         global $instancia_conexion;
-        $sql = "select comision, carrera           
+        $sql = "select comision, id_carrera           
 FROM tbl_comisiones";
         $stmt = $instancia_conexion->ejecutarConsulta($sql);
 
@@ -62,7 +62,7 @@ FROM tbl_comisiones";
 
             $this->SetFont('Times', '', 12);
             $this->Cell(130, 7, utf8_decode($reg['comision']), 1, 0, 'C');
-            $this->Cell(70, 7, utf8_decode($reg['carrera']), 1, 0, 'C');
+            $this->Cell(70, 7, utf8_decode($reg['id_carrera']), 1, 0, 'C');
 
             $this->ln();
         }

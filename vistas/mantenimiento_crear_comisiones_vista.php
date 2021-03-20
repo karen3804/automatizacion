@@ -144,7 +144,7 @@ ob_end_flush();
 
                                     <div class="form-group">
                                         <label>Ingrese la Carrera</label>
-                                        <select class="form-control-lg select2" type="text" id="cbm_carrera" name="cmb_carrera" style="width: 100%;">
+                                        <select class="form-control-lg select2" type="text" id="cbm_carrera" name="cbm_carrera" style="width: 100%;">
                                         <option value="">Seleccione una opción</option>
                                         </select>
                                     </div>
