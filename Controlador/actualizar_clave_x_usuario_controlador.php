@@ -127,7 +127,7 @@ if ($msj==5) {
          		$sql_actualizar_1 = "UPDATE tbl_usuarios SET    Contrasena='$Clave_nueva', estado=1 WHERE Id_usuario= ".$_SESSION['id_usuario']."  ";
 						$resultado_actualizar_1= $mysqli->query($sql_actualizar_1);
                                                           		  
-                              	header("location: ../login.php");	
+                              	header("location: https://www.informaticaunah.com");	
 
 }
 else

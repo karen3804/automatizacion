@@ -228,8 +228,7 @@ else { echo('nada') ;} ?>" method="post">
                           title: "Clave actualizada correctamente",
                           showConfirmButton: false,
                           timer: 3000
-                          }).then(function() {
-                            location.href = "../login.php"; });  </script>';
+                          }) </script>';
                     }
                     if ($msj==3) 
                     {
