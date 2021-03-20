@@ -99,7 +99,8 @@ ob_end_flush();
 
       <section>
 
-        <input type="text" name="mayoria_edad" id="mayoria_edad" readonly onload="mayoria_edad()">
+        <input type="text" name="mayoria_edad" id="mayoria_edad" readonly onload="mayoria_edad()" hidden>
+        <input type="text" name="jornada_id" id="jornada_id" readonly>
 
         <!-- Main content -->
         <section class="content">
@@ -467,7 +468,7 @@ ob_end_flush();
                     <div class="form-group">
                       <!-- JORNADA -->
                       <label>Jornada</label>
-                      <select class="form-control" onchange="prueba();" name="jornada" id="jornada" value="" style="text-transform: uppercase">
+                      <select class="form-control" name="jornada" id="jornada" value="" style="text-transform: uppercase">
                       </select>
                     </div>
                   </div>
@@ -487,7 +488,7 @@ ob_end_flush();
                     <div class="form-group">
                       <!-- HORARIO DE SALIDA -->
                       <label>Horario Salida</label>
-                      <select class="form-control" name="txt_hf" id="txt_hf" value="" onblur="valida_horario_edita()" required>
+                      <select class="form-control" name="txt_hf" id="txt_hf" value="" onblur="valida_horario_edita(); valida_jornada_hora();" required>
 
                       </select>
                     </div>
