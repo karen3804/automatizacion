@@ -52,6 +52,22 @@ class modelo_mantenimientos
 
     }
 
+    function listar_departamento(){
+        global $instancia_conexion;
+        $consulta=$instancia_conexion->ejecutarConsulta('select * from tbl_departamentos');
+
+        return $consulta;
+
+    }
+
+    function listar_facultad(){
+        global $instancia_conexion;
+        $consulta=$instancia_conexion->ejecutarConsulta('select * from tbl_facultades');
+
+        return $consulta;
+
+    }
+
 
 
 }
