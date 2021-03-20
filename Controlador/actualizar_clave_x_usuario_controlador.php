@@ -54,7 +54,7 @@ if ($_POST)
 
                                	
                                		   	
-									header("Location: http://www.informaticaunah.com");
+									header("Location: https://www.informaticaunah.com/automatizacion/login.php");
 	                            $sql = "UPDATE tbl_usuarios SET    Contrasena='$Clave_nueva' WHERE Id_usuario= ".$_SESSION['id_usuario']." ";
 						$resultado = $mysqli->query($sql);
 							
@@ -118,7 +118,7 @@ if ($_POST)
 			<div class="row">
 				<div class="row" style="text-align:center">
 					<?php if($resultado && isset($resultado) ) { 
- 						header("location: https://www.informaticaunah.com");
+ 						header("location: https://www.informaticaunah.com/automatizacion/login.php");
 						?>
 						<?php } else {
 
@@ -127,7 +127,7 @@ if ($msj==5) {
          		$sql_actualizar_1 = "UPDATE tbl_usuarios SET    Contrasena='$Clave_nueva', estado=1 WHERE Id_usuario= ".$_SESSION['id_usuario']."  ";
 						$resultado_actualizar_1= $mysqli->query($sql_actualizar_1);
                                                           		  
-                              	header("location: https://www.informaticaunah.com");	
+                              	header("location: https://www.informaticaunah.com/automatizacion/login.php");	
 
 }
 else
