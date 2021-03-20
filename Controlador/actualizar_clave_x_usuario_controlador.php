@@ -118,7 +118,7 @@ if ($_POST)
 			<div class="row">
 				<div class="row" style="text-align:center">
 					<?php if($resultado && isset($resultado) ) { 
- 						header("location: ../login.php");
+ 						header("location: https://www.informaticaunah.com");
 						?>
 						<?php } else {
 
