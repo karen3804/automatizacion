@@ -54,9 +54,10 @@ if ($_POST)
 
                                	
                                		   	$msj=2;
-								header("location: ../login.php");	
+								
 	                            $sql = "UPDATE tbl_usuarios SET    Contrasena='$Clave_nueva' WHERE Id_usuario= ".$_SESSION['id_usuario']." ";
 						$resultado = $mysqli->query($sql);
+						header("location: ../login.php");	
                                	}
 
  						}
