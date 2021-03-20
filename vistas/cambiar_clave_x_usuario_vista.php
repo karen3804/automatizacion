@@ -223,12 +223,13 @@ else { echo('nada') ;} ?>" method="post">
                               echo '<script type="text/javascript">
                           
                           Swal.fire({
-  position: "center",
-  icon: "success",
-  title: "Clave actualizada correctamente",
-  showConfirmButton: false,
-  timer: 3000
-})   </script>';
+                          position: "center",
+                          icon: "success",
+                          title: "Clave actualizada correctamente",
+                          showConfirmButton: false,
+                          timer: 3000
+                          }).then(function() {
+                            location.href = "../login.php";   </script>';
                     }
                     if ($msj==3) 
                     {
