@@ -1010,7 +1010,7 @@ $("#jornada").change(function () {
 	console.log(jornada);
 
     $.post(
-      "../Controlador/reporte_carga_controlador.php?op=descripcion",
+      "../Controlador/registro_docente_controlador.php?op=descripcion",
       { id_jornada: jornada },
       function (data_, status) {
         data_ = JSON.parse(data_);
