@@ -184,16 +184,16 @@ function mostrar_hora(hora) {
   );
 }
 
-function bloqueo_periodo() {
-  var hoy = new Date();
-  var fecha_desbloqueo = document.getElementById("fecha_desbloqueo").value;
+// function bloqueo_periodo() {
+//   var hoy = new Date();
+//   var fecha_desbloqueo = document.getElementById("fecha_desbloqueo").value;
 
-  if (Date.parse(hoy) > Date.parse(fecha_desbloqueo)) {
-    document.getElementById("btn_guardar_periodo").disabled = false;
-  } else {
-    document.getElementById("btn_guardar_periodo").disabled = true;
-  }
-}
+//   if (Date.parse(hoy) > Date.parse(fecha_desbloqueo)) {
+//     document.getElementById("btn_guardar_periodo").disabled = false;
+//   } else {
+//     document.getElementById("btn_guardar_periodo").disabled = true;
+//   }
+// }
 
 //-------------------- COMBOBOX DE LOS DIAS ----------------------
 function llenar_select3() {
@@ -317,28 +317,28 @@ function mostrar6(tipo_aula) {
 }
 
 //----------------------------------------------------------------
-function blo_desblo_periodo() {
-  var fech1 = new Date();
-  var fech2 = document.getElementById("fecha_adic_canc").value;
-  var fech3 = document.getElementById("fecha_desbloqueo").value;
+// function blo_desblo_periodo() {
+//   var fech1 = new Date();
+//   var fech2 = document.getElementById("fecha_adic_canc").value;
+//   var fech3 = document.getElementById("fecha_desbloqueo").value;
 
-  if ((Date.parse(fech1)) >= (Date.parse(fech2))) {
-    document.getElementById('btn_guardar_periodo').disabled = true;
-    document.getElementById('fecha_inicio').disabled = true;
-    document.getElementById('fecha_final').disabled = true;
-    document.getElementById('fecha_adic_canc').disabled = true;
-  } else {
-  }
+//   if ((Date.parse(fech1)) >= (Date.parse(fech2))) {
+//     document.getElementById('btn_guardar_periodo').disabled = true;
+//     document.getElementById('fecha_inicio').disabled = true;
+//     document.getElementById('fecha_final').disabled = true;
+//     document.getElementById('fecha_adic_canc').disabled = true;
+//   } else {
+//   }
 
-  if ((Date.parse(fech1)) >= (Date.parse(fech3))) {
-    document.getElementById('btn_guardar_periodo').disabled = false;
-    document.getElementById('fecha_inicio').disabled = false;
-    document.getElementById('fecha_final').disabled = false;
-    document.getElementById('fecha_adic_canc').disabled = false;
-  } else {
+//   if ((Date.parse(fech1)) >= (Date.parse(fech3))) {
+//     document.getElementById('btn_guardar_periodo').disabled = false;
+//     document.getElementById('fecha_inicio').disabled = false;
+//     document.getElementById('fecha_final').disabled = false;
+//     document.getElementById('fecha_adic_canc').disabled = false;
+//   } else {
 
-  }
-}
+//   }
+// }
 
 //----------------- CARGA ACADEMICA CON MODAL --------------------
 
@@ -866,25 +866,25 @@ function valida_matriculados() {
       });
 }
 
-function prueba() {
-  var fech1 = new Date();
-  var fech2 = document.getElementById("fecha_adic_canc").value;
-  var fech3 = document.getElementById("fecha_desbloqueo").value;
+// function prueba() {
+//   var fech1 = new Date();
+//   var fech2 = document.getElementById("fecha_adic_canc").value;
+//   var fech3 = document.getElementById("fecha_desbloqueo").value;
 
-  if ((Date.parse(fech1)) >= (Date.parse(fech2))) {
-      document.getElementById('nueva_carga').disabled = true;
-      document.getElementById('guardar').disabled = true;
-      document.getElementById("aceptar_eliminar").disabled = true;
-  } else {}
+//   if ((Date.parse(fech1)) >= (Date.parse(fech2))) {
+//       document.getElementById('nueva_carga').disabled = true;
+//       document.getElementById('guardar').disabled = true;
+//       document.getElementById("aceptar_eliminar").disabled = true;
+//   } else {}
 
-  if ((Date.parse(fech1)) >= (Date.parse(fech3))) {
-      document.getElementById('nueva_carga').disabled = false;
-      document.getElementById('guardar').disabled = false;
-      document.getElementById("aceptar_eliminar").disabled = false;
-  } else {
+//   if ((Date.parse(fech1)) >= (Date.parse(fech3))) {
+//       document.getElementById('nueva_carga').disabled = false;
+//       document.getElementById('guardar').disabled = false;
+//       document.getElementById("aceptar_eliminar").disabled = false;
+//   } else {
 
-  }
-}
+//   }
+// }
 
 $(document).ready(function() {
 

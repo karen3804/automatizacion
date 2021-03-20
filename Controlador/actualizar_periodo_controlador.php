@@ -37,7 +37,7 @@ if ($_POST['num_periodo']  <>' ' and  $_POST['num_anno']<> '' and  $_POST['fecha
         
 	        if($resultado === TRUE) 
           {
-                    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INSERTO' , 'EL PERIODO  '. $num_periodo.' EN EL AÑO '. $num_anno.'');
+                    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'ACTUALIZO' , 'EL PERIODO  '. $num_periodo.' EN EL AÑO '. $num_anno.'');
 
          /*   require"../contenidos/crearRol-view.php"; 
     		header('location: ../contenidos/crearRol-view.php?msj=2');*/

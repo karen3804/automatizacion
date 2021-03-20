@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('../clases/conexion_mantenimientos.php');
 
 $instancia_conexion = new conexion();
@@ -69,7 +70,9 @@ class modeloCarga
         $sql = "call proc_insert_carga_academica('$control', '$seccion', '$num_alumnos', '$id_persona', '$id_aula', '$id_asignatura', '$dias', '$id_modalidad', '$hora_inicial', '$hora_final')";
 
         if ($consulta = $instancia_conexion->ejecutarConsulta($sql)) {
+            $Id_objeto=46;
             return 1;
+            bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INSERTO' , 'UNA CARGA ACADEMICA');
         } else {
             return 0;
         }
