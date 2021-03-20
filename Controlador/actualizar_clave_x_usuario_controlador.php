@@ -53,7 +53,7 @@ if ($_POST)
 							        $Id_objeto=12 ; 
 
                                	
-                               		   	$msj=2;
+                               		   	
 								
 	                            $sql = "UPDATE tbl_usuarios SET    Contrasena='$Clave_nueva' WHERE Id_usuario= ".$_SESSION['id_usuario']." ";
 						$resultado = $mysqli->query($sql);
