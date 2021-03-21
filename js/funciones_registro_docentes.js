@@ -970,11 +970,11 @@ uploadField.onchange = function () {
 
 
 function valida_jornada_hora() {
-	var jornada = $("#jornada option:selected").text();
+	var jornada = $("#jornada_id").val();
 	var hora_entrada = $("#txt_hi").val();
 	var hora_salida = $("#txt_hf").val();
 
-	if (jornada = "TIEMPO_COMPLETO" && (hora_salida - hora_entrada) < 600) {
+	if (jornada == "TIEMPO_COMPLETO" && (hora_salida - hora_entrada) < 600) {
 		swal({
 			title: "Alerta",
 			text:
@@ -985,10 +985,8 @@ function valida_jornada_hora() {
 		});
 		document.getElementById("txt_hi").value = "";
 		document.getElementById("txt_hf").value = "";
-		document.getElementById("jornada").value = "";
-		console.log(jornada);
 
-	} else if(jornada = 'MEDIO_TIEMPO' && (hora_salida - hora_entrada) < 300){
+	} else if(jornada == 'MEDIO_TIEMPO' && (hora_salida - hora_entrada) < 300){
 		swal({
 			title: "Alerta",
 			text: "Deben ser al menos 3 horas laborales para media jornada",
@@ -998,8 +996,6 @@ function valida_jornada_hora() {
 		});
 		document.getElementById("txt_hi").value = "";
 		document.getElementById("txt_hf").value = "";
-		document.getElementById("jornada").value = "";
-		console.log(jornada);
 	}else{
 
 	}
