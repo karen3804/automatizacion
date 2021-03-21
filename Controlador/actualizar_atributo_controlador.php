@@ -8,7 +8,7 @@ require_once('../clases/funcion_bitacora.php');
 
 $atributo = strtoupper($_POST['txt_atributo']);
 $requerido = strtoupper($_POST['txt_requerido']);
-$tipo_persona = strtoupper($_POST['txt_tipo']);
+$tipo_persona = strtoupper($_POST['persona1']);
 $id_atributo = $_GET['id_atributos'];
 
 
@@ -44,7 +44,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
 
     if ($valor_viejo['atributo'] <> $atributo and $valor_viejo['requerido'] <> $requerido and $valor_viejo['id_tipo_persona'] <> $tipo_persona) {
 
-        $Id_objeto = 77;
+        $Id_objeto = 80;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' EL ATRIBUTO ' . $valor_viejo['atributo'] . 'Y POR ' . $atributo . ', LA DESCRIPCION DEL ATRIBUTO ' . $atributo . ' ');
 
 
@@ -59,7 +59,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
         }
     } elseif ($valor_viejo['atributo'] <> $atributo) {
 
-        $Id_objeto = 77;
+        $Id_objeto = 80;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', 'EL ATRIBUTO ' . $valor_viejo['atributo'] . ' POR ' . $atributo. ' ');
         /* Hace el query para que actualize*/
 
@@ -87,7 +87,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
     } elseif ($valor_viejo['id_tipo_persona'] <> $tipo_persona) 
     {
 
-        $Id_objeto = 77;
+        $Id_objeto = 80;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' LA DESCRIPCION DEL ATRIBUTO ' . $atributo. ' ');
         /* Hace el query para que actualize*/
 
@@ -100,7 +100,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
         }
     }else {
         /*header("location: ../contenidos/editarRoles-view.php?msj=3&Rol=$Rol2 ");*/
-           header("location:../vistas/mantenimiento_actividades_vista.php?msj=3"); 
+           header("location:../vistas/mantenimiento_atributos_vista.php?msj=3"); 
 
         }
 }
