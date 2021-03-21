@@ -125,7 +125,7 @@ ob_end_flush();
                 <div class="row">
 
                   <div class="col-sm-12" style="text-align: center">
-                    <div class="col-sm-2" style="left: 560px;">
+                    <div class="col-sm-2" style="left: 450px;">
 
 
                       <!--FOTOGRAFIA -->
@@ -177,7 +177,7 @@ ob_end_flush();
 
                         <input name="" type="text" data-inputmask="'mask': '9999-9999-99999'" data-mask class="form-control" id="identidad" required onkeyup="ValidarIdentidad($('#identidad').val());" onblur="ExisteIdentidad();">
 
-
+                        <input type="text" id="pasaporte" class="form-control" hidden>
 
                       </div>
                     </div>
@@ -204,6 +204,7 @@ ob_end_flush();
 
                       </select>
                     </div>
+
                   </div>
 
 
@@ -458,7 +459,7 @@ ob_end_flush();
                     <div class="form-group">
                       <!-- CATEGORIAS -->
                       <label>Categoría</label>
-                      <select class="form-control" onchange="prueb();" name="categoria" id="categoria" value="" style="text-transform: uppercase">
+                      <select class="form-control"  name="categoria" id="categoria" value="" style="text-transform: uppercase">
                       </select>
                     </div>
                   </div>
@@ -577,7 +578,7 @@ ob_end_flush();
           </div>
           <!-- /.card-body -->
           <p class="text-center" style="margin-top: 10px;">
-            <button type="submit" class="btn btn-primary btn-lg" id="btn_guardar_registro_docentes" name="btn_guardar_registro_docentes" onclick="RegistarDocente($('#txt_nombres').val(), $('#txt_apellidos').val(), $('#cb_genero').val(), $('#identidad').val(), $('#cb_nacionalidad').val(), $('#cb_ecivil').val(), $('#txt_fecha_nacimiento').val(), $('#txt_hi').val(), $('#txt_hf').val(), $('#txt_n_empleado').val(), $('#txt_fecha_ingreso').val());   ">
+            <button type="submit" class="btn btn-primary btn-lg" id="btn_guardar_registro_docentes" name="btn_guardar_registro_docentes" onclick="RegistarDocente($('#txt_nombres').val(), $('#txt_apellidos').val(), $('#cb_genero').val(), $('#identidad').val(), $('#pasaporte').val(), $('#cb_nacionalidad').val(), $('#cb_ecivil').val(), $('#txt_fecha_nacimiento').val(), $('#txt_hi').val(), $('#txt_hf').val(), $('#txt_n_empleado').val(), $('#txt_fecha_ingreso').val());   ">
               <i class="zmdi zmdi-floppy"></i>GUARDAR</button>
           </p>
 
@@ -591,6 +592,8 @@ ob_end_flush();
 
   <script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
   <script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>
+  <script type="text/javascript" src="../js/registro_docente.js"></script>
+
 
 </body>
 

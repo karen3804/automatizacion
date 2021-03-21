@@ -28,24 +28,6 @@ $instancia_modelo = new modelo_registro_docentes();
 
 switch ($_GET["op"]){
     
- 
-  //case 'registrar_atributos':
-    //$respuesta1=$instancia_modelo->traerdatos_idpersona($identidad1);
-   // while ($res=$respuesta1->fetch_object()){
-   //   $id_persona=$res->id_persona;
-     
-   // }
-   // $insertar_nempleado=$instancia_modelo->registrar_atributo_nempleado($id_persona, $nempleado);
-   // $insertar_fecha_ingreso=$instancia_modelo->registrar_atributo_fecha_ingreso($id_persona, $fecha_ingreso);
-    //$insertar_curriculum=$instancia_modelo->registrar_atributo_curriculum($id_persona, $curriculum);
-   // $insertar_foto=$instancia_modelo->registrar_atributo_foto($id_persona, $foto);
-   
-
-//break;
-
-
-
-
   case 'selectGRA':
     if (isset($_POST['activar'])) {
         $data=array();
@@ -132,47 +114,6 @@ break;
            
     break;
       
-  //   case 'listar_persona':
-  //       if (isset($_POST['activar'])) {
-  //           $data=array();
-  //           $respuesta=$instancia_modelo->listar_persona();
-           
-  //             while ($r=$respuesta->fetch_object()) {
-           
-                 
-  //                  # code...
-  //                  echo "<option value='". $r->id_tipo_persona."'> ".$r->tipo_persona." </option>";
-                   
-  //              }
-      
-            
-  //            }
-  //            else{
-  //              echo 'No hay informacion';
-  //            }
-           
-  //   break;
-
-  //   case 'listar_comision':
-  //     if (isset($_POST['activar'])) {
-  //         $data=array();
-  //         $respuesta=$instancia_modelo->listar_comision();
-         
-  //           while ($r=$respuesta->fetch_object()) {
-         
-               
-  //                # code...
-  //                echo "<option value='". $r->id_comisiones."'> ".$r->comision." </option>";
-                 
-  //            }
-    
-          
-  //          }
-  //          else{
-  //            echo 'No hay informacion';
-  //          }
-         
-  // break;
 
     case 'selectEST':
       if (isset($_POST['activar'])) {
@@ -273,21 +214,21 @@ break;
     break;
 
 
-  //   case 'TipoContacto':
+    case 'TipoContacto':
            
            
-  //     $data=array();
-  //     $respuesta=$instancia_modelo->TipoContacto();
-  //    // echo '<pre>';print_r($respuesta);echo'</pre>';
-  //       while ($r=$respuesta->fetch_object()) {
+      $data=array();
+      $respuesta=$instancia_modelo->TipoContacto();
+     // echo '<pre>';print_r($respuesta);echo'</pre>';
+        while ($r=$respuesta->fetch_object()) {
 
 
-  //            # code...
-  //           echo "<option value='". $r->id_tipo_contacto."'> ".$r->descripcion." </option>";
-  //           // echo "<option value='1'> 1 </option>";
-  //        }
+             # code...
+            echo "<option value='". $r->id_tipo_contacto."'> ".$r->descripcion." </option>";
+            // echo "<option value='1'> 1 </option>";
+         }
       
-  // break;
+  break;
 
   case 'mayoria_edad':
     $rspta = $instancia_modelo->mayoria_edad();
