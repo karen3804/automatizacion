@@ -626,6 +626,7 @@ function id_jornada() {
 	// console.log(idjornada);
 }
 
+
 function ValidarIdentidad(identidad) {
 	//console.log(n);
 	var n = identidad.search("_");
@@ -1016,3 +1017,30 @@ $("#jornada").change(function () {
       }
     );
 });
+
+$("#cb_nacionalidad").change(function () {
+
+	var selected = cb_nacionalidad.options[cb_nacionalidad.selectedIndex].text;
+	var pasaporte = document.getElementById("pasaporte");
+	var identidad = document.getElementById("identidad");
+	console.log(selected);
+
+	if (selected != "HONDUREÑA") {
+     
+		$("#pasaporte").removeAttr("hidden");
+		$("#identidad").attr("hidden", "hidden");
+		identidad.disabled = true;
+		pasaporte.disabled = false;
+	} else {
+
+		$("#pasaporte").attr("hidden", "hidden");
+		$("#identidad").removeAttr("hidden");
+		pasaporte.disabled = true;
+		identidad.disabled = false;
+
+	}
+	
+});
+
+
+
