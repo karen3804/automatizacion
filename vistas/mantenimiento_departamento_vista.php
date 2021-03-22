@@ -88,7 +88,7 @@ if ($visualizacion == 0) {
   } else {
     $_SESSION['btn_modificar_departamento'] = "disabled";
   }
-  
+
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
   $sqltabla = "select departamento FROM tbl_departamentos";
@@ -116,7 +116,7 @@ FROM tbl_departamentos";
     /* Aqui obtengo el id_estado_civil de la tabla de la base el cual me sirve para enviarla a la pagina actualizar.php para usarla en el where del update   */
     $_SESSION['id_departamento'] = $row['id_departamento'];
     $_SESSION['departamento'] = $row['departamento'];
-  
+
 
 
     /*Aqui levanto el modal*/
@@ -131,7 +131,7 @@ FROM tbl_departamentos";
 
         })
       </script>;
-      
+
       <?php
       ?>
 
@@ -191,6 +191,10 @@ ob_end_flush();
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
         </div>
+        <br>
+        <div class=" px-12">
+          <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
+        </div>
       </div>
       <div class="card-body">
 
@@ -201,7 +205,7 @@ ob_end_flush();
           <thead>
             <tr>
               <th>DEPARTAMENTOS</th>
-             
+
               <th>MODIFICAR</th>
               <th>ELIMINAR</th>
             </tr>
@@ -210,7 +214,7 @@ ob_end_flush();
             <?php while ($row = $resultadotabla->fetch_array(MYSQLI_ASSOC)) { ?>
               <tr>
                 <td><?php echo $row['departamento']; ?></td>
-                
+
 
                 <td style="text-align: center;">
 
@@ -288,7 +292,7 @@ ob_end_flush();
                   </div>
 
 
-                  
+
                 </div>
               </div>
             </div>
@@ -314,8 +318,13 @@ ob_end_flush();
     <!--mosdal crear -->
 
 
- 
+
   </form>
+  <script type="text/javascript" language="javascript">
+    function ventana() {
+      window.open("../Controlador/reporte_mantenimiento_departamento_controlador.php", "REPORTE");
+    }
+  </script>
 
   <script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
   <script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>
