@@ -80,12 +80,9 @@ elseif (isset($_GET["asistencia"]))
 		 bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'ACTUALIZO' , 'LA ASISTENCIA CHARLA.');
      		 
 		 //header("location: https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=2'"); 
-		// echo '<script type="text/javascript"> window.location.replace("https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=2"); </script>';
+		 echo "<script type='text/javascript'> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=2'); </script>";
 		// header("Location: https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=2", TRUE, 301);
-		 ?>
-		 <meta http-equiv="refresh" content="10; url=https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=2">
-		<?php
-
+	
 			}	
 			else
 			{
