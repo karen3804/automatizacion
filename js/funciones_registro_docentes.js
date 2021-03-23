@@ -1164,7 +1164,7 @@ function RegistarDocente2(
 	refrescar(10000);
 }  
 
-//FUNCION PARA ACTUALIZAR PAGINA DESPUES DE 10 SEGUNDOS
+//FUNCION PARA ACTUALIZAR PAGINA DESPUES DE 10 SEGUNDOS DE HABER GUARDADO
 function refrescar(tiempo){
    
     setTimeout("location.reload(true);", tiempo);
@@ -1210,7 +1210,7 @@ document.getElementById("seleccionararchivo").addEventListener("change", () => {
     });
     return false;
   }
-//FUNCION QUE INGRESSA O CARGA EL CURRICULUM
+//FUNCION QUE INGRESA O CARGA EL CURRICULUM
   function Registrarcurriculum() {
     
     var formData = new FormData();
