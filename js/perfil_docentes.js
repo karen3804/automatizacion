@@ -89,18 +89,32 @@ function editar(){
 /*Guardar informacion editada
 ----------------------------------------------------------------------
 */
-function EditarPerfil(nombre, apellido,identidad,correo){
+function EditarPerfil(nombre, apellido,identidad,nacionalidad){
     var n = identidad.search("_");
     var espace =identidad.search(" ");
-    console.log(identidad.length);
-    console.log(apellido);
+
+    var id_persona = $("#id_persona").val();
+    var nombre = $("#Nombre").val();
+    var apellido = $("#txt_apellido").val();
+    var identidad = $("#identidad").val();
+    var nacionalidad = $("#nacionalidad").val(); 
+    var estado = $("#estado option:selected").text();
+
     if(n!=-1 || identidad.length==0){
         alert("Favor Completar el campo de identidad");
     }else{
-        $.post("../Controlador/perfil_docente_controlador.php?op=EditarPerfil",{Nombre:nombre,apellido:apellido, identidad : identidad, correo:correo}, function(e){
+        $.post("../Controlador/perfil_docente_controlador.php?op=EditarPerfil",{Nombre: nombre, apellido: apellido, identidad: identidad, id_persona: id_persona, nacionalidad: nacionalidad, estado_civil: estado}, function(e){
             
         });
         editar();
+        swal({
+            title: "Actualizado!",
+            text:
+              "Datos actualizados correctamente ",
+            type: "warning",
+            showConfirmButton: true,
+            timer: 10000,
+          });
     }
 }
 
@@ -130,14 +144,13 @@ function AgregarEspecialidad(grado,especialidad){
 function AgregarTelefono(telefono){
 
     var n = telefono.search("_");
-   
-    var espace =telefono.search(" ");
+    var id_persona = $("#id_persona").val();
    
     if(n!=-1 || telefono.length==0){
       alert("Favor Completar el campo de identidad");
     }else{
         $.post("../Controlador/perfil_docente_controlador.php?op=AgregarTelefono",
-        {telefono:telefono}, function(e){
+        {telefono:telefono, id_persona: id_persona}, function(e){
 
         });
     }
@@ -148,12 +161,14 @@ function AgregarTelefono(telefono){
 
 //Cargar y asignar datos a los inputs
 function TraerDatos(){
-  
+    var id_persona = $("#id_persona").val();
     j=ContarTel();
     
-    $.post("../Controlador/perfil_docente_controlador.php?op=CargarDatos",{}, function(data, status){	
+    
+    $.post("../Controlador/perfil_docente_controlador.php?op=CargarDatos",{id_persona: id_persona}, function(data, status){	
           //console.log(data);
           data = JSON.parse(data);
+          console.log(data);
           for (var i = 0;i  <data.all.length ; ++i){
             
             if(data['all'][i].sexo=="M"){
@@ -328,13 +343,11 @@ $.post("../Controlador/perfil_docente_controlador.php?op=MostrarEspecialidad",{}
 //Agregar Telefono en el front
 function addTel(){
     var telefono = document.getElementById("tel");
-    var table1 = document.getElementById("tbData2"); 
  
     j=ContarTel();
     let n = 1+j;
 
     var n1 = telefono.value.search("_");
-    var espace =telefono.value.search(" ");
       
     if(n1!=-1 || telefono.value.length==0){
       alert("Completar El Campo Telefono Por Favor");
@@ -408,7 +421,9 @@ function Actividades(){
 
 //CARGAR CURRICULUM
 function Curriculum(){
-    $.post("../Controlador/perfil_docente_controlador.php?op=Curriculum",{}, function(data, status){
+    var id_persona = $("#id_persona").val();
+
+    $.post("../Controlador/perfil_docente_controlador.php?op=Curriculum",{id_persona: id_persona}, function(data, status){
       data = JSON.parse(data);
      
       $("#curriculum").attr('href',data.curriculum);
@@ -418,7 +433,9 @@ function Curriculum(){
 
 //CARGAR NUMERO DE EMPLEADO
 function Num_Empleado(){
-    $.post("../Controlador/perfil_docente_controlador.php?op=Num_Empleado",{}, function(data, status){
+    var id_persona = $("#id_persona").val();
+
+    $.post("../Controlador/perfil_docente_controlador.php?op=Num_Empleado",{id_persona: id_persona}, function(data, status){
         data = JSON.parse(data);
         
         $("#empleado").val(data.valor);
