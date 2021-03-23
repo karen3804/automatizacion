@@ -14,7 +14,7 @@ require_once ('../clases/funcion_permisos.php');
 
 $Id_objeto=54; 
 $visualizacion= permiso_ver($Id_objeto);
-
+$usuario = $_SESSION['id_persona'];
 
 
 if ($visualizacion==0)
@@ -68,7 +68,7 @@ ob_end_flush();
 </head>
 
 <body>
-
+<input class="form-control" value ="<?php echo $usuario?>" type="text" id="id_persona">
 
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -119,7 +119,7 @@ ob_end_flush();
 
                         <div class="col-sm-12" style= "text-align: center">
                   <div class="col-sm-2" style="left: 520px;">
-                        <div class="card-body">
+                  <div class="card-body">
                             <img src="" alt="" class="brand-image img-circle elevation-3" id="foto" height="175"
                                 width="175">
 
@@ -321,7 +321,7 @@ ob_end_flush();
 
                             <div class="d-flex justify-content-around flex-row bd-highlight row">
 
-                                <div class="col-20" style="">
+                                <div class="col-20">
                                     <label for="">Jornada:</label>
 
                                     <div class="form-group">
@@ -334,7 +334,7 @@ ob_end_flush();
                                 </div>
 
 
-                                <div class="col-30" style="">
+                                <div class="col-30">
                                     <label for="">Curriculum:</label>
 
                                     <div class="form-group">
@@ -345,7 +345,7 @@ ob_end_flush();
                                     </div>
                                 </div>
 
-                                <div class="col-50" style="">
+                                <div class="col-50">
 
                                     <div class="form-group">
 

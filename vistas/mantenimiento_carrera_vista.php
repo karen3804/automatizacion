@@ -194,6 +194,10 @@ ob_end_flush();
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 </div>
+                <br>
+                <div class=" px-12">
+                    <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
+                </div>
             </div>
             <div class="card-body">
 
@@ -286,7 +290,7 @@ ob_end_flush();
                                         <label>Modificar Carrera</label>
 
 
-                                        <input class="form-control" type="text" id="txdescripcion" name="txtdescripcion" value="<?php echo $_SESSION['Descripcion']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event);MismaLetra('txtdescripcion');" onkeypress="return sololetras(event)"  maxlength="30">
+                                        <input class="form-control" type="text" id="txdescripcion" name="txtdescripcion" value="<?php echo $_SESSION['Descripcion']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event);MismaLetra('txtdescripcion');" onkeypress="return sololetras(event)" maxlength="30">
 
                                     </div>
 
@@ -294,11 +298,11 @@ ob_end_flush();
                                     <div class="form-group">
                                         <label>Facultad</label>
                                         <select class="form-control-lg select2" type="text" id="cbm_facultad" name="cmb_facultad" style="width: 100%;">
-                                        <option value="">Seleccione una opción</option>
+                                            <option value="">Seleccione una opción</option>
                                         </select>
                                     </div>
-                                    <input class="form-control"  id="facultad1" name="facultad1" value="<?php echo $_SESSION['Id_facultad']; ?>" hidden >
-                                    
+                                    <input class="form-control" id="facultad1" name="facultad1" value="<?php echo $_SESSION['Id_facultad']; ?>" hidden>
+
 
                                 </div>
                             </div>
@@ -328,7 +332,11 @@ ob_end_flush();
 
 
     </form>
-
+    <script type="text/javascript" language="javascript">
+        function ventana() {
+            window.open("../Controlador/reporte_mantenimiento_carrera_controlador.php", "REPORTE");
+        }
+    </script>
 
     <script type="text/javascript">
         $(function() {

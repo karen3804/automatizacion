@@ -4,6 +4,9 @@ require_once "../Modelos/registro_docente_modelo.php";
 $nombre=isset($_POST["nombre"]) ? limpiarCadena1($_POST["nombre"]) : "";
 $apellidos=isset($_POST["apellidos"]) ? limpiarCadena1($_POST["apellidos"]) : "";
 $identidad=isset($_POST["identidad"]) ? limpiarCadena1($_POST["identidad"]) : "";
+$pasaporte=isset($_POST["identidad"]) ? limpiarCadena1($_POST["identidad"]) : "";
+
+
 $nacionalidad=isset($_POST["nacionalidad"]) ? limpiarCadena1($_POST["nacionalidad"]) : "";
 $fecha_nacimiento=isset($_POST["fecha_nacimiento"]) ? limpiarCadena1($_POST["fecha_nacimiento"]) : "";
 $estado=isset($_POST["estado"]) ? limpiarCadena1($_POST["estado"]) : "";
@@ -16,6 +19,7 @@ $idcategoria=isset($_POST["idcategoria"]) ? limpiarCadena1($_POST["idcategoria"]
 $hi=isset($_POST["hi"]) ? limpiarCadena1($_POST["hi"]) : "";
 $hf=isset($_POST["hf"]) ? limpiarCadena1($_POST["hf"]) : "";
 $codigo = isset($_POST["codigo"])?limpiarCadena1($_POST["codigo"]):"";
+$id_jornada = isset($_POST["id_jornada"]) ? limpiarCadena1($_POST["id_jornada"]) : "";
 
 
 
@@ -27,24 +31,6 @@ $instancia_modelo = new modelo_registro_docentes();
 
 switch ($_GET["op"]){
     
- 
-  //case 'registrar_atributos':
-    //$respuesta1=$instancia_modelo->traerdatos_idpersona($identidad1);
-   // while ($res=$respuesta1->fetch_object()){
-   //   $id_persona=$res->id_persona;
-     
-   // }
-   // $insertar_nempleado=$instancia_modelo->registrar_atributo_nempleado($id_persona, $nempleado);
-   // $insertar_fecha_ingreso=$instancia_modelo->registrar_atributo_fecha_ingreso($id_persona, $fecha_ingreso);
-    //$insertar_curriculum=$instancia_modelo->registrar_atributo_curriculum($id_persona, $curriculum);
-   // $insertar_foto=$instancia_modelo->registrar_atributo_foto($id_persona, $foto);
-   
-
-//break;
-
-
-
-
   case 'selectGRA':
     if (isset($_POST['activar'])) {
         $data=array();
@@ -131,47 +117,6 @@ break;
            
     break;
       
-  //   case 'listar_persona':
-  //       if (isset($_POST['activar'])) {
-  //           $data=array();
-  //           $respuesta=$instancia_modelo->listar_persona();
-           
-  //             while ($r=$respuesta->fetch_object()) {
-           
-                 
-  //                  # code...
-  //                  echo "<option value='". $r->id_tipo_persona."'> ".$r->tipo_persona." </option>";
-                   
-  //              }
-      
-            
-  //            }
-  //            else{
-  //              echo 'No hay informacion';
-  //            }
-           
-  //   break;
-
-  //   case 'listar_comision':
-  //     if (isset($_POST['activar'])) {
-  //         $data=array();
-  //         $respuesta=$instancia_modelo->listar_comision();
-         
-  //           while ($r=$respuesta->fetch_object()) {
-         
-               
-  //                # code...
-  //                echo "<option value='". $r->id_comisiones."'> ".$r->comision." </option>";
-                 
-  //            }
-    
-          
-  //          }
-  //          else{
-  //            echo 'No hay informacion';
-  //          }
-         
-  // break;
 
     case 'selectEST':
       if (isset($_POST['activar'])) {
@@ -265,28 +210,36 @@ case 'ExisteIdentidad':
   echo json_encode($respuesta);
   
 break;
+case 'Existepasaporte':
+  $respuesta=$instancia_modelo->Existepasaporte($pasaporte);
+  echo json_encode($respuesta);
+  
+break;
 
     case 'registar':
       $respuesta=$instancia_modelo->registar($nombre,$apellidos, $sexo, $identidad, $nacionalidad, $estado, $fecha_nacimiento, $hi, $hf, $nempleado, $fecha_ingreso, $idjornada, $idcategoria);
       
     break;
-
-
-  //   case 'TipoContacto':
-           
-           
-  //     $data=array();
-  //     $respuesta=$instancia_modelo->TipoContacto();
-  //    // echo '<pre>';print_r($respuesta);echo'</pre>';
-  //       while ($r=$respuesta->fetch_object()) {
-
-
-  //            # code...
-  //           echo "<option value='". $r->id_tipo_contacto."'> ".$r->descripcion." </option>";
-  //           // echo "<option value='1'> 1 </option>";
-  //        }
+    case 'registar2':
+      $respuesta=$instancia_modelo->registar2($nombre,$apellidos, $sexo, $pasaporte, $nacionalidad, $estado, $fecha_nacimiento, $hi, $hf, $nempleado, $fecha_ingreso, $idjornada, $idcategoria);
       
-  // break;
+    break;
+    
+    case 'TipoContacto':
+           
+           
+      $data=array();
+      $respuesta=$instancia_modelo->TipoContacto();
+     // echo '<pre>';print_r($respuesta);echo'</pre>';
+        while ($r=$respuesta->fetch_object()) {
+
+
+             # code...
+            echo "<option value='". $r->id_tipo_contacto."'> ".$r->descripcion." </option>";
+            // echo "<option value='1'> 1 </option>";
+         }
+      
+  break;
 
   case 'mayoria_edad':
     $rspta = $instancia_modelo->mayoria_edad();
@@ -298,6 +251,12 @@ break;
     $respuesta = $instancia_modelo->validardepto($codigo);
     echo json_encode($respuesta);
 
+    break;
+
+  case 'descripcion':
+    $rspta = $instancia_modelo->descripcion_jornada($id_jornada);
+    //Codificar el resultado utilizando json
+    echo json_encode($rspta);
     break;
     
 }

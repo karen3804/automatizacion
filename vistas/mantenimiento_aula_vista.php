@@ -40,8 +40,7 @@ if (isset($_REQUEST['msj'])) {
 
 
 
-    $sqltabla = "select id_aula,  codigo, descripcion, capacidad, id_edificio, id_tipo_aula
-FROM tbl_aula";
+    $sqltabla = "select id_aula, codigo, descripcion, capacidad, id_edificio, id_tipo_aula FROM tbl_aula";
     $resultadotabla = $mysqli->query($sqltabla);
   }
   if ($msj == 3) {
@@ -97,13 +96,12 @@ if ($visualizacion == 0) {
 
 
   /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
-  if (isset($_GET['id_aula'])) {
-    $sqltabla = "select codigo, descripcion, capacidad, id_edifico, id_tipo_aula
-    FROM tbl_aula";
+  if (isset($_GET['codigo'])) {
+    $sqltabla = "select id_aula, codigo, descripcion, capacidad, id_edifico, id_tipo_aula FROM tbl_aula";
     $resultadotabla = $mysqli->query($sqltabla);
 
     /* Esta variable recibe el estado de modificar */
-    $codigo = $_GET['id_aula'];
+    $codigo = $_GET['codigo'];
 
     /* Iniciar la variable de sesion y la crea */
     /* Hace un select para mandar a traer todos los datos de la 
@@ -267,7 +265,7 @@ ob_end_flush();
 
 -->
 
-  <form action="../Controlador/actualizar_aula_controlador.php?id_aula=<?php echo $_SESSION['id_aula']; ?>" method="post" data-form="update" autocomplete="off">
+  <form action="../Controlador/actualizar_aula_controlador.php?codigo=<?php echo $_SESSION['codigo']; ?>" method="post" data-form="update" autocomplete="off">
 
 
 
@@ -295,6 +293,14 @@ ob_end_flush();
 
 
 
+                <div class="form-group">
+
+                  
+
+
+                      <input hidden class="form-control" type="text" id="txt_idaula" name="txt_idaula" value="<?php echo $_SESSION['id_aula']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Numeros(event)" maxlength="30">
+
+                </div>
                   <div class="form-group">
 
                     <label>Modificar Codigo Aula</label>
@@ -321,7 +327,7 @@ ob_end_flush();
 
                   <div class="form-group">
                     <label>Edificio</label>
-                    <select class="form-control-lg select2" type="text" id="cbm_edificio" name="ccbm_edificio" style="width: 100%;">
+                    <select class="form-control-lg select2" type="text" id="cbm_edificio" name="cbm_edificio" style="width: 100%;">
                       <option value="">Seleccione una opción</option>
                     </select>
                   </div>

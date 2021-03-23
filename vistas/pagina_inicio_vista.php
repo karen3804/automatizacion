@@ -142,7 +142,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <p>Preguntas de Seguridad</p>
                   </a>
                 </li>
-                  
+
                 <li class="nav-item" style="display:<?php echo $_SESSION['usuarios_vista'] ?>">
                   <a href="../vistas/menu_usuarios_vista.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -213,7 +213,7 @@ if (session_status() === PHP_SESSION_NONE) {
               </ul>
             </li>
 
-             <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_coordinacion'] ?>">
+            <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_coordinacion'] ?>">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
@@ -284,7 +284,7 @@ if (session_status() === PHP_SESSION_NONE) {
               </ul>
             </li>
 
-           
+
             <!---- solicitudes ----->
 
             <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_solicitudes'] ?>">
@@ -336,59 +336,37 @@ if (session_status() === PHP_SESSION_NONE) {
                 </li>
               </ul>
             </li>
-              <!---- Ayuda ----->
+            <!---- Ayuda ----->
 
-          <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-book-open"></i>
-              <p>
-                 Ayuda
-                <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right"></span>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                    <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
-                <a href="../vistas/menu_ayuda_vista.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> Manuales de usuario </p>
-                </a>
-              </li>
+            <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book-open"></i>
+                <p>
+                  Ayuda
+                  <i class="fas fa-angle-left right"></i>
+                  <span class="badge badge-info right"></span>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
+                  <a href="../vistas/menu_ayuda_vista.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p> Manuales de usuario </p>
+                  </a>
+                </li>
               </ul>
               <ul class="nav nav-treeview">
-                    <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> Mesa de ayuda </p>
-                </a>
-              </li>
+                <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p> Mesa de ayuda </p>
+                  </a>
+                </li>
               </ul>
 
-          <!---- ----->
-            <!----About ----->
-
-            <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_solicitudes'] ?>">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-info"></i>
-              <p>
-                 About
-                <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right"></span>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                    <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
-                <a href="../vistas/about_vista.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> About </p>
-                </a>
-              </li>
-              </ul>
-
-          <!---- ----->
-
-          <!----MANTENIMIENTOS ----->
-              <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_mantenimiento'] ?>">
+              <!---- ----->
+              <!----MANTENIMIENTOS ----->
+            <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_mantenimiento'] ?>">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
@@ -408,6 +386,29 @@ if (session_status() === PHP_SESSION_NONE) {
 
               </ul>
             </li>
+            <!----About ----->
+
+            <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_solicitudes'] ?>">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-info"></i>
+                <p>
+                  About
+                  <i class="fas fa-angle-left right"></i>
+                  <span class="badge badge-info right"></span>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
+                  <a href="../vistas/about_vista.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p> About </p>
+                  </a>
+                </li>
+              </ul>
+
+              <!---- ----->
+
+
 
           </ul>
         </nav>

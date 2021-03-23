@@ -88,7 +88,7 @@ if ($visualizacion == 0) {
   } else {
     $_SESSION['btn_modificar_municipio'] = "disabled";
   }
-  
+
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
   $sqltabla = "select  municipio, codigo, id_departamento FROM tbl_municipios_hn";
@@ -132,7 +132,7 @@ FROM tbl_municipios_hn";
 
         })
       </script>;
-      
+
       <?php
       ?>
 
@@ -191,6 +191,10 @@ ob_end_flush();
         <h3 class="card-title">Municipios Existentes</h3>
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+        </div>
+        <br>
+        <div class=" px-12">
+          <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
         </div>
       </div>
       <div class="card-body">
@@ -299,15 +303,15 @@ ob_end_flush();
 
                   </div>
 
-                     <div class="form-group">
-                                        <label>Departamento</label>
-                                        <select class="form-control-lg select2" type="text" id="cbm_departamento" name="cmb_departamento" style="width: 100%;">
-                                        <option value="">Seleccione una opción</option>
-                                        </select>
-                   </div>
-                  <input class="form-control"  id="departamento1" name="departamento1" value="<?php echo $_SESSION['id_departamento']; ?>" hidden >
+                  <div class="form-group">
+                    <label>Departamento</label>
+                    <select class="form-control-lg select2" type="text" id="cbm_departamento" name="cmb_departamento" style="width: 100%;">
+                      <option value="">Seleccione una opción</option>
+                    </select>
+                  </div>
+                  <input class="form-control" id="departamento1" name="departamento1" value="<?php echo $_SESSION['id_departamento']; ?>" hidden>
 
-          
+
                 </div>
               </div>
             </div>
@@ -335,7 +339,11 @@ ob_end_flush();
 
 
   </form>
-
+  <script type="text/javascript" language="javascript">
+    function ventana() {
+      window.open("../Controlador/reporte_mantenimiento_municipio_controlador.php", "REPORTE");
+    }
+  </script>
 
 
 
@@ -354,7 +362,7 @@ ob_end_flush();
     });
   </script>
 
-<script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
+  <script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
   <script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>
 </body>
 
@@ -362,13 +370,13 @@ ob_end_flush();
 
 <script type="text/javascript" src="../js/funciones_mantenimientos.js"></script>
 <script type="text/javascript" language="javascript">
-    $(document).ready(function() {
+  $(document).ready(function() {
 
-        $('.select2').select2({
-            placeholder: 'Seleccione una opcion',
-            theme: 'bootstrap4',
-            tags: true,
-        });
-
+    $('.select2').select2({
+      placeholder: 'Seleccione una opcion',
+      theme: 'bootstrap4',
+      tags: true,
     });
+
+  });
 </script>

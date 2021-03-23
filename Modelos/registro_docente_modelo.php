@@ -18,14 +18,22 @@ class modelo_registro_docentes
         return $instancia_conexion->ejecutarConsulta($sql);
 
     }
-    
-    //public function Registrar_atributos($nempleado, $fecha_ingreso, $ruta_pc, $ruta_p){
-        //global $instancia_conexion;
-        //$sql="CALL proc_insertar_extendidas('$nempleado', '$fecha_ingreso', '$ruta_pc', '$ruta_p')";
+    public function registar2($nombre,$apellidos,$sexo,$pasaporte,$nacionalidad,$estado,$fecha_nacimiento,$hi,$hf,$nempleado,$fecha_ingreso,$idcategoria,$idjornada){
+        global $instancia_conexion;
+        $sql="call proc_insertar_docentes_personas ('$nombre', '$apellidos', '$sexo', '$pasaporte', '$nacionalidad', '$estado', '$fecha_nacimiento', '1', '$idjornada', '$idcategoria', '$hi', '$hf', '$nempleado', '$fecha_ingreso')";
         
-        //return $instancia_conexion->ejecutarConsulta($sql);
 
-    //}
+        return $instancia_conexion->ejecutarConsulta($sql);
+
+    }
+    
+    public function Registrar_atributos($nempleado, $fecha_ingreso, $ruta_pc, $ruta_p){
+        global $instancia_conexion;
+        $sql="CALL proc_insertar_extendidas('$nempleado', '$fecha_ingreso', '$ruta_pc', '$ruta_p')";
+        
+        return $instancia_conexion->ejecutarConsulta($sql);
+
+    }
 
     public function Registrar_foto($nombrearchivo){
         global $instancia_conexion;
@@ -42,47 +50,6 @@ class modelo_registro_docentes
         return $instancia_conexion->ejecutarConsulta($sql);
 
     }
-
-    //public function registrar_atributo_nempleado($id_persona, $valor){
-      //  global $instancia_conexion;
-       // $sql="set @idnumero_empleado=(select id_atributos from tbl_atributos where atributo='numero_empleado' or atributo='NUMERO_EMPLEADO'); 
-        //insert into tbl_personas_extendidas(id_persona, id_atributo, valor) values(".$id_persona.",@idnumero_empleado, ".$valor.");"; 
-        //return $instancia_conexion->ejecutarConsulta($sql);
-    //}
-
-    //public function registrar_atributo_fecha_ingreso($id_persona, $valor){
-
-      //  global $instancia_conexion;
-       // $sql="set @idfecha_ingreso=(select id_atributos from tbl_atributos where atributo='fecha_ingreso' or atributo='FECHA_INGRESO'); 
-       // insert into tbl_personas_extendidas(id_persona, id_atributo, valor) values(".$id_persona.",@idfecha_ingreso, ".$valor.");"; 
-       // return $instancia_conexion->ejecutarConsulta($sql);
-    //}
-
-    //public function registrar_atributo_curriculum($id_persona, $valor){
-
-       // global $instancia_conexion;
-        //$sql="set @idcurriculum=(select id_atributos from tbl_atributos where atributo='curriculum' or atributo='CURRICULUM');
-        //insert into tbl_personas_extendidas(id_persona, id_atributo, valor) values(".$id_persona.",@idcurriculum, ".$valor.");"; 
-      //  return $instancia_conexion->ejecutarConsulta($sql);
-   // }
-
-  //  public function registrar_atributo_foto($id_persona, $valor){
-
-       // global $instancia_conexion;
-       // $sql="set @idfoto=(select id_atributos from tbl_atributos where atributo='foto' or atributo='FOTO');
-       // insert into tbl_personas_extendidas(id_persona, id_atributo, valor) values(".$id_persona.",@idfoto, ".$valor.");"; 
-        //return $instancia_conexion->ejecutarConsulta($sql);
-   // }
-
-
-
-    //function traerdatos_idpersona($identidad_p){
-       // global $instancia_conexion;
-       // $sql='select id_persona from tbl_personas where identidad="'.$identidad_p.'";';
-      //  return $instancia_conexion->ejecutarConsulta($sql);
-
-   // }
-
 
 
     function listar_selectEST(){
@@ -137,6 +104,13 @@ class modelo_registro_docentes
       
         return $consulta;
     }
+    function Existepasaporte($pasaporte){
+        global $instancia_conexion;
+        $consulta=$instancia_conexion->ejecutarConsultaSimpleFila("SELECT EXISTS( 
+        SELECT identidad FROM tbl_personas WHERE identidad='$pasaporte') as existe");
+      
+        return $consulta;
+    }
     
     function listar_selectGEN(){
         global $instancia_conexion;
@@ -170,5 +144,16 @@ class modelo_registro_docentes
         $sql4 = "call proc_existe_municipio_depto($codigo)";
         return $instancia_conexion->ejecutarConsultaSimpleFila($sql4);
     }
+
+    function descripcion_jornada($id_jornada)
+    {
+        global $instancia_conexion;
+        $sql = "call sel_jornada_docente('$id_jornada')";
+        return $instancia_conexion->ejecutarConsultaSimpleFila($sql);
+    }
+
+  
+    
+
 
 }

@@ -100,7 +100,6 @@ ob_end_flush();
       <section>
 
         <input type="text" name="mayoria_edad" id="mayoria_edad" readonly onload="mayoria_edad()" hidden>
-        <input type="text" name="jornada_id" id="jornada_id" readonly>
 
         <!-- Main content -->
         <section class="content">
@@ -126,7 +125,7 @@ ob_end_flush();
                 <div class="row">
 
                   <div class="col-sm-12" style="text-align: center">
-                    <div class="col-sm-2" style="left: 560px;">
+                    <div class="col-sm-2" style="left: 450px;">
 
 
                       <!--FOTOGRAFIA -->
@@ -171,18 +170,30 @@ ob_end_flush();
                   </div>
 
                   <div class="col-sm-3">
+                    <div class="form-group">
+                      <!-- NACIONALIDAD -->
+                      <label>Nacionalidad</label>
+                      <select class="form-control" name="cb_nacionalidad" id="cb_nacionalidad" style="text-transform: uppercase" required>
+
+                      </select>
+                    </div>
+
+                  </div>
+
+                  <div class="col-sm-3">
                     <label for="">Nº Identidad:</label>
 
                     <div class="form-group">
                       <div class="input-group-prepend">
 
-                        <input name="" type="text" data-inputmask="'mask': '9999-9999-99999'" data-mask class="form-control" id="identidad" required onkeyup="ValidarIdentidad($('#identidad').val());" onblur="ExisteIdentidad();">
+                        <input name="identidad" type="text" data-inputmask="'mask': '9999-9999-99999'" data-mask class="form-control" id="identidad" onkeyup="ValidarIdentidad($('#identidad').val());" onblur="ExisteIdentidad();">
 
-
+                        <input type="text" id="pasaporte" class="form-control" maxlength="15" onkeypress="return solonumeros(event)" onblur="Existepasaporte();" hidden >
 
                       </div>
                     </div>
                     <p hidden id="TextoIdentidad" style="color:red;">¡Ya existe un registro con esta identidad! </p>
+                    <p hidden id="Textopasaporte" style="color:red;">¡Ya existe un registro con este pasaporte! </p>
 
                   </div>
 
@@ -196,17 +207,6 @@ ob_end_flush();
                     </div>
                     <p hidden id="Textofecha" style="color:red;">¡El docente debe ser mayor de edad! </p>
                   </div>
-
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <!-- NACIONALIDAD -->
-                      <label>Nacionalidad</label>
-                      <select class="form-control" name="cb_nacionalidad" id="cb_nacionalidad" style="text-transform: uppercase" required>
-
-                      </select>
-                    </div>
-                  </div>
-
 
                   <div class="col-sm-3">
                     <div class="form-group">
@@ -459,7 +459,7 @@ ob_end_flush();
                     <div class="form-group">
                       <!-- CATEGORIAS -->
                       <label>Categoría</label>
-                      <select class="form-control" onchange="prueb();" name="categoria" id="categoria" value="" style="text-transform: uppercase">
+                      <select class="form-control"  name="categoria" id="categoria" value="" style="text-transform: uppercase">
                       </select>
                     </div>
                   </div>
@@ -471,6 +471,8 @@ ob_end_flush();
                       <select class="form-control" name="jornada" id="jornada" value="" style="text-transform: uppercase">
                       </select>
                     </div>
+                    <input type="text" name="jornada_id" id="jornada_id" readonly>
+
                   </div>
 
                   <div class="col-sm-3">
@@ -578,6 +580,8 @@ ob_end_flush();
           <p class="text-center" style="margin-top: 10px;">
             <button type="submit" class="btn btn-primary btn-lg" id="btn_guardar_registro_docentes" name="btn_guardar_registro_docentes" onclick="RegistarDocente($('#txt_nombres').val(), $('#txt_apellidos').val(), $('#cb_genero').val(), $('#identidad').val(), $('#cb_nacionalidad').val(), $('#cb_ecivil').val(), $('#txt_fecha_nacimiento').val(), $('#txt_hi').val(), $('#txt_hf').val(), $('#txt_n_empleado').val(), $('#txt_fecha_ingreso').val());   ">
               <i class="zmdi zmdi-floppy"></i>GUARDAR</button>
+              <button hidden type="submit" class="btn btn-primary btn-lg" id="btn_guardar_registro_docentes2" name="btn_guardar_registro_docentes2" onclick="RegistarDocente2($('#txt_nombres').val(), $('#txt_apellidos').val(), $('#cb_genero').val(), $('#pasaporte').val(), $('#cb_nacionalidad').val(), $('#cb_ecivil').val(), $('#txt_fecha_nacimiento').val(), $('#txt_hi').val(), $('#txt_hf').val(), $('#txt_n_empleado').val(), $('#txt_fecha_ingreso').val());   ">
+              <i class="zmdi zmdi-floppy"></i>GUARDAR1</button>
           </p>
 
         </section>
@@ -590,6 +594,8 @@ ob_end_flush();
 
   <script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
   <script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>
+ <!-- <script type="text/javascript" src="../js/registro_docente.js"></script> -->
+
 
 </body>
 
@@ -598,93 +604,3 @@ ob_end_flush();
 </html>
 
 
-<script>
-  document.getElementById("seleccionararchivo").addEventListener("change", () => {
-    var archivoseleccionado = document.querySelector("#seleccionararchivo");
-    var archivos = archivoseleccionado.files;
-    var imagenPrevisualizacion = document.querySelector("#mostrarimagen");
-    // Si no hay archivos salimos de la función y quitamos la imagen
-    if (!archivos || !archivos.length) {
-      imagenPrevisualizacion.src = "";
-      return;
-    }
-    // Ahora tomamos el primer archivo, el cual vamos a previsualizar
-    var primerArchivo = archivos[0];
-    // Lo convertimos a un objeto de tipo objectURL
-    var objectURL = URL.createObjectURL(primerArchivo);
-    // Y a la fuente de la imagen le ponemos el objectURL
-    imagenPrevisualizacion.src = objectURL;
-  });
-
-  function Registrar() {
-    //var f= new date();
-
-    var archivo = $("#seleccionararchivo").val();
-    //var extension = archivo.split('.').pop();
-    //var nombrearchivo= "IMG"+f.getDate()+""+f.getMonth()+""+f.getFullYear()+""+f.getHours()+""+getMinutes()+""+f.getSeconds()+"."+extension;
-    //if(archivo.length ==0){
-    //return Swal.fire('Mensaje De Advertencia',"Debe Seleccionar un archivo","warning");
-    //}
-
-    var formData = new FormData();
-    var foto = $("#seleccionararchivo")[0].files[0];
-    formData.append('f', foto);
-    //formData.append('nombrearchivo',nombrearchivo);
-
-    $.ajax({
-      url: '../Controlador/subirimagen.php',
-      type: 'post',
-      data: formData,
-      contentType: false,
-      processData: false,
-      success: function(respuesta) {
-        if (respuesta != 0) {
-          Swal('Mensaje De Confirmacion', "Se subio el archivo con exito", "success");
-        }
-      }
-    });
-    return false;
-  }
-</script>
-
-
-
-
-<script>
-  document.getElementById("curriculum").addEventListener("change", () => {
-    var archivoseleccionado2 = document.querySelector("#curriculum");
-    var archivos2 = archivoseleccionado2.files;
-
-  });
-
-  function Registrarcurriculum() {
-    //var f= new date();
-
-    var archivo2 = $("#curriculum").val();
-    //var extension = archivo.split('.').pop();
-    //var nombrearchivo= "IMG"+f.getDate()+""+f.getMonth()+""+f.getFullYear()+""+f.getHours()+""+getMinutes()+""+f.getSeconds()+"."+extension;
-    //if(archivo2.length==0){
-    //return Swal.fire('Mensaje De Advertencia',"Debe Seleccionar un archivo","warning");
-    //}
-
-    var formData = new FormData();
-    var curriculum = $("#curriculum")[0].files[0];
-    formData.append('c', curriculum);
-    //formData.append('nombrearchivo',nombrearchivo);
-
-    $.ajax({
-      url: '../Controlador/subirdocumento.php',
-      type: 'post',
-      data: formData,
-      contentType: false,
-      processData: false,
-      success: function(respuesta) {
-        if (respuesta != 0) {
-
-          //Swal.fire('Mensaje De Confirmacion',"Se subio el archivo con exito","success");
-        }
-      }
-    });
-    return false;
-  }
-</script>
