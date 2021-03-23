@@ -35,8 +35,8 @@ $_SESSION['txt_motivo']="APROBADA";
 			 
 			      bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'COORDINACION DEL ESTUDIANTE CON CUENTA'.$_SESSION['txt_estudiante_cuenta'] .' CON DECISION '.$_SESSION['cb_aprobar']. ', CON OBSERVACION'.$_SESSION['txt_motivo'].'');  
 
-		header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=2"); 
-
+		//header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=2"); 
+		echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/aprobar_practica_coordinacion_vista.php?msj=2'); </script>";
 
 		}
 		else
