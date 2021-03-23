@@ -41,7 +41,9 @@ elseif (isset($_GET["asistencia"]))
 
      //header("location:../vistas/gestion_asistencia_charla_vista.php?msj=1"); 
 	 echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=1'); </script>";
-
+	 ?>
+	 <meta http-equiv="refresh" content="10; url=https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=1">
+    <?php
 	/*echo '<script> alert("  '.$identificador.'  ")</script>';*/
 
 	}	
@@ -79,7 +81,10 @@ elseif (isset($_GET["asistencia"]))
      		 
 		 //header("location: https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=2'"); 
 		// echo '<script type="text/javascript"> window.location.replace("https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=2"); </script>';
-		 header("Location: https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=2", TRUE, 301);
+		// header("Location: https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=2", TRUE, 301);
+		 ?>
+		 <meta http-equiv="refresh" content="10; url=https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=2">
+		<?php
 
 			}	
 			else
