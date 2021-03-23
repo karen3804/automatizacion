@@ -18,6 +18,14 @@ class modelo_registro_docentes
         return $instancia_conexion->ejecutarConsulta($sql);
 
     }
+    public function registar2($nombre,$apellidos,$sexo,$pasaporte,$nacionalidad,$estado,$fecha_nacimiento,$hi,$hf,$nempleado,$fecha_ingreso,$idcategoria,$idjornada){
+        global $instancia_conexion;
+        $sql="call proc_insertar_docentes_personas ('$nombre', '$apellidos', '$sexo', '$pasaporte', '$nacionalidad', '$estado', '$fecha_nacimiento', '1', '$idjornada', '$idcategoria', '$hi', '$hf', '$nempleado', '$fecha_ingreso')";
+        
+
+        return $instancia_conexion->ejecutarConsulta($sql);
+
+    }
     
     public function Registrar_atributos($nempleado, $fecha_ingreso, $ruta_pc, $ruta_p){
         global $instancia_conexion;
@@ -93,6 +101,13 @@ class modelo_registro_docentes
         global $instancia_conexion;
         $consulta=$instancia_conexion->ejecutarConsultaSimpleFila("SELECT EXISTS( 
         SELECT  identidad FROM tbl_personas WHERE identidad='$identidad') as existe");
+      
+        return $consulta;
+    }
+    function Existepasaporte($pasaporte){
+        global $instancia_conexion;
+        $consulta=$instancia_conexion->ejecutarConsultaSimpleFila("SELECT EXISTS( 
+        SELECT identidad FROM tbl_personas WHERE identidad='$pasaporte') as existe");
       
         return $consulta;
     }

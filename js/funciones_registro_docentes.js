@@ -229,7 +229,7 @@ var list = [];
 var telefono = document.getElementById("tel");
 var table1 = document.getElementById("tbData2");
 
-//const x = 0;
+//FUNCION QUE VALIDA QUE LOS NUMEROS DE TELEFONO SEAN LOCALES
 function valtel(tel) {
 	var expresion3 = /(9|8|3|2)\d{3}[-]\d{4}/;
 	console.log(expresion3.test(tel));
@@ -347,6 +347,7 @@ function correoInstDet(correo) {
 		return 0;
 	}
 }
+//FUNCION QUE VERIFICA UN CORREO VALIDO
 function correovalido(correo1) {
 	var expresion1 = /^\w+([\.-]?\w+)*@(?:|hotmail|outlook|yahoo|live|gmail)\.(?:|com|es)+$/;
 
@@ -536,17 +537,12 @@ $(function () {
 });
 
 
-	
-
-
-
-
 function id_jornada() {
 	var idjornada = $("#jornada").children("option:selected").val();
 	// console.log(idjornada);
 }
 
-
+//FUNCIO QUE VALIDA QUE EL NUMERO DE IDENTIDAD ESTÉ CORRECTO
 function ValidarIdentidad(identidad) {
 
 	//console.log(n);
@@ -646,6 +642,7 @@ $("#cbm_persona").change(function () {
 	$("#persona1").val(persona);
 });
 
+//FUNCIONES QUE CARGA LOS SELEC EN LA VISTA
 function llenar_comision() {
 	var cadena = "&activar=activar";
 	$.ajax({
@@ -666,6 +663,7 @@ $("#cbm_comision1").change(function () {
 	$("#comision1").val(comision);
 });
 
+//FUNCION CONSULTA SI EXISTE UN NUMERO DE IDENTIDAD EN LA BASE
 function ExisteIdentidad() {
 	identidad = $("#identidad").val();
 
@@ -678,14 +676,37 @@ function ExisteIdentidad() {
 			console.log(data);
 			if (data.existe == 1) {
 				$("#TextoIdentidad").removeAttr("hidden");
-				alert("¡Ya existe un registro con esta identidad!");
+				//swal('error', 'Existe registro con esta identidad', 'warning');
+				$("#identidad").val("");
 			} else {
 				$("#TextoIdentidad").attr("hidden", "hidden");
 			}
 		}
 	);
 }
+//FUNCION CONSULTA SI EXISTE UN NUMERO DE PASAPORTE EN LA BASE
+function Existepasaporte() {
+	pasaporte = $("#pasaporte").val();
 
+	$.post(
+		"../Controlador/registro_docente_controlador.php?op=Existepasaporte",
+		{ identidad: pasaporte },
+		function (data, status) {
+			console.log(data);
+			data = JSON.parse(data);
+			console.log(data);
+			if (data.existe == 1) {
+				$("#Textopasaporte").removeAttr("hidden");
+				//swal('error', 'Existe registro con esta identidad', 'warning');
+				$("#pasaporte").val("");
+			} else {
+				$("#Textopasaporte").attr("hidden", "hidden");
+			}
+		}
+	);
+}
+
+//FUNCION NO DEJA ESCRIBIR 3 LETRAS IGUEALES
 function MismaLetra(id_input) {
 	var valor = $("#" + id_input).val();
 	var longitud = valor.length;
@@ -703,6 +724,7 @@ function MismaLetra(id_input) {
 	}
 }
 
+//FUNCION PARA SOLO PERMITIR NUMEROS
 function soloNumeros(e) {
 	var key = window.Event ? e.which : e.keyCode;
 	return (key >= 48 && key <= 57) || key == 8;
@@ -713,6 +735,7 @@ function pierdeFoco(e) {
 	e.value = valor;
 }
 
+//FUNCION QUE CALCULA LA EDAD DEL DOCENTE
 function calcularEdad() {
 	var fecha = document.getElementById("txt_fecha_nacimiento").value;
 	var values = fecha.split("/");
@@ -883,7 +906,7 @@ uploadField.onchange = function () {
 	}
 };
 
-
+//VALIDAR QUE SI LAS HORAS A INGRESAR COINCIDEN CON LA JORNADA
 function valida_jornada_hora() {
 	var jornada = $("#jornada_id").val();
 	var hora_entrada = $("#txt_hi").val();
@@ -915,7 +938,7 @@ function valida_jornada_hora() {
 
 	}
 }
-
+//CUANDO SE ELIGE LA JORNADA CAMBIAN LOS HORARIOS
 $("#jornada").change(function () {
 	var jornada = $(this).val();
 	console.log(jornada);
@@ -932,6 +955,7 @@ $("#jornada").change(function () {
     );
 });
 
+//DECIDIR QUE TIPO DE NACIONALIDAD ES
 $("#cb_nacionalidad").change(function () {
 
 	var selected = cb_nacionalidad.options[cb_nacionalidad.selectedIndex].text;
@@ -942,12 +966,18 @@ $("#cb_nacionalidad").change(function () {
 	if (selected != "HONDUREÑA") {
      
 		$("#pasaporte").removeAttr("hidden");
+		$("#TextoIdentidad").attr("hidden", "hidden");
+		$("#btn_guardar_registro_docentes2").removeAttr("hidden");
 		$("#identidad").attr("hidden", "hidden");
+		$("#btn_guardar_registro_docentes").attr("hidden", "hidden");
 		identidad.disabled = true;
 		pasaporte.disabled = false;
 	} else {
 
 		$("#pasaporte").attr("hidden", "hidden");
+		$("#Textopasaporte").attr("hidden", "hidden");
+		$("#btn_guardar_registro_docentes2").attr("hidden", "hidden");
+		$("#btn_guardar_registro_docentes").removeAttr("hidden");
 		$("#identidad").removeAttr("hidden");
 		pasaporte.disabled = true;
 		identidad.disabled = false;
@@ -955,6 +985,7 @@ $("#cb_nacionalidad").change(function () {
 	}
 	
 });
+//FUNCION PARA REGISTRAR DOCENTE EN CASO DE QUE ELIJA UNA NACIONALIDAD HONDUREÑA
 function RegistarDocente(
 	nombre,
 	apellidos,
@@ -1043,13 +1074,104 @@ function RegistarDocente(
 	
 	refrescar(10000);
 }
+
+//FUNCION PARA REGISTRAR DOCENTE EN CASO DE QUE ELIJA UNA NACIONALIDAD EXTRANGERA
+function RegistarDocente2(
+	nombre,
+	apellidos,
+	sexo,
+	pasaporte,
+	nacionalidad,
+	estado,
+	fecha_nacimiento,
+	hi,
+	hf,
+	nempleado,
+	fecha_ingreso
+) {
+	var idjornada = $("#jornada").children("option:selected").val();
+	var idcategoria = $("#categoria").children("option:selected").val();
+	var foto = document.getElementById("seleccionararchivo");
+	var curriculo = document.getElementById("curriculum");
+	//var n = identidad.search("_");
+	if (
+		//n != -1 ||
+		nombre.length == 0 ||
+		apellidos.length == 0 ||
+		sexo == null ||
+		foto.value == 0 ||
+		curriculo.value == 0 ||
+		pasaporte.length == 0 ||
+		nacionalidad == null ||
+		estado == null ||
+		fecha_nacimiento.length == 0 ||
+		hi == null ||
+		hf == null ||
+		nempleado.length == 0 ||
+		fecha_ingreso.length == 0 ||
+		idjornada == null ||
+		idcategoria == null
+	) {
+		swal({
+			title: "alerta",
+			text: "Llene o seleccione los campos vacios correctamente",
+			type: "warning",
+			showConfirmButton: true,
+			timer: 15000,
+		});
+	} else {
+		
+		nombre = nombre.toUpperCase();
+		apellidos = apellidos.toUpperCase();
+		nacionalidad = nacionalidad.toUpperCase();
+
+		estado = estado.toUpperCase();
+		sexo = sexo.toUpperCase();
+
+		$.post(
+			"../Controlador/registro_docente_controlador.php?op=registar2",
+			{
+				nombre: nombre,
+				apellidos: apellidos,
+				sexo: sexo,
+				identidad: pasaporte,
+				nacionalidad: nacionalidad,
+				estado: estado,
+				fecha_nacimiento: fecha_nacimiento,
+				hi: hi,
+				hf: hf,
+				nempleado: nempleado,
+				fecha_ingreso: fecha_ingreso,
+				idjornada: idjornada,
+				idcategoria: idcategoria,
+			},
+			function (e) {
+				saveAll();
+				saveAll2();
+				saveAll3();
+				saveAll5();
+				Registrar();
+				Registrarcurriculum();
+			}
+				
+		);
+		
+		//window.location.href = window.location.href;
+		swal("Buen trabajo!", "Los datos se insertaron correctamente!", "success");
+		
+	}
+	
+	refrescar(10000);
+}  
+
+//FUNCION PARA ACTUALIZAR PAGINA DESPUES DE 10 SEGUNDOS
 function refrescar(tiempo){
-    //Cuando pase el tiempo elegido la página se refrescará 
+   
     setTimeout("location.reload(true);", tiempo);
   }
 
 
-
+//FUNCION DE PREVISUALIZACION DE IMAGEN
 document.getElementById("seleccionararchivo").addEventListener("change", () => {
     var archivoseleccionado = document.querySelector("#seleccionararchivo");
     var archivos = archivoseleccionado.files;
@@ -1068,6 +1190,7 @@ document.getElementById("seleccionararchivo").addEventListener("change", () => {
   });
 
   var archivo = $("#seleccionararchivo").val();
+//FUNCION QUE INGRESSA O CARGA LA FOTO
   function Registrar() {
     var formData = new FormData();
     var foto = $("#seleccionararchivo")[0].files[0];
@@ -1087,7 +1210,7 @@ document.getElementById("seleccionararchivo").addEventListener("change", () => {
     });
     return false;
   }
-
+//FUNCION QUE INGRESSA O CARGA EL CURRICULUM
   function Registrarcurriculum() {
     
     var formData = new FormData();

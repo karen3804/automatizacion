@@ -170,6 +170,17 @@ ob_end_flush();
                   </div>
 
                   <div class="col-sm-3">
+                    <div class="form-group">
+                      <!-- NACIONALIDAD -->
+                      <label>Nacionalidad</label>
+                      <select class="form-control" name="cb_nacionalidad" id="cb_nacionalidad" style="text-transform: uppercase" required>
+
+                      </select>
+                    </div>
+
+                  </div>
+
+                  <div class="col-sm-3">
                     <label for="">Nº Identidad:</label>
 
                     <div class="form-group">
@@ -177,11 +188,12 @@ ob_end_flush();
 
                         <input name="identidad" type="text" data-inputmask="'mask': '9999-9999-99999'" data-mask class="form-control" id="identidad" onkeyup="ValidarIdentidad($('#identidad').val());" onblur="ExisteIdentidad();">
 
-                        <input type="text" id="pasaporte" class="form-control" hidden>
+                        <input type="text" id="pasaporte" class="form-control" maxlength="15" onkeypress="return solonumeros(event)" onblur="Existepasaporte();" hidden >
 
                       </div>
                     </div>
                     <p hidden id="TextoIdentidad" style="color:red;">¡Ya existe un registro con esta identidad! </p>
+                    <p hidden id="Textopasaporte" style="color:red;">¡Ya existe un registro con este pasaporte! </p>
 
                   </div>
 
@@ -195,18 +207,6 @@ ob_end_flush();
                     </div>
                     <p hidden id="Textofecha" style="color:red;">¡El docente debe ser mayor de edad! </p>
                   </div>
-
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <!-- NACIONALIDAD -->
-                      <label>Nacionalidad</label>
-                      <select class="form-control" name="cb_nacionalidad" id="cb_nacionalidad" style="text-transform: uppercase" required>
-
-                      </select>
-                    </div>
-
-                  </div>
-
 
                   <div class="col-sm-3">
                     <div class="form-group">
@@ -580,6 +580,8 @@ ob_end_flush();
           <p class="text-center" style="margin-top: 10px;">
             <button type="submit" class="btn btn-primary btn-lg" id="btn_guardar_registro_docentes" name="btn_guardar_registro_docentes" onclick="RegistarDocente($('#txt_nombres').val(), $('#txt_apellidos').val(), $('#cb_genero').val(), $('#identidad').val(), $('#cb_nacionalidad').val(), $('#cb_ecivil').val(), $('#txt_fecha_nacimiento').val(), $('#txt_hi').val(), $('#txt_hf').val(), $('#txt_n_empleado').val(), $('#txt_fecha_ingreso').val());   ">
               <i class="zmdi zmdi-floppy"></i>GUARDAR</button>
+              <button hidden type="submit" class="btn btn-primary btn-lg" id="btn_guardar_registro_docentes2" name="btn_guardar_registro_docentes2" onclick="RegistarDocente2($('#txt_nombres').val(), $('#txt_apellidos').val(), $('#cb_genero').val(), $('#pasaporte').val(), $('#cb_nacionalidad').val(), $('#cb_ecivil').val(), $('#txt_fecha_nacimiento').val(), $('#txt_hi').val(), $('#txt_hf').val(), $('#txt_n_empleado').val(), $('#txt_fecha_ingreso').val());   ">
+              <i class="zmdi zmdi-floppy"></i>GUARDAR1</button>
           </p>
 
         </section>
