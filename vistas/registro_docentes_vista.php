@@ -175,7 +175,7 @@ ob_end_flush();
                     <div class="form-group">
                       <div class="input-group-prepend">
 
-                        <input name="" type="text" data-inputmask="'mask': '9999-9999-99999'" data-mask class="form-control" id="identidad" required onkeyup="ValidarIdentidad($('#identidad').val());" onblur="ExisteIdentidad();">
+                        <input name="identidad" type="text" data-inputmask="'mask': '9999-9999-99999'" data-mask class="form-control" id="identidad" onkeyup="ValidarIdentidad($('#identidad').val());" onblur="ExisteIdentidad();">
 
                         <input type="text" id="pasaporte" class="form-control" hidden>
 
@@ -578,7 +578,7 @@ ob_end_flush();
           </div>
           <!-- /.card-body -->
           <p class="text-center" style="margin-top: 10px;">
-            <button type="submit" class="btn btn-primary btn-lg" id="btn_guardar_registro_docentes" name="btn_guardar_registro_docentes" onclick="RegistarDocente($('#txt_nombres').val(), $('#txt_apellidos').val(), $('#cb_genero').val(), $('#identidad').val(), $('#pasaporte').val(), $('#cb_nacionalidad').val(), $('#cb_ecivil').val(), $('#txt_fecha_nacimiento').val(), $('#txt_hi').val(), $('#txt_hf').val(), $('#txt_n_empleado').val(), $('#txt_fecha_ingreso').val());   ">
+            <button type="submit" class="btn btn-primary btn-lg" id="btn_guardar_registro_docentes" name="btn_guardar_registro_docentes" onclick="RegistarDocente($('#txt_nombres').val(), $('#txt_apellidos').val(), $('#cb_genero').val(), $('#identidad').val(), $('#cb_nacionalidad').val(), $('#cb_ecivil').val(), $('#txt_fecha_nacimiento').val(), $('#txt_hi').val(), $('#txt_hf').val(), $('#txt_n_empleado').val(), $('#txt_fecha_ingreso').val());   ">
               <i class="zmdi zmdi-floppy"></i>GUARDAR</button>
           </p>
 
@@ -592,7 +592,7 @@ ob_end_flush();
 
   <script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
   <script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>
-  <script type="text/javascript" src="../js/registro_docente.js"></script>
+ <!-- <script type="text/javascript" src="../js/registro_docente.js"></script> -->
 
 
 </body>
@@ -602,93 +602,3 @@ ob_end_flush();
 </html>
 
 
-<script>
-  document.getElementById("seleccionararchivo").addEventListener("change", () => {
-    var archivoseleccionado = document.querySelector("#seleccionararchivo");
-    var archivos = archivoseleccionado.files;
-    var imagenPrevisualizacion = document.querySelector("#mostrarimagen");
-    // Si no hay archivos salimos de la función y quitamos la imagen
-    if (!archivos || !archivos.length) {
-      imagenPrevisualizacion.src = "";
-      return;
-    }
-    // Ahora tomamos el primer archivo, el cual vamos a previsualizar
-    var primerArchivo = archivos[0];
-    // Lo convertimos a un objeto de tipo objectURL
-    var objectURL = URL.createObjectURL(primerArchivo);
-    // Y a la fuente de la imagen le ponemos el objectURL
-    imagenPrevisualizacion.src = objectURL;
-  });
-
-  function Registrar() {
-    //var f= new date();
-
-    var archivo = $("#seleccionararchivo").val();
-    //var extension = archivo.split('.').pop();
-    //var nombrearchivo= "IMG"+f.getDate()+""+f.getMonth()+""+f.getFullYear()+""+f.getHours()+""+getMinutes()+""+f.getSeconds()+"."+extension;
-    //if(archivo.length ==0){
-    //return Swal.fire('Mensaje De Advertencia',"Debe Seleccionar un archivo","warning");
-    //}
-
-    var formData = new FormData();
-    var foto = $("#seleccionararchivo")[0].files[0];
-    formData.append('f', foto);
-    //formData.append('nombrearchivo',nombrearchivo);
-
-    $.ajax({
-      url: '../Controlador/subirimagen.php',
-      type: 'post',
-      data: formData,
-      contentType: false,
-      processData: false,
-      success: function(respuesta) {
-        if (respuesta != 0) {
-          Swal('Mensaje De Confirmacion', "Se subio el archivo con exito", "success");
-        }
-      }
-    });
-    return false;
-  }
-</script>
-
-
-
-
-<script>
-  document.getElementById("curriculum").addEventListener("change", () => {
-    var archivoseleccionado2 = document.querySelector("#curriculum");
-    var archivos2 = archivoseleccionado2.files;
-
-  });
-
-  function Registrarcurriculum() {
-    //var f= new date();
-
-    var archivo2 = $("#curriculum").val();
-    //var extension = archivo.split('.').pop();
-    //var nombrearchivo= "IMG"+f.getDate()+""+f.getMonth()+""+f.getFullYear()+""+f.getHours()+""+getMinutes()+""+f.getSeconds()+"."+extension;
-    //if(archivo2.length==0){
-    //return Swal.fire('Mensaje De Advertencia',"Debe Seleccionar un archivo","warning");
-    //}
-
-    var formData = new FormData();
-    var curriculum = $("#curriculum")[0].files[0];
-    formData.append('c', curriculum);
-    //formData.append('nombrearchivo',nombrearchivo);
-
-    $.ajax({
-      url: '../Controlador/subirdocumento.php',
-      type: 'post',
-      data: formData,
-      contentType: false,
-      processData: false,
-      success: function(respuesta) {
-        if (respuesta != 0) {
-
-          //Swal.fire('Mensaje De Confirmacion',"Se subio el archivo con exito","success");
-        }
-      }
-    });
-    return false;
-  }
-</script>

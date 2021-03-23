@@ -535,91 +535,11 @@ $(function () {
 	});
 });
 
-function RegistarDocente(
-	nombre,
-	apellidos,
-	sexo,
-	identidad,
-	nacionalidad,
-	estado,
-	fecha_nacimiento,
-	hi,
-	hf,
-	nempleado,
-	fecha_ingreso
-) {
-	var idjornada = $("#jornada").children("option:selected").val();
-	var idcategoria = $("#categoria").children("option:selected").val();
-	var foto = document.getElementById("seleccionararchivo");
-	var curriculo = document.getElementById("curriculum");
-	var n = identidad.search("_");
-	if (
-		n != -1 ||
-		nombre.length == 0 ||
-		apellidos.length == 0 ||
-		sexo == null ||
-		foto.value == 0 ||
-		curriculo.value == 0 ||
-		identidad.length == 0 ||
-		nacionalidad == null ||
-		estado == null ||
-		fecha_nacimiento.length == 0 ||
-		hi == null ||
-		hf == null ||
-		nempleado.length == 0 ||
-		fecha_ingreso.length == 0 ||
-		idjornada == null ||
-		idcategoria == null
-	) {
-		swal({
-			title: "alerta",
-			text: "Llene o seleccione los campos vacios correctamente",
-			type: "warning",
-			showConfirmButton: true,
-			timer: 15000,
-		});
-	} else {
-		nombre = nombre.toUpperCase();
-		apellidos = apellidos.toUpperCase();
-		identidad = identidad.toUpperCase();
-		nacionalidad = nacionalidad.toUpperCase();
 
-		estado = estado.toUpperCase();
-		sexo = sexo.toUpperCase();
+	
 
-		$.post(
-			"../Controlador/registro_docente_controlador.php?op=registar",
-			{
-				nombre: nombre,
-				apellidos: apellidos,
-				sexo: sexo,
-				identidad: identidad,
-				nacionalidad: nacionalidad,
-				estado: estado,
-				fecha_nacimiento: fecha_nacimiento,
-				hi: hi,
-				hf: hf,
-				nempleado: nempleado,
-				fecha_ingreso: fecha_ingreso,
-				idjornada: idjornada,
-				idcategoria: idcategoria,
-			},
-			function (e) {
-				//Registrar_atributos($('#txt_n_empleado').val(), $('#txt_fecha_ingreso').val(), $('#curriculum').val(), $('#foto').val());
-				saveAll();
-				saveAll2();
-				saveAll3();
-				saveAll5();
-				Registrar();
-				Registrarcurriculum();
 
-				window.location.href = window.location.href;
-			}
-		);
 
-		swal("Buen trabajo!", "Los datos se insertaron correctamente!", "success");
-	}
-}
 
 function id_jornada() {
 	var idjornada = $("#jornada").children("option:selected").val();
@@ -628,6 +548,7 @@ function id_jornada() {
 
 
 function ValidarIdentidad(identidad) {
+
 	//console.log(n);
 	var n = identidad.search("_");
 	console.log(n);
@@ -638,11 +559,7 @@ function ValidarIdentidad(identidad) {
 	console.log(contar);
 
 	if (n == 5) {
-
-
 		var ver = false;
-
-
 		$.post(
 			"../Controlador/registro_docente_controlador.php?op=validar_depto",
 			{ codigo: contar },
@@ -673,9 +590,6 @@ function ValidarIdentidad(identidad) {
 			}
 
 		);
-
-
-
 
 	}
 
@@ -1041,6 +955,161 @@ $("#cb_nacionalidad").change(function () {
 	}
 	
 });
+function RegistarDocente(
+	nombre,
+	apellidos,
+	sexo,
+	identidad,
+	nacionalidad,
+	estado,
+	fecha_nacimiento,
+	hi,
+	hf,
+	nempleado,
+	fecha_ingreso
+) {
+	var idjornada = $("#jornada").children("option:selected").val();
+	var idcategoria = $("#categoria").children("option:selected").val();
+	var foto = document.getElementById("seleccionararchivo");
+	var curriculo = document.getElementById("curriculum");
+	var n = identidad.search("_");
+	if (
+		n != -1 ||
+		nombre.length == 0 ||
+		apellidos.length == 0 ||
+		sexo == null ||
+		foto.value == 0 ||
+		curriculo.value == 0 ||
+		identidad.length == 0 ||
+		nacionalidad == null ||
+		estado == null ||
+		fecha_nacimiento.length == 0 ||
+		hi == null ||
+		hf == null ||
+		nempleado.length == 0 ||
+		fecha_ingreso.length == 0 ||
+		idjornada == null ||
+		idcategoria == null
+	) {
+		swal({
+			title: "alerta",
+			text: "Llene o seleccione los campos vacios correctamente",
+			type: "warning",
+			showConfirmButton: true,
+			timer: 15000,
+		});
+	} else {
+		
+		nombre = nombre.toUpperCase();
+		apellidos = apellidos.toUpperCase();
+		identidad = identidad.toUpperCase();
+		nacionalidad = nacionalidad.toUpperCase();
+
+		estado = estado.toUpperCase();
+		sexo = sexo.toUpperCase();
+
+		$.post(
+			"../Controlador/registro_docente_controlador.php?op=registar",
+			{
+				nombre: nombre,
+				apellidos: apellidos,
+				sexo: sexo,
+				identidad: identidad,
+				nacionalidad: nacionalidad,
+				estado: estado,
+				fecha_nacimiento: fecha_nacimiento,
+				hi: hi,
+				hf: hf,
+				nempleado: nempleado,
+				fecha_ingreso: fecha_ingreso,
+				idjornada: idjornada,
+				idcategoria: idcategoria,
+			},
+			function (e) {
+				saveAll();
+				saveAll2();
+				saveAll3();
+				saveAll5();
+				Registrar();
+				Registrarcurriculum();
+			}
+				
+		);
+		
+		//window.location.href = window.location.href;
+		swal("Buen trabajo!", "Los datos se insertaron correctamente!", "success");
+		
+	}
+	
+	refrescar(10000);
+}
+function refrescar(tiempo){
+    //Cuando pase el tiempo elegido la página se refrescará 
+    setTimeout("location.reload(true);", tiempo);
+  }
+
+
+
+document.getElementById("seleccionararchivo").addEventListener("change", () => {
+    var archivoseleccionado = document.querySelector("#seleccionararchivo");
+    var archivos = archivoseleccionado.files;
+    var imagenPrevisualizacion = document.querySelector("#mostrarimagen");
+    // Si no hay archivos salimos de la función y quitamos la imagen
+    if (!archivos || !archivos.length) {
+      imagenPrevisualizacion.src = "";
+      return;
+    }
+    // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+    var primerArchivo = archivos[0];
+    // Lo convertimos a un objeto de tipo objectURL
+    var objectURL = URL.createObjectURL(primerArchivo);
+    // Y a la fuente de la imagen le ponemos el objectURL
+    imagenPrevisualizacion.src = objectURL;
+  });
+
+  var archivo = $("#seleccionararchivo").val();
+  function Registrar() {
+    var formData = new FormData();
+    var foto = $("#seleccionararchivo")[0].files[0];
+    formData.append('f', foto);
+
+    $.ajax({
+      url: 'subirimagen.php',
+      type: 'post',
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function(respuesta) {
+        if (respuesta != 0) {
+          Swal('Mensaje De Confirmacion', "Se subio fotografia con exito", "success");
+        }
+      }
+    });
+    return false;
+  }
+
+  function Registrarcurriculum() {
+    
+    var formData = new FormData();
+    var curriculum = $("#curriculum")[0].files[0];
+    formData.append('c', curriculum);
+    //formData.append('nombrearchivo',nombrearchivo);
+
+    $.ajax({
+      url: 'subirdocumento.php',
+      type: 'post',
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function(respuesta) {
+        if (respuesta != 0) {
+
+          Swal('Mensaje De Confirmacion',"Se subio el curriculum con exito","success");
+        }
+      }
+    });
+    return false;
+  }
 
 
 

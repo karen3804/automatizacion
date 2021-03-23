@@ -4,6 +4,9 @@ require_once "../Modelos/registro_docente_modelo.php";
 $nombre=isset($_POST["nombre"]) ? limpiarCadena1($_POST["nombre"]) : "";
 $apellidos=isset($_POST["apellidos"]) ? limpiarCadena1($_POST["apellidos"]) : "";
 $identidad=isset($_POST["identidad"]) ? limpiarCadena1($_POST["identidad"]) : "";
+//$pasaporte=isset($_POST["pasaporte"]) ? limpiarCadena1($_POST["pasaporte"]) : "";
+
+
 $nacionalidad=isset($_POST["nacionalidad"]) ? limpiarCadena1($_POST["nacionalidad"]) : "";
 $fecha_nacimiento=isset($_POST["fecha_nacimiento"]) ? limpiarCadena1($_POST["fecha_nacimiento"]) : "";
 $estado=isset($_POST["estado"]) ? limpiarCadena1($_POST["estado"]) : "";
@@ -212,8 +215,7 @@ break;
       $respuesta=$instancia_modelo->registar($nombre,$apellidos, $sexo, $identidad, $nacionalidad, $estado, $fecha_nacimiento, $hi, $hf, $nempleado, $fecha_ingreso, $idjornada, $idcategoria);
       
     break;
-
-
+    
     case 'TipoContacto':
            
            
