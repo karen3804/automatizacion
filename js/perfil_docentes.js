@@ -370,6 +370,7 @@ function addTel(){
 //Cambiar Imagen de Perfil
 function imagen(){
 
+    var id_persona = $("#id_persona").val();
     var frmData = new FormData;
     frmData.append("imagen",$("input[name=imagen]")[0].files[0]);
 
@@ -377,7 +378,7 @@ function imagen(){
 
         url:"../Controlador/perfil_docente_controlador.php?op=CambiarFoto",
         type:"post",
-        data:frmData,
+        data:frmData, id_persona,
         processData: false,
         contentType:false,
         cache:false,

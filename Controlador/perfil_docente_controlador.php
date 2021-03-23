@@ -82,23 +82,17 @@ switch ($_GET['op']) {
         case 'CambiarFoto':
             $ruta_carpeta="../Imagenes_Perfil_Docente/";
             $nombre_archivo = "imagen".date("dHis").".".pathinfo($_FILES["imagen"]["name"],PATHINFO_EXTENSION);
+            $jpg= ".jpg";
 
 
             $ruta_guardar_archivo = $ruta_carpeta.$nombre_archivo;
             //echo $ruta_guardar_archivo;
-            if(move_uploaded_file($_FILES["imagen"]["tmp_name"],$ruta_guardar_archivo)){
-                $rspta=$instancia_modelo->CambiarFoto($ruta_guardar_archivo);
+                $rspta=$instancia_modelo->CambiarFoto($ruta_guardar_archivo, $id_persona);
                 echo json_encode($ruta_guardar_archivo);
-            }else{
-             echo "no se pudo cargar";
-            }
-
-
-            
         break;
+
         case 'Actividades':
-           
-           
+            
             $rspta=$instancia_modelo->Actividades();
             echo json_encode($rspta);
             
