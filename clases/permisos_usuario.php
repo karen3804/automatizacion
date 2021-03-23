@@ -35,6 +35,7 @@ $resultado_permisos = $mysqli->query($sql_permisos);
    $_SESSION['parametro_vista']='none';
    $_SESSION['bitacora_vista']='none';
    $_SESSION['practica_vista']='none';
+   $_SESSION['supervision_vista']='none';
    $_SESSION['egresados_vista']='none';
    $_SESSION['proyectos_vinculacion_vista']='none';
    $_SESSION['final_practica']='none';
@@ -51,6 +52,7 @@ $resultado_permisos = $mysqli->query($sql_permisos);
    $_SESSION['carga_academica_vista'] = 'none';
    $_SESSION['docentes_vista'] = 'none';
    $_SESSION['mantemiento_carga_academica']='none';
+   
 
 
   while ($fila = $resultado_permisos->fetch_row())
@@ -92,9 +94,7 @@ $resultado_permisos = $mysqli->query($sql_permisos);
        }
 
 
-           if ($_SESSION['pantalla']=='14' or $_SESSION['pantalla']=='2
-            0'  or $_SESSION['pantalla']=='2
-            1')
+           if ($_SESSION['pantalla']=='14' or $_SESSION['pantalla']=='20'  or $_SESSION['pantalla']=='21')
        {
         if ( $_SESSION['confirmacion']=='block') 
         {
@@ -184,6 +184,14 @@ $resultado_permisos = $mysqli->query($sql_permisos);
         if ( $_SESSION['confirmacion']=='block') 
         {
          $_SESSION['practica_vista']="block";
+
+        }
+       }
+       if ($_SESSION['pantalla']=='14'  or $_SESSION['pantalla']=='18' or $_SESSION['pantalla']=='20' or $_SESSION['pantalla']=='21' or $_SESSION['pantalla']=='26'or $_SESSION['pantalla']=='27' or $_SESSION['pantalla']=='28')
+       {
+        if ( $_SESSION['confirmacion']=='block') 
+        {
+         $_SESSION['supervision_vista']="block";
 
         }
        }
