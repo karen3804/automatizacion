@@ -119,7 +119,7 @@ ob_end_flush();
 
                         <div class="col-sm-12" style= "text-align: center">
                   <div class="col-sm-2" style="left: 520px;">
-                        <div class="card-body">
+                  <div class="card-body">
                             <img src="" alt="" class="brand-image img-circle elevation-3" id="foto" height="175"
                                 width="175">
 
@@ -128,7 +128,7 @@ ob_end_flush();
                                     <!-- FOTOGRAFIA  -->
 
                                     <input hidden class="form-control" type="file" accept="image/*" maxlength="8388608"
-                                        name="imagen" id="imagen" style="text-transform: uppercase">
+                                        name="imagen" id="imagen" style="text-transform: uppercase" higth=>
                                 </div>
                                 <button type="button" id="btn_mostrar" class="btn btn-link btn_mostrar"
                                     onclick="MostrarBoton();"></i>Cambiar foto de Perfil</button>

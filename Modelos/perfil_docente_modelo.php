@@ -23,7 +23,7 @@ FROM tbl_personas AS PER
    JOIN tbl_personas_extendidas AS PEX ON PEX.id_persona=PER.id_persona
    JOIN tbl_horario_docentes AS HD ON HD.id_persona=PER.id_persona
    JOIN tbl_jornadas AS JOR ON JOR.id_jornada= HD.id_jornada
-WHERE PER.id_persona= $id_persona AND PEX.id_atributo=11 LIMIT 3;
+WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11 LIMIT 6;
 ";
         $result= $instancia_conexion->ejecutarConsulta($sql);
 
@@ -81,9 +81,9 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo=11 LIMIT 3;
         return $consult;
     }
 
-    function AgregarEspecialidad($grado,$especialidad){
+    function AgregarEspecialidad($grado,$especialidad, $id_persona){
         global $instancia_conexion;
-        $consulta=$instancia_conexion->ejecutarConsulta("CALL proc_agregar_especialidad($grado, '$especialidad')");
+        $consulta=$instancia_conexion->ejecutarConsulta("CALL proc_agregar_especialidad($grado, '$especialidad', '$id_persona')");
       
         return $consulta;
     }
@@ -123,7 +123,7 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo=11 LIMIT 3;
     function ExisteIdentidad($identidad){
         global $instancia_conexion;
         $consulta=$instancia_conexion->ejecutarConsultaSimpleFila("SELECT EXISTS( 
-        SELECT  identidad FROM tbl_personas WHERE identidad='$identidad' AND 
+        SELECT identidad FROM tbl_personas WHERE identidad='$identidad' AND 
         id_persona<>53) as existe");
       
         return $consulta;
@@ -134,21 +134,21 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo=11 LIMIT 3;
       
         return $consulta;
     }
+    
+    function CambiarFoto($valor){
+        
 
-    function CambiarFoto($valor, $id_persona){
         global $instancia_conexion;
-        $consulta=$instancia_conexion->ejecutarConsulta("UPDATE tbl_personas_extendidas SET valor = $valor WHERE id_persona = $id_persona AND id_atributo = 11;");
+        $consulta=$instancia_conexion->ejecutarConsulta("UPDATE tbl_personas_extendidas SET valor = '$valor' WHERE id_persona = 10 AND id_atributo = 11;");
       
         return $consulta;
     }
-    
 
-    function MostrarEspecialidad(){
+    function MostrarEspecialidad($id_persona){
         global $instancia_conexion;
-        $consulta=$instancia_conexion->ejecutarConsulta("
-            SELECT EG.ESPECIALIDAD FROM tbl_especialidad_grado EG
+        $consulta=$instancia_conexion->ejecutarConsulta("SELECT EG.ESPECIALIDAD FROM tbl_especialidad_grado EG
             JOIN tbl_grados_academicos_personas GAP ON GAP.id_especialidad = EG.id_especialidad
-            WHERE GAP.ID_PERSONA=53
+            WHERE GAP.ID_PERSONA = $id_persona
         ");
         $especialidades = array();
 
@@ -161,13 +161,12 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo=11 LIMIT 3;
 		//echo '<pre>';print_r($especialidades);echo'</pre>';
 		return $especialidades;
     }
-    function Actividades(){
+    function Actividades($id_persona){
         global $instancia_conexion;
-        $consulta=$instancia_conexion->ejecutarConsulta("
-                 SELECT COM.comision, ACT.actividad  FROM tbl_actividades ACT
+        $consulta=$instancia_conexion->ejecutarConsulta("SELECT COM.comision, ACT.actividad  FROM tbl_actividades ACT
                 JOIN tbl_actividades_persona ACTP ON ACT.id_actividad= ACTP.id_actividad
                 JOIN tbl_comisiones COM ON COM.id_comisiones = ACT.id_comisiones
-                WHERE ACTP.id_persona=53
+                WHERE ACTP.id_persona = $id_persona
         ");
         $actividades = array();
 
@@ -180,6 +179,9 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo=11 LIMIT 3;
 		//echo '<pre>';print_r($actividades);echo'</pre>';
 		return $actividades;
     }
+
+
+
     
 }
 
