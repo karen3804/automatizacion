@@ -12,7 +12,8 @@ if (isset($_POST['cb_aprobar']))
 	$_SESSION['txt_estudiante_cuenta']=strtoupper ($_POST['txt_estudiante_cuenta']);
 	if ($_SESSION['cb_aprobar']=='0')
 	{
-		header("location:../vistas/gestion_documentos_practica_vista.php?msj=1"); 
+		//header("location:../vistas/gestion_documentos_practica_vista.php?msj=1"); 
+		echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/gestion_documentos_practica_vista.php?msj=1'); </script>";
 
 	}
 	else
@@ -30,7 +31,8 @@ if (isset($_POST['cb_aprobar']))
 		$_SESSION['txt_observacion']=$_POST['txt_observacion_documentacion'];
 		if (isset($_SESSION['txt_observacion']) && empty($_SESSION['txt_observacion']) || $_SESSION['txt_observacion']=="")
 		 {
-		 	header("location:../vistas/gestion_documentos_practica_vista.php?msj=1"); 
+		 	//header("location:../vistas/gestion_documentos_practica_vista.php?msj=1"); 
+			 echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/gestion_documentos_practica_vista.php?msj=1'); </script>";
 
 		}
 		else
@@ -60,7 +62,8 @@ if (isset($_POST['cb_aprobar']))
 		}
 		else
 		{
-			header("location:../vistas/gestion_documentos_practica_vista.php?msj=3"); 
+			//header("location:../vistas/gestion_documentos_practica_vista.php?msj=3"); 
+			echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/gestion_documentos_practica_vista.php?msj=3'); </script>";
 
 		}
 	}

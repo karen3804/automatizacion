@@ -17,7 +17,8 @@ if (isset($_POST['cb_practica']))
 //Cuando practica es sin seleccionar
 	if ($_SESSION['cb_practica']=='0' and $_SESSION['cb_horas_practica']=='0')
 	{
-		header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=1"); 
+		//header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=1"); 
+		echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/aprobar_practica_coordinacion_vista.php?msj=1'); </script>";
 
 	}
 	//Cuando aprobar y practica es SI
@@ -41,7 +42,8 @@ $_SESSION['txt_motivo']="APROBADA";
 		}
 		else
 		{
-		header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=3"); 
+		//header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=3"); 
+		echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/aprobar_practica_coordinacion_vista.php?msj=3'); </script>";
 
 		}
 
@@ -54,7 +56,8 @@ $_SESSION['txt_motivo']="APROBADA";
 		if (isset($_SESSION['txt_motivo']) && empty($_SESSION['txt_motivo']) || $_SESSION['txt_motivo']=="")
 		 {
 		 	//valida motivo vacio
-		 	header("location:../vistas/gestion_documentos_practica_vista.php?msj=1"); 
+		 	//header("location:../vistas/gestion_documentos_practica_vista.php?msj=1"); 
+			 echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/aprobar_practica_coordinacion_vista.php?msj=1'); </script>";
 
 		}
 		else
@@ -68,13 +71,15 @@ $_SESSION['txt_motivo']="APROBADA";
 			 
 			      bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'COORDINACION DEL ESTUDIANTE CON CUENTA'.$_SESSION['txt_estudiante_cuenta'] .' CON DECISION '.$_SESSION['cb_aprobar']. ', CON OBSERVACION'.$_SESSION['txt_motivo'].'');  
 
-		header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=2"); 
+		//header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=2"); 
+		echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/aprobar_practica_coordinacion_vista.php?msj=2'); </script>";
 
 
 		}
 		else
 		{
-		header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=3"); 
+		//header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=3"); 
+		echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/aprobar_practica_coordinacion_vista.php?msj=3'); </script>";
 
 		}
 		}
@@ -93,7 +98,8 @@ $_SESSION['txt_motivo']="APROBADA";
 		if (isset($_SESSION['txt_motivo']) && empty($_SESSION['txt_motivo']) || $_SESSION['txt_motivo']=="")
 		 {
 		 	//valida motivo vacio
-		 	header("location:../vistas/gestion_documentos_practica_vista.php?msj=1"); 
+		 	//header("location:../vistas/gestion_documentos_practica_vista.php?msj=1"); 
+			 echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/aprobar_practica_coordinacion_vista.php?msj=1'); </script>";
 
 		}
 		else
@@ -107,13 +113,15 @@ $_SESSION['txt_motivo']="APROBADA";
 			 
 			      bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'COORDINACION DEL ESTUDIANTE CON CUENTA'.$_SESSION['txt_estudiante_cuenta'] .' CON DECISION '.$_SESSION['cb_aprobar']. ', CON OBSERVACION'.$_SESSION['txt_motivo'].'');  
 
-		header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=2"); 
+		//header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=2"); 
+		echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/aprobar_practica_coordinacion_vista.php?msj=2'); </script>";
 
 
 		}
 		else
 		{
-		header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=3"); 
+		//header("location:../vistas/aprobar_practica_coordinacion_vista.php?msj=3"); 
+		echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/aprobar_practica_coordinacion_vista.php?msj=3'); </script>";
 
 		}		}
 
