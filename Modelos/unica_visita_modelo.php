@@ -80,7 +80,7 @@ class unica_visita
         FROM tbl_practica_estudiantes pe, tbl_personas p
         
         WHERE p.id_persona=pe.id_persona AND pe.estado=1 AND pe.docente_supervisor='$id_persona1'
-                                         AND pe.horas=800;";
+                                         AND pe.horas=400;";
           return $instancia_conexion->ejecutarConsulta($sql);
   
       }
