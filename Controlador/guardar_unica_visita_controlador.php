@@ -3,7 +3,6 @@ require_once "../Modelos/unica_visita_modelo.php";
 
 $modelo=new unica_visita();
 
-print_r($_POST);
 $numero_cuenta=isset($_POST["cuenta_uv"])? $_POST["cuenta_uv"]:"";
 $funciones=isset($_POST["funciones_analisis_uv"])?$_POST["funciones_analisis_uv"]:"";
 $funciones_diseno=isset($_POST["funciones_diseno_uv"])?$_POST["funciones_diseno_uv"]:"";
@@ -44,6 +43,7 @@ $solicitar=isset($_POST["solicitar_practicante_uv"])? $_POST["solicitar_practica
 $representante=isset($_POST["representante_uv"])? $_POST["representante_uv"]:"";
 $lugar=isset($_POST["lugar_uv"])? $_POST["lugar_uv"]:"";
 $oportunidad=isset($_POST["oportunidad_empleo_uv"])? $_POST["oportunidad_empleo_uv"]:"";
+$id_persona=isset($_POST["id_persona"])? ($_POST["id_persona"]):"";
 
 
 
@@ -65,6 +65,23 @@ switch ($_GET["op"]){
 			echo $rspta ? "Encuesta registrada con exito" : "La encuesta no se pudo registrar";
 		
 	break;
+
+    case 'selectCurso':
+		$rspta=$modelo->selectCurso();
+        while ($r = mysqli_fetch_array($rspta)) {
+            echo '<option value="'.$r['id_persona'].' "  >'.$r['nombres']. ' ' .$r['apellidos']. '</option>';
+
+        }
+
+
+        break;
+
+    
+        
+    case 'rellenarDatos':
+$rspta=$modelo->rellenarDatos($id_persona);
+echo json_encode($rspta);
+break;
 
 
 	

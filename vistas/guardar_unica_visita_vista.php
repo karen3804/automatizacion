@@ -75,24 +75,32 @@ require_once ('../clases/funcion_permisos.php');
             <div class="row">
 
             <div class="col-sm-12">
-                  <label>DATOS GENERALES</label>
+            <label>DATOS GENERALES</label>
                   <hr>
                   </div>
-
-                  <div class="col-sm-6">
+                  <div class="col-sm-12">
                   <div class="form-group">
-                  <label>Buscar por numero de cuenta</label>
-                    <input autofocus class="form-control"  type="text" id="busqueda_cuenta_uv"    maxlength="60">
+                  <p><label>Seleccione un Alumno</label>
+                  <select class="form-control" name="curso" id="curso" onchange='llenarCampos(this);'> 
+                  <option value="" >Seleccione</option>
+                </select>
                 </div>
                  </div>
                  
 
                   
+                   
+                    <input type="text" id="idInput" name="idInput" class="input" hidden />
+            
+
+                
+             
+                  
 
                   <div class="col-sm-6">
                   <div class="form-group">
                   <label>N de cuenta</label>
-                    <input class="form-control" type="text" id="cuenta_uv" name="cuenta_uv"   maxlength="60" readonly>
+                    <input class="form-control" type="text" id="cuenta_uv" name="cuenta_uv"  readonly  maxlength="60" >
                 </div>
                  </div>
 
@@ -144,6 +152,27 @@ require_once ('../clases/funcion_permisos.php');
                   <div class="form-group">
                   <label>Nombre del estudiante</label>
                     <input class="form-control" type="text" id="estudiante_uv" name="estudiante_uv"  maxlength="60" readonly >
+                </div>
+                 </div>
+
+                 <div class="col-sm-6">
+                  <div class="form-group">
+                  <label>Fecha de inicio</label>
+                    <input class="form-control" type="text" id="inicio_uv" name="inicio_uv"  maxlength="60" readonly >
+                </div>
+                 </div>
+
+                 <div class="col-sm-6">
+                  <div class="form-group">
+                  <label>Fecha de finalizacion</label>
+                    <input class="form-control" type="text" id="finalizacion_uv" name="finalizacion_uv"  maxlength="60" readonly >
+                </div>
+                 </div>
+
+                 <div class="col-sm-6">
+                  <div class="form-group">
+                  <label>Horas</label>
+                    <input class="form-control" type="text" id="horas_uv" name="horas_uv"  maxlength="60" readonly >
                 </div>
                  </div>
 
@@ -745,10 +774,68 @@ require_once ('../clases/funcion_permisos.php');
  </div>
 
 
- <script>
+ <script type="text/javascript">
+function llenar_select2(){
+  
+  var cadena="&activar=activar"
+  $.ajax({
+      url: "../Controlador/guardar_unica_visita_controlador.php?op=selectCurso",
+        type: "POST",
+        data: cadena,
+        success: function(r){
+        
+      
+          $("#curso").html(r).fadeIn();
+        }
+      
+
+  });
+ 
+}
+llenar_select2();
 
 
-  </script>
+
+	function llenarCampos(inputSelect){
+    document.getElementById("idInput").value = inputSelect.options[inputSelect.selectedIndex].value;
+    var id_persona1=inputSelect.options[inputSelect.selectedIndex].value;
+    console.log(id_persona1);
+    console.log("hola");
+
+   
+
+
+ $.post("../Controlador/guardar_unica_visita_controlador.php?op=rellenarDatos",{id_persona: id_persona1}, function(data, status)
+	{
+    
+		data = JSON.parse(data);
+		console.log(data);
+		//mostrarform(true);
+//TBL_PRACTICA_ESTUDIANTES
+		$("#inicio_uv").val(data.fecha_inicio);
+		$("#finalizacion_uv").val(data.fecha_finaliza);
+		$("#horas_uv").val(data.horas);
+//TBL_PERSONAS_EXTENDIDAS
+		$("#cuenta_uv").val(data.valor);
+//TBL_EMPRESAS_PRACTICA
+    $("#empresa_uv").val(data.nombre_empresa);
+ 		$("#jefe_uv").val(data.jefe_inmediato);
+		$("#titulo_uv").val(data.titulo_jefe_inmediato);
+		$("#correo_uv").val(data.correo_jefe_inmediato);
+		$("#telefono_uv").val(data.telefono_jefe_inmediato);
+//TBL_PERSONAS
+		$("#estudiante_uv").val(data.nombres);
+
+
+
+	 })
+
+}
+
+
+
+ </script>
+
  </body>
  
  </html>
