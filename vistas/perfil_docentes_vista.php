@@ -58,7 +58,6 @@ ob_end_flush();
 </head>
 
 <body>
-    <input class="form-control" value="<?php echo $usuario ?>" type="text" id="id_persona">
 
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -120,6 +119,7 @@ ob_end_flush();
 
                                         <button hidden type="submit" id="btn_foto" class="btn btn-dark btn_foto"></i>Guardar
                                             foto de Perfil</button>
+                                        <input class="form-control" hidden value="<?php echo $usuario ?>" type="text" name="id_persona" id="id_persona">
 
                                     </form>
 
@@ -664,61 +664,61 @@ function mascara(){
                     <div style="text-align:left">
 
                         <h5 style="font-weight: bold; font-size: 15px"> 1. ¿En que áreas de la Carrera imparte clases?</h5>
-                            <div class="form-check">
+                        <div class="form-check">
 
-                                <input type="checkbox" class="form-check-input" value="">Análisis y diseño de Sistemas
+                            <input type="checkbox" class="form-check-input" value="">Análisis y diseño de Sistemas
 
-                            </div>
-                            <div class="form-check">
+                        </div>
+                        <div class="form-check">
 
-                                <input type="checkbox" class="form-check-input" value="">Base de Datos
+                            <input type="checkbox" class="form-check-input" value="">Base de Datos
 
-                            </div>
-                            <div class="form-check">
+                        </div>
+                        <div class="form-check">
 
-                                <input type="checkbox" class="form-check-input" value="">Desarrollo de aplicaciones (Programación)
+                            <input type="checkbox" class="form-check-input" value="">Desarrollo de aplicaciones (Programación)
 
-                            </div>
-                            <div class="form-check">
+                        </div>
+                        <div class="form-check">
 
-                                <input type="checkbox" class="form-check-input" value="">Gerencia Informatica
+                            <input type="checkbox" class="form-check-input" value="">Gerencia Informatica
 
-                            </div>
-                            <div class="form-check">
+                        </div>
+                        <div class="form-check">
 
-                                <input type="checkbox" class="form-check-input" value="">Proyectos
+                            <input type="checkbox" class="form-check-input" value="">Proyectos
 
-                            </div>
-                            <div class="form-check">
+                        </div>
+                        <div class="form-check">
 
-                                <input type="checkbox" class="form-check-input" value="">Redes
+                            <input type="checkbox" class="form-check-input" value="">Redes
 
-                            </div>
-                            <div class="form-check">
+                        </div>
+                        <div class="form-check">
 
-                                <input type="checkbox" class="form-check-input" value="">Seguridad Informatica
+                            <input type="checkbox" class="form-check-input" value="">Seguridad Informatica
 
-                            </div>
-                            <div class="form-check">
+                        </div>
+                        <div class="form-check">
 
-                                <input type="checkbox" class="form-check-input" value="">Sistemas Operativos
+                            <input type="checkbox" class="form-check-input" value="">Sistemas Operativos
 
-                            </div>
-                            <div class="form-check">
+                        </div>
+                        <div class="form-check">
 
-                                <input type="checkbox" class="form-check-input" value="">Taller de Hadware
+                            <input type="checkbox" class="form-check-input" value="">Taller de Hadware
 
-                            </div>
-                            <div class="form-check">
+                        </div>
+                        <div class="form-check">
 
-                                <input type="checkbox" class="form-check-input" value="">Clases de Servicio
+                            <input type="checkbox" class="form-check-input" value="">Clases de Servicio
 
-                            </div>
-                            <div class="form-check">
+                        </div>
+                        <div class="form-check">
 
-                                <input type="checkbox" class="form-check-input" value="">Otros
+                            <input type="checkbox" class="form-check-input" value="">Otros
 
-                            </div>
+                        </div>
 
                     </div>
 

@@ -373,13 +373,13 @@ function imagen() {
     var id_persona = $("#id_persona").val();
     var frmData = new FormData;
     frmData.append("imagen",$("input[name=imagen]")[0].files[0]);
+    frmData.append("id_persona",$("#id_persona").val()); 
 
     $.ajax({
 
         url:"../Controlador/perfil_docente_controlador.php?op=CambiarFoto",
         type:"post",
-        data: 
-            frmData,
+        data: frmData,
         processData: false,
         contentType:false,
         cache:false,
@@ -395,13 +395,7 @@ function imagen() {
         }
     });
 
-    // $.ajax({
-    //     url: "../Controlador/perfil_docente_controlador.php?op=CambiarFoto",
-    //     type: "POST",
-    //     data: {
-    //       id_persona: id_persona,
-    //     },
-    //   });
+    
     return false;
 
 }

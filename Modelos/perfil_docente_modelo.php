@@ -135,11 +135,11 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11 LIMIT 6;
         return $consulta;
     }
     
-    function CambiarFoto($valor){
+    function CambiarFoto($valor, $id_persona){
         
 
         global $instancia_conexion;
-        $consulta=$instancia_conexion->ejecutarConsulta("UPDATE tbl_personas_extendidas SET valor = '$valor' WHERE id_persona = 10 AND id_atributo = 11;");
+        $consulta=$instancia_conexion->ejecutarConsulta("UPDATE tbl_personas_extendidas SET valor = '$valor' WHERE id_persona = $id_persona AND id_atributo = 11;");
       
         return $consulta;
     }

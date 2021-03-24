@@ -90,7 +90,7 @@ if (isset($_GET['op'])) {
                 $ruta_guardar_archivo = $ruta_carpeta.$nombre_archivo;
                 //echo $ruta_guardar_archivo;
                 move_uploaded_file($_FILES["imagen"]["tmp_name"],$ruta_guardar_archivo);
-                $rspta=$instancia_modelo->CambiarFoto($ruta_guardar_archivo);
+                $rspta=$instancia_modelo->CambiarFoto($ruta_guardar_archivo, $id_persona);
                 echo json_encode($ruta_guardar_archivo);
     
     
@@ -151,4 +151,6 @@ if (isset($_GET['op'])) {
             # code...
             break;
     }
+
+
 }
