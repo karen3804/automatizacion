@@ -42,7 +42,7 @@ ORDER BY id_periodo DESC LIMIT 1;");
             $this->ln(7);
             $this->Cell(276, 10, utf8_decode("FACULTAD DE CIENCIAS ECONÓMICAS, ADMINISTRATIVAS Y CONTABLES"), 0, 0, 'C');
             $this->ln(7);
-            $this->Cell(276, 10, utf8_decode("DEPARTAMENTO DE INFORMÁTICA ADMINISTRATIVA"), 0, 0, 'C');
+            $this->Cell(276, 10, utf8_decode("DEPARTAMENTO DE INFORMÁTICA "), 0, 0, 'C');
             $this->ln(10);
             $this->SetFont('times', 'B', 20);
             $this->Cell(276, 10, utf8_decode("REPORTE DE CARGA ACADÉMICA DOCENTE"), 0, 0, 'C');

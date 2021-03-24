@@ -19,7 +19,7 @@ $instancia_conexion = new conexion();
         <td style="font-weight: bold;text-align: center; background-color:#fff; color: black;" colspan="10"><?php echo utf8_decode("FACULTAD DE CIENCIAS ECONÓMICAS, ADMINISTRATIVAS Y CONTABLES"); ?></td>
     </tr>
     <tr>
-        <td style="font-weight: bold;text-align: center; background-color:#fff; color: black;" colspan="10"><?php echo utf8_decode("DEPARTAMENTO DE INFORMÁTICA ADMINISTRATIVA"); ?></td>
+        <td style="font-weight: bold;text-align: center; background-color:#fff; color: black;" colspan="10"><?php echo utf8_decode("DEPARTAMENTO DE INFORMÁTICA "); ?></td>
     </tr>
     <tr>
         <td style="font-weight: bold;text-align: center; background-color:#fff; color: black;" colspan="10"><?php echo utf8_decode("REPORTE DE CARGA ACADÉMICA DOCENTE"); ?></td>
