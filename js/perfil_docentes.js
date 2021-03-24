@@ -835,3 +835,23 @@ $('#tipo_contacto').change(function () {
 
     }
 });
+
+function pregunta1() {
+  $("#modalencuesta").modal({ backdrop: "static", keyboard: false });
+  $("#modalencuesta").modal("show");
+}
+function pregunta2() {
+  $("#modalencuesta2").modal({ backdrop: "static", keyboard: false });
+  $("#modalencuesta2").modal("show");
+}
+function pregunta3() {
+  $("#modalencuesta3").modal({ backdrop: "static", keyboard: false });
+  $("#modalencuesta3").modal("show");
+}
+function ventana() {
+  window.open(
+    "../vistas/encuesta_docente_vista.php",
+    "Encuesta"
+  );
+}
+
