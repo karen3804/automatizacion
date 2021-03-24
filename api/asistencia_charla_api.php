@@ -77,9 +77,9 @@ elseif (isset($_GET["asistencia"]))
 			 {
 		 bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'ACTUALIZO' , 'LA ASISTENCIA CHARLA.');
      		 
-		 header("location: https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=2"); 
+		// header("location: https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=2"); 
 		 //echo "<script> window.location = 'https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=2';</script>";
-		 echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/gestion_documentos_practica_vista.php?msj=2'); </script>";
+		 echo '<script> window.location.replace("https://www.informaticaunah.com/automatizacion/vistas/gestion_documentos_practica_vista.php?msj=2"); </script>';
 		   //header("Location: https://www.informaticaunah.com/automatizacion/vistas/gestion_asistencia_charla_vista.php?msj=2");
 	
 			}	
