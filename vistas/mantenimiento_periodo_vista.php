@@ -97,7 +97,11 @@ ob_end_flush();
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                             </div>
-                            
+                            <br>
+                            <div class=" px-12">
+                                <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
+                            </div>
+
                         </div>
 
                         <input hidden class="form-control" type="text" id="fecha_desbloqueo" name="fecha_desbloqueo" value="<?php echo $row2['fecha_desbloqueo'] ?>">
@@ -173,6 +177,11 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" language="javascript">
+    function ventana() {
+        window.open("../Controlador/reporte_mantenimiento_periodo_controlador.php", "REPORTE");
+    }
+</script>
 
 <script type="text/javascript" src="../js/ca2.js"></script>
 <script type="text/javascript" src="../js/valida_text.js"></script>
