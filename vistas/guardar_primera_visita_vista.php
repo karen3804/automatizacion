@@ -80,15 +80,23 @@ ob_end_flush();
                   <label>DATOS GENERALES</label>
                   <hr>
                   </div>
-
-                  <div class="col-sm-6">
+                  <div class="col-sm-12">
                   <div class="form-group">
-                  <label>Buscar por numero de cuenta</label>
-                    <input autofocus class="form-control" type="text" id="cuenta_busqueda_pv" name="cuenta_pv"   maxlength="60" >
+                  <p><label>Seleccione un Alumno</label>
+                  <select class="form-control" name="curso" id="curso" onchange='llenarCampos(this);'> 
+                  <option value="" selected hidden>Seleccione</option>
+                </select>
                 </div>
                  </div>
                  
 
+                  
+                   
+                    <input type="text" id="idInput" name="idInput" class="input" hidden />
+            
+
+                
+             
                   
 
                   <div class="col-sm-6">
@@ -151,6 +159,29 @@ ob_end_flush();
                     <input class="form-control" type="text" id="estudiante_pv" name="estudiante_pv"  maxlength="60" readonly >
                 </div>
                  </div>
+
+                 <div class="col-sm-6">
+                  <div class="form-group">
+                  <label>Fecha de inicio</label>
+                    <input class="form-control" type="text" id="inicio_pv" name="inicio_pv"  maxlength="60" readonly >
+                </div>
+                 </div>
+
+                 <div class="col-sm-6">
+                  <div class="form-group">
+                  <label>Fecha de finalizacion</label>
+                    <input class="form-control" type="text" id="finalizacion_pv" name="finalizacion_pv"  maxlength="60" readonly >
+                </div>
+                 </div>
+
+                 <div class="col-sm-6">
+                  <div class="form-group">
+                  <label>Horas</label>
+                    <input class="form-control" type="text" id="horas_pv" name="horas_pv"  maxlength="60" readonly >
+                </div>
+                 </div>
+
+                 
 
                 
                 <!-- <div class="col-sm-6">
@@ -569,16 +600,69 @@ ob_end_flush();
  </div>
 
 
+ 
+
  <script type="text/javascript">
-	
+function llenar_select2(){
+  
+  var cadena="&activar=activar"
+  $.ajax({
+      url: "../Controlador/guardar_primera_visita_controlador.php?op=selectCurso",
+        type: "POST",
+        data: cadena,
+        success: function(r){
+        
+      
+          $("#curso").html(r).fadeIn();
+        }
+      
+
+  });
+ 
+}
+llenar_select2();
+
+
+
+	function llenarCampos(inputSelect){
+    document.getElementById("idInput").value = inputSelect.options[inputSelect.selectedIndex].value;
+    var id_persona1=inputSelect.options[inputSelect.selectedIndex].value;
+    console.log(id_persona1);
+    console.log("hola");
+
+   
+
+
+ $.post("../Controlador/guardar_primera_visita_controlador.php?op=rellenarDatos",{id_persona: id_persona1}, function(data, status)
+	{
+    
+		data = JSON.parse(data);
+		console.log(data);
+		//mostrarform(true);
+//TBL_PRACTICA_ESTUDIANTES
+		$("#inicio_pv").val(data.fecha_inicio);
+		$("#finalizacion_pv").val(data.fecha_finaliza);
+		$("#horas_pv").val(data.horas);
+//TBL_PERSONAS_EXTENDIDAS
+		$("#cuenta_pv").val(data.valor);
+//TBL_EMPRESAS_PRACTICA
+    $("#empresa_pv").val(data.nombre_empresa);
+ 		$("#jefe_pv").val(data.jefe_inmediato);
+		$("#titulo_pv").val(data.titulo_jefe_inmediato);
+	//	$("#correo_pv").val(data.correo_jefe_inmediato);
+		$("#telefono_pv").val(data.telefono_jefe_inmediato);
+//TBL_PERSONAS
+		$("#estudiante_pv").val(data.nombres);
+
+
+
+	 })
+
+}
+
 
 
  </script>
-
-<script>
-
-  </script>
-
 
  
 
