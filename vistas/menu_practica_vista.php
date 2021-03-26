@@ -18,6 +18,31 @@ $_SESSION['gestion_inscripcion_menu']="No
 }
 
 
+if (permiso_ver('15')=='1')
+ {
+  
+  $_SESSION['registrar_clases_aprobadas_menu']="...";
+}
+else
+{
+$_SESSION['registrar_clases_aprobadas_menu']="No 
+  tiene permisos para visualizar";
+
+}
+
+if (permiso_ver('16')=='1')
+ {
+  
+  $_SESSION['gestion_clases_aprobadas_menu']="...";
+}
+else
+{
+$_SESSION['gestion_clases_aprobadas_menu']="No 
+  tiene permisos para visualizar";
+
+}
+
+
 
 if (permiso_ver('20')=='1')
  {
@@ -93,7 +118,7 @@ $_SESSION['aprobacion_rechazo_practica_menu']="No
 
     
    <div class="col-6 col-sm-6 col-md-4">
-   <div class="small-box bg-primary">
+   <div class="small-box bg-light">
    <div class="inner">
     <h5>Gestión Inscripción </h5>
    <p><?php echo $_SESSION['gestion_inscripcion_menu']; ?></p> 
@@ -108,8 +133,42 @@ $_SESSION['aprobacion_rechazo_practica_menu']="No
 </div>
 
 
+<div class="col-6 col-sm-6 col-md-4">
+  <div class="small-box bg-light">
+  <div class="inner">
+    <h5>Registro de Asignaturas Aprobadas</h5>
+   <p><?php echo $_SESSION['registrar_clases_aprobadas_menu'];?></p>
+  </div>
+  <div class="icon">
+        <i class="fas fa-user-edit"></i>
+
+  </div>
+  <a href="../vistas/registrar_asignaturas_aprobadas_vista.php" class="small-box-footer">
+   Ir <i class="fas fa-arrow-circle-right"></i>
+  </a>
+  </div>
+ 
+  </div>
+
+
+   <div class="col-6 col-sm-6 col-md-4">
+   <div class="small-box bg-light">
+   <div class="inner">
+    <h5>Gestión Asignaturas Aprobadas</h5>
+   <p><?php echo $_SESSION['gestion_clases_aprobadas_menu']; ?></p> 
+  </div>
+  <div class="icon">
+    <i class="fas fa-user-edit"></i>
+  </div>
+  <a href="../vistas/gestion_asignaturas_aprobadas_vista.php" class="small-box-footer">
+    Ir <i class="fas fa-arrow-circle-right"></i>
+  </a>
+</div>
+</div>
+
+
      <div class="col-6 col-sm-6 col-md-4">
-   <div class="small-box bg-primary">
+   <div class="small-box bg-light">
    <div class="inner">
     <h5>Revisión  de Doc. de PPS</h5>
    <p><?php echo $_SESSION['revision_doc_practica_menu']; ?></p> 
@@ -125,7 +184,7 @@ $_SESSION['aprobacion_rechazo_practica_menu']="No
 
 
    <div class="col-6 col-sm-6 col-md-4">
-  <div class="small-box bg-primary">
+  <div class="small-box bg-light">
   <div class="inner">
     <h5>Aprobación/Rechazo de PPS</h5>
    <p><?php  echo $_SESSION['aprobacion_rechazo_practica_menu'];?></p>

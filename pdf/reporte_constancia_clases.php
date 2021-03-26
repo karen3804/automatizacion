@@ -5,8 +5,17 @@
 require 'fpdf/fpdf.php';
 require_once ('../clases/Conexion.php');
 
-$sql = "select count(aa.id_persona) as cantidad_clase, (( count(aa.id_persona))*100)/52 as porcentaje_clase ,p.nombre as estudiante, p.documento as cuenta
-from tbl_asignaturas_aprobadas aa, tbl_personas p where p.id_persona=aa.id_persona and aa.id_persona=$_SESSION[id_persona] ";
+
+  $_SESSION["id_persona"]= $_GET['id_persona_']; 
+
+
+
+
+$sql = "select count(aa.id_persona) as cantidad_clase, (( count(aa.id_persona))*100)/52 as porcentaje_clase ,concat(p.nombres,' ',p.apellidos) as estudiante, px.valor as cuenta
+from tbl_asignaturas_aprobadas aa, tbl_personas p, tbl_personas_extendidas px where px.id_atributo=12 and px.id_persona=p.id_persona and p.id_persona=aa.id_persona and aa.id_persona=$_SESSION[id_persona] GROUP BY px.valor ";
+
+
+
 
 
 class PDF extends FPDF
@@ -74,7 +83,7 @@ $fecha=date("Y-m-d H:i:s");
 	$pdf->ln(5);
 
 	$pdf->SetX(20);
-    $pdf->multicell(170,9,utf8_decode('La Suscrita Coordinadora de la Carrera de Informática Administrativa de la UNAH, por este medio hace constar Que: '.$row['estudiante'].' con número de cuenta '.$row['cuenta'].' ha aprobado un total de CUARENTA Y SIETE  ('.$row['cantidad_clase'].')  asignaturas  lo  cual  totaliza  un  '.$row['porcentaje_clase'].'%   del Plan  de   Estudios  de la Licenciatura en Informática. '),0);
+    $pdf->multicell(170,9,utf8_decode('La Suscrita Coordinadora de la Carrera de Informática Administrativa de la UNAH, por este medio hace constar Que: '.$row['estudiante'].' con número de cuenta '.$row['cuenta'].' ha aprobado un total de: ('.$row['cantidad_clase'].')  asignaturas  lo  cual  totaliza  un  '.$row['porcentaje_clase'].'%   del Plan  de   Estudios  de la Licenciatura en Informática. '),0);
 	$pdf->ln(5);
 	$pdf->SetX(20);
     $pdf->multicell(170,9,utf8_decode('Y  para   efectos   de   realizar   su   Práctica   Profesional   Supervisada   firmo   la presente en la Ciudad Universitaria "José Trinidad Reyes" el '.fechaCastellano($fecha).'. '),0);

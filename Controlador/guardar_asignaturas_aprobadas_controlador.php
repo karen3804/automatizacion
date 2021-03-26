@@ -37,11 +37,13 @@ else
 
 		
 
- $sqlexiste=("select count(id_persona) as usuario  from tbl_asignaturas_aprobadas where id_persona=(select id_persona from tbl_personas_extendidas where valor='$cuenta')");
+
+
+ $sqlexiste=("select count(id_persona) as persona  from tbl_asignaturas_aprobadas where id_persona=(select id_persona from tbl_personas_extendidas where valor='$cuenta')");
  //Obtener la fila del query
 $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 
- if ($existe['usuario']>=1)
+ if ($existe['persona']>=1)
     {
   /*header('location: ../contenidos/crearPregunta-view.php?msj=2');*/
     echo '<script type="text/javascript">
@@ -61,10 +63,10 @@ $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 
     $Id_objeto=15 ; 
      
- $sqlid=("select id_persona as usuario  from tbl_personas where documento=$cuenta");
+ $sqlid=("select p.id_persona as persona  from tbl_personas p, tbl_personas_extendidas px where px.valor='$cuenta' AND px.id_atributo=12 and px.id_persona=p.id_persona");
  //Obtener la fila del query
 $iduser = mysqli_fetch_assoc($mysqli->query($sqlid));
-$idproc=$iduser['usuario'];
+$idproc=$iduser['persona'];
 
     foreach ($array_id as $idasignatura) {
 
@@ -121,4 +123,3 @@ $idproc=$iduser['usuario'];
 
 
 ?>
-

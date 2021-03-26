@@ -50,18 +50,16 @@ if ($visualizacion==0)
 
 
 
-  $sqltabla_asignaturas="select Id_asignatura as Id, asignatura  from tbl_asignaturas";
+  $sqltabla_asignaturas="select Id_asignatura as Id, asignatura , codigo from tbl_asignaturas";
   $resultadotabla_asignaturtas = $mysqli->query($sqltabla_asignaturas);
 
 
   if (isset($_POST['txt_cuenta']) )
   {
-    $usuario=$_SESSION['id_usuario'];
-    $id=("select id_persona from tbl_usuarios where id_usuario='$usuario'");
-   $result= mysqli_fetch_assoc($mysqli->query($id));
-   $id_persona=$result['id_persona'];
-   $cuenta=  $_POST['txt_cuenta'];
-   $sql="select concat(p.nombres,' ',p.apellidos) as nombre from tbl_personas p, tbl_personas_extendidas px where px.valor='$cuenta' AND px.id_atributo=12 and px.id_persona='$id_persona' and p.id_persona='$id_persona'";
+  
+   $_SESSION['Cuenta']=  $_POST['txt_cuenta'];
+
+     $sql="select concat(p.nombres,' ',p.apellidos) as nombre from tbl_personas p, tbl_personas_extendidas px where px.valor=$_SESSION[Cuenta] AND px.id_atributo=12 and px.id_persona=p.id_persona";
  //Obtener la fila del query
    $nombre = mysqli_fetch_assoc($mysqli->query($sql));
    if (!empty($nombre['nombre']) )
@@ -218,6 +216,8 @@ if ($visualizacion==0)
           <thead>
             <tr>
                <th>ASIGNATURA</th>
+              <th>CODIGO</th>
+
                 <th>APROBADA</th>
 
             </tr>
@@ -227,6 +227,8 @@ if ($visualizacion==0)
              { ?>
               <tr>
               <td><?php echo $row['asignatura']; ?></td>
+                            <td><?php echo $row['codigo']; ?></td>
+
 
                 <td style="text-align: center;">
 
@@ -267,7 +269,7 @@ if ($visualizacion==0)
    $(function () {
 
     $('#tabla').DataTable({
-      "paging": true,
+      "paging": false,
       "lengthChange": true,
       "searching": true,
       "ordering": true,

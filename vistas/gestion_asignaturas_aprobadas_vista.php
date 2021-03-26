@@ -119,7 +119,7 @@ if ($visualizacion==0)
 
 
    $counter = 0;
-   $sql_tabla_clases_aprobadas = json_decode( file_get_contents('http://localhost:80/Automatizacion/api/asignaturas_aprobadas_api.php'), true );
+   $sql_tabla_clases_aprobadas = json_decode( file_get_contents('http://localhost/automatizacion2/api/asignaturas_aprobadas_api.php'), true );
 
   
 $sql_tabla__modal_clases_aprobadas="select * from tbl_asignaturas";
@@ -127,7 +127,8 @@ $sql_tabla__modal_clases_aprobadas="select * from tbl_asignaturas";
 if (isset($_GET['iduser']))
 {
 
-$_SESSION["nombreaprobadas"]=$_GET['iduser'];
+$_SESSION["nombreaprobadas"]=$_GET['nombres'];
+$_SESSION["CuentaValor"]=$_GET['iduser'];
 
  //Obtener la fila del query
   
@@ -153,57 +154,6 @@ $resultadotabla_modal = $mysqli->query($sql_tabla__modal_clases_aprobadas);
    }
 }
 
-
-
-
-
-
-
-
-
-
-/*
-
-  $sqltabla_asignaturas="select Id_asignatura as Id, asignatura  from tbl_asignaturas";
-  $resultadotabla_asignaturtas = $mysqli->query($sqltabla_asignaturas);
-
-
-  if (isset($_POST['txt_cuenta']) )
-  {
-   $_SESSION['Cuenta']=  $_POST['txt_cuenta'];
-   $sql="select nombre_completo from tbl_usuarios where numero_cuenta=$_SESSION[Cuenta]";
- //Obtener la fila del query
-   $nombre = mysqli_fetch_assoc($mysqli->query($sql));
-   if (!empty($nombre['nombre_completo']) )
-   {
-     $_SESSION['Nombre_completo']=$nombre['nombre_completo'];
-
-
-   }
-   else
-   {
-     echo '<script type="text/javascript">
-     swal({
-       title:"",
-       text:"El estudiante no esta registrado, lo sentimos intente de nuevo.",
-       type: "info",
-       showConfirmButton: false,
-       timer: 1500
-       });
-       $(".FormularioAjax")[0].reset();
-       </script>'; 
-     }
-
-   }
-   else
-   {
-     $_SESSION['Cuenta']="";
-     $_SESSION['Nombre_completo']="";
-
-
-   }
-
-   */
 
  ob_end_flush();
 
@@ -266,26 +216,37 @@ $resultadotabla_modal = $mysqli->query($sql_tabla__modal_clases_aprobadas);
                 <th>CUENTA</th>                
                 <th>CANTIDAD DE CLASES</th>
                 <th>MODIFICAR</th>
+                <th>CONSTANCIA</th>
+
 
 
             </tr>
           </thead>
-          <tbody>
+           <tbody>
              <?php  while ($counter< count($sql_tabla_clases_aprobadas["ROWS"])) { ?>
                 <tr>
  <td><?php echo $sql_tabla_clases_aprobadas["ROWS"][$counter]["nombre"]; ?></td>
-     <td><?php echo $sql_tabla_clases_aprobadas["ROWS"][$counter]["documento"]; ?></td>
+     <td><?php echo $sql_tabla_clases_aprobadas["ROWS"][$counter]["valor"]; ?></td>
      <td><?php echo $sql_tabla_clases_aprobadas["ROWS"][$counter]["clases"]; ?></td>
 <td style="text-align: center;">
               
-                       <a href="../vistas/gestion_asignaturas_aprobadas_vista.php?iduser=<?php echo $sql_tabla_clases_aprobadas["ROWS"][$counter]["nombre"]; ?>" class="btn btn-primary btn-raised btn-xs">
+                       <a href="../vistas/gestion_asignaturas_aprobadas_vista.php?iduser=<?php echo $sql_tabla_clases_aprobadas["ROWS"][$counter]["valor"]; ?>&nombres=<?php echo $sql_tabla_clases_aprobadas["ROWS"][$counter]["nombre"]; ?>" class="btn btn-primary btn-raised btn-xs">
                       <i class="far fa-edit"  ></i>
                     </a>
                   </td>
+
+                  <td style="text-align: center;">
+              
+                       <a href="../pdf/reporte_constancia_clases.php?id_persona_=<?php echo $sql_tabla_clases_aprobadas["ROWS"][$counter]["id_persona"]; ?>" target="_blank" class="btn btn-primary btn-raised btn-xs">
+                      <i class="far fa-edit"  ></i>
+                    </a>
+                  </td>
+
       
                </tr>
                  <?php   $counter = $counter + 1; } ?>
              </tbody>
+        
         </table>
       </div>
 
@@ -306,7 +267,7 @@ $resultadotabla_modal = $mysqli->query($sql_tabla__modal_clases_aprobadas);
 
 <!--Creacion del modal-->
 
-<form action="../api/asignaturas_aprobadas_api.php?estudianteaprobadas=<?php echo  $_SESSION["nombreaprobadas"] ?> "method="post"  data-form="update" autocomplete="off"  >
+<form action="../api/asignaturas_aprobadas_api.php?estudianteaprobadas=<?php echo  $_SESSION["CuentaValor"] ?> "method="post"  data-form="update" autocomplete="off"  >
                  
 
 
@@ -350,7 +311,7 @@ $resultadotabla_modal = $mysqli->query($sql_tabla__modal_clases_aprobadas);
                              
                    echo  $row['Id_asignatura'];  ?>" <?php 
 
-   $sqlchk="select Id_asignatura from tbl_asignaturas_aprobadas where id_persona=(select id_persona from tbl_personas where nombre='$_SESSION[nombreaprobadas]') and Id_asignatura=$row[Id_asignatura]";
+   $sqlchk="select Id_asignatura from tbl_asignaturas_aprobadas where id_persona=(select p.id_persona from tbl_personas p , tbl_personas_extendidas px where p.id_persona=px.id_persona and px.valor='$_SESSION[CuentaValor]') and Id_asignatura=$row[Id_asignatura]";
 
 $resultadochk = $mysqli->query($sqlchk);
   $row = $resultadochk->fetch_array(MYSQLI_ASSOC);
@@ -437,4 +398,3 @@ echo "disabled";
 </body>
 
 </html>
-
