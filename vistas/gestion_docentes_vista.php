@@ -5,27 +5,26 @@ ob_start();
 session_start();
 
 
-require_once ('../vistas/pagina_inicio_vista.php');
-require_once ('../clases/Conexion.php');
-require_once ('../clases/funcion_bitacora.php');
-require_once ('../clases/funcion_visualizar.php');
-require_once ('../clases/funcion_permisos.php');
-require_once ('../clases/conexion_mantenimientos.php');
-
-
- 
+require_once('../vistas/pagina_inicio_vista.php');
+require_once('../clases/Conexion.php');
+require_once('../clases/funcion_bitacora.php');
+require_once('../clases/funcion_visualizar.php');
+require_once('../clases/funcion_permisos.php');
+require_once('../clases/conexion_mantenimientos.php');
 
 
 
-        $Id_objeto=51 ; 
-        $visualizacion= permiso_ver($Id_objeto);
 
 
 
-if ($visualizacion==0)
- {
- // header('location:  ../vistas/menu_roles_vista.php');
-   echo '<script type="text/javascript">
+$Id_objeto = 51;
+$visualizacion = permiso_ver($Id_objeto);
+
+
+
+if ($visualizacion == 0) {
+    // header('location:  ../vistas/menu_roles_vista.php');
+    echo '<script type="text/javascript">
                               swal({
                                    title:"",
                                    text:"Lo sentimos no tiene permiso de visualizar la pantalla",
@@ -36,37 +35,24 @@ if ($visualizacion==0)
                            window.location = "../vistas/menu_roles_vista.php";
 
                             </script>';
-}
+} else {
 
-else
 
-{
-  
-
-     // $respuesta1=$instancia_modelo->listar_select1();
-        bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'Ingreso' , 'A gestion docentes');
-        
+    // $respuesta1=$instancia_modelo->listar_select1();
+    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A gestion docentes');
 
 
 
-if (permisos::permiso_modificar($Id_objeto)=='1')
- {
-  $_SESSION['btn_modificar_CA']="";
 
-}
-else
-{
-    $_SESSION['btn_modificar_CA']="disabled";
- 
-}
-
-
-
-  
+    if (permisos::permiso_modificar($Id_objeto) == '1') {
+        $_SESSION['btn_modificar_CA'] = "";
+    } else {
+        $_SESSION['btn_modificar_CA'] = "disabled";
+    }
 }
 
 ob_end_flush();
- 
+
 
 
 //$nomdocentes = "SELECT id_persona, nombres FROM tbl_personas WHERE id_tipo_persona=1";
@@ -78,287 +64,260 @@ ob_end_flush();
 <!DOCTYPE html>
 
 <head>
-  <title></title>
- 
 
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 </head>
 
 
-<body >
+<body>
 
-  <div class="content-wrapper">
-    
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
+    <div class="content-wrapper">
 
-
-            <h1>Gestión Docente</h1>
-          </div>
-
-                <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
-              <li class="breadcrumb-item"><a href="../vistas/menu_docentes_vista.php">Menu Docentes</a></li>
-             
-            </ol>
-          </div>
-
-            <div class="RespuestaAjax"></div>
-   
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-   
-
-<!--Pantalla 2-->
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
 
 
+                        <h1>Gestión Docente</h1>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="../vistas/menu_docentes_vista.php">Menu Docentes</a></li>
+
+                        </ol>
+                    </div>
+
+                    <div class="RespuestaAjax"></div>
+
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
 
 
- 
- <div class="card card-default">
+        <!--Pantalla 2-->
+
+
+
+
+
+        <div class="card card-default">
             <div class="card-header">
                 <!--COMBOBOX-->
 
                 <div class="px-1">
 
-                <a href="http://localhost/Automatizacion/Automatizacion/vistas/registro_docentes_vista.php" class="btn btn-warning"><i class="fas fa-arrow"></i>Registrar Nuevo Usuario</a>
+                    <a href="../vistas/registro_docentes_vista.php" class="btn btn-warning"><i class="fas fa-arrow"></i>Registrar Nuevo Usuario</a>
 
                 </div>
-                              
-              <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-              
-            </div>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+
+                </div>
             </div>
             <!-- /.card-header -->
             <div class="card-footer">
 
-        
-
-            <div class="card-body">
-            <div class="table-responsive">
-              <table id="tabla" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                <th>ACCIONES</th>
-                  <th>N_EMPLEADO</th>
-                  <th>NOMBRE</th>
-                  <th>CORREOS</th>
-                  <th>CONTACTOS</th>
-                  <th>COMISION</th>
-                  <th>ACTIVIDAD</th>
-                  <th>FORMACION ACADEMICA</th>
-                  <th>FOTO</th>
-                  <th>CURRICULUM</th>
-                  
-                   
-                  </tr>
-                </thead>
-                
-                
-            </table>
-            <br>
 
 
-        </div>
-        <div class="col-sm-4">
-                                    <div class="form-group">
+                <div class="card-body">
+                    <div class="table-responsive" style="width: 100%;">
 
-                                        <p class="text-center" style="margin-top: 20px;">
-                                            <button class="btn btn-primary" id="btn1" name="btn1" data-toggle="modal" data-target="#modal2"> Elegir Columnas</button>
-                                        </p>
+                        <table id="tabladocentes" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID PERSONA</th>
+                                    <th>N EMPLEADO</th>
+                                    <th>NOMBRE</th>
+                                    <th>CORREOS</th>
+                                    <th>CONTACTOS</th>
+                                    <th>COMISIÓN</th>
+                                    <th>ACTIVIDAD</th>
+                                    <th>FORMACIÓN ACADÉMICA</th>
+                                    <th>FOTO</th>
+                                    <th>CURRICULUM</th>
+                                    <th>ACCIÓN</th>
+
+
+                                </tr>
+                            </thead>
+
+
+                        </table>
+                        <br>
+
+
+
+
+                    </div>
+
+
+                </div>
+
+                <!-- modal modificar carga -->
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="modal_editar" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Editar Datos de Carga</h5>
+                                <button onclick="cerrar();" class="close" data-dismiss="modal">
+                                    &times;
+                                </button>
+
+                            </div>
+
+
+                            <div class="modal-body">
+
+                                <div class="row">
+                                    <input type="hidden">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" id="txt_id_persona" >
+                                            <label> Docente: </label>
+                                            <input class="form-control" type="text" id="txt_nombre_docente" name="txt_nombre_docente" readonly>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <input class="form-control" hidden type="text" id="txt_hidden" name="txt_hidden" value="" readonly>
+
+                                            </div>
+                                        </div>
 
                                     </div>
-                                </div>
+                                    <div class="card " style="width:600px;border-color:gray;">
+                                        <!--comisiones-->
+                                        <div class="card-body">
+                                            <h4 class="card-title">Comisiones y Actividades</h4>
+                                            <div class="card-text">
+                                                <table class="table table-bordered table-striped m-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Comisióm</th>
+                                                            <th>Actividad</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_comisiones"></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
 
 
- <!-- CUERPO DEL MODAL -->
- <div id="modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <!--      Para centrado-->
-        <div class="modal-dialog" role="document">
+                                    </div>
 
-            <!--  <div class="modal-dialog" role="document">-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Selección de columnas</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="card-body">
-                        <div class="row">
 
-                            <!-- CAPTURAMOS EL ID EN UN INPUT -->
+                                   <!--  <div class="col-md-6">
 
-                            <input id="id" hidden class="form control" type="text" name="id" value="">
 
-                            <!-- -------------------------- -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="hidden">
+                                                <label> Comisión: </label>
+                                                <td> <select class="form-control-lg select2" style="width: 100%;" id="cbm_comision_edita " name="cbm_comision_edita"> </td>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="hidden">
+                                                <label> Actividad: </label>
+                                                <td> <select class="form-control-lg select2" style="width: 100%;" id="cbm_actividad_edita" name="cbm_actividad_edita"> </td>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <input type="hidden">
 
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label> <input class="form-control" type="checkbox" id="input8" name="cb-N_empleado" value="" >Numero Empleado</label>
+                                            </div>
+                                        </div>
+
+
+                                    </div> -->
                                    
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" id="guardar" name="guardar" onclick="modificar_carga_academica();">Guardar</button>
+
+                                    <button class="btn btn-secondary" data-dismiss="modal" onclick="cerrar();" id="salir">Cancelar</button>
                                 </div>
                             </div>
 
 
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label><input class="form-control" type="Checkbox" id="input6" name="cb-Nombre" value="" >Nombre</label>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-checkbox"><input class="form-control" type="checkbox" id="input5" name="cb-jornada" value="" style="text-transform: uppercase" readonly>Jornada</label>
-                                    
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label"><input class="form-control" type="checkbox" id="input2" name="cb-categoria" value="" style="text-transform: uppercase" readonly>Categoría</label>
-                                    
-
-                                </div>
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label class="control-label">  <input class="form-control" type="checkbox" id="input7" name="input7" value="" style="text-transform: uppercase" readonly>Actividad</label>
-                                  
-                                </div>
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label class="control-label">  <input class="form-control" type="checkbox" id="input7" name="input7" value="" style="text-transform: uppercase" readonly>Comision</label>
-                                  
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label class="control-label">  <input class="form-control" type="checkbox" id="input7" name="input7" value="" style="text-transform: uppercase" readonly>Formacion Academica</label>
-                                  
-                                </div>
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label class="control-label">  <input class="form-control" type="checkbox" id="input7" name="input7" value="" style="text-transform: uppercase" readonly>Correos</label>
-                                  
-                                </div>
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label class="control-label">  <input class="form-control" type="checkbox" id="input7" name="input7" value="" style="text-transform: uppercase" readonly>Contactos</label>
-                                  
-                                </div>
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label class="control-label">  <input class="form-control" type="checkbox" id="input7" name="input7" value="" style="text-transform: uppercase" readonly>Fecha Ingreso</label>
-                                  
-                                </div>
-                            </div>
-
-
-                            <!-- <div class="col-md-5">
-                                <div class="form-group">
-                                    <label class="control-label">  <input class="form-control" type="checkbox" id="input7" name="input7" value="" style="text-transform: uppercase" readonly>Fecha Ingreso</label>
-                                    <label class="control-label">  <input class="form-control" type="checkbox" id="input7" name="input7" value="" style="text-transform: uppercase" readonly>Fecha Ingreso</label>
-                                    <label class="control-label">  <input class="form-control" type="checkbox" id="input7" name="input7" value="" style="text-transform: uppercase" readonly>Fecha Ingreso</label>
-                                    <label class="control-label">  <input class="form-control" type="checkbox" id="input7" name="input7" value="" style="text-transform: uppercase" readonly>Fecha Ingreso</label>
-                                    <label class="control-label">  <input class="form-control" type="checkbox" id="input7" name="input7" value="" style="text-transform: uppercase" readonly>Fecha Ingreso</label>
-                                </div>
-                            </div>  -->
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-                            </div>
                         </div>
+
+
                     </div>
                 </div>
+
             </div>
+
+
+
+            <a class="btn btn-success " onclick=" ventana1()">Generar PDF</a>
         </div>
     </div>
-    <div class="card-footer">
 
-</div>
 
-<!--<button type="button" onclick="javascript:imprim2();">Imprimir</button>-->
 
-<!--<a class="btn btn-success hidden-print" onclick="javascript:Imprimir()">IMPRIMIR</a>-->
-<!-- <button id="btnCrearPDF">guardar pdf</button>-->
-<!--<a class="btn btn-success " href="../Controlador/gestion_docente_controlador2.php">PDF/IMPRIMIR</a>-->
-<a class="btn btn-success " onclick=" ventana1()">Generar PDF</a>
-</div> 
 
-<!-- datatables JS -->
-<!-- <script type="text/javascript" src="../Reporte/datatables/datatables.min.js"></script>-->
-<!-- para usar botones en datatables JS -->
-<!--<script src="../Reporte/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>-->
-<!--<script src="../Reporte/datatables/JSZip-2.5.0/jszip.min.js"></script>-->
-<!--<script src="../Reporte/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>-->
-<!--<script src="../Reporte/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>-->
-<!--<script src="../Reporte/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>-->
 
- 
-<!-- código JS propìo-->
-<!--<script type="text/javascript" src="../Reporte/main.js"></script>-->
-<script type="text/javascript"  src="../js/funciones_gestion_docente.js"></script>   
-<script>
-function imprim2() {
-  var mywindow = window.open('', 'PRINT', 'height=400,width=600');
-  mywindow.document.write('<html><head>');
-  mywindow.document.write('</head><body >');
-  mywindow.document.write(document.getElementById('id').innerHTML);
-  mywindow.document.write('</body></html>');
-  mywindow.document.close(); // necesario para IE >= 10
-  mywindow.focus(); // necesario para IE >= 10
-  mywindow.print();
-  mywindow.close();
-  return true;
-}
-</script>
-<script>
-        function Imprimir() {
-          document.title = '';
-          document.footer = 'unah';
-          document.header = 'no ruta'
-          window.print();
-        }
-      </script>
-     
-    <!-- datatables JS
-    <script type="text/javascript" src="../Reporte/datatables/datatables.min.js"></script>    
-     para usar botones en datatables JS  
-    <script src="../Reporte/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>  
-    <script src="../Reporte/datatables/JSZip-2.5.0/jszip.min.js"></script>    
-    <script src="../Reporte/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>    
-    <script src="../Reporte/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-    <script src="../Reporte/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script> -->
-         
-   
-    <!-- código JS propìo       
-    <script type="text/javascript"  src="../Reporte/main.js"></script>     -->
-    
-  <script language="javascript">
+
+
+
+
+
+</body>
+<html>
+
+<script language="javascript">
     function ventana1() {
-      window.open("../Controlador/gestion_docente_controlador2.php", "GESTION");
+        window.open("../Controlador/gestion_docente_controlador2.php", "GESTION");
     }
-    </script>
+</script>
 
-        
-          
- </body>
- <html>
+<script>
+    $(document).ready(function() {
+        TablaDocente();
+
+    });
+</script>
+
+<script type="text/javascript" src="../js/funciones_gestion_docente.js"></script>
+<script>
+    var idioma_espanol = {
+        select: {
+            rows: "%d fila seleccionada"
+        },
+        "sProcessing": "Procesando...",
+        "sLengthMenu": "Mostrar _MENU_ registros",
+        "sZeroRecords": "No se encontraron resultados",
+        "sEmptyTable": "No se encuentra el periodo o año",
+        "sInfo": "Registros del (_START_ al _END_) total de _TOTAL_ registros",
+        "sInfoEmpty": "Registros del (0 al 0) total de 0 registros",
+        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sSearch": "Buscar:",
+        "sUrl": "",
+        "sInfoThousands": ",",
+        "sLoadingRecords": "<b>No se encontraron datos</b>",
+        "oPaginate": {
+            "sFirst": "Primero",
+            "sLast": "Último",
+            "sNext": "Siguiente",
+            "sPrevious": "Anterior"
+        },
+        "oAria": {
+            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+    }
+</script>
+<script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js">

@@ -15,12 +15,38 @@ class modelo_gestion_docente
 // 		return $instancia_conexion->ejecutarConsulta($sql);
 // 	}  
 
-     public function listar(){
-        global $instancia_conexion;
+     function listar(){
+     global $instancia_conexion;
 		$sql="call proc_gestion_docente()";
-		return $instancia_conexion->ejecutarConsulta($sql);
+    $arreglo = array();
+    if ($consulta = $instancia_conexion->ejecutarConsulta($sql)) {
+      while ($consulta_VU = mysqli_fetch_assoc($consulta)) {
+        $arreglo["data"][] = $consulta_VU;
+      }
+      return $arreglo;
     }
 
+
+}
+  function Actividades($id_persona)
+  {
+    global $instancia_conexion;
+    $consulta = $instancia_conexion->ejecutarConsulta("SELECT COM.comision, ACT.actividad  FROM tbl_actividades ACT
+                JOIN tbl_actividades_persona ACTP ON ACT.id_actividad= ACTP.id_actividad
+                JOIN tbl_comisiones COM ON COM.id_comisiones = ACT.id_comisiones
+                WHERE ACTP.id_persona = $id_persona
+        ");
+    $actividades = array();
+    
+
+    while ($row = $consulta->fetch_assoc()) {
+
+      $actividades['actividades'][] = $row;
+    }
+
+    //echo '<pre>';print_r($actividades);echo'</pre>';
+    return $actividades;
+  }
 
 }
 

@@ -55,6 +55,24 @@ class modelo_reporte
             return 0;
         }
     }
+    //listar select comisiones
+    function listar_comisiones()
+    {
+        global $instancia_conexion;
+        $consulta = $instancia_conexion->ejecutarConsulta('SELECT id_comisiones, comision FROM tbl_comisiones ORDER BY comision ASC');
+
+        return $consulta;
+    }
+    //listar select comisiones
+    function listar_actividad()
+    {
+        global $instancia_conexion;
+        $consulta = $instancia_conexion->ejecutarConsulta('SELECT id_actividad, actividad FROM tbl_actividades ORDER BY actividad ASC');
+
+        return $consulta;
+    }
+
+
 
 
 
