@@ -194,6 +194,7 @@ ob_end_flush();
                     </div>
                     <p hidden id="TextoIdentidad" style="color:red;">¡Ya existe un registro con esta identidad! </p>
                     <p hidden id="Textopasaporte" style="color:red;">¡Ya existe un registro con este pasaporte! </p>
+                    <p hidden id="Textomayor" style="color:red;">¡Es menor de edad! </p>
 
                   </div>
 
