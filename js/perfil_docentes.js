@@ -323,6 +323,7 @@ function seleccionar() {
 //MOSTRAR ESPECIALIDADES DEL DOCENTE
 
 function MostrarEspecialidad() {
+    
     var id_persona = $("#id_persona").val();
     $.post("../Controlador/perfil_docente_controlador.php?op=MostrarEspecialidad", { id_persona: id_persona },
         function (data, status) {

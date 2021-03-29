@@ -31,7 +31,7 @@ class modelo_gestion_docente
   function Actividades($id_persona)
   {
     global $instancia_conexion;
-    $consulta = $instancia_conexion->ejecutarConsulta("SELECT COM.comision, ACT.actividad  FROM tbl_actividades ACT
+    $consulta = $instancia_conexion->ejecutarConsulta("SELECT ACTP.id_act_persona, COM.comision, ACT.actividad  FROM tbl_actividades ACT
                 JOIN tbl_actividades_persona ACTP ON ACT.id_actividad= ACTP.id_actividad
                 JOIN tbl_comisiones COM ON COM.id_comisiones = ACT.id_comisiones
                 WHERE ACTP.id_persona = $id_persona
