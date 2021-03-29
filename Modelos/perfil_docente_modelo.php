@@ -23,7 +23,7 @@ FROM tbl_personas AS PER
    JOIN tbl_personas_extendidas AS PEX ON PEX.id_persona=PER.id_persona
    JOIN tbl_horario_docentes AS HD ON HD.id_persona=PER.id_persona
    JOIN tbl_jornadas AS JOR ON JOR.id_jornada= HD.id_jornada
-WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11 LIMIT 6;
+WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11 LIMIT 4;
 ";
         $result= $instancia_conexion->ejecutarConsulta($sql);
 
@@ -76,14 +76,22 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11 LIMIT 6;
 
     function Actualizar($nombre, $apellido, $identidad, $id_persona, $nacionalidad, $estado_civil){
         global $instancia_conexion;
-        $consult=$instancia_conexion->ejecutarConsulta("UPDATE tbl_personas AS ps, tbl_contactos AS cs SET ps.nombres='$nombre' ,ps.apellidos='$apellido', ps.identidad= '$identidad', ps.nacionalidad= '$nacionalidad', ps.estado_civil = '$estado_civil'  WHERE ps.id_persona= $id_persona");
+        $consult=$instancia_conexion->ejecutarConsulta("UPDATE tbl_personas AS ps, tbl_contactos AS cs SET ps.nombres='$nombre' ,ps.apellidos='$apellido', ps.identidad= '$identidad', ps.nacionalidad= '$nacionalidad', ps.estado_civil = '$estado_civil'  WHERE ps.id_persona= $id_persona;");
         echo '<pre>';print_r($consult);echo'</pre>';
         return $consult;
     }
 
+    public function Registrar_curriculum($curriculum, $id_persona){
+        global $instancia_conexion;
+        $sql="UPDATE tbl_personas_extendidas SET valor = '$curriculum' WHERE id_persona = $id_persona AND id_atributo = 8;";
+        
+        return $instancia_conexion->ejecutarConsulta($sql);
+
+    }
+
     function AgregarEspecialidad($grado,$especialidad, $id_persona){
         global $instancia_conexion;
-        $consulta=$instancia_conexion->ejecutarConsulta("CALL proc_agregar_especialidad($grado, '$especialidad', '$id_persona')");
+        $consulta=$instancia_conexion->ejecutarConsulta("CALL proc_agregar_especialidad('$grado', '$especialidad', '$id_persona')");
       
         return $consulta;
     }
@@ -92,6 +100,14 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11 LIMIT 6;
         global $instancia_conexion;
         $consulta=$instancia_conexion->ejecutarConsulta("INSERT INTO tbl_contactos
          (id_persona,id_tipo_contacto,valor)VALUES($id_persona,'1','$telefono')");
+      
+        return $consulta;
+    }
+
+    function AgregarCorreo($id_persona, $correo){
+        global $instancia_conexion;
+        $consulta=$instancia_conexion->ejecutarConsulta("INSERT INTO tbl_contactos
+         (id_persona,id_tipo_contacto,valor)VALUES($id_persona,'4','$correo')");
       
         return $consulta;
     }

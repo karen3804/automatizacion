@@ -50,6 +50,8 @@ $sql2->execute();
 $resultado2 = $sql2->get_result();
 $row2 = $resultado2->fetch_array(MYSQLI_ASSOC);
 
+var_dump($row2);
+
 ob_end_flush();
 
 ?>
