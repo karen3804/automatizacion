@@ -45,6 +45,22 @@ if ($visualizacion == 0) {
 ob_end_flush();
 
 
+
+
+/* para las areas */
+$sql1 = "SELECT * FROM tbl_areas";
+$consulta1 = $mysqli->query($sql1);
+$row1 = $consulta1->fetch_all(MYSQLI_ASSOC);
+//var_dump($row1);
+
+/* para las asignaturas */
+$sql = "SELECT * FROM tbl_asignaturas";
+$consulta = $mysqli->query($sql);
+$row = $consulta->fetch_all(MYSQLI_ASSOC);
+//var_dump($row);
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -701,81 +717,41 @@ function mascara(){
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalencuesta">Encuesta Docente</h5>
+                    <h5 class="modal-title" id="modalencuesta">Pregunta 1</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+              
+                    <div class="modal-body">
 
-                    <!--  <div class="card " style="width:420px;border-color:gray;"> -->
+                        <!--  <div class="card " style="width:420px;border-color:gray;"> -->
 
-                    <div style="text-align:left">
+                        <div style="text-align:left">
 
-                        <h5 style="font-weight: bold; font-size: 15px"> 1. ¿En que áreas de la Carrera imparte clases?</h5>
-                        <div class="form-check">
 
-                            <input type="checkbox" class="form-check-input" value="">Análisis y diseño de Sistemas
+                            <h5 style="font-weight: bold; font-size: 15px"> 1. ¿En que áreas de la Carrera imparte clases?</h5>
+                            <div class="form-check">
+                                <?php
+                                foreach ($row1 as $id) {
+                                    echo '<br>';
+                                    echo '<input class="pregunta1" type="checkbox" name="areas[]" value="' . $id["id_area"] . '">' . $id["area"];
+                                }
 
-                        </div>
-                        <div class="form-check">
+                                ?>
+                            </div>
 
-                            <input type="checkbox" class="form-check-input" value="">Base de Datos
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Desarrollo de aplicaciones (Programación)
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Gerencia Informatica
 
                         </div>
-                        <div class="form-check">
 
-                            <input type="checkbox" class="form-check-input" value="">Proyectos
 
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Redes
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Seguridad Informatica
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Sistemas Operativos
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Taller de Hadware
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Clases de Servicio
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Otros
-
-                        </div>
 
                     </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" value="pregunta1" class="btn btn-primary" onclick="enviarpregunta1()">Guardar</button>
+                    </div>
+               
             </div>
         </div>
     </div>
@@ -784,7 +760,7 @@ function mascara(){
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalencuesta">Encuesta Docente</h5>
+                    <h5 class="modal-title" id="modalencuesta">Pregunta 2</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -794,61 +770,15 @@ function mascara(){
                     <div style="text-align:left">
                         <h5 style="font-weight: bold; font-size: 15px">2. ¿Seleccione una o dos áreas de la informática en la que tiene mayor experiencia y se siente más cómodo en la docencia?</h5>
                         <div class="form-check">
+                            <?php
+                            foreach ($row1 as $id) {
+                                echo '<br>';
+                                echo '<input class="pregunta2" type="checkbox" name="' . $id["id_area"] . '" value="' . $id["id_area"] . '">' . $id["area"];
+                            }
 
-                            <input type="checkbox" class="form-check-input" value="">Análisis y diseño de Sistemas
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Base de Datos
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Desarrollo de aplicaciones (Programación)
+                            ?>
 
                         </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Gerencia Informatica
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Proyectos
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Redes
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Seguridad Informatica
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Sistemas Operativos
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Taller de Hadware
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Clases de Servicio
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value="">Otros
-
-                        </div>
-                        <!--  </div> -->
                     </div>
 
 
@@ -865,7 +795,7 @@ function mascara(){
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalencuesta">Encuesta Docente</h5>
+                    <h5 class="modal-title" id="modalencuesta">Pregunta 3</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -879,130 +809,49 @@ function mascara(){
                         <h5 style="font-weight: bold; font-size: 15px">3. Basado en la respuesta de la pregunta anterior ¿Selecciones la(s) Asignatura(s)
                             en la que tiene mayor experiencia?</h5>
                         <div class="form-check">
+                            <?php
+                            foreach ($row as $id) {
+                                echo '<br>';
+                                echo '<input class="pregunta3" type="checkbox" name="' . $id["Id_asignatura"] . '" value="' . $id["asignatura"] . '">' . $id["asignatura"];
+                            }
 
-                            <input type="checkbox" class="form-check-input" value=""><input type="checkbox" class="form-check-input" value="">Análisis y diseño de Sistemas
-
+                            ?>
                         </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Base de Datos
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Desarrollo de aplicaciones (Programación)
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Gerencia Informatica
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Proyectos
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Redes
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""><input type="checkbox" class="form-check-input" value="">Seguridad Informatica
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Sistemas Operativos
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""><input type="checkbox" class="form-check-input" value="">Taller de Hadware
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Clases de Servicio
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Otros
-
-                        </div>
+                        <br><br>
 
                         <h5 style="font-weight: bold; font-size: 15px"> 4. ¿Selecciones la(s) Asignatura(s) en la que desea de impartir? </h5>
                         <div class="form-check">
 
-                            <input type="checkbox" class="form-check-input" value=""><input type="checkbox" class="form-check-input" value="">Análisis y diseño de Sistemas
+                            <?php
+                            foreach ($row as $id) {
+                                echo '<br>';
+                                echo '<input class="pregunta4" type="checkbox" name="' . $id["Id_asignatura"] . '" value="' . $id["asignatura"] . '">' . $id["asignatura"];
+                            }
 
+                            ?>
                         </div>
-                        <div class="form-check">
 
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Base de Datos
 
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Desarrollo de aplicaciones (Programación)
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Gerencia Informatica
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Proyectos
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Redes
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""><input type="checkbox" class="form-check-input" value="">Seguridad Informatica
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Sistemas Operativos
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""><input type="checkbox" class="form-check-input" value="">Taller de Hadware
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Clases de Servicio
-
-                        </div>
-                        <div class="form-check">
-
-                            <input type="checkbox" class="form-check-input" value=""> <input type="checkbox" class="form-check-input" value="">Otros
-
-                        </div>
                     </div>
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Guardar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
 </body>
 
 </html>
+<!-- para seleccionar limite de checkbox -->
+<script>
+    var limite = 2;
+    $(".pregunta2").change(function() {
+        if ($("input:checked").length > limite) {
+            alert("solo puedes seleccionar un maximo de dos");
+            this.checked = false;
+        }
+    });
+</script>

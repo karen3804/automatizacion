@@ -743,7 +743,8 @@ function ExisteIdentidad() {
                 $('#TextoIdentidad').attr('hidden', 'hidden');
             }
 
-        });
+        }
+    );
 
 
 
@@ -849,4 +850,50 @@ function ventana() {
     "Encuesta"
   );
 }
+
+function enviarpregunta1(){
+  
+    var id_persona = $('#id_persona').val();
+
+    var id_area = $('[name="areas[]"]:checked')
+      .map(function () {
+        return this.value;
+      })
+      .get();
+
+   // console.log(id_area);
+    //console.log(id_persona);
+    $.ajax({
+      type: "POST",
+      url: "../Controlador/encuesta1_docente_controlador.php",
+      //data: { array: JSON.stringify(id_area)}, //capturo array
+      data: { array: JSON.stringify(Number[id_area]) },
+      success: function (data) {},
+    });
+
+   
+   //enviar(id_persona);
+    // var arr = [];
+
+    // $("input:checkbox[name=areas]:checked").each(function () {
+    //   arr.push($(this).val());
+    // });
+    //  console.log(arr);
+
+
+
+}
+function enviar(id) {
+   
+
+     $.ajax({
+       type: "POST",
+       url: "../Controlador/encuesta1_docente_controlador.php",
+       data: { array1: JSON.stringify(id_persona)}, //capturo array
+       success: function (data) {},
+     });
+
+}
+
+
 
