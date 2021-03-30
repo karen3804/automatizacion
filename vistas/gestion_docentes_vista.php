@@ -180,17 +180,18 @@ ob_end_flush();
                                     <input type="hidden">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" id="txt_id_persona" >
+                                            <input type="text" id="txt_id_persona" readonly hidden>
+
                                             <label> Docente: </label>
                                             <input class="form-control" type="text" id="txt_nombre_docente" name="txt_nombre_docente" readonly>
-                                            
+
 
                                         </div>
                                         <div class="col-sm-6">
-                                            
+
                                             <p class="" style="margin-top: 10px;">
-                                            <button type="submit" class="btn btn-primary btn" data-toggle="modal" data-target="#ModalTask2" id="agregarotra" name="agregarotra" onclick="persona()">
-                                            <i class="zmdi zmdi-floppy"></i>AGREGAR +</button>
+                                                <button type="submit" class="btn btn-primary btn" data-toggle="modal" data-target="#ModalTask2" id="agregarotra" name="agregarotra" onclick="persona()">
+                                                    <i class="zmdi zmdi-floppy"></i>AGREGAR +</button>
                                             </p>
 
                                         </div>
@@ -210,7 +211,7 @@ ob_end_flush();
                                                 <table class="table table-bordered table-striped m-0">
                                                     <thead>
                                                         <tr>
-                                                            <th >#</th>
+                                                            <!-- <th>#</th> -->
                                                             <th>Comisión</th>
                                                             <th>Actividad</th>
                                                         </tr>
@@ -223,10 +224,10 @@ ob_end_flush();
 
                                     </div>
 
-                                    
 
 
-                                   <!--  <div class="col-md-6">
+
+                                    <!--  <div class="col-md-6">
 
 
                                         <div class="col-md-6">
@@ -250,7 +251,7 @@ ob_end_flush();
 
 
                                     </div> -->
-                                   
+
 
 
                                 </div>
@@ -270,48 +271,49 @@ ob_end_flush();
 
                 <div class="modal fade" tabindex="-1" role="dialog" id="ModalTask2">
                     <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title">Datos</h5>
-                          <button class="close" data-dismiss="modal">
-                            &times;
-                          </button>
-                        </div>
-
-                        <div class="modal-body">
-                          <div class="container">
-                            <div class="form-group">
-                            <input type="text" id="txt_id_persona1" >
-                              <label>Comisiones</label>
-                              <select class="form-control" name="comisiones" id="comisiones">
-
-                              </select>
-
-                              <label>Actividades</label>
-                              <select class="form-control" name="actividades" id="actividades">
-
-                              </select>
-
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Datos</h5>
+                                <button class="close" data-dismiss="modal">
+                                    &times;
+                                </button>
                             </div>
-                          </div>
+
+                            <div class="modal-body">
+                                <div class="container">
+                                    <div class="form-group">
+                                        <input type="text" id="txt_id_persona1" readonly hidden>
+
+                                        <label>Comisiones</label>
+                                        <select class="form-control" name="comisiones" id="comisiones">
+
+                                        </select>
+
+                                        <label>Actividades</label>
+                                        <select class="form-control" name="actividades" id="actividades">
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success" onclick="addTask3(); saveAll3();">Agregar</button>
+                                <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                          <button class="btn btn-success" onclick="addTask3()">Agregar</button>
-                          <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-
-
                 </div>
+
 
             </div>
 
-
-
-            <a class="btn btn-success " onclick=" ventana1()">Generar PDF</a>
         </div>
+
+
+
+        <a class="btn btn-success " onclick=" ventana1()">Generar PDF</a>
+    </div>
     </div>
 
 

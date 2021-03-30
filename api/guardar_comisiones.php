@@ -10,9 +10,10 @@ $list = $data['data'];
 
 $info = array();
 foreach($list as $item){
-    $sql = "CALL proc_insertar_actividades_gestion(:actividades)";
+    $sql = "CALL proc_prueba_api(:actividades, :id_persona);";
     $stmt =  $connect->prepare($sql);
     $stmt->bindParam(":actividades",$item['actividades'],PDO::PARAM_INT);
+    $stmt->bindParam(":id_persona",$item['id_persona'],PDO::PARAM_INT);
    
     
     $stmt->execute();

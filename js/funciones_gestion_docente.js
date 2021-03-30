@@ -48,7 +48,7 @@ function TablaDocente() {
 		ordering: true,
 		// LengthChange: false,
 		searching: { regex: true },
-		lengthMenu: [ [ 10, 25, 50, 100, -1 ], [ 10, 25, 50, 100, 'All' ] ],
+		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']],
 		sortable: false,
 		pageLength: 15,
 		destroy: true,
@@ -79,7 +79,7 @@ function TablaDocente() {
 		select: true
 	});
 }
-$('#tabladocentes').on('click', '.editar', function() {
+$('#tabladocentes').on('click', '.editar', function () {
 	var data = table.row($(this).parents('tr')).data();
 	if (table.row(this).child.isShown()) {
 		var data = table.row(this).data();
@@ -90,22 +90,53 @@ $('#tabladocentes').on('click', '.editar', function() {
 	$('#txt_id_persona').val(data.id_persona);
 	$('#txt_nombre_docente').val(data.nombre);
 	//var id_persona=$("#txt_id_persona").val();
-	
+
 	Actividades();
 });
 
 function persona() {
 	document.getElementById('txt_id_persona1').value = document.getElementById('txt_id_persona').value;
 	
+	/* $.post("../Controlador/actividades.php", { id_comisiones: la_comision }, function (data, status) {
+		//console.log(data);
+		data = JSON.parse(data);
+		console.log(data); */
+		/* $("#txt_actividad").val(data.id_actividad); */
+
+
+		/* }); */
 }
 
 
 //CARGAR TABLA DE ACTIVIDADES
+/* function TraerDatos() {
+	var id_persona = $("#txt_id_persona").val();
+
+	$.post("../Controlador/perfil_docente_controlador.php?op=Actividades", { id_persona: id_persona }, function (data, status) {
+		//console.log(data);
+		data = JSON.parse(data);
+		console.log(data);
+		for (var i = 0; i < data.actividades.length; ++i) {
+
+			let n = 1 + i;
+
+			$('#tbl_comisiones').append(
+				'<tr id="row">' +
+				'<td> </td>' +
+				'<td>' + data['actividades'][i].comision + '</td>' +
+				'<td>' + data['actividades'][i].actividad + '</td>' +
+				'<td><button type="button" name="remove" id="' + n + '" class="btn btn-danger btn_remove">X</button></td>' +
+				'</tr>');
+		}
+
+	})
+} */
+
 
 function Actividades() {
 	var id_persona = $('#txt_id_persona').val();
 
-	$.post('../Controlador/perfil_docente_controlador.php?op=Actividades', { id_persona: id_persona }, function(
+	$.post('../Controlador/perfil_docente_controlador.php?op=Actividades', { id_persona: id_persona }, function (
 		data,
 		status
 	) {
@@ -113,20 +144,13 @@ function Actividades() {
 		console.log(data);
 		for (i = 0; i < data.actividades.length; i++) {
 			$('#tbl_comisiones').append(
-				'<tr id="row' +
-					i +
-					'">' +
-					'<td> </td>' +
-					'<td>' +
-					data['actividades'][i].comision +
-					'</td>' +
-					'<td>' +
-					data['actividades'][i].actividad +
-					'</td>' +
-					'<td><button type="button" name="remove" id="' +
-					i +
-					'" class="btn btn-danger btn_remove">X</button></td>' +
-					'</tr>'
+				'<tr id="row' + i + '">' +
+				 /* '<td> </td>' + */
+				'<td>' + data['actividades'][i].comision + '</td>' +
+				'<td>' + data['actividades'][i].actividad + '</td>' +
+				'<td><button type="button" name="remove" id="' + i +
+				'" class="btn btn-danger btn_remove">X</button></td>' +
+				'</tr>'
 			);
 		}
 	});
@@ -137,20 +161,25 @@ var sendData3 = {};
 var list3 = [];
 var actividades = document.getElementById('actividades');
 var comisiones = document.getElementById('comisiones');
+var id_persona = document.getElementById('txt_id_persona1');
+
 
 var tbl_comisiones = document.getElementById('tbl_comisiones');
 
 var addTask3 = () => {
 	var item3 = {
+		id_persona: id_persona.value,
 		actividades: actividades.value,
 		comisiones: comisiones.value,
 
 		muestra_actividad: actividades.options[actividades.selectedIndex].text,
 		muestra_comision: comisiones.options[comisiones.selectedIndex].text
 	};
-
+	Actividades();
 	list3.push(item3);
 	viewlist3();
+	
+	
 };
 
 var viewlist3 = () => {
@@ -159,28 +188,40 @@ var viewlist3 = () => {
 		list3.map((item3, index) => {
 			item3.id = index + 1;
 			viewItem3 += `<tr>`;
-			viewItem3 += `<td hidden>${item3.actividades}</td>`;
 			viewItem3 += `<td>${item3.muestra_comision}</td>`;
 			viewItem3 += `<td>${item3.muestra_actividad}</td>`;
+			viewItem3 += `<td><button type="button" name="remove" id="' + n + '" class="btn btn-danger btn_remove">X</button> </td>`;
+
 			viewItem3 += `</tr>`;
 		});
 		tbl_comisiones.innerHTML = viewItem3;
+		
+
+
 		$('#ModalTask2').modal('hide');
+		
+		
 	}
 };
+function limpiar_arreglo() {
+	list3.pop();
+	
+}
 var saveAll3 = () => {
 	if (list3.length > 0) {
+		/* var id_persona = $('#txt_id_persona1').val(); */
 		sendData3.id = 1;
 		sendData3.data = list3;
 		console.log(sendData3);
 
-		fetch('../api/guardar_actividades.php', {
+		fetch('../api/guardar_comisiones.php', {
 			method: 'POST',
 			body: JSON.stringify(sendData3)
 		})
 			.then((response) => response.json())
 			.then((response) => console.log(response));
-		//alert("comisiones y actividades creados!");
+		swal("Buen trabajo!", "¡ Se insertaron nuevas comisiones y actividades!", "success");
+		limpiar_arreglo();
 
 		//window.location.href = window.location.href;
 	} else {
@@ -200,7 +241,7 @@ function eliminar() {
 		$.post(
 			'../Controlador/perfil_docente_controlador.php?op=EliminarTelefono',
 			{ eliminar_tel: eliminar_tel },
-			function(e) {}
+			function (e) { }
 		);
 		i--;
 	}
@@ -211,22 +252,32 @@ function limpiar() {
 }
 
 //FUNCION DE LAS COMISIONES Y ACTIVIDADES
-$(function() {
+$(function () {
 	// Lista de comisiones
-	$.post('../Controlador/comisiones.php').done(function(respuesta) {
+	$.post('../Controlador/comisiones.php').done(function (respuesta) {
 		$('#comisiones').html(respuesta);
 	});
 
 	// lista de actividades
-	$('#comisiones').change(function() {
+	$('#comisiones').change(function () {
 		var la_comision = $(this).val();
 		console.log(la_comision);
 
 		// Lista de actividades
 		$.post('../Controlador/actividades.php', {
 			id_comisiones: la_comision
-		}).done(function(respuesta) {
+		}).done(function (respuesta) {
 			$('#actividades').html(respuesta);
+		
+
 		});
+	
 	});
 });
+
+
+/* $("#actividades").change(function () {
+	var id_tipo_periodo = $(this).val();
+
+	$("#txt_actividad").val(id_tipo_periodo);
+}); */
