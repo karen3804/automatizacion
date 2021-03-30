@@ -88,9 +88,8 @@ function editar() {
 /*Guardar informacion editada
 ----------------------------------------------------------------------
 */
-function EditarPerfil(nombre, apellido, identidad, nacionalidad) {
+function EditarPerfil(nombre, apellido, identidad, nacionalidad, c_vitae) {
     var n = identidad.search("_");
-    var espace = identidad.search(" ");
 
     var id_persona = $("#id_persona").val();
     var nombre = $("#Nombre").val();
@@ -98,11 +97,12 @@ function EditarPerfil(nombre, apellido, identidad, nacionalidad) {
     var identidad = $("#identidad").val();
     var nacionalidad = $("#nacionalidad").val();
     var estado = $("#estado option:selected").text();
+    var c_vitae = document.getElementById("c_vitae");
 
     if (n != -1 || identidad.length == 0) {
         alert("Favor Completar el campo de identidad");
     } else {
-        $.post("../Controlador/perfil_docente_controlador.php?op=EditarPerfil", { Nombre: nombre, apellido: apellido, identidad: identidad, id_persona: id_persona, nacionalidad: nacionalidad, estado_civil: estado }, function (e) {
+        $.post("../Controlador/perfil_docente_controlador.php?op=EditarPerfil", { Nombre: nombre, apellido: apellido, identidad: identidad, id_persona: id_persona, nacionalidad: nacionalidad, estado_civil: estado, curriculum: c_vitae }, function (e) {
 
         });
         editar();
@@ -184,7 +184,13 @@ function TraerDatos() {
 
 
             if (data['all'][i].descripcion == "CORREO") {
-                $("#correo").val(data['all'][i].valor);
+                let m = 1 + i;
+
+                $('#tbDataCorreo').append('<tr id="row2' + m + '">' +
+                    '<td id="celda2' + m + '"><input maxlength="9"  id="correo' + m + '"  type="email" name="correo" class="form-control name_list" value="' + data['all'][i].valor + '"/></td>' +
+                    '<td><button type="button" name="eliminar_correo" id="' + m + '" class="btn btn-danger btn_eliminar_correo">X</button></td>' +
+                    '</tr>');
+
             } else {
                 // $("#telefono").val(data['all'][i].valor);
 
@@ -208,7 +214,7 @@ function TraerDatos() {
         $("#fecha").val(data['all'][0].fecha_nacimiento);
         $("#nacionalidad").val(data['all'][0].nacionalidad);
         $("#jornada").val(data['all'][0].jornada);
-        $("#foto").attr('src',data['all'][0].foto);
+        $("#foto").attr('src', data['all'][0].foto);
 
         MostrarEspecialidad();
         Actividades();
@@ -371,32 +377,31 @@ function addTel() {
 // Cambiar Imagen de Perfil
 function imagen() {
 
-    var id_persona = $("#id_persona").val();
     var frmData = new FormData;
-    frmData.append("imagen",$("input[name=imagen]")[0].files[0]);
-    frmData.append("id_persona",$("#id_persona").val()); 
+    frmData.append("imagen", $("input[name=imagen]")[0].files[0]);
+    frmData.append("id_persona", $("#id_persona").val());
 
     $.ajax({
 
-        url:"../Controlador/perfil_docente_controlador.php?op=CambiarFoto",
-        type:"post",
+        url: "../Controlador/perfil_docente_controlador.php?op=CambiarFoto",
+        type: "post",
         data: frmData,
         processData: false,
-        contentType:false,
-        cache:false,
+        contentType: false,
+        cache: false,
 
-        success:function(data){
-        data = JSON.parse(data);
+        success: function (data) {
+            data = JSON.parse(data);
 
-        $("#foto").attr('src',data);
-        $('#imagen').val('');
-        $('#btn_mostrar').removeAttr('hidden');
-        $('#imagen').attr('hidden','hidden');
-        $('#btn_foto').attr('hidden','hidden');
+            $("#foto").attr('src', data);
+            $('#imagen').val('');
+            $('#btn_mostrar').removeAttr('hidden');
+            $('#imagen').attr('hidden', 'hidden');
+            $('#btn_foto').attr('hidden', 'hidden');
         }
     });
 
-    
+
     return false;
 
 }
@@ -406,7 +411,7 @@ function imagen() {
 function Actividades() {
 
     var id_persona = $("#id_persona").val();
-    $.post("../Controlador/perfil_docente_controlador.php?op=Actividades", {id_persona: id_persona}, function (data, status) {
+    $.post("../Controlador/perfil_docente_controlador.php?op=Actividades", { id_persona: id_persona }, function (data, status) {
 
         data = JSON.parse(data);
 
@@ -861,13 +866,13 @@ function enviarpregunta1(){
       })
       .get();
 
-   // console.log(id_area);
-    //console.log(id_persona);
+   console.log(id_area);
+    console.log(id_persona);
     $.ajax({
       type: "POST",
       url: "../Controlador/encuesta1_docente_controlador.php",
-      //data: { array: JSON.stringify(id_area)}, //capturo array
-      data: { array: JSON.stringify(Number[id_area]) },
+    //  data: { array: id_area}, //capturo array
+      data: { array_prefe: JSON.stringify(id_area), id_persona: id_persona },
       success: function (data) {},
     });
 
@@ -880,9 +885,12 @@ function enviarpregunta1(){
     // });
     //  console.log(arr);
 
+   
 
 
 }
+
+
 function enviar(id) {
    
 
@@ -893,6 +901,90 @@ function enviar(id) {
        success: function (data) {},
      });
 
+}
+
+$('#add_correo').click(function () {
+    let i = ContarCorreo();
+
+    if (i >= 2) {
+        alert("Numero maximo de correos es de 2"); return false;
+    } else {
+        i++;
+
+    }
+});
+
+function Registrarcurriculum() {
+
+    var formData = new FormData();
+    var curriculum = $("#c_vitae")[0].files[0];
+    formData.append('c', curriculum);
+    formData.append("id_persona", $("#id_persona").val());
+
+    $.ajax({
+        url: '../Controlador/perfil_docente_controlador.php?op=cambiarCurriculum',
+        type: 'post',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (respuesta) {
+            if (respuesta = 1) {
+
+                Swal('Mensaje De Confirmacion', "Se subio el curriculum con exito", "success");
+            }
+        }
+    });
+    return false;
+}
+
+
+function AgregarCorreo(correo) {
+
+    var id_persona = $("#id_persona").val();
+    console.log(correo);
+
+    $.post("../Controlador/perfil_docente_controlador.php?op=AgregarCorreo",
+        { id_persona: id_persona, correo: correo }, function (e) {
+
+        });
+
+
+}
+
+function ContarCorreo() {
+    let inputs = document.getElementsByTagName("input");
+    let cont = 0;
+    for (let index = 0; index < inputs.length; index++) {
+        if ($(inputs[index]).attr('type') == "correo") {
+            cont++;
+        }
+    }
+    return cont;
+}
+
+function addCorreo() {
+    j = ContarCorreo();
+    let n = 1 + j;
+    var correo = $("#correo").val();
+
+    console.log(correo);
+    $('#tbDataCorreo').append(
+        '<tr id="row' + n + '">' +
+        '<td id="celda' + n + '"><input maxlength="9" id="correo' + n + '"  type="correo" name="correo" class="form-control name_list" value="' + correo + '"/></td>' +
+        '<td><button type="button" name="removeCorreo" id="' + n + '" class="btn btn-danger btn_removeCorreo">X</button></td>' +
+        '</tr>'
+    );
+
+    AgregarCorreo(correo);
+    correo.value = "";
+
+    $("#ModalCorreo").modal('hide');
+}
+
+function MostrarBotonCurriculum() {
+    $('#c_vitae').removeAttr('hidden');
+    $('#btn_curriculum').removeAttr('hidden');
+    $('#btn_mostrar_curriculum').attr('hidden', 'hidden');
 }
 
 
