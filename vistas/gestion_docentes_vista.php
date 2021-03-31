@@ -211,7 +211,7 @@ ob_end_flush();
                                                 <table class="table table-bordered table-striped m-0">
                                                     <thead>
                                                         <tr>
-                                                            <!-- <th>#</th> -->
+                                                            <th>#</th> 
                                                             <th>Comisión</th>
                                                             <th>Actividad</th>
                                                         </tr>
@@ -283,6 +283,7 @@ ob_end_flush();
                                 <div class="container">
                                     <div class="form-group">
                                         <input type="text" id="txt_id_persona1" readonly hidden>
+                                       
 
                                         <label>Comisiones</label>
                                         <select class="form-control" name="comisiones" id="comisiones">

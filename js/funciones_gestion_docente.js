@@ -92,6 +92,7 @@ $('#tabladocentes').on('click', '.editar', function () {
 	//var id_persona=$("#txt_id_persona").val();
 
 	Actividades();
+	
 });
 
 function persona() {
@@ -136,24 +137,30 @@ function persona() {
 function Actividades() {
 	var id_persona = $('#txt_id_persona').val();
 
-	$.post('../Controlador/perfil_docente_controlador.php?op=Actividades', { id_persona: id_persona }, function (
+	$.post('../Controlador/gestion_docente_controlador.php?op=Actividades', { id_persona: id_persona }, function (
 		data,
 		status
 	) {
 		data = JSON.parse(data);
 		console.log(data);
 		for (i = 0; i < data.actividades.length; i++) {
+			
 			$('#tbl_comisiones').append(
 				'<tr id="row' + i + '">' +
-				 /* '<td> </td>' + */
+				'<td>' + data['actividades'][i].id_act_persona + '</td>' + 
 				'<td>' + data['actividades'][i].comision + '</td>' +
 				'<td>' + data['actividades'][i].actividad + '</td>' +
 				'<td><button type="button" name="remove" id="' + i +
 				'" class="btn btn-danger btn_remove">X</button></td>' +
 				'</tr>'
 			);
+			
+
 		}
-	});
+		
+		
+	}); limpiar();
+	
 }
 
 //Comisiones y actividades
@@ -175,7 +182,9 @@ var addTask3 = () => {
 		muestra_actividad: actividades.options[actividades.selectedIndex].text,
 		muestra_comision: comisiones.options[comisiones.selectedIndex].text
 	};
+	
 	Actividades();
+
 	list3.push(item3);
 	viewlist3();
 	
@@ -188,9 +197,12 @@ var viewlist3 = () => {
 		list3.map((item3, index) => {
 			item3.id = index + 1;
 			viewItem3 += `<tr>`;
+			viewItem3 += `<td></td>`;
 			viewItem3 += `<td>${item3.muestra_comision}</td>`;
 			viewItem3 += `<td>${item3.muestra_actividad}</td>`;
 			viewItem3 += `<td><button type="button" name="remove" id="' + n + '" class="btn btn-danger btn_remove">X</button> </td>`;
+			
+
 
 			viewItem3 += `</tr>`;
 		});
@@ -222,6 +234,8 @@ var saveAll3 = () => {
 			.then((response) => console.log(response));
 		swal("Buen trabajo!", "¡ Se insertaron nuevas comisiones y actividades!", "success");
 		limpiar_arreglo();
+		
+		
 
 		//window.location.href = window.location.href;
 	} else {
@@ -248,7 +262,13 @@ function eliminar() {
 }
 
 function limpiar() {
-	$('#tbl_comisiones').empty();
+	$('#tbl_comisiones').empty(); 
+	
+}
+function actualizar_modal() {
+	
+	$('#tbl_comisiones').reload();
+
 }
 
 //FUNCION DE LAS COMISIONES Y ACTIVIDADES
@@ -268,6 +288,7 @@ $(function () {
 			id_comisiones: la_comision
 		}).done(function (respuesta) {
 			$('#actividades').html(respuesta);
+			$('#id_actividad').val(id_actividad);
 		
 
 		});
