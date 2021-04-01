@@ -36,6 +36,7 @@ class modelo_gestion_docente
                 JOIN tbl_comisiones COM ON COM.id_comisiones = ACT.id_comisiones
                 WHERE ACTP.id_persona = $id_persona
         ");
+  
     $actividades = array();
     
 
@@ -46,6 +47,13 @@ class modelo_gestion_docente
 
     //echo '<pre>';print_r($actividades);echo'</pre>';
     return $actividades;
+  }
+  function EliminarTelefono($eliminar_actividad)
+  {
+    global $instancia_conexion;
+    $consulta = $instancia_conexion->ejecutarConsulta("DELETE FROM tbl_actividades_persona WHERE id_act_persona='$eliminar_actividad';");
+
+    return $consulta;
   }
 
 }

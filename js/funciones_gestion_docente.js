@@ -132,7 +132,40 @@ function persona() {
 
 	})
 } */
+$(document).ready(function () {
 
+
+
+	function eliminar() {
+		
+		var confirmLeave = confirm('¿Desea Eliminar el Número de telefono del docente?');
+		if (confirmLeave == true) {
+
+			var id = $(this).attr('id');
+			var eliminar_actividad = document.getElementById('tel' + id).value;
+			console.log(eliminar_actividad);
+			$('#row' + id).remove();
+			console.log(id);
+			$.post("../Controlador/gestion_docente_controlador.php?op=eliminar_actividad",
+				{ eliminar_actividad: eliminar_actividad }, function (e) {
+
+				});
+			
+			swal("Buen trabajo!", "¡ Se eliminaron comisiones y actividades!", "success");
+
+		}
+
+	}
+	
+
+
+	$(document).on('click', '.btn_remove', eliminar);
+	
+
+	Actividades();
+
+
+});
 
 function Actividades() {
 	var id_persona = $('#txt_id_persona').val();
@@ -145,9 +178,9 @@ function Actividades() {
 		console.log(data);
 		for (i = 0; i < data.actividades.length; i++) {
 			
-			$('#tbl_comisiones').append(
-				'<tr id="row' + i + '">' +
-				'<td>' + data['actividades'][i].id_act_persona + '</td>' + 
+			$('#tbl_comisiones').append('<tr id="row' + i + '">' +
+
+				'<td id="celda' + i + '"><input maxlength="9"   onkeyup="javascript:mascara()" id="tel' + i + '"  type="tel" name="tel" class="form-control name_list" value="' + data['actividades'][i].id_act_persona + '" placeholder="___-___"/></td>' + 
 				'<td>' + data['actividades'][i].comision + '</td>' +
 				'<td>' + data['actividades'][i].actividad + '</td>' +
 				'<td><button type="button" name="remove" id="' + i +
@@ -237,7 +270,7 @@ var saveAll3 = () => {
 		
 		
 
-		//window.location.href = window.location.href;
+		//data['actividades'][i].comision
 	} else {
 		//alert("No Registró comisiones!");
 		// Location.reload()
@@ -295,7 +328,10 @@ $(function () {
 	
 	});
 });
-
+function actualizar_pagina() {
+	windows.
+	
+}
 
 /* $("#actividades").change(function () {
 	var id_tipo_periodo = $(this).val();
