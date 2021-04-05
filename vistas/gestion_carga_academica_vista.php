@@ -1,12 +1,12 @@
 <?php
 ob_start();
 session_start();
-require_once ('../vistas/pagina_inicio_vista.php');
-require_once ('../clases/Conexion.php');
-require_once ('../clases/funcion_bitacora.php');
-require_once ('../clases/funcion_visualizar.php');
-require_once ('../clases/funcion_permisos.php');
-require_once ('../clases/conexion_mantenimientos.php');
+require_once('../vistas/pagina_inicio_vista.php');
+require_once('../clases/Conexion.php');
+require_once('../clases/funcion_bitacora.php');
+require_once('../clases/funcion_visualizar.php');
+require_once('../clases/funcion_permisos.php');
+require_once('../clases/conexion_mantenimientos.php');
 
 
 
@@ -50,7 +50,7 @@ $sql2->execute();
 $resultado2 = $sql2->get_result();
 $row2 = $resultado2->fetch_array(MYSQLI_ASSOC);
 
-var_dump($row2);
+//var_dump($row2);
 
 ob_end_flush();
 
@@ -63,15 +63,23 @@ ob_end_flush();
 <head>
 
     <!-- css -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
     <link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css" rel="stylesheet" />
-
+ -->
 
     <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css"> -->
-    <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <script src="../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <!--datables CSS básico-->
+    <link rel="stylesheet" type="text/css" href="../plugins/datatables/datatables.min.css" />
+    <!--datables estilo bootstrap 4 CSS-->
+    <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
+
 
 </head>
 
@@ -1085,8 +1093,18 @@ ob_end_flush();
             "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
             "sSortDescending": ": Activar para ordenar la columna de manera descendente"
         }
+
     }
 </script>
 <!-- <script type="text/javascript" charset="utf8" src="../plugins/DataTables(1)/datatables.min.js"></script> -->
 
 <script src="../plugins/select2/js/select2.min.js"></script>
+<!-- datatables JS -->
+<script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script>
+
+<!-- para usar botones en datatables JS -->
+<script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="../plugins/datatables/JSZip-2.5.0/jszip.min.js"></script>
+<script src="../plugins/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script src="../plugins/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="../plugins/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>

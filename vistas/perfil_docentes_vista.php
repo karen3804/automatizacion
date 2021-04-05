@@ -371,26 +371,26 @@ $row = $consulta->fetch_all(MYSQLI_ASSOC);
                             </div>
 
                             <div class="card " style="width:420px;border-color:gray;">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Correo</h4>
-                                            <div class="form-group card-text">
-                                                <!-- TABLA CORREO -->
-                                                <button type="button" name="add_correo" id="add_correo" class="btn btn-primary card-title" data-toggle="modal" data-target="#ModalCorreo">Agregar Correo</button>
+                                <div class="card-body">
+                                    <h4 class="card-title">Correo</h4>
+                                    <div class="form-group card-text">
+                                        <!-- TABLA CORREO -->
+                                        <button type="button" name="add_correo" id="add_correo" class="btn btn-primary card-title" data-toggle="modal" data-target="#ModalCorreo">Agregar Correo</button>
 
-                                                <table class="table table-bordered table-striped m-0">
-                                                    <thead>
-                                                        <tr>
+                                        <table class="table table-bordered table-striped m-0">
+                                            <thead>
+                                                <tr>
 
-                                                            <th>Correo</th>
-                                                            <th>Eliminar</th>
+                                                    <th>Correo</th>
+                                                    <th>Eliminar</th>
 
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="tbDataCorreo"></tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbDataCorreo"></tbody>
+                                        </table>
                                     </div>
+                                </div>
+                            </div>
                             <!---card-->
 
 
@@ -722,36 +722,36 @@ function mascara(){
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-              
-                    <div class="modal-body">
 
-                        <!--  <div class="card " style="width:420px;border-color:gray;"> -->
+                <div class="modal-body">
 
-                        <div style="text-align:left">
+                    <!--  <div class="card " style="width:420px;border-color:gray;"> -->
 
-
-                            <h5 style="font-weight: bold; font-size: 15px"> 1. ¿En que áreas de la Carrera imparte clases?</h5>
-                            <div class="form-check">
-                                <?php
-                                foreach ($row1 as $id) {
-                                    echo '<br>';
-                                    echo '<input class="pregunta1" type="checkbox" name="areas[]" value="' . $id["id_area"] . '">' . $id["area"];
-                                }
-
-                                ?>
-                            </div>
+                    <div style="text-align:left">
 
 
+                        <h5 style="font-weight: bold; font-size: 15px"> 1. ¿En que áreas de la Carrera imparte clases?</h5>
+                        <div class="form-check">
+                            <?php
+                            foreach ($row1 as $id) {
+                                echo '<br>';
+                                echo '<input class="pregunta1" type="checkbox" name="areas[]" value="' . $id["id_area"] . '">' . $id["area"];
+                            }
+
+                            ?>
                         </div>
 
 
+                    </div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="button" value="pregunta1" class="btn btn-primary" onclick="enviarpregunta1()">Guardar</button>
-                    </div>
-               
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" value="pregunta1" class="btn btn-primary" onclick="enviarpregunta1()">Guardar</button>
+                </div>
+
             </div>
         </div>
     </div>
@@ -773,7 +773,7 @@ function mascara(){
                             <?php
                             foreach ($row1 as $id) {
                                 echo '<br>';
-                                echo '<input class="pregunta2" type="checkbox" name="' . $id["id_area"] . '" value="' . $id["id_area"] . '">' . $id["area"];
+                                echo '<input class="pregunta2" type="checkbox" name="areas2[]" value="' . $id["id_area"] . '">' . $id["area"];
                             }
 
                             ?>
@@ -785,7 +785,7 @@ function mascara(){
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-primary" onclick="enviarpregunta2();">Guardar</button>
                 </div>
             </div>
         </div>
@@ -812,7 +812,7 @@ function mascara(){
                             <?php
                             foreach ($row as $id) {
                                 echo '<br>';
-                                echo '<input class="pregunta3" type="checkbox" name="' . $id["Id_asignatura"] . '" value="' . $id["asignatura"] . '">' . $id["asignatura"];
+                                echo '<input  required class="pregunta3" type="checkbox" name="asignatura3[]" value="' . $id["Id_asignatura"] . '">' . $id["asignatura"];
                             }
 
                             ?>
@@ -825,7 +825,7 @@ function mascara(){
                             <?php
                             foreach ($row as $id) {
                                 echo '<br>';
-                                echo '<input class="pregunta4" type="checkbox" name="' . $id["Id_asignatura"] . '" value="' . $id["asignatura"] . '">' . $id["asignatura"];
+                                echo '<input required class="pregunta4" type="checkbox" name="asignatura4[]" value="' . $id["Id_asignatura"] . '">' . $id["asignatura"];
                             }
 
                             ?>
@@ -835,7 +835,7 @@ function mascara(){
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Guardar</button>
+                        <button type="button" class="btn btn-primary" onclick="enviarpregunta3();">Guardar</button>
                     </div>
                 </div>
             </div>
