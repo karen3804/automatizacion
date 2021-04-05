@@ -143,6 +143,7 @@ ob_end_flush();
                                     <th>FORMACIÓN ACADÉMICA</th>
                                     <th>FOTO</th>
                                     <th>CURRICULUM</th>
+                                    <th>ESTADO</th>
                                     <th>ACCIÓN</th>
 
 

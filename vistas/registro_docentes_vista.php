@@ -472,7 +472,7 @@ ob_end_flush();
                       <select class="form-control" name="jornada" id="jornada" value="" style="text-transform: uppercase">
                       </select>
                     </div>
-                    <input type="text" name="jornada_id" id="jornada_id" readonly>
+                    <input hidden type="text" name="jornada_id" id="jornada_id" readonly>
 
                   </div>
 
