@@ -982,6 +982,43 @@ function enviarpregunta4() {
 
 
 
+$("#btn_modal1").click(function () {
+  var persona = $("#id_persona").val();
+  console.log(persona);
+    $.post(
+      "../Controlador/respuesta1_carga_controlador.php",
+      { id_persona: persona },
+
+      function (data, status) {
+        console.log(data);
+        data = JSON.parse(data);
+
+        console.log(data.id_area);
+
+      }
+  );
+
+
+   
+  // $.ajax({
+  //   url: "../Controlador/respuesta1_carga_controlador.php",
+  //   type: "POST",
+  //   data: {
+  //     // cod_asig: ,
+  //     id_persona: persona,
+  //   },
+  // }).done(function (resp) {
+  //   console.log(resp.id_area);
+  // });
+});
+ function alerta() {
+    
+     var chk = document.getElementById("c").value;
+     alert(chk);
+ }
+
+
+
 
 $('#add_correo').click(function () {
     let i = ContarCorreo();

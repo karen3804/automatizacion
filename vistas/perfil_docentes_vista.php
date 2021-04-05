@@ -190,6 +190,18 @@ $row = $consulta->fetch_all(MYSQLI_ASSOC);
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col">
+                                    <label for="">Jornada:</label>
+
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user icon"></i></span>
+                                            <input disabled name="" type="text" class="form-control" id="jornada">
+
+                                        </div>
+                                    </div>
+                                </div>
+
 
 
 
@@ -223,6 +235,50 @@ $row = $consulta->fetch_all(MYSQLI_ASSOC);
                                     </div>
                                 </div>
 
+
+                                <div class="col">
+                                    <label for="">Categoria:</label>
+
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user icon"></i></span>
+                                            <input disabled name="" type="text" class="form-control" id="categoria">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="email">Genero:</label>
+
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
+
+                                            <select name="" disabled id="genero" class="form-control" style=" text-align-last: center;">
+
+                                                <option value="1">Femenino</option>
+                                                <option value="2">Masculino</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="email">Estado Civil:</label>
+
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
+
+                                            <select name="" id="estado" class="form-control" style=" text-align-last: center;">
+                                                <option value="1">CASADO</option>
+                                                <option value="2">SOLTERO</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- <div class="col"hidden>
                                     <label for="">Correo:</label>
 
@@ -235,115 +291,63 @@ $row = $consulta->fetch_all(MYSQLI_ASSOC);
                                     </div>
                                 </div> -->
 
-                                <div class="d-flex justify-content-around flex-row bd-highlight row">
-                                    <div class="col">
-                                        <label for="">Categoria:</label>
 
-                                        <div class="form-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-user icon"></i></span>
-                                                <input disabled name="" type="text" class="form-control" id="categoria">
+                            </div>
+                            <div class="d-flex justify-content-around flex-row bd-highlight row">
 
-                                            </div>
+                                <div class="col">
+                                    <label for="">Fecha de Nacimiento:</label>
+
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                            <input value="" type="date" name="Fecha" id="fecha" class="datepicker">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="d-flex justify-content-around flex-row bd-highlight row">
 
-                                    <div class="col-20">
-                                        <label for="email">Fecha de Nacimiento:</label>
 
-                                        <div class="form-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                                <input value="" type="date" name="Fecha" id="fecha" class="datepicker">
-                                            </div>
+
+
+
+
+
+                            </div>
+
+                            <div class="d-flex justify-content-around flex-row bd-highlight row">
+
+
+
+                                <div class="col-30">
+                                    <label for="">Curriculum:</label>
+
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
+                                            <a href="" target="_blank" id="curriculum">Curriculum</a>
+
                                         </div>
                                     </div>
-
-
-
-                                    <div class="col-30">
-                                        <label for="email">Genero:</label>
-
-                                        <div class="form-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
-
-                                                <select name="" disabled id="genero" class="form-control" style=" text-align-last: center;">
-
-                                                    <option value="1">Femenino</option>
-                                                    <option value="2">Masculino</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-30">
-                                        <label for="email">Estado Civil:</label>
-
-                                        <div class="form-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
-
-                                                <select name="" id="estado" class="form-control" style=" text-align-last: center;">
-                                                    <option value="1">CASADO</option>
-                                                    <option value="2">SOLTERO</option>
-
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
 
-                                <div class="d-flex justify-content-around flex-row bd-highlight row">
+                                <div class="col-50">
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
 
-                                    <div class="col-20">
-                                        <label for="">Jornada:</label>
+                                            <form action="" method="POST" role="form" enctype="multipart/form-data" id="frmimagen">
+                                                <button type="button" id="btn_mostrar_curriculum" class="btn btn-info" onclick="MostrarBotonCurriculum();"></i>Actualizar Curriculum</button>
 
-                                        <div class="form-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-user icon"></i></span>
-                                                <input disabled name="" type="text" class="form-control" id="jornada">
+                                                <input hidden class="btn btn-info" type="file" accept=".doc, .docx, .pdf" maxlength="60" id="c_vitae" name="c_vitae" value="" style="text-transform: uppercase">
 
-                                            </div>
-                                        </div>
-                                    </div>
+                                                <button hidden type="submit" id="btn_curriculum" class="btn btn-dark btn_curriculum"></i>Guardar Curriculum</button>
 
+                                            </form>
 
-                                    <div class="col-30">
-                                        <label for="">Curriculum:</label>
-
-                                        <div class="form-group">
-                                            <div class="input-group-prepend">
-                                                <a href="" target="_blank" id="curriculum">Curriculum</a>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-50">
-                                        <div class="form-group">
-                                            <div class="input-group-prepend">
-
-                                                <form action="" method="POST" role="form" enctype="multipart/form-data" id="frmimagen">
-                                                    <button type="button" id="btn_mostrar_curriculum" class="btn btn-info" onclick="MostrarBotonCurriculum();"></i>Actualizar Curriculum</button>
-
-                                                    <input hidden class="btn btn-info" type="file" accept=".doc, .docx, .pdf" maxlength="60" id="c_vitae" name="c_vitae" value="" style="text-transform: uppercase">
-
-                                                    <button hidden type="submit" id="btn_curriculum" class="btn btn-dark btn_curriculum"></i>Guardar Curriculum</button>
-
-                                                </form>
-
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
 
@@ -548,9 +552,9 @@ $row = $consulta->fetch_all(MYSQLI_ASSOC);
                                 <div class="card-body">
                                     <h4 class="card-title">Encuesta Docente</h4>
                                     <div class="card-text">
-                                        <button type="button" id="btn_modal" class="btn btn-info " onclick="pregunta1();">Pregunta 1</button>
-                                        <button type="button" id="btn_modal" class="btn btn-info " onclick="pregunta2();">Pregunta 2</button>
-                                        <button type="button" id="btn_modal" class="btn btn-info " onclick="pregunta3();">Pregunta 3</button>
+                                        <button type="button" id="btn_modal1" class="btn btn-info " onclick="pregunta1();">Pregunta 1</button>
+                                        <button type="button" id="btn_modal2" class="btn btn-info " onclick="pregunta2();">Pregunta 2</button>
+                                        <button type="button" id="btn_modal3" class="btn btn-info " onclick="pregunta3();">Pregunta 3</button>
                                     </div>
                                 </div>
 
@@ -735,7 +739,7 @@ function mascara(){
                             <?php
                             foreach ($row1 as $id) {
                                 echo '<br>';
-                                echo '<input class="pregunta1" type="checkbox" name="areas[]" value="' . $id["id_area"] . '">' . $id["area"];
+                                echo '<input  class="pregunta1"   type="checkbox" name="areas[]" value="' . $id["id_area"] . '">' . $id["area"];
                             }
 
                             ?>
