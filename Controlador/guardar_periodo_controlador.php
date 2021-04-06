@@ -14,7 +14,6 @@ $fecha_final = strtoupper($_POST['fecha_final']);
 $adic_cancel = strtoupper($_POST['fecha_adic_canc']);
 $tipo_periodo = strtoupper($_POST['tipo_p']);
 $fecha_actual = date("Y-m-d");
-$boton = strtoupper($_POST['btn_guardar_periodo']);
 //sumo 1 mes
 $desbloqueo = date("Y-m-d", strtotime($fecha_actual . "+ 1 month"));
 
@@ -71,11 +70,6 @@ if ($_POST['num_periodo']  <> '' and  $_POST['num_anno'] <> '' and  $_POST['fech
             if ($resultado === TRUE) {
                 bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INSERTO', 'EL PERIODO  ' . $num_periodo . ' EN EL AÑO ' . $num_anno . '');
 
-                echo '<script type="text/javascript">
-                    document.getElementById("btn_guardar_periodo").enable=true;
-                  </script>';
-                /*   require"../contenidos/crearRol-view.php"; 
-    		header('location: ../contenidos/crearRol-view.php?msj=2');*/
                 echo '<script type="text/javascript">
                               swal({
                                    title:"",

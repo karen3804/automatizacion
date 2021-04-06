@@ -60,6 +60,12 @@ $row = $consulta->fetch_all(MYSQLI_ASSOC);
 //var_dump($row);
 
 
+$sql2 = "SELECT id_pref_area_doce,
+(SELECT a.area FROM tbl_areas AS a WHERE a.id_area = tbl_pref_area_docen.id_area LIMIT 8) area_docente
+FROM tbl_pref_area_docen
+WHERE id_persona = '$usuario'";
+$consulta2 = $mysqli->query($sql2);
+$row2 = $consulta2->fetch_all(MYSQLI_ASSOC);
 
 ?>
 
@@ -276,7 +282,7 @@ $row = $consulta->fetch_all(MYSQLI_ASSOC);
                                         </div>
 
                                     </div>
-                                    <p hidden id="Textofecha"  style="color:red;">¡El docente debe ser mayor de edad! </p>
+                                    <p hidden id="Textofecha" style="color:red;">¡El docente debe ser mayor de edad! </p>
 
                                 </div>
                                 <div class="col">
@@ -735,10 +741,20 @@ function mascara(){
                         <h5 style="font-weight: bold; font-size: 15px"> 1. ¿En que áreas de la Carrera imparte clases?</h5>
                         <div class="form-check">
                             <?php
-                            foreach ($row1 as $id) {
-                                echo '<br>';
-                                echo '<input  class="pregunta1"   type="checkbox" name="areas[]" value="' . $id["id_area"] . '">' . $id["area"];
-                            }
+
+                            if ($row1 = $row2) {
+                                // echo '<input type="checkbox"  name="" value="' . $id["id_pref_area_doce"] . '">' . $id["area_docente"];
+
+                                foreach ($row2 as $id) {
+                                    echo '<br>';
+                                    echo '<input class="pregunta1" type="checkbox" checked = "checked" name="areas[]" value="' . $id["id_pref_area_doce"] . '">' . $id["area_docente"];
+                                }
+                            } else {
+                                foreach ($row1 as $id) {
+                                    echo '<br>';
+                                    echo '<input  class="pregunta1" type="checkbox" name="areas[]" value="' . $id["id_area"] . '">' . $id["area"];
+                                }
+                            };
 
                             ?>
                         </div>

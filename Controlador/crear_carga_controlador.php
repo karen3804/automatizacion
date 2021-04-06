@@ -2,7 +2,7 @@
 
 <?php
 
-require '../Modelos/tabla_carga_modelo.php';
+require ('../Modelos/tabla_carga_modelo.php');
 
 $MU = new modeloCarga();
 
