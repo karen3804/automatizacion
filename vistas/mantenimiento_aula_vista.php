@@ -203,7 +203,7 @@ ob_end_flush();
 
           <thead>
             <tr>
-              <th hidden>ID </th>
+              <th>ID </th>
               <th>CODIGO AULAS</th>
               <th>DESCRIPCION </th>
               <th>CAPACIDAD </th>
@@ -216,7 +216,7 @@ ob_end_flush();
           <tbody>
             <?php while ($row = $resultadotabla->fetch_array(MYSQLI_ASSOC)) { ?>
               <tr>
-                <td hidden><?php echo $row['id_aula']; ?></td>
+                <td><?php echo $row['id_aula']; ?></td>
                 <td><?php echo $row['codigo']; ?></td>
                 <td><?php echo $row['descripcion']; ?></td>
                 <td><?php echo $row['capacidad']; ?></td>
@@ -226,7 +226,7 @@ ob_end_flush();
 
                 <td style="text-align: center;">
 
-                  <a href="../vistas/mantenimiento_aula_vista.php?codigo=<?php echo $row['codigo']; ?>" class="btn btn-primary btn-raised btn-xs">
+                  <a href="../vistas/mantenimiento_aula_vista.php?id_aula=<?php echo $row['id_aula']; ?>" class="btn btn-primary btn-raised btn-xs">
                     <i class="far fa-edit" style="display:<?php echo $_SESSION['modificar_aula'] ?> "></i>
                   </a>
                 </td>
@@ -265,7 +265,7 @@ ob_end_flush();
 
 -->
 
-  <form action="../Controlador/actualizar_aula_controlador.php?codigo=<?php echo $_SESSION['codigo']; ?>" method="post" data-form="update" autocomplete="off">
+  <form action="../Controlador/actualizar_aula_controlador.php?id_aula=<?php echo $_SESSION['id_aula']; ?>" method="post" data-form="update" autocomplete="off">
 
 
 
@@ -293,14 +293,14 @@ ob_end_flush();
 
 
 
-                <div class="form-group">
-
-                  
+                  <div class="form-group">
 
 
-                      <input hidden class="form-control" type="text" id="txt_idaula" name="txt_idaula" value="<?php echo $_SESSION['id_aula']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Numeros(event)" maxlength="30">
 
-                </div>
+
+                    <input hidden class="form-control" type="text" id="txt_idaula" name="txt_idaula" value="<?php echo $_SESSION['id_aula']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Numeros(event)" maxlength="30">
+
+                  </div>
                   <div class="form-group">
 
                     <label>Modificar Codigo Aula</label>

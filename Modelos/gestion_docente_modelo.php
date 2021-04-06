@@ -56,12 +56,17 @@ class modelo_gestion_docente
     return $consulta;
   }
 
-  function actualizarestado($id_persona_, $Estado)
+  function actualizarestado($Estado,$id_persona_)
   {
     global $instancia_conexion;
-    $consulta = $instancia_conexion->ejecutarConsulta("CALL proc_prueba('$Estado', '$id_persona_')");
-
-    return $consulta;
+    $sql = "CALL proc_estado_usuario('$Estado', '$id_persona_');";
+    
+    if ($consulta = $instancia_conexion->ejecutarConsulta($sql)) {
+      return 1;
+    } else {
+      return 0;
+    }
+    
   }
 
 }

@@ -65,8 +65,11 @@ ob_end_flush();
 
 <head>
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- css -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 </head>
@@ -145,6 +148,7 @@ ob_end_flush();
                                     <th>CURRICULUM</th>
                                     <th>ESTADO</th>
                                     <th>ACCIÓN</th>
+                                    
 
 
                                 </tr>
@@ -181,7 +185,7 @@ ob_end_flush();
                                     <input type="hidden">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" id="txt_id_persona" readonly hidden>
+                                            <input type="text" id="txt_id_persona" readonly>
 
                                             <label> Docente: </label>
                                             <input class="form-control" type="text" id="txt_nombre_docente" name="txt_nombre_docente" readonly>
@@ -212,7 +216,7 @@ ob_end_flush();
                                                 <table class="table table-bordered table-striped m-0">
                                                     <thead>
                                                         <tr>
-                                                            <th>#</th> 
+                                                            <th>#</th>
                                                             <th>Comisión</th>
                                                             <th>Actividad</th>
                                                         </tr>
@@ -283,8 +287,8 @@ ob_end_flush();
                             <div class="modal-body">
                                 <div class="container">
                                     <div class="form-group">
-                                        <input type="text" id="txt_id_persona1" readonly hidden>
-                                       
+                                        <input type="text" id="txt_id_persona1" readonly>
+
 
                                         <label>Comisiones</label>
                                         <select class="form-control" name="comisiones" id="comisiones">

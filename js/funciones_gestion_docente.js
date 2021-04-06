@@ -72,17 +72,22 @@ function TablaDocente() {
 			{data: 'Estado',
 				render: function(data, type, row) {
 					if (data == 'ACTIVO') {
-						return "<span class='label label-success'>" + data + '</span>';
+						return "<span class='label label-success'>" +data+ '</span>';
 					} else {
-						return "<span class='label label-danger'>" + data + '</span>';
+						return "<span class='label label-danger'>" +data+ '</span>';
 					}
 				}
 				
 			},
-			{defaultContent:
+			/* {defaultContent:
 				"<div class=''> <button style='font-size:13px;' type='button' class='editar btn btn-primary btn-m '<i class='fas fa-edit'></i></button><button style='font-size:13px;' type='button' class='desactivar btn btn-danger'><i class='fa fa-trash'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check'></i></button> </div>"
 				
-			}
+			} */
+			{
+				"defaultContent": "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'><i class='fa fa-trash'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check'></i></button>"
+			
+			} 
+
 				
 			
 			
@@ -94,55 +99,75 @@ function TablaDocente() {
 }
 
 //funciones de activar usuario
-$('#tabladocentes').on('click','.activar',function(){
-    var data = table.row($(this).parents('tr')).data();
-    if(table.row(this).child.isShown()){
-        var data = table.row(this).data();
-    }
-    Swal({
-        title: 'Esta seguro de activar al usuario?',
-        text: "Una vez hecho esto el usuario  tendra acceso al sistema",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si'
-      }).then((result) => {
-        if (result) {
-            Modificar_Estatus(data.id_persona,'ACTIVO');
-        }
-      })
+$('#tabladocentes').on('click', '.activar', function () {
+	var data = table.row($(this).parents('tr')).data();
+	if (table.row(this).child.isShown()) {
+		var data = table.row(this).data();
+	}
+	if (data.Estado == 'ACTIVO') {
+		mensaje = "ya se encuentra activo";
+		swal(
+			"Alert", "El usuario " + mensaje + "", "warning");
+	} else {
+	swal({
+		title: "Alerta!",
+		text:
+			"Esta seguro de desactivar el docente ?",
+		icon: "warning",
+		buttons: true,
+		dangerMode: false,
+	}).then((willDelete) => {
+		if (willDelete) {
+
+			Modificar_Estatus(data.id_persona, 'ACTIVO');
+			/* table.ajax.reload();  */
+
+		}
+	});
+	}
 })
 
 $('#tabladocentes').on('click','.desactivar',function(){
     var data = table.row($(this).parents('tr')).data();
     if(table.row(this).child.isShown()){
-        var data = table.row(this).data();
-    }
-    Swal({
-        title: 'Esta seguro de desactivar al usuario?',
-        text: "Una vez hecho esto el usuario no tendra acceso al sistema",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si'
-      }).then((result) => {
-        if (result.value) {
-            Modificar_Estatus(data.id_persona,'INACTIVO');
-        }
-      })
+		var data = table.row(this).data();
+		
+	}
+	if (data.Estado == 'INACTIVO') {
+		mensaje = "ya se encuentra inactivo";
+		swal(
+			"Alert", "El usuario " + mensaje + " ", "warning");
+	} else {
+		
+	
+	swal({
+		title: "Alerta!",
+		text:
+			"Esta seguro de activar el docente ?",
+		icon: "success",
+		buttons: true,
+		dangerMode: false,
+	}).then((willDelete) => {
+		if (willDelete) {
+			
+		 	Modificar_Estatus(data.id_persona, 'INACTIVO');
+			 /* table.ajax.reload();  */ 
+			
+		} 
+	});
+
+	}
 })
 
 function Modificar_Estatus(id_persona_,Estado){
-    var mensaje ="";
+     var mensaje ="";
     if(Estado=='INACTIVO'){
-        mensaje="desactivo";
+        mensaje="desactivó"; 
     }else{
-        mensaje="activo";
+        mensaje="activó";
     }
     $.ajax({
-        "url":"../Controlador/gestion_docente_controlador.php?op=estado",
+		"url": "../Controlador/actualizar_estado_controlador.php",
         type:'POST',
         data:{
             id_persona:id_persona_,
@@ -150,11 +175,17 @@ function Modificar_Estatus(id_persona_,Estado){
         }
     }).done(function(resp){
         if(resp>0){
-            Swal.fire("Mensaje De Confirmacion","El usuario se "+mensaje+" con exito","success")            
-            .then ( ( value ) =>  {
-                table.ajax.reload();
-            }); 
-        }
+			swal(
+				"Buen trabajo!", "El usuario se " + mensaje + " con exito", "success"
+			);
+			table.ajax.reload();
+		} else {
+			swal(
+				"Buen trabajo!", "ERROR TONTA", "success"
+			);
+		}
+		
+		
     })
 
 

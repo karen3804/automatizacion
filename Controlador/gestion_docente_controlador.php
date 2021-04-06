@@ -26,7 +26,7 @@ switch ($_GET["op"])
   case 'estado':
 
 
-    $rspta = $instancia_modelo->actualizarestado($id_persona_, $estado);
+    $rspta = $instancia_modelo->actualizarestado( $Estado, $id_persona_);
 
   break;
     
