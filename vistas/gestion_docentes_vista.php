@@ -147,7 +147,8 @@ ob_end_flush();
                                     <th>FOTO</th>
                                     <th>CURRICULUM</th>
                                     <th>ESTADO</th>
-                                    <th>ACCIÓN</th>
+                                    <th>MODIFICAR ESTADO</th>
+                                    <th>MODIFICAR INFORMACIÓN</th>
                                     
 
 

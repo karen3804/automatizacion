@@ -84,7 +84,11 @@ function TablaDocente() {
 				
 			} */
 			{
-				"defaultContent": "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'><i class='fa fa-trash'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check'></i></button>"
+				"defaultContent": "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'></i><i class='fas fa-ban'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check-circle'></i></button>"
+			
+			},
+			{
+				"defaultContent": "<button style='font-size:13px;' type='button' class='editar btn btn-primary '><i class='fas fa-edit'></i></button>"
 			
 			} 
 
@@ -112,7 +116,7 @@ $('#tabladocentes').on('click', '.activar', function () {
 	swal({
 		title: "Alerta!",
 		text:
-			"Esta seguro de desactivar el docente ?",
+			"Esta seguro de activar el docente ?",
 		icon: "warning",
 		buttons: true,
 		dangerMode: false,
@@ -143,8 +147,8 @@ $('#tabladocentes').on('click','.desactivar',function(){
 	swal({
 		title: "Alerta!",
 		text:
-			"Esta seguro de activar el docente ?",
-		icon: "success",
+			"Esta seguro de desactivar el docente ?",
+		icon: "warning",
 		buttons: true,
 		dangerMode: false,
 	}).then((willDelete) => {
