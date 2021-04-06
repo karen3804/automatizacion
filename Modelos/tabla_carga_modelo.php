@@ -133,11 +133,7 @@ class modeloCarga
     {
         global $instancia_conexion;
         $sql = "call sel_area_pref_doce('$id_persona')";
-        if ($consulta = $instancia_conexion->ejecutarConsulta($sql)) {
-            while ($consulta_VU = mysqli_fetch_assoc($consulta)) {
-                $arreglo["data"][] = $consulta_VU;
-            }
-            return $arreglo;
+        if ($consulta = $instancia_conexion->ejecutarConsulta($sql)) { 
         }
     }
 

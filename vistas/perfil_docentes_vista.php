@@ -201,13 +201,29 @@ $row = $consulta->fetch_all(MYSQLI_ASSOC);
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col">
+                                    <label for="email">Genero:</label>
+
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
+
+                                            <select name="" disabled id="genero" class="form-control" style=" text-align-last: center;">
+
+                                                <option value="1">Femenino</option>
+                                                <option value="2">Masculino</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
 
 
 
 
                             </div>
-
+                            <input type="text" name="mayoria_edad" id="mayoria_edad" hidden readonly onload="mayoria_edad()">
                             <div class="d-flex justify-content-around flex-row bd-highlight row">
+
 
                                 <div class="col">
                                     <label for="">Nº Identidad:</label>
@@ -215,11 +231,13 @@ $row = $consulta->fetch_all(MYSQLI_ASSOC);
                                     <div class="form-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-id-card"></i></span>
-                                            <input disabled name="" type="text" data-inputmask="'mask': '9999-9999-99999'" data-mask class="form-control" id="identidad" required onkeyup="ValidarIdentidad($('#identidad').val());" onblur="ExisteIdentidad();">
+                                            <input name="" type="text" data-inputmask="'mask': '9999-9999-99999'" data-mask class="form-control" id="identidad" required onkeyup="ValidarIdentidad($('#identidad').val());" onblur="ExisteIdentidad();">
 
                                         </div>
                                     </div>
                                     <p hidden id="TextoIdentidad" style="color:red;">La Identidad Ya existe</p>
+                                    <p hidden id="Textomayor" style="color:red;">¡Es menor de edad! </p>
+
                                 </div>
 
 
@@ -247,20 +265,19 @@ $row = $consulta->fetch_all(MYSQLI_ASSOC);
                                         </div>
                                     </div>
                                 </div>
+                                <input class="form-control" readonly hidden id="age" name="age" maxlength="25" value="" required style="text-transform: uppercase">
                                 <div class="col">
-                                    <label for="email">Genero:</label>
+                                    <label for="">fecha Nacimiento:</label>
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
-
-                                            <select name="" disabled id="genero" class="form-control" style=" text-align-last: center;">
-
-                                                <option value="1">Femenino</option>
-                                                <option value="2">Masculino</option>
-                                            </select>
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                            <input disabled="true" value="" type="date" name="Fecha" id="fecha" class="form-control" onblur="valida_mayoria()" onkeydown="return false">
                                         </div>
+
                                     </div>
+                                    <p hidden id="Textofecha"  style="color:red;">¡El docente debe ser mayor de edad! </p>
+
                                 </div>
                                 <div class="col">
                                     <label for="email">Estado Civil:</label>
@@ -279,6 +296,7 @@ $row = $consulta->fetch_all(MYSQLI_ASSOC);
                                     </div>
                                 </div>
 
+
                                 <!-- <div class="col"hidden>
                                     <label for="">Correo:</label>
 
@@ -293,44 +311,24 @@ $row = $consulta->fetch_all(MYSQLI_ASSOC);
 
 
                             </div>
-                            <div class="d-flex justify-content-around flex-row bd-highlight row">
 
-                                <div class="col">
-                                    <label for="">Fecha de Nacimiento:</label>
-
-                                    <div class="form-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                            <input value="" type="date" name="Fecha" id="fecha" class="datepicker">
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-
-
-
-
-                            </div>
 
                             <div class="d-flex justify-content-around flex-row bd-highlight row">
 
 
 
-                                <div class="col-30">
-                                    <label for="">Curriculum:</label>
+                                <div class="col-md-20">
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
-                                            <a href="" target="_blank" id="curriculum">Curriculum</a>
+                                            <button class="btn btn-info " id="" name=""> <a href="" target="_blank" id="curriculum" style="color:white;font-weight: bold;">Curriculum</a></button>
+
 
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-50">
+                                <div class="col-md-20">
                                     <div class="form-group">
                                         <div class="input-group-prepend">
 

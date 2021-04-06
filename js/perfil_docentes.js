@@ -28,6 +28,7 @@ $(document).ready(function () {
     });
 
 
+
     function eliminar() {
         let i = ContarTel();
         var confirmLeave = confirm('¿Desea Eliminar el Número de telefono del docente?');
@@ -132,7 +133,9 @@ function AgregarEspecialidad(grado, especialidad) {
 
     var id_persona = $("#id_persona").val();
     $.post("../Controlador/perfil_docente_controlador.php?op=AgregarEpecialidad",
-        { grado: grado, especialidad: especialidad, id_persona: id_persona}, function (e) {
+        { grado: grado, especialidad: especialidad, id_persona: id_persona }, function (e) {
+            
+            alert("se agrego correctamente, asegurate de actualizar tu curriculum");
 
         });
 
@@ -237,6 +240,7 @@ function ContarTel() {
     }
     return cont;
 }
+
 
 //Guardar Formacion academioca
 $('#guardarFormacion').click(function () {
@@ -356,9 +360,11 @@ function addTel() {
 
     var n1 = telefono.value.search("_");
 
-    if (n1 != -1 || telefono.value.length == 0) {
+    if (n1 != -1 || telefono.value.length == 0 ) {
         alert("Completar El Campo Telefono Por Favor");
     } else {
+       
+
         $('#tbData2').append(
             '<tr id="row' + n + '">' +
             '<td id="celda' + n + '"><input maxlength="9"    onkeyup="javascript:mascara()" id="tel' + n + '"  type="tel" name="tel" class="form-control name_list" value="' + telefono.value + '" placeholder="___-___"/></td>' +
@@ -463,272 +469,118 @@ function MostrarBoton() {
 
 
 function ValidarIdentidad(identidad) {
-    //console.log(n);
-    var n = identidad.search('_');
-    var depto = identidad.substring(0, 2);
-    var muni = identidad.substring(2, 4);
+  
+    	//console.log(n);
+	var n = identidad.search('_');
+	console.log(n);
+	var mayor_edad = $('#mayoria_edad').val();
+	var depto = identidad.substring(0, 4);
+	var contar = depto;
 
-    if (n == 5) {
-        // var identidad="0809-1998-10782";
+	console.log(contar);
 
+	if (n == 5) {
+		var ver = false;
+		$.post('../Controlador/perfil_docente_controlador.php?op=validar_depto', { codigo: contar }, function(
+			data,
+			status
+		) {
+			console.log(data);
+			data = JSON.parse(data);
+			console.log(data);
+			/*si no tiene datos va copiar  */
+			//$("#contar_depto").val(data.regis);
 
-        console.log(depto + "-" + muni);
-        let municipios = [];
+			if (data.regis == 0) {
+				var ver = true;
 
-        var ver = false;
-        var ver_depto = false;
-        switch (depto) {
-            case '01':
+				if (ver == true) {
+					swal(
+						'Datos incorrectos',
+						'Asegurese de Introducir los digitos correspondientes a su departamento y municipio',
+						'warning'
+					);
+					$('#contar_depto').val('');
+					$('#identidad').val('');
+					$('#identidad').attr('placeholder', '____-____-_____');
+				}
+			}
+		});
+	}
 
-                for (let i = 0; i < 8; i++) {
-                    if (i < 9) {
-                        municipios.push("0" + (i + 1));
-                    } else {
-                        municipios.push(String((i + 1)));
-                    }
+	if (n == 10) {
+		var currentTime = new Date();
+		var year = currentTime.getFullYear();
+		var anio = identidad.substring(5, 9);
+		//console.log(year-anio);
+		if (year - anio < mayor_edad) {
+			//swal("Aviso", "Debe ser mayor de edad", "warning");
+			$('#Textomayor').removeAttr('hidden');
+			//$("#identidad").val("");
+			//$("#identidad").attr("placeholder", "____-____-_____");
+		} else {
+			$('#Textomayor').attr('hidden', 'hidden');
+		}
 
-                    if (muni === municipios[i]) {
-                        ver = true;
-                    }
-                }
-                municipios = [];
-                ver_depto = true;
+		if (anio == '0000') {
+			swal('Aviso', 'Año invalido', 'warning');
+			$('#identidad').val('');
+			$('#identidad').attr('placeholder', '____-____-_____');
+		} else {
+		}
+	}
 
-                break;
-            case '02':
+	if (n == -1) {
+		var ultimo = identidad.substring(10, 15);
+		// console.log(anio);
+		if (ultimo == '00000') {
+			swal('Aviso', 'no se permiten 5 ceros', 'warning');
+			$('#identidad').val('');
+			$('#identidad').attr('placeholder', '____-____-_____');
+		} else {
+		}
+	}
 
-                for (let i = 0; i < 10; i++) {
-                    if (i < 9) {
-                        municipios.push("0" + (i + 1));
-                    } else {
-                        municipios.push(String((i + 1)));
-                    }
+}
 
-                    if (muni === municipios[i]) {
-                        ver = true;
-                    }
-                }
-                municipios = [];
-                ver_depto = true;
-
-                break;
-
-            case '03':
-
-                for (let i = 0; i < 21; i++) {
-                    if (i < 9) {
-                        municipios.push("0" + (i + 1));
-                    } else {
-                        municipios.push(String((i + 1)));
-                    }
-
-                    if (muni === municipios[i]) {
-                        ver = true;
-                    }
-                }
-                municipios = [];
-                ver_depto = true;
-
-                break;
-            case '05':
-
-                for (let i = 0; i < 12; i++) {
-                    if (i < 9) {
-                        municipios.push("0" + (i + 1));
-                    } else {
-                        municipios.push(String((i + 1)));
-                    }
-
-                    if (muni === municipios[i]) {
-                        ver = true;
-                    }
-                }
-                municipios = [];
-                ver_depto = true;
-
-                break;
-
-            case '09':
-
-                for (let i = 0; i < 6; i++) {
-                    if (i < 9) {
-                        municipios.push("0" + (i + 1));
-                    } else {
-                        municipios.push(String((i + 1)));
-                    }
-
-                    if (muni === municipios[i]) {
-                        ver = true;
-                    }
-                }
-                municipios = [];
-                ver_depto = true;
-
-                break;
-
-            case '10':
-
-                for (let i = 0; i < 17; i++) {
-                    if (i < 9) {
-                        municipios.push("0" + (i + 1));
-                    } else {
-                        municipios.push(String((i + 1)));
-                    }
-
-                    if (muni === municipios[i]) {
-                        ver = true;
-                    }
-                }
-                municipios = [];
-                ver_depto = true;
-
-                break;
-            case '11':
-
-                for (let i = 0; i < 4; i++) {
-                    if (i < 9) {
-                        municipios.push("0" + (i + 1));
-                    } else {
-                        municipios.push(String((i + 1)));
-                    }
-
-                    if (muni === municipios[i]) {
-                        ver = true;
-                    }
-                }
-                municipios = [];
-                ver_depto = true;
-
-                break;
-
-            case '17':
-
-                for (let i = 0; i < 9; i++) {
-                    if (i < 9) {
-                        municipios.push("0" + (i + 1));
-                    } else {
-                        municipios.push(String((i + 1)));
-                    }
-
-                    if (muni === municipios[i]) {
-                        ver = true;
-                    }
-                }
-                municipios = [];
-                ver_depto = true;
-
-                break;
-            case '18':
-
-                for (let i = 0; i < 11; i++) {
-                    if (i < 9) {
-                        municipios.push("0" + (i + 1));
-                    } else {
-                        municipios.push(String((i + 1)));
-                    }
-
-                    if (muni === municipios[i]) {
-                        ver = true;
-                    }
-                }
-                municipios = [];
-                ver_depto = true;
-
-                break;
-
-            default:
-                break;
-        }
-
-        if (depto == "04" || depto == "15") {
-            for (let i = 0; i < 23; i++) {
-                if (i < 9) {
-                    municipios.push("0" + (i + 1));
-                } else {
-                    municipios.push(String((i + 1)));
-                }
-
-                if (muni === municipios[i]) {
-                    ver = true;
-                }
-            }
-            municipios = [];
-            ver_depto = true;
-        } else if (depto == "06" || depto == "14") {
-            for (let i = 0; i < 16; i++) {
-                if (i < 9) {
-                    municipios.push("0" + (i + 1));
-                } else {
-                    municipios.push(String((i + 1)));
-                }
-
-                if (muni === municipios[i]) {
-                    ver = true;
-                }
-            }
-            municipios = [];
-            ver_depto = true;
-        } else if (depto == "07" || depto == "12") {
-            for (let i = 0; i < 19; i++) {
-                if (i < 9) {
-                    municipios.push("0" + (i + 1));
-                } else {
-                    municipios.push(String((i + 1)));
-                }
-
-                if (muni === municipios[i]) {
-                    ver = true;
-                }
-            }
-            municipios = [];
-            ver_depto = true;
-        } else if (depto == "08" || depto == "13" || depto == "16") {
-            for (let i = 0; i < 28; i++) {
-                if (i < 9) {
-                    municipios.push("0" + (i + 1));
-                } else {
-                    municipios.push(String((i + 1)));
-                }
-
-                if (muni === municipios[i]) {
-                    ver = true;
-                }
-            }
-            municipios = [];
-            ver_depto = true;
-        }
-
-
-        if (!ver) {
-
-            alert("Asegurese de Introducir los digitos "
-                + "correspondientes a su departamento y municipio ");
-            if (ver_depto) {
-                $('#identidad').val(depto);
-            } else {
-                $('#identidad').val("");
-                $('#identidad').attr('placeholder', '____-____-_____');
-            }
-        }
+$(document).ready(function () {
+  $.post(
+    "../Controlador/perfil_docente_controlador.php?op=mayoria_edad",
+    function (data) {
+      data = JSON.parse(data);
+      // console.log(data);
+      $("#mayoria_edad").val(data.valor);
     }
+  );
+});
+$(function () {
+  $("#fecha").on("change", calcularEdad);
+});
 
+function calcularEdad() {
+  fecha = $(this).val();
+  var hoy = new Date();
+  var cumpleanos = new Date(fecha);
+  var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+  var m = hoy.getMonth() - cumpleanos.getMonth();
 
+  if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+    edad--;
+  }
+  $("#age").val(edad);
+}
 
-    if (n == 10) {
-        var currentTime = new Date();
-        var year = currentTime.getFullYear();
-        var anio = identidad.substring(5, 9);
-        //console.log(year-anio);
-        if ((year - anio) < 18) {
-            alert("Debe ser mayor de edad");
-            $('#identidad').val(depto + muni);
-        }
-
-    }
-
-
-
-
+function valida_mayoria() {
+  var valor = new Date();
+  var mayoria = $("#mayoria_edad").val();
+  var edad = document.getElementById("age").value;
+  if (edad < mayoria) {
+    $("#Textofecha").removeAttr("hidden");
+    //alert("Debe ser mayor de edad!");
+    $("#txt_fecha_nacimiento").val(valor);
+  } else {
+    $("#Textofecha").attr("hidden", "hidden");
+  }
 }
 
 
@@ -1011,6 +863,7 @@ $("#btn_modal1").click(function () {
   //   console.log(resp.id_area);
   // });
 });
+
  function alerta() {
     
      var chk = document.getElementById("c").value;

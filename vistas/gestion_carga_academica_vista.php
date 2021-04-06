@@ -71,9 +71,11 @@ ob_end_flush();
 
     <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css"> -->
     <!-- <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+  
     <script src="../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <!--datables CSS básico-->
+    <datables CSS básico-->
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../plugins/datatables/datatables.min.css" />
     <!--datables estilo bootstrap 4 CSS-->
     <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
@@ -211,7 +213,7 @@ ob_end_flush();
                     </div>
 
                     <div class=" px-12">
-                        <button class="btn btn-info " id="btn1" name="btn1" data-toggle="modal" onclick="abrirmodalinformaciondocente();"><i class="fas fa-info"></i> <a style="font-weight: bold;">Informacion Docente</a></button>
+                        <button class="btn btn-info " id="btn1" name="btn1" data-toggle="modal" onclick="abrirmodalinformaciondocente();"><i class="fas fa-info"></i> <a style="font-weight: bold;">Información Docente</a></button>
                     </div>
                     <div class=" px-6">
                         <button class="btn btn-warning btn-lg" hidden> <a></a></button>
@@ -229,10 +231,10 @@ ob_end_flush();
                     <div class=" px-4">
                         <button class="btn btn-warning btn-lg" hidden> <a></a></button>
                     </div>
-
+<!-- 
                     <div class=" px-12">
                         <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
-                    </div>
+                    </div> -->
                     <div class=" px-6">
                         <button class="btn btn-warning btn-lg" hidden> <a></a></button>
                     </div>
@@ -241,11 +243,11 @@ ob_end_flush();
                     </div>
 
 
-                    <div class=" px-12">
+                    <!-- <div class=" px-12">
                         <form method="post" action="../Controlador/reporte_carga_excel_controlador.php">
                             <button type="submit" name="export" class="btn btn-success " value="EXCEL"> <i class="fas fa-file-excel"></i> <a style="font-weight: bold;">Exportar a EXCEL</a></button>
                         </form>
-                    </div>
+                    </div> -->
 
 
                 </div>
@@ -271,14 +273,14 @@ ob_end_flush();
                             <table id="tabla_carga" class="table table-bordered table-striped" style="width:99%">
                                 <thead>
                                     <tr>
-                                        <th>Accion</th>
+                                        <th>Acción</th>
                                         <th>#</th>
                                         <th>N# Empleado</th>
                                         <th>Nombre</th>
-                                        <th>Codigo</th>
+                                        <th>Código</th>
                                         <th>Asignatura</th>
                                         <th>Unidades Val.</th>
-                                        <th>seccion</th>
+                                        <th>sección</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Final</th>
                                         <th>Dia</th>
@@ -291,14 +293,14 @@ ob_end_flush();
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Accion</th>
+                                        <th>Acción</th>
                                         <th>#</th>
                                         <th>N# Empleado</th>
                                         <th>Nombre</th>
-                                        <th>Codigo</th>
+                                        <th>Código</th>
                                         <th>Asignatura</th>
                                         <th>Unidades Val.</th>
-                                        <th>seccion</th>
+                                        <th>sección</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Final</th>
                                         <th>Dia</th>
@@ -963,7 +965,7 @@ ob_end_flush();
                                         <thead>
                                             <tr>
                                                 <!-- <th>#</th> -->
-                                                <th>Informacion Profesional</th>
+                                                <th>Información Profesional</th>
 
                                             </tr>
                                         </thead>

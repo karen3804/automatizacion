@@ -196,6 +196,19 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11 LIMIT 4;
 		return $actividades;
     }
 
+    function mayoria_edad()
+    {
+        global $instancia_conexion;
+        $sql = 'SELECT valor FROM tbl_parametros WHERE parametro = "mayoria_edad"';
+        return $instancia_conexion->ejecutarConsultaSimpleFila($sql);
+    }
+
+    function validardepto($codigo)
+    {
+        global $instancia_conexion;
+        $sql4 = "call proc_existe_municipio_depto($codigo)";
+        return $instancia_conexion->ejecutarConsultaSimpleFila($sql4);
+    }
 
 
     

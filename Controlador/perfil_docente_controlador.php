@@ -15,6 +15,8 @@ $estado_civil = isset($_POST["estado_civil"]) ? limpiarCadena1($_POST["estado_ci
 $valor = isset($_POST["valor"]) ? limpiarCadena1($_POST["valor"]) : "";
 $curriculum = isset($_POST["curriculum"]) ? limpiarCadena1($_POST["curriculum"]) : "";
 
+$codigo = isset($_POST["codigo"]) ? limpiarCadena1($_POST["codigo"]) : "";
+
 $id_persona_prueba = '10';
 
 
@@ -172,6 +174,18 @@ if (isset($_GET['op'])) {
             } else {
                 return 0;
             }
+
+            break;
+
+        case 'mayoria_edad':
+            $rspta = $instancia_modelo->mayoria_edad();
+            //Codificar el resultado utilizando json
+            echo json_encode($rspta);
+            break;
+
+        case 'validar_depto':
+            $respuesta = $instancia_modelo->validardepto($codigo);
+            echo json_encode($respuesta);
 
             break;
     }

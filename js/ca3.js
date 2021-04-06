@@ -97,7 +97,7 @@ function modificar_carga_academica() {
   var cb_aula = $("#cbm_aula_edita").val();
   var cb_modalidad = $("#cbm_modalidad_edita").val();
   var matriculados = $("#txt_matriculados_edita").val();
-  //var control = $("#txt_control_edita").val();
+  var control = $("#txt_control_edita").val();
   var idPersona = $("#txt_id_docente").val();
   var idPeriodo = $("#txt_id_periodo").val();
   //para validar que modifico
