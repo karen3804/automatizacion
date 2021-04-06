@@ -187,24 +187,39 @@ function TraerDatos() {
 
 
             if (data['all'][i].descripcion == "CORREO") {
+                j = ContarCorreo();
                 let m = 1 + i;
 
-                $('#tbDataCorreo').append('<tr id="row2' + m + '">' +
+                $('#tbDataCorreo1').append('<tr id="row2' + m + '">' +
                     '<td id="celda2' + m + '"><input maxlength="9"  id="correo' + m + '"  type="email" name="correo" class="form-control name_list" value="' + data['all'][i].valor + '"/></td>' +
                     '<td><button type="button" name="eliminar_correo" id="' + m + '" class="btn btn-danger btn_eliminar_correo">X</button></td>' +
-                    '</tr>');
+                    '</tr>'
+                );
 
-            } else {
-                // $("#telefono").val(data['all'][i].valor);
+            }
+            if (data["all"][i].descripcion == "TELEFONO CELULAR") {
+              // $("#telefono").val(data['all'][i].valor);
 
-                j = ContarTel();
+              j = ContarTel();
 
-                let n = 1 + i;
+              let n = 1 + i;
 
-                $('#tbData2').append('<tr id="row' + n + '">' +
-                    '<td id="celda' + n + '"><input maxlength="9"    onkeyup="javascript:mascara()" id="tel' + n + '"  type="tel" name="tel" class="form-control name_list" value="' + data['all'][i].valor + '" placeholder="___-___"/></td>' +
-                    '<td><button type="button" name="remove" id="' + n + '" class="btn btn-danger btn_remove">X</button></td>' +
-                    '</tr>');
+              $("#tbData2").append(
+                '<tr id="row' +
+                  n +
+                  '">' +
+                  '<td id="celda' +
+                  n +
+                  '"><input maxlength="9"    onkeyup="javascript:mascara()" id="tel' +
+                  n +
+                  '"  type="tel" name="tel" class="form-control name_list" value="' +
+                  data["all"][i].valor +
+                  '" placeholder="___-___"/></td>' +
+                  '<td><button type="button" name="remove" id="' +
+                  n +
+                  '" class="btn btn-danger btn_remove">X</button></td>' +
+                  "</tr>"
+              );
             }
 
         }
@@ -350,7 +365,19 @@ function MostrarEspecialidad() {
 
 }
 
-
+//FUNCION QUE VALIDA QUE LOS NUMEROS DE TELEFONO SEAN LOCALES
+function valtel(tel) {
+	var expresion3 = /(9|8|3|2)\d{3}[-]\d{4}/;
+	console.log(expresion3.test(tel));
+	if (expresion3.test(tel)) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+function limpiarTEL() {
+  document.getElementById("tel").value = "";
+}
 //Agregar Telefono en el front
 function addTel() {
     var telefono = document.getElementById("tel");
@@ -363,20 +390,39 @@ function addTel() {
     if (n1 != -1 || telefono.value.length == 0 ) {
         alert("Completar El Campo Telefono Por Favor");
     } else {
+       if (valtel($('#tel').val()) == 0) {
+         //aqui debo validar que no se agregue a la tabla ...
+         swal("ingresar un numero valido");
+
+         limpiarTEL();
+         return false;
+       } else {
+           $("#tbData2").append(
+             '<tr id="row' +
+               n +
+               '">' +
+               '<td id="celda' +
+               n +
+               '"><input maxlength="9"    onkeyup="javascript:mascara()" id="tel' +
+               n +
+               '"  type="tel" name="tel" class="form-control name_list" value="' +
+               telefono.value +
+               '" placeholder="___-___"/></td>' +
+               '<td><button type="button" name="remove" id="' +
+               n +
+               '" class="btn btn-danger btn_remove">X</button></td>' +
+               "</tr>"
+           );
+
+           AgregarTelefono(telefono.value);
+           telefono.value = "";
+             $("#ModalTel").modal("hide");
+       }
+
        
-
-        $('#tbData2').append(
-            '<tr id="row' + n + '">' +
-            '<td id="celda' + n + '"><input maxlength="9"    onkeyup="javascript:mascara()" id="tel' + n + '"  type="tel" name="tel" class="form-control name_list" value="' + telefono.value + '" placeholder="___-___"/></td>' +
-            '<td><button type="button" name="remove" id="' + n + '" class="btn btn-danger btn_remove">X</button></td>' +
-            '</tr>'
-        );
-
-        AgregarTelefono(telefono.value);
-        telefono.value = "";
     }
 
-    $("#ModalTel").modal('hide');
+  
 }
 
 
@@ -915,8 +961,10 @@ function AgregarCorreo(correo) {
 
     $.post("../Controlador/perfil_docente_controlador.php?op=AgregarCorreo",
         { id_persona: id_persona, correo: correo }, function (e) {
+            alert("se inserto");
 
-        });
+    }
+    );
 
 
 }

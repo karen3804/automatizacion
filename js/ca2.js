@@ -848,22 +848,21 @@ function valida_horario_crear() {
 function valida_matriculados() {
   var capacidad = document.getElementById("capacidad").value;
   var matriculados = document.getElementById("txt_matriculados").value;
-  swal({
-          title: "Alerta",
-          text: "Esta excediendo la capacidad, desea continuar?",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true,
-      })
-      .then((willDelete) => {
-          if (willDelete) {
-
-
-          } else {
-
-              document.getElementById("txt_matriculados").value = "";
-          }
-      });
+  if (matriculados > capacidad) {
+     swal({
+       title: "Alerta",
+       text: "Esta excediendo la capacidad, desea continuar?",
+       icon: "warning",
+       buttons: true,
+       dangerMode: true,
+     }).then((willDelete) => {
+       if (willDelete) {
+       } else {
+         document.getElementById("txt_matriculados").value = "";
+       }
+     });
+  }
+ 
 }
 
 // function prueba() {

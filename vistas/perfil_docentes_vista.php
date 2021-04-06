@@ -388,7 +388,7 @@ $row = $consulta->fetch_all(MYSQLI_ASSOC);
 
                                                 </tr>
                                             </thead>
-                                            <tbody id="tbDataCorreo"></tbody>
+                                            <tbody id="tbDataCorreo1"></tbody>
                                         </table>
                                     </div>
                                 </div>
