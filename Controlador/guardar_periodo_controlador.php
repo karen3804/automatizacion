@@ -25,13 +25,7 @@ $verifica_fecha = ("call proc_verifica_periodo('$fecha_inicio','$fecha_final')")
 //Obtener la fila del query
 $cuantos = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 $exist_periodo = mysqli_fetch_assoc($mysqli->query($existe_periodo));
-$valida_fechas = mysqli_fetch_assoc($mysqli->query($verifica_fecha));
-
-
-
-
-
-
+$valida_fechas = $mysqli->query($verifica_fecha);
 
 
 /* Logica para que no acepte campos vacios */
