@@ -74,9 +74,9 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11 LIMIT 4;
         return $consulta;
     }
 
-    function Actualizar($nombre, $apellido, $identidad, $id_persona, $nacionalidad, $estado_civil){
+    function Actualizar($nombre, $apellido, $identidad, $id_persona, $nacionalidad, $estado_civil, $genero){
         global $instancia_conexion;
-        $consult=$instancia_conexion->ejecutarConsulta("UPDATE tbl_personas AS ps, tbl_contactos AS cs SET ps.nombres='$nombre' ,ps.apellidos='$apellido', ps.identidad= '$identidad', ps.nacionalidad= '$nacionalidad', ps.estado_civil = '$estado_civil' WHERE ps.id_persona= $id_persona;");
+        $consult=$instancia_conexion->ejecutarConsulta("UPDATE tbl_personas AS ps, tbl_contactos AS cs SET ps.nombres='$nombre' ,ps.apellidos='$apellido', ps.identidad= '$identidad', ps.nacionalidad= '$nacionalidad', ps.estado_civil = '$estado_civil', ps.sexo = '$genero' WHERE ps.id_persona= $id_persona;");
         echo '<pre>';print_r($consult);echo'</pre>';
         return $consult;
     }
@@ -234,6 +234,32 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11 LIMIT 4;
         global $instancia_conexion;
         $sql2 = "call sel_id_estado_civil_ca($id_estado_civil)";
         return $instancia_conexion->ejecutarConsultaSimpleFila($sql2);
+    }
+
+
+    function listar_genero()
+    {
+        global $instancia_conexion;
+        $consulta = $instancia_conexion->ejecutarConsulta('SELECT * FROM tbl_genero');
+
+        return $consulta;
+    }
+
+    public function mostrar_genero($id_estado_civil)
+    {
+        global $instancia_conexion;
+        $sql2 = "call sel_id_genero_ca($id_estado_civil)";
+        return $instancia_conexion->ejecutarConsultaSimpleFila($sql2);
+    }
+
+    function ver_genero($id_persona){
+        global $instancia_conexion;
+        $consulta=$instancia_conexion->ejecutarConsultaSimpleFila("SELECT sexo
+
+        FROM tbl_personas
+        WHERE id_persona = $id_persona LIMIT 1;");
+      
+        return $consulta;
     }
 
 

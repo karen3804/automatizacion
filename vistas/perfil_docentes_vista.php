@@ -80,7 +80,6 @@ $row2 = $consulta2->fetch_all(MYSQLI_ASSOC);
 </head>
 
 <body>
-<input disabled hidden name="" type="text" class="form-control" id="estado_civil_text">
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -148,10 +147,12 @@ $row2 = $consulta2->fetch_all(MYSQLI_ASSOC);
                                 </div>
                             </div>
 
-                            
+
 
                             <p class="text-center" style="margin-top: 20px;">
-                                <button type="button" class="btn btn-info" onclick="cambiar_estado_civil()" id="btn_editar" name="btn_editar"><i class="fas fa-user-edit"></i>Editar Información</button>
+                                <button type="button" class="btn btn-info" onclick="habilitar_editar();" id="editar_info" name="editar_info"><i class="fas fa-user-edit"></i>Editar Información</button>
+
+                                <button hidden type="button" class="btn btn-info" onclick="desabilitar();" id="btn_editar" name="btn_editar"><i class="fas fa-user-edit"></i>Editar Información</button>
 
 
                             </p>
@@ -214,10 +215,9 @@ $row2 = $consulta2->fetch_all(MYSQLI_ASSOC);
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
 
-                                            <select name="" disabled id="genero" class="form-control" style=" text-align-last: center;">
+                                            <input value="" type="text" disabled name="ver_genero" id="ver_genero" class="form-control">
 
-                                                <option value="1">Femenino</option>
-                                                <option value="2">Masculino</option>
+                                            <select hidden class="form-control" onchange="mostrar_genero($('#genero').val());" id="genero" name="">
                                             </select>
                                         </div>
                                     </div>
@@ -237,7 +237,7 @@ $row2 = $consulta2->fetch_all(MYSQLI_ASSOC);
                                     <div class="form-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-id-card"></i></span>
-                                            <input name="" type="text" data-inputmask="'mask': '9999-9999-99999'" data-mask class="form-control" id="identidad" required onkeyup="ValidarIdentidad($('#identidad').val());" onblur="ExisteIdentidad();">
+                                            <input disabled name="" type="text" data-inputmask="'mask': '9999-9999-99999'" data-mask class="form-control" id="identidad" required onkeyup="ValidarIdentidad($('#identidad').val());" onblur="ExisteIdentidad();">
 
                                         </div>
                                     </div>
@@ -292,7 +292,8 @@ $row2 = $consulta2->fetch_all(MYSQLI_ASSOC);
                                     <div class="form-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-user icon"></i></span>
-                                            <input  value="" type="text" disabled name="ver_estado" id="ver_estado" class="form-control">
+
+                                            <input value="" type="text" disabled name="ver_estado" id="ver_estado" class="form-control">
 
                                             <select hidden class="form-control" onchange="mostrar_estado_civil($('#estado_civil').val());" id="estado_civil" name="">
                                             </select>
@@ -300,22 +301,6 @@ $row2 = $consulta2->fetch_all(MYSQLI_ASSOC);
                                         </div>
                                     </div>
                                 </div>
-                                
-
-
-                                <!-- <div class="col"hidden>
-                                    <label for="">Correo:</label>
-
-                                    <div hidden class="form-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user icon"></i></span>
-                                            <input disabled name="" type="email" onkeyup="Mayuscula('correo2');" class="form-control" id="correo2">
-
-                                        </div>
-                                    </div>
-                                </div> -->
-
-
                             </div>
 
 
@@ -344,7 +329,7 @@ $row2 = $consulta2->fetch_all(MYSQLI_ASSOC);
                                                 <input hidden class="btn btn-info" type="file" accept=".doc, .docx, .pdf" maxlength="60" id="c_vitae" name="c_vitae" value="" style="text-transform: uppercase">
 
                                                 <button hidden type="submit" id="btn_curriculum" class="btn btn-dark btn_curriculum"></i>Guardar Curriculum</button>
-
+                                                <input class="form-control" hidden value="<?php echo $usuario ?>" type="text" name="id_persona" id="id_persona">
                                             </form>
 
                                         </div>

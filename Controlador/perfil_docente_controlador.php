@@ -16,6 +16,9 @@ $valor = isset($_POST["valor"]) ? limpiarCadena1($_POST["valor"]) : "";
 $curriculum = isset($_POST["curriculum"]) ? limpiarCadena1($_POST["curriculum"]) : "";
 $estado = isset($_POST["estado_civil"]) ? limpiarCadena1($_POST["estado_civil"]) : "";
 $codigo = isset($_POST["codigo"]) ? limpiarCadena1($_POST["codigo"]) : "";
+$id_genero = isset($_POST["id_genero"]) ? limpiarCadena1($_POST["id_genero"]) : "";
+$genero = isset($_POST["genero"]) ? limpiarCadena1($_POST["genero"]) : "";
+$sexo = isset($_POST["sexo"]) ? limpiarCadena1($_POST["sexo"]) : "";
 
 $id_persona_prueba = '10';
 
@@ -53,7 +56,7 @@ if (isset($_GET['op'])) {
 
         case 'EditarPerfil':
 
-            $rspta = $instancia_modelo->Actualizar($nombre, $apellido, $identidad, $id_persona, $nacionalidad, $estado);
+            $rspta = $instancia_modelo->Actualizar($nombre, $apellido, $identidad, $id_persona, $nacionalidad, $estado, $sexo);
             break;
 
         case 'AgregarEpecialidad':
@@ -137,11 +140,35 @@ if (isset($_GET['op'])) {
 
             break;
 
+        case 'ver_genero':
+
+
+            $rspta = $instancia_modelo->ver_genero($id_persona);
+            echo json_encode($rspta);
+
+            break;
+
         case 'ExisteIdentidad':
 
 
             $rspta = $instancia_modelo->ExisteIdentidad($identidad);
             echo json_encode($rspta);
+
+            break;
+        case 'cambiarCurriculum':
+
+            if (is_array($_FILES) && count($_FILES) > 0) {
+
+                if (move_uploaded_file($_FILES["c"]["tmp_name"],"../curriculum_docentes/".$_FILES["c"]["name"])) {
+                    $nombrearchivo2 = '../curriculum_docentes/'.$_FILES["c"]["name"];
+                    $consulta = $instancia_modelo->Registrar_curriculum($nombrearchivo2, $id_persona);
+                    echo json_encode($nombrearchivo2);
+                } else {
+                    return 0;
+                }
+            } else {
+                return 0;
+            }
 
             break;
 
@@ -168,22 +195,7 @@ if (isset($_GET['op'])) {
             # code...
             break;
 
-        case 'cambiarCurriculum':
 
-            if (is_array($_FILES) && count($_FILES) > 0) {
-
-                if (move_uploaded_file($_FILES["c"]["tmp_name"], "../curriculum_docentes/" . $_FILES["c"]["name"])) {
-                    $nombrearchivo2 = '../curriculum_docentes/' . $_FILES["c"]["name"];
-                    $consulta = $instancia_modelo->Registrar_curriculum($nombrearchivo2, $id_persona);
-                    return 1;
-                } else {
-                    return 0;
-                }
-            } else {
-                return 0;
-            }
-
-            break;
 
         case 'mayoria_edad':
             $rspta = $instancia_modelo->mayoria_edad();
@@ -212,6 +224,23 @@ if (isset($_GET['op'])) {
 
                 # code...
                 echo "<option value='" . $r2->id_estado_civil . "'> " . $r2->estado_civil . " </option>";
+            }
+            break;
+
+        case 'mostrar_genero':
+            $rspta2 = $instancia_modelo->mostrar_genero($genero);
+            echo json_encode($rspta2);
+            break;
+        case 'genero':
+
+            $data = array();
+            $respuesta2 = $instancia_modelo->listar_genero();
+
+            while ($r2 = $respuesta2->fetch_object()) {
+
+
+                # code...
+                echo "<option value='" . $r2->id_genero . "'> " . $r2->genero . " </option>";
             }
             break;
     }
