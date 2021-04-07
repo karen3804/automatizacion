@@ -23,7 +23,7 @@ FROM tbl_personas AS PER
    JOIN tbl_personas_extendidas AS PEX ON PEX.id_persona=PER.id_persona
    JOIN tbl_horario_docentes AS HD ON HD.id_persona=PER.id_persona
    JOIN tbl_jornadas AS JOR ON JOR.id_jornada= HD.id_jornada
-WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11 LIMIT 4;
+WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11;
 ";
         $result= $instancia_conexion->ejecutarConsulta($sql);
 
@@ -158,6 +158,14 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11 LIMIT 4;
         global $instancia_conexion;
         $consulta=$instancia_conexion->ejecutarConsulta("DELETE from tbl_contactos WHERE valor ='$eliminar_tel';");
       
+        return $consulta;
+    }
+
+    function EliminarCorreo($eliminar_correo)
+    {
+        global $instancia_conexion;
+        $consulta = $instancia_conexion->ejecutarConsulta("DELETE from tbl_contactos WHERE valor ='$eliminar_correo';");
+
         return $consulta;
     }
     

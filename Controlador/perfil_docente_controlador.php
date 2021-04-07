@@ -9,6 +9,7 @@ $grado = isset($_POST["grado"]) ? limpiarCadena1($_POST["grado"]) : "";
 $especialidad = isset($_POST["especialidad"]) ? limpiarCadena1($_POST["especialidad"]) : "";
 $telefono = isset($_POST["telefono"]) ? limpiarCadena1($_POST["telefono"]) : "";
 $eliminar_tel = isset($_POST["eliminar_tel"]) ? limpiarCadena1($_POST["eliminar_tel"]) : "";
+$eliminar_correo = isset($_POST["eliminar_correo"]) ? limpiarCadena1($_POST["eliminar_correo"]) : "";
 $id_persona = isset($_POST["id_persona"]) ? limpiarCadena1($_POST["id_persona"]) : "";
 $nacionalidad = isset($_POST["nacionalidad"]) ? limpiarCadena1($_POST["nacionalidad"]) : "";
 $estado_civil = isset($_POST["id_estado_civil"]) ? limpiarCadena1($_POST["id_estado_civil"]) : "";
@@ -91,6 +92,14 @@ if (isset($_GET['op'])) {
             $rspta = $instancia_modelo->EliminarTelefono($eliminar_tel);
 
             break;
+
+        case 'EliminarCorreo':
+
+
+            $rspta = $instancia_modelo->EliminarCorreo($eliminar_correo);
+
+            break;
+
 
         case 'CambiarFoto':
 
