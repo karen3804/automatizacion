@@ -73,7 +73,7 @@ function editar() {
     let btn = document.getElementById('btn_editar');
     let inputs = document.getElementsByTagName("input");
 
-    for (let index = 2; index <= 8; index++) {
+    for (let index = 2; index <= 10; index++) {
         if (inputs[index].disabled == true) {
             inputs[index].disabled = false;
             $('#btn_guardar_edicion').removeAttr('hidden');
@@ -89,7 +89,7 @@ function editar() {
 /*Guardar informacion editada
 ----------------------------------------------------------------------
 */
-function EditarPerfil(nombre, apellido, identidad, nacionalidad) {
+function EditarPerfil(nombre, apellido, identidad, nacionalidad, estado) {
     var n = identidad.search("_");
 
     var id_persona = $("#id_persona").val();
@@ -97,12 +97,12 @@ function EditarPerfil(nombre, apellido, identidad, nacionalidad) {
     var apellido = $("#txt_apellido").val();
     var identidad = $("#identidad").val();
     var nacionalidad = $("#nacionalidad").val();
-    var estado = $("#estado_civil option:selected").text();
+    var estado_civil = $("#estado_civil_text").val();
 
     if (n != -1 || identidad.length == 0) {
         alert("Favor Completar el campo de identidad");
     } else {
-        $.post("../Controlador/perfil_docente_controlador.php?op=EditarPerfil", { Nombre: nombre, apellido: apellido, identidad: identidad, id_persona: id_persona, nacionalidad: nacionalidad, estado_civil: estado}, function (e) {
+        $.post("../Controlador/perfil_docente_controlador.php?op=EditarPerfil", { Nombre: nombre, apellido: apellido, identidad: identidad, id_persona: id_persona, nacionalidad: nacionalidad, estado_civil: estado_civil}, function (e) {
 
         });
         editar();
@@ -114,6 +114,7 @@ function EditarPerfil(nombre, apellido, identidad, nacionalidad) {
             showConfirmButton: true,
             timer: 10000,
         });
+        window.location = "../vistas/perfil_docentes_vista.php";
     }
 }
 
@@ -236,7 +237,8 @@ function TraerDatos() {
         MostrarEspecialidad();
         Actividades();
         Curriculum();
-        Num_Empleado()
+        Num_Empleado();
+        ver_estado();
 
     })
 }
@@ -363,6 +365,8 @@ function MostrarEspecialidad() {
         });
 
 }
+
+
 
 //FUNCION QUE VALIDA QUE LOS NUMEROS DE TELEFONO SEAN LOCALES
 function valtel(tel) {
@@ -500,6 +504,18 @@ function Num_Empleado() {
         data = JSON.parse(data);
 
         $("#empleado").val(data.valor);
+
+    });
+}
+
+//CARGAR ESTADO CIVIL
+function ver_estado() {
+    var id_persona = $("#id_persona").val();
+
+    $.post("../Controlador/perfil_docente_controlador.php?op=ver_estado_c", { id_persona: id_persona }, function (data, status) {
+        data = JSON.parse(data);
+
+        $("#ver_estado").val(data.estado_civil).html(r).fadeIn();
 
     });
 }
@@ -647,8 +663,6 @@ function ExisteIdentidad() {
 
         }
     );
-
-
 
 }
 
@@ -1031,5 +1045,23 @@ function llenar_estado_civil() {
     );
   }
 
+$("#estado_civil").change(function () {
+    var id_tipo_periodo = $("#estado_civil option:selected").text();
+  
+    $("#estado_civil_text").val(id_tipo_periodo);
+  });
 
 
+  function cambiar_estado_civil() {
+    
+          document.getElementById('estado_civil').hidden = false;
+          document.getElementById('ver_estado').hidden = true;
+    
+    }
+
+    function ver_estado_civil() {
+    
+        document.getElementById('estado_civil').hidden = true;
+        document.getElementById('ver_estado').hidden = false
+  
+  }

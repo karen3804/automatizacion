@@ -80,7 +80,7 @@ $row2 = $consulta2->fetch_all(MYSQLI_ASSOC);
 </head>
 
 <body>
-
+<input disabled hidden name="" type="text" class="form-control" id="estado_civil_text">
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -148,16 +148,16 @@ $row2 = $consulta2->fetch_all(MYSQLI_ASSOC);
                                 </div>
                             </div>
 
-
+                            
 
                             <p class="text-center" style="margin-top: 20px;">
-                                <button type="button" class="btn btn-info" id="btn_editar" name="btn_editar"><i class="fas fa-user-edit"></i>Editar Información</button>
+                                <button type="button" class="btn btn-info" onclick="cambiar_estado_civil()" id="btn_editar" name="btn_editar"><i class="fas fa-user-edit"></i>Editar Información</button>
 
 
                             </p>
 
                             <p class="text-center" style="margin-top: 20px;">
-                                <button hidden type="button" class="btn btn-info" id="btn_guardar_edicion" name="btn_guardar_edicion" onclick="EditarPerfil($('#Nombre').val(),$('#txt_apellido').val(),$('#identidad').val(),$('#estado_civil').val());"><i class="fas fa-user-edit"></i>Guardar Información</button>
+                                <button hidden type="button" class="btn btn-info" id="btn_guardar_edicion" name="btn_guardar_edicion" onclick="EditarPerfil($('#Nombre').val(),$('#txt_apellido').val(),$('#identidad').val(),$('#estado_civil_text').val()); ver_estado_civil();"><i class="fas fa-user-edit"></i>Guardar Información</button>
                             </p>
                             <div class="d-flex justify-content-around flex-row bd-highlight row">
 
@@ -273,7 +273,7 @@ $row2 = $consulta2->fetch_all(MYSQLI_ASSOC);
                                 </div>
                                 <input class="form-control" readonly hidden id="age" name="age" maxlength="25" value="" required style="text-transform: uppercase">
                                 <div class="col">
-                                    <label for="">fecha Nacimiento:</label>
+                                    <label for="">Fecha Nacimiento:</label>
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
@@ -285,18 +285,22 @@ $row2 = $consulta2->fetch_all(MYSQLI_ASSOC);
                                     <p hidden id="Textofecha" style="color:red;">¡El docente debe ser mayor de edad! </p>
 
                                 </div>
+
                                 <div class="col">
-                                    <label for="email">Estado Civil:</label>
+                                    <label for="">Estado Civil:</label>
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
+                                            <span class="input-group-text"><i class="fas fa-user icon"></i></span>
+                                            <input  value="" type="text" disabled name="ver_estado" id="ver_estado" class="form-control">
 
-                                            <select class="form-control" onchange="mostrar_estado_civil($('#estado_civil').val());" id="estado_civil" name="">
+                                            <select hidden class="form-control" onchange="mostrar_estado_civil($('#estado_civil').val());" id="estado_civil" name="">
                                             </select>
+
                                         </div>
                                     </div>
                                 </div>
+                                
 
 
                                 <!-- <div class="col"hidden>

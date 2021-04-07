@@ -136,6 +136,16 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11 LIMIT 4;
         return $consulta;
     }
 
+    function ver_estado_c($id_persona){
+        global $instancia_conexion;
+        $consulta=$instancia_conexion->ejecutarConsultaSimpleFila("SELECT estado_civil
+
+        FROM tbl_personas
+        WHERE id_persona = $id_persona LIMIT 1;");
+      
+        return $consulta;
+    }
+
     function ExisteIdentidad($identidad){
         global $instancia_conexion;
         $consulta=$instancia_conexion->ejecutarConsultaSimpleFila("SELECT EXISTS( 

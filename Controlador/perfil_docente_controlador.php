@@ -129,6 +129,14 @@ if (isset($_GET['op'])) {
 
             break;
 
+        case 'ver_estado_c':
+
+
+            $rspta = $instancia_modelo->ver_estado_c($id_persona);
+            echo json_encode($rspta);
+
+            break;
+
         case 'ExisteIdentidad':
 
 
@@ -189,23 +197,22 @@ if (isset($_GET['op'])) {
 
             break;
 
-            case 'mostrar_estado_civil':
-                $rspta2 = $instancia_modelo->mostrar_estado_civil($estado_civil);
-                //Codificar el resultado utilizando json
-                echo json_encode($rspta2);
-                break;
-            case 'estado_civil':
-        
-                $data = array();
-                $respuesta2 = $instancia_modelo->listar_estado_civil();
-        
-                while ($r2 = $respuesta2->fetch_object()) {
-        
-        
-                    # code...
-                    echo "<option value='" . $r2->id_estado_civil . "'> " . $r2->estado_civil . " </option>";
-                }
-                break;
-            
+        case 'mostrar_estado_civil':
+            $rspta2 = $instancia_modelo->mostrar_estado_civil($estado_civil);
+            //Codificar el resultado utilizando json
+            echo json_encode($rspta2);
+            break;
+        case 'estado_civil':
+
+            $data = array();
+            $respuesta2 = $instancia_modelo->listar_estado_civil();
+
+            while ($r2 = $respuesta2->fetch_object()) {
+
+
+                # code...
+                echo "<option value='" . $r2->id_estado_civil . "'> " . $r2->estado_civil . " </option>";
+            }
+            break;
     }
 }
