@@ -586,7 +586,7 @@ function crear_carga_academica() {
                       $("#ModalTask").modal("hide");
                       swal(
                         "Buen trabajo!",
-                        "datos actualizados correctamente!",
+                        "Datos actualizados correctamente!",
                         "success"
                       );
                       document.getElementById("txt_registro_crear").value = "";

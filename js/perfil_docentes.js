@@ -79,6 +79,7 @@ $(document).ready(function () {
   $(document).on("click", ".btn_eliminar_correo", eliminarCorreo);
   // $(document).on("click", ".btn_add", AgregarTel);
   $(document).on("click", ".btn_foto", imagen);
+  $(document).on('click', '.btn_curriculum', Registrarcurriculum);
   document.getElementById("btn_editar").addEventListener("click", editar);
 
   TraerDatos();
@@ -106,42 +107,33 @@ function editar() {
 /*Guardar informacion editada
 ----------------------------------------------------------------------
 */
-function EditarPerfil(nombre, apellido, identidad, nacionalidad, c_vitae) {
-  var n = identidad.search("_");
+function EditarPerfil(nombre, apellido, identidad, nacionalidad, estado) {
+    var n = identidad.search("_");
 
-  var id_persona = $("#id_persona").val();
-  var nombre = $("#Nombre").val();
-  var apellido = $("#txt_apellido").val();
-  var identidad = $("#identidad").val();
-  var nacionalidad = $("#nacionalidad").val();
-  var estado = $("#estado option:selected").text();
-  var c_vitae = document.getElementById("c_vitae");
+    var id_persona = $("#id_persona").val();
+    var nombre = $("#Nombre").val();
+    var apellido = $("#txt_apellido").val();
+    var identidad = $("#identidad").val();
+    var nacionalidad = $("#nacionalidad").val();
+    var estado_civil = $("#ver_estado").val();
+    var genero = $("#ver_genero").val();
 
-  if (n != -1 || identidad.length == 0) {
-    alert("Favor Completar el campo de identidad");
-  } else {
-    $.post(
-      "../Controlador/perfil_docente_controlador.php?op=EditarPerfil",
-      {
-        Nombre: nombre,
-        apellido: apellido,
-        identidad: identidad,
-        id_persona: id_persona,
-        nacionalidad: nacionalidad,
-        estado_civil: estado,
-        curriculum: c_vitae,
-      },
-      function (e) {}
-    );
-    editar();
-    swal({
-      title: "Actualizado!",
-      text: "Datos actualizados correctamente ",
-      type: "warning",
-      showConfirmButton: true,
-      timer: 10000,
-    });
-  }
+    if (n != -1 || identidad.length == 0) {
+        alert("Favor Completar el campo de identidad");
+    } else {
+        $.post("../Controlador/perfil_docente_controlador.php?op=EditarPerfil", { Nombre: nombre, apellido: apellido, identidad: identidad, id_persona: id_persona, nacionalidad: nacionalidad, estado_civil: estado_civil, sexo: genero }, function (e) {
+
+        });
+        swal({
+            title: "Actualizado!",
+            text:
+                "Datos actualizados correctamente ",
+            type: "warning",
+            showConfirmButton: true,
+            timer: 10000,
+        });
+        window.location = "../vistas/perfil_docentes_vista.php";
+    }
 }
 
 //Convertir inputs a Mayusculas
@@ -266,6 +258,8 @@ function TraerDatos() {
       Actividades();
       Curriculum();
       Num_Empleado();
+      ver_estado();
+      ver_genero();
     }
   );
 }
@@ -792,7 +786,13 @@ function enviarpregunta1() {
     url: "../Controlador/encuesta1_docente_controlador.php",
     //  data: { array: id_area}, //capturo array
     data: { array_prefe: JSON.stringify(id_area), id_persona: id_persona },
-    success: function (data) {},
+    success: function (data) {
+      swal(
+        "Ingresado!",
+        "Datos ingresados correctamente!",
+        "success"
+      );
+    },
   });
 
   //enviar(id_persona);
@@ -819,7 +819,13 @@ function enviarpregunta2() {
     url: "../Controlador/encuesta2_docente_controlador.php",
     //  data: { array: id_area}, //capturo array
     data: { array_prefe1: JSON.stringify(id_area), id_persona: id_persona },
-    success: function (data) {},
+    success: function (data) {
+      swal(
+        "Ingresado!",
+        "Datos ingresados correctamente!",
+        "success"
+      );
+    },
   });
 
   //enviar(id_persona);
@@ -849,7 +855,13 @@ function enviarpregunta3() {
       array_prefe1: JSON.stringify(id_asignatura),
       id_persona: id_persona,
     },
-    success: function (data) {},
+    success: function (data) {
+      swal(
+        "Ingresado!",
+        "Datos ingresados correctamente!",
+        "success"
+      );
+    },
   });
 
   //enviar(id_persona);
@@ -879,7 +891,13 @@ function enviarpregunta4() {
       array_prefe1: JSON.stringify(id_asignatura),
       id_persona: id_persona,
     },
-    success: function (data) {},
+    success: function (data) {
+      swal(
+        "Ingresado!",
+        "Datos ingresados correctamente!",
+        "success"
+      );
+    },
   });
 
   //enviar(id_persona);
@@ -924,28 +942,32 @@ function alerta() {
 }
 
 function Registrarcurriculum() {
-  var formData = new FormData();
-  var curriculum = $("#c_vitae")[0].files[0];
-  formData.append("c", curriculum);
-  formData.append("id_persona", $("#id_persona").val());
 
-  $.ajax({
-    url: "../Controlador/perfil_docente_controlador.php?op=cambiarCurriculum",
-    type: "post",
-    data: formData,
-    contentType: false,
-    processData: false,
-    success: function (respuesta) {
-      if ((respuesta = 1)) {
-        Swal(
-          "Mensaje De Confirmacion",
-          "Se subio el curriculum con exito",
-          "success"
-        );
-      }
-    },
-  });
-  return false;
+    var formData = new FormData();
+    var curriculum = $("#c_vitae")[0].files[0];
+    formData.append('c', curriculum);
+    formData.append("id_persona", $("#id_persona").val());
+
+    $.ajax({
+        url: '../Controlador/perfil_docente_controlador.php?op=cambiarCurriculum',
+        type: 'post',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (respuesta) {
+            if (respuesta = 1) {
+
+                swal(
+                    "Actualizado!",
+                    "Datos actualizados correctamente!",
+                    "success"
+                  );
+
+                  window.location = "../vistas/perfil_docentes_vista.php";
+            }
+        }
+    });
+    return false;
 }
 
 function AgregarCorreo(correo) {
@@ -1024,4 +1046,134 @@ function MostrarBotonCurriculum() {
   $("#btn_mostrar_curriculum").attr("hidden", "hidden");
 }
 
-function ahgs() {}
+//      COMBOBOX ESTADO CIVIL----------------
+function llenar_estado_civil() {
+    var cadena = "&activar=activar";
+    $.ajax({
+        url: "../Controlador/perfil_docente_controlador.php?op=estado_civil",
+        type: "POST",
+        data: cadena,
+        success: function (r) {
+            // console.log(r);
+
+            $("#estado_civil").html(r).fadeIn();
+        },
+    });
+}
+llenar_estado_civil();
+
+function mostrar_estado_civil(id_estado_civil) {
+    $.post(
+        "../Controlador/perfil_docente_controlador.php?op=mostrar_estado_civil",
+        { id_estado_civil: id_estado_civil },
+        function (data, status) {
+            data = JSON.parse(data);
+
+        }
+    );
+}
+
+//CARGAR ESTADO CIVIL
+function ver_estado() {
+    var id_persona = $("#id_persona").val();
+
+    $.post("../Controlador/perfil_docente_controlador.php?op=ver_estado_c", { id_persona: id_persona }, function (data, status) {
+        data = JSON.parse(data);
+
+        $("#ver_estado").val(data.estado_civil)
+
+    });
+}
+
+//      PARA CUANDO CAMBIA EL VALOR DEL COMBOBOX E.C.
+$("#estado_civil").change(function () {
+    var id_tipo_periodo = $("#estado_civil option:selected").text();
+
+    $("#ver_estado").val(id_tipo_periodo);
+});
+
+//      ------------------------------
+
+
+
+//      COMBOBOX GENERO----------------
+function llenar_genero() {
+    var cadena = "&activar=activar";
+    $.ajax({
+        url: "../Controlador/perfil_docente_controlador.php?op=genero",
+        type: "POST",
+        data: cadena,
+        success: function (r) {
+
+            $("#genero").html(r).fadeIn();
+        },
+    });
+}
+llenar_genero();
+
+function mostrar_genero(id_genero) {
+    $.post(
+        "../Controlador/perfil_docente_controlador.php?op=mostrar_genero",
+        { id_genero: id_genero },
+        function (data, status) {
+            data = JSON.parse(data);
+
+        }
+    );
+}
+
+//CARGAR GENERO
+function ver_genero() {
+    var id_persona = $("#id_persona").val();
+
+    $.post("../Controlador/perfil_docente_controlador.php?op=ver_genero", { id_persona: id_persona }, function (data, status) {
+        data = JSON.parse(data);
+
+        $("#ver_genero").val(data.sexo)
+
+    });
+}
+
+$("#genero").change(function () {
+    var id_tipo_periodo = $("#genero option:selected").text();
+
+    $("#ver_genero").val(id_tipo_periodo);
+});
+
+//       -------------------------
+
+function habilitar_editar() {
+    document.getElementById('estado_civil').hidden = false;
+    document.getElementById('ver_estado').hidden = true;
+    document.getElementById('Nombre').disabled = false;
+    document.getElementById('txt_apellido').disabled = false;
+    document.getElementById('identidad').disabled = false;
+    document.getElementById('btn_guardar_edicion').hidden = false;
+    document.getElementById('editar_info').hidden = true;
+    document.getElementById('btn_editar').hidden = false;
+
+    document.getElementById('genero').hidden = false;
+    document.getElementById('ver_genero').hidden = true;
+
+}
+
+function desabilitar() {
+    document.getElementById('estado_civil').hidden = true;
+    document.getElementById('ver_estado').hidden = false;
+    document.getElementById('Nombre').disabled = true;
+    document.getElementById('txt_apellido').disabled = true;
+    document.getElementById('identidad').disabled = true;
+    document.getElementById('editar_info').hidden = false;
+    document.getElementById('btn_editar').hidden = true;
+    document.getElementById('btn_guardar_edicion').hidden = true;
+    document.getElementById('genero').hidden = true;
+    document.getElementById('ver_genero').hidden = false;
+
+}
+
+function ver_estado_civil() {
+
+    document.getElementById('estado_civil').hidden = true;
+    document.getElementById('ver_estado').hidden = false
+
+}
