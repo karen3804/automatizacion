@@ -11,10 +11,10 @@ $telefono = isset($_POST["telefono"]) ? limpiarCadena1($_POST["telefono"]) : "";
 $eliminar_tel = isset($_POST["eliminar_tel"]) ? limpiarCadena1($_POST["eliminar_tel"]) : "";
 $id_persona = isset($_POST["id_persona"]) ? limpiarCadena1($_POST["id_persona"]) : "";
 $nacionalidad = isset($_POST["nacionalidad"]) ? limpiarCadena1($_POST["nacionalidad"]) : "";
-$estado_civil = isset($_POST["estado_civil"]) ? limpiarCadena1($_POST["estado_civil"]) : "";
+$estado_civil = isset($_POST["id_estado_civil"]) ? limpiarCadena1($_POST["id_estado_civil"]) : "";
 $valor = isset($_POST["valor"]) ? limpiarCadena1($_POST["valor"]) : "";
 $curriculum = isset($_POST["curriculum"]) ? limpiarCadena1($_POST["curriculum"]) : "";
-
+$estado = isset($_POST["estado_civil"]) ? limpiarCadena1($_POST["estado_civil"]) : "";
 $codigo = isset($_POST["codigo"]) ? limpiarCadena1($_POST["codigo"]) : "";
 
 $id_persona_prueba = '10';
@@ -53,7 +53,7 @@ if (isset($_GET['op'])) {
 
         case 'EditarPerfil':
 
-            $rspta = $instancia_modelo->Actualizar($nombre, $apellido, $identidad, $id_persona, $nacionalidad, $estado_civil, $curriculum);
+            $rspta = $instancia_modelo->Actualizar($nombre, $apellido, $identidad, $id_persona, $nacionalidad, $estado);
             break;
 
         case 'AgregarEpecialidad':
@@ -188,5 +188,24 @@ if (isset($_GET['op'])) {
             echo json_encode($respuesta);
 
             break;
+
+            case 'mostrar_estado_civil':
+                $rspta2 = $instancia_modelo->mostrar_estado_civil($estado_civil);
+                //Codificar el resultado utilizando json
+                echo json_encode($rspta2);
+                break;
+            case 'estado_civil':
+        
+                $data = array();
+                $respuesta2 = $instancia_modelo->listar_estado_civil();
+        
+                while ($r2 = $respuesta2->fetch_object()) {
+        
+        
+                    # code...
+                    echo "<option value='" . $r2->id_estado_civil . "'> " . $r2->estado_civil . " </option>";
+                }
+                break;
+            
     }
 }

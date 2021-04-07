@@ -157,7 +157,7 @@ $row2 = $consulta2->fetch_all(MYSQLI_ASSOC);
                             </p>
 
                             <p class="text-center" style="margin-top: 20px;">
-                                <button hidden type="button" class="btn btn-info" id="btn_guardar_edicion" name="btn_guardar_edicion" onclick="EditarPerfil($('#Nombre').val(),$('#txt_apellido').val(),$('#identidad').val());"><i class="fas fa-user-edit"></i>Guardar Información</button>
+                                <button hidden type="button" class="btn btn-info" id="btn_guardar_edicion" name="btn_guardar_edicion" onclick="EditarPerfil($('#Nombre').val(),$('#txt_apellido').val(),$('#identidad').val(),$('#estado_civil').val());"><i class="fas fa-user-edit"></i>Guardar Información</button>
                             </p>
                             <div class="d-flex justify-content-around flex-row bd-highlight row">
 
@@ -292,11 +292,7 @@ $row2 = $consulta2->fetch_all(MYSQLI_ASSOC);
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
 
-                                            <select name="" id="estado" class="form-control" style=" text-align-last: center;">
-                                                <option value="1">CASADO</option>
-                                                <option value="2">SOLTERO</option>
-
-
+                                            <select class="form-control" onchange="mostrar_estado_civil($('#estado_civil').val());" id="estado_civil" name="">
                                             </select>
                                         </div>
                                     </div>

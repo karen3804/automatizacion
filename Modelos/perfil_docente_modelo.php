@@ -76,7 +76,7 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11 LIMIT 4;
 
     function Actualizar($nombre, $apellido, $identidad, $id_persona, $nacionalidad, $estado_civil){
         global $instancia_conexion;
-        $consult=$instancia_conexion->ejecutarConsulta("UPDATE tbl_personas AS ps, tbl_contactos AS cs SET ps.nombres='$nombre' ,ps.apellidos='$apellido', ps.identidad= '$identidad', ps.nacionalidad= '$nacionalidad', ps.estado_civil = '$estado_civil'  WHERE ps.id_persona= $id_persona;");
+        $consult=$instancia_conexion->ejecutarConsulta("UPDATE tbl_personas AS ps, tbl_contactos AS cs SET ps.nombres='$nombre' ,ps.apellidos='$apellido', ps.identidad= '$identidad', ps.nacionalidad= '$nacionalidad', ps.estado_civil = '$estado_civil' WHERE ps.id_persona= $id_persona;");
         echo '<pre>';print_r($consult);echo'</pre>';
         return $consult;
     }
@@ -208,6 +208,22 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11 LIMIT 4;
         global $instancia_conexion;
         $sql4 = "call proc_existe_municipio_depto($codigo)";
         return $instancia_conexion->ejecutarConsultaSimpleFila($sql4);
+    }
+
+
+    function listar_estado_civil()
+    {
+        global $instancia_conexion;
+        $consulta = $instancia_conexion->ejecutarConsulta('SELECT id_estado_civil, estado_civil FROM tbl_estadocivil');
+
+        return $consulta;
+    }
+
+    public function mostrar_estado_civil($id_estado_civil)
+    {
+        global $instancia_conexion;
+        $sql2 = "call sel_id_estado_civil_ca($id_estado_civil)";
+        return $instancia_conexion->ejecutarConsultaSimpleFila($sql2);
     }
 
 

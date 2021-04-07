@@ -73,7 +73,7 @@ function editar() {
     let btn = document.getElementById('btn_editar');
     let inputs = document.getElementsByTagName("input");
 
-    for (let index = 2; index <= 6; index++) {
+    for (let index = 2; index <= 8; index++) {
         if (inputs[index].disabled == true) {
             inputs[index].disabled = false;
             $('#btn_guardar_edicion').removeAttr('hidden');
@@ -89,7 +89,7 @@ function editar() {
 /*Guardar informacion editada
 ----------------------------------------------------------------------
 */
-function EditarPerfil(nombre, apellido, identidad, nacionalidad, c_vitae) {
+function EditarPerfil(nombre, apellido, identidad, nacionalidad) {
     var n = identidad.search("_");
 
     var id_persona = $("#id_persona").val();
@@ -97,13 +97,12 @@ function EditarPerfil(nombre, apellido, identidad, nacionalidad, c_vitae) {
     var apellido = $("#txt_apellido").val();
     var identidad = $("#identidad").val();
     var nacionalidad = $("#nacionalidad").val();
-    var estado = $("#estado option:selected").text();
-    var c_vitae = document.getElementById("c_vitae");
+    var estado = $("#estado_civil option:selected").text();
 
     if (n != -1 || identidad.length == 0) {
         alert("Favor Completar el campo de identidad");
     } else {
-        $.post("../Controlador/perfil_docente_controlador.php?op=EditarPerfil", { Nombre: nombre, apellido: apellido, identidad: identidad, id_persona: id_persona, nacionalidad: nacionalidad, estado_civil: estado, curriculum: c_vitae }, function (e) {
+        $.post("../Controlador/perfil_docente_controlador.php?op=EditarPerfil", { Nombre: nombre, apellido: apellido, identidad: identidad, id_persona: id_persona, nacionalidad: nacionalidad, estado_civil: estado}, function (e) {
 
         });
         editar();
@@ -1004,6 +1003,33 @@ function MostrarBotonCurriculum() {
     $('#btn_curriculum').removeAttr('hidden');
     $('#btn_mostrar_curriculum').attr('hidden', 'hidden');
 }
+
+
+function llenar_estado_civil() {
+    var cadena = "&activar=activar";
+    $.ajax({
+      url: "../Controlador/perfil_docente_controlador.php?op=estado_civil",
+      type: "POST",
+      data: cadena,
+      success: function (r) {
+        // console.log(r);
+  
+        $("#estado_civil").html(r).fadeIn();
+      },
+    });
+  }
+  llenar_estado_civil();
+  
+  function mostrar_estado_civil(id_estado_civil) {
+    $.post(
+      "../Controlador/perfil_docente_controlador.php?op=mostrar_estado_civil",
+      { id_estado_civil: id_estado_civil },
+      function (data, status) {
+        data = JSON.parse(data);
+    
+      }
+    );
+  }
 
 
 
