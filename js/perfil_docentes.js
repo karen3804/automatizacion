@@ -1177,3 +1177,213 @@ function ver_estado_civil() {
     document.getElementById('ver_estado').hidden = false
 
 }
+
+
+function insertar_pregunta1() {
+  var id_persona = $("#id_persona").val();
+  var id_area = $('[name="areas[]"]:checked')
+    .map(function () {
+      return this.value;
+    })
+    .get();
+
+  console.log(id_area);
+  console.log(id_persona);
+  $.ajax({
+    type: "POST",
+    url: "../Controlador/encuesta1_docente_controlador.php",
+    //  data: { array: id_area}, //capturo array
+    data: { array_prefe: JSON.stringify(id_area), id_persona: id_persona },
+    success: function (data) {
+      swal("Ingresado!", "Datos ingresados correctamente!", "success");
+    },
+  });
+}
+function insertar_pregunta2() {
+  var id_persona = $("#id_persona").val();
+
+  var id_area = $('[name="areas2[]"]:checked')
+    .map(function () {
+      return this.value;
+    })
+    .get();
+
+  console.log(id_area);
+  console.log(id_persona);
+  $.ajax({
+    type: "POST",
+    url: "../Controlador/encuesta2_docente_controlador.php",
+    //  data: { array: id_area}, //capturo array
+    data: { array_prefe1: JSON.stringify(id_area), id_persona: id_persona },
+    success: function (data) {
+      swal("Ingresado!", "Datos ingresados correctamente!", "success");
+    },
+  });
+}
+function insertar_pregunta3() {
+  var id_persona = $("#id_persona").val();
+
+  var id_asignatura = $('[name="asignatura3[]"]:checked')
+    .map(function () {
+      return this.value;
+    })
+    .get();
+
+  console.log(id_asignatura);
+  console.log(id_persona);
+  $.ajax({
+    type: "POST",
+    url: "../Controlador/encuesta3_docente_controlador.php",
+    //  data: { array: id_area}, //capturo array
+    data: {
+      array_prefe1: JSON.stringify(id_asignatura),
+      id_persona: id_persona,
+    },
+    success: function (data) {
+      swal("Ingresado!", "Datos ingresados correctamente!", "success");
+    },
+  });
+}
+function insertar_pregunta4() {
+  var id_persona = $("#id_persona").val();
+
+  var id_asignatura = $('[name="asignatura4[]"]:checked')
+    .map(function () {
+      return this.value;
+    })
+    .get();
+
+  console.log(id_asignatura);
+  console.log(id_persona);
+  $.ajax({
+    type: "POST",
+    url: "../Controlador/encuesta4_docente_controlador.php",
+    //  data: { array: id_area}, //capturo array
+    data: {
+      array_prefe1: JSON.stringify(id_asignatura),
+      id_persona: id_persona,
+    },
+    success: function (data) {
+      swal("Ingresado!", "Datos ingresados correctamente!", "success");
+    },
+  });
+}
+
+function eliminar_pregunta1(persona) {
+  $.post(
+    "../Controlador/perfil_docente_controlador.php?op=EliminarPregunta1",
+    { id_persona: persona },
+    function (e) {}
+  );
+}
+function eliminar_pregunta2(persona) {
+  $.post(
+    "../Controlador/perfil_docente_controlador.php?op=EliminarPregunta2",
+    { id_persona: persona },
+    function (e) {}
+  );
+}
+function eliminar_pregunta3(persona) {
+  $.post(
+    "../Controlador/perfil_docente_controlador.php?op=EliminarPregunta3",
+    { id_persona: persona },
+    function (e) {}
+  );
+}
+function eliminar_pregunta3(persona) {
+  $.post(
+    "../Controlador/perfil_docente_controlador.php?op=EliminarPregunta4",
+    { id_persona: persona },
+    function (e) {}
+  );
+}
+
+function enviarpregunta1() {
+  var id_persona = $("#id_persona").val();
+
+  $.post(
+    "../Controlador/perfil_docente_controlador.php?op=contarPregunta1",
+    { id_persona: id_persona },
+
+    function (data, status) {
+      console.log(data);
+      data = JSON.parse(data);
+      /*si no tiene datos va copiar  */
+
+      if (data.registro == 0) {
+        insertar_pregunta1();
+      } else {
+        // if (data.registro > 0) {
+        eliminar_pregunta1(id_persona);
+
+        insertar_pregunta1();
+      }
+    }
+  );
+}
+function enviarpregunta2() {
+  var id_persona = $("#id_persona").val();
+
+  $.post(
+    "../Controlador/perfil_docente_controlador.php?op=contarPregunta2",
+    { id_persona: id_persona },
+
+    function (data, status) {
+      console.log(data);
+      data = JSON.parse(data);
+      /*si no tiene datos va copiar  */
+
+      if (data.registro == 0) {
+        insertar_pregunta2();
+      } else {
+        eliminar_pregunta2(id_persona);
+
+        insertar_pregunta2();
+      }
+    }
+  );
+}
+function enviarpregunta3() {
+  var id_persona = $("#id_persona").val();
+
+  $.post(
+    "../Controlador/perfil_docente_controlador.php?op=contarPregunta3",
+    { id_persona: id_persona },
+
+    function (data, status) {
+      console.log(data);
+      data = JSON.parse(data);
+      /*si no tiene datos va copiar  */
+
+      if (data.registro == 0) {
+        insertar_pregunta3();
+      } else {
+        eliminar_pregunta3(id_persona);
+
+        insertar_pregunta3();
+      }
+    }
+  );
+}
+function enviarpregunta4() {
+  var id_persona = $("#id_persona").val();
+
+  $.post(
+    "../Controlador/perfil_docente_controlador.php?op=contarPregunta4",
+    { id_persona: id_persona },
+
+    function (data, status) {
+      console.log(data);
+      data = JSON.parse(data);
+      /*si no tiene datos va copiar  */
+
+      if (data.registro == 0) {
+        insertar_pregunta4();
+      } else {
+        eliminar_pregunta4(id_persona);
+
+        insertar_pregunta4();
+      }
+    }
+  );
+}
