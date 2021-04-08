@@ -114,7 +114,7 @@ if ($visualizacion == 0) {
  tabla donde rol sea igual al que se ingreso en el input */
     $sql = "SELECT tbl_atributos.id_atributos AS id_atributos,tbl_atributos.atributo AS atributo , tbl_atributos.requerido As requerido, tbl_atributos.id_tipo_persona AS id_tipo_persona,
     (SELECT tp.tipo_persona FROM tbl_tipos_persona tp WHERE tp.id_tipo_persona=tbl_atributos.id_tipo_persona LIMIT 1) AS TipoPersona
-    FROM tbl_atributos";;
+    FROM tbl_atributos where atributo = '$atributo'";
     $resultado = $mysqli->query($sql);
     /* Manda a llamar la fila */
     $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -312,11 +312,11 @@ ob_end_flush();
 
                   <div class="form-group">
                     <label>Tipo Persona</label>
-                    <select class="form-control-lg select2" type="text" id="cbm_persona" name="txt_persona1" style="width: 100%;">
+                    <select class="form-control-lg select2" type="text" id="cbm_persona" name="cbm_persona" style="width: 100%;">
                       <option value="">Seleccione una opción</option>
                     </select>
                   </div>
-                  <input class="form-control" id="persona1" name="persona1" value="<?php echo $_SESSION['TipoPersona']; ?>" hidden>
+                  <input class="form-control" id="persona1" name="persona1" value="<?php echo $_SESSION['id_tipo_persona']; ?>" hidden>
 
 
                 </div>

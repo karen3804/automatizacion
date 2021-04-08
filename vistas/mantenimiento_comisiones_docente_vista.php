@@ -115,7 +115,7 @@ if ($visualizacion == 0) {
  tabla donde rol sea igual al que se ingreso en el input */
         $sql = "SELECT tbl_comisiones.id_comisiones AS id_comisiones,tbl_comisiones.comision AS comision,tbl_comisiones.id_carrera AS id_carrera,
         (SELECT c.Descripcion FROM tbl_carrera c WHERE c.id_carrera=tbl_comisiones.id_carrera LIMIT 1) AS carrera
-        FROM tbl_comisiones";
+        FROM tbl_comisiones where comision ='$comision'";
         $resultado = $mysqli->query($sql);
         /* Manda a llamar la fila */
         $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -124,6 +124,7 @@ if ($visualizacion == 0) {
         $_SESSION['id_comisiones'] = $row['id_comisiones'];
         $_SESSION['comision'] = $row['comision'];
         $_SESSION['id_carrera'] = $row['id_carrera'];
+        $_SESSION['carrera'] = $row['carrera'];
 
 
         /*Aqui levanto el modal*/
@@ -304,7 +305,7 @@ ob_end_flush();
                                         <option value="">Seleccione una opción</option>
                                         </select>
                                     </div>
-                                    <input class="form-control"  id="carrera1" name="carrera1" value="<?php echo $_SESSION['carrera']; ?>" >
+                                    <input class="form-control"  id="carrera1" name="carrera1" value="<?php echo $_SESSION['id_carrera']; ?>" >
                                     
 
                                 </div>
