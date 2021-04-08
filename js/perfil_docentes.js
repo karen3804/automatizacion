@@ -431,7 +431,7 @@ function addTel() {
   }
 }
 function correovalido(correo1) {
-  var expresion1 = /^\w+([\.-]?\w+)*@(?:|hotmail|outlook|yahoo|live|gmail)\.(?:|com|es)+$/;
+  var expresion1 = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
   //console.log(expresion1.test(correo1));
   if (expresion1.test(correo1)) {
@@ -1290,7 +1290,7 @@ function eliminar_pregunta3(persona) {
     function (e) {}
   );
 }
-function eliminar_pregunta3(persona) {
+function eliminar_pregunta4(persona) {
   $.post(
     "../Controlador/perfil_docente_controlador.php?op=EliminarPregunta4",
     { id_persona: persona },

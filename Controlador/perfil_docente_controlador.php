@@ -25,6 +25,7 @@ $id_persona_prueba = '10';
 
 
 $instancia_modelo = new modelo_perfil_docentes();
+
 if (isset($_GET['op'])) {
 
     switch ($_GET['op']) {

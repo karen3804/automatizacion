@@ -44,11 +44,11 @@ if ($visualizacion == 0) {
 
 
 
-    if (permisos::permiso_modificar($Id_objeto) == '1') {
-        $_SESSION['btn_modificar_CA'] = "";
-    } else {
-        $_SESSION['btn_modificar_CA'] = "disabled";
-    }
+    // if (permisos::permiso_modificar($Id_objeto) == '1') {
+    //     $_SESSION['btn_modificar_CA'] = "";
+    // } else {
+    //     $_SESSION['btn_modificar_CA'] = "disabled";
+    // }
 }
 
 ob_end_flush();

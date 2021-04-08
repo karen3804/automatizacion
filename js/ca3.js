@@ -332,7 +332,7 @@ function llenar_modalidadd() {
 llenar_modalidadd();
 
 // trae hora docente
-function hora(id) {
+function horadocente(id) {
   $.post(
     "../Controlador/reporte_carga_controlador.php?op=validarhoradocente",
     { id_persona: id },
@@ -439,7 +439,7 @@ $("#tabla_carga").on("click", ".editar", function () {
 
   console.log(idPersona);
 
-  hora(idPersona);
+  horadocente(idPersona);
 
   $("#modal_editar").modal({ backdrop: "static", keyboard: false });
   $("#modal_editar").modal("show");
