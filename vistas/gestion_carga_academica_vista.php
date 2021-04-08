@@ -152,7 +152,7 @@ ob_end_flush();
                     <div class="col-md-3" style="width:75px">
                         <div class="input-group mb-3 input-group">
 
-                            <span class=" input-group-text" style="font-weight: bold;">Año Academico</span>
+                            <span class=" input-group-text" style="font-weight: bold;">Año Académico</span>
                             <input class="form-control" type="text" id="txt_anno" name="txt_anno" value="<?php echo $row2['num_anno'] ?>" readonly>
 
                         </div>
@@ -281,14 +281,14 @@ ob_end_flush();
                                         <th>Código</th>
                                         <th>Asignatura</th>
                                         <th>Unidades Val.</th>
-                                        <th>sección</th>
+                                        <th>Sección</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Final</th>
                                         <th>Dia</th>
                                         <th>Aula</th>
                                         <th>Edificio</th>
                                         <th>N. Alumnos</th>
-                                        <th>control</th>
+                                        <th>Control</th>
                                         <th>Modalidad</th>
                                     </tr>
                                 </thead>
@@ -301,14 +301,14 @@ ob_end_flush();
                                         <th>Código</th>
                                         <th>Asignatura</th>
                                         <th>Unidades Val.</th>
-                                        <th>sección</th>
+                                        <th>Sección</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Final</th>
-                                        <th>Dia</th>
+                                        <th>Día</th>
                                         <th>Aula</th>
                                         <th>Edificio</th>
                                         <th>N. Alumnos</th>
-                                        <th>control</th>
+                                        <th>Control</th>
                                         <th>Modalidad</th>
                                     </tr>
                                 </tfoot>
@@ -532,7 +532,7 @@ ob_end_flush();
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Seccion:</label>
+                                    <label>Sección:</label>
                                     <td><input maxlength="4" class="form-control" type="text" id="txt_seccion_edita" name="txt_seccion" value="" onkeypress="return Numeros(event)" onkeyup="Espacio(this, event)"></td>
 
                                 </div>
@@ -608,7 +608,7 @@ ob_end_flush();
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title">Nueva Carga Academica</h5>
+                        <h5 class="modal-title">Nueva Carga Académica</h5>
                         <button class="close" data-dismiss="modal" onclick="limpiar();">
                             &times;
                         </button>
@@ -803,7 +803,7 @@ ob_end_flush();
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Seccion:</label>
+                                        <label>Sección:</label>
                                         <td><input maxlength="4" class="form-control" type="text" id="txt_seccion" name="txt_seccion" value="" onkeypress="return Numeros(event)" onkeyup="Espacio(this, event)"></td>
 
                                     </div>
@@ -1019,7 +1019,7 @@ ob_end_flush();
 
                         <div class="input-group mb-3 input-group-sm">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" style="font-weight: bold;">Seccion</span>
+                                <span class="input-group-text" style="font-weight: bold;">Sección</span>
                             </div>
                             <input class="form-control" type="text" id="txt_seccion_eliminar" name="txt_seccion_eliminar" readonly>
                         </div>
