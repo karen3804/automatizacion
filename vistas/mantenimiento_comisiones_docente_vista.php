@@ -40,7 +40,9 @@ if (isset($_REQUEST['msj'])) {
 
 
 
-        $sqltabla = "select comision, id_carrera FROM tbl_comisiones";
+        $sqltabla = "SELECT tbl_comisiones.id_comisiones AS id_comisiones,tbl_comisiones.comision AS comision,tbl_comisiones.id_carrera AS id_carrera,
+        (SELECT c.Descripcion FROM tbl_carrera c WHERE c.id_carrera=tbl_comisiones.id_carrera LIMIT 1) AS carrera
+        FROM tbl_comisiones";
         $resultadotabla = $mysqli->query($sqltabla);
     }
     if ($msj == 3) {
@@ -91,14 +93,18 @@ if ($visualizacion == 0) {
 
 
     /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
-    $sqltabla = "select comision, id_carrera FROM tbl_comisiones";
+    $sqltabla = "SELECT tbl_comisiones.id_comisiones AS id_comisiones,tbl_comisiones.comision AS comision,tbl_comisiones.id_carrera AS id_carrera,
+    (SELECT c.Descripcion FROM tbl_carrera c WHERE c.id_carrera=tbl_comisiones.id_carrera LIMIT 1) AS carrera
+    FROM tbl_comisiones";
     $resultadotabla = $mysqli->query($sqltabla);
 
 
 
     /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
     if (isset($_GET['comision'])) {
-        $sqltabla = "select comision, id_carrera FROM tbl_comisiones";
+        $sqltabla = "SELECT tbl_comisiones.id_comisiones AS id_comisiones,tbl_comisiones.comision AS comision,tbl_comisiones.id_carrera AS id_carrera,
+        (SELECT c.Descripcion FROM tbl_carrera c WHERE c.id_carrera=tbl_comisiones.id_carrera LIMIT 1) AS carrera
+        FROM tbl_comisiones";
         $resultadotabla = $mysqli->query($sqltabla);
 
         /* Esta variable recibe el estado de modificar */
@@ -107,7 +113,9 @@ if ($visualizacion == 0) {
         /* Iniciar la variable de sesion y la crea */
         /* Hace un select para mandar a traer todos los datos de la 
  tabla donde rol sea igual al que se ingreso en el input */
-        $sql = "select * FROM tbl_comisiones WHERE comision = '$comision'";
+        $sql = "SELECT tbl_comisiones.id_comisiones AS id_comisiones,tbl_comisiones.comision AS comision,tbl_comisiones.id_carrera AS id_carrera,
+        (SELECT c.Descripcion FROM tbl_carrera c WHERE c.id_carrera=tbl_comisiones.id_carrera LIMIT 1) AS carrera
+        FROM tbl_comisiones where comision ='$comision'";
         $resultado = $mysqli->query($sql);
         /* Manda a llamar la fila */
         $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -116,6 +124,7 @@ if ($visualizacion == 0) {
         $_SESSION['id_comisiones'] = $row['id_comisiones'];
         $_SESSION['comision'] = $row['comision'];
         $_SESSION['id_carrera'] = $row['id_carrera'];
+        $_SESSION['carrera'] = $row['carrera'];
 
 
         /*Aqui levanto el modal*/
@@ -213,7 +222,7 @@ ob_end_flush();
                         <?php while ($row = $resultadotabla->fetch_array(MYSQLI_ASSOC)) { ?>
                             <tr>
                                 <td><?php echo $row['comision']; ?></td>
-                                <td><?php echo $row['id_carrera']; ?></td>
+                                <td><?php echo $row['carrera']; ?></td>
 
                                 <td style="text-align: center;">
 
@@ -296,7 +305,7 @@ ob_end_flush();
                                         <option value="">Seleccione una opción</option>
                                         </select>
                                     </div>
-                                    <input class="form-control"  id="carrera1" name="carrera1" value="<?php echo $_SESSION['id_carrera']; ?>" >
+                                    <input class="form-control"  id="carrera1" name="carrera1" value="<?php echo $_SESSION['id_carrera']; ?>" hidden>
                                     
 
                                 </div>

@@ -1,22 +1,71 @@
 <?php
 ob_start();
+
 session_start();
+
 require_once('../vistas/pagina_inicio_vista.php');
 require_once('../clases/Conexion.php');
 require_once('../clases/funcion_bitacora.php');
-
 require_once('../clases/funcion_visualizar.php');
 require_once('../clases/funcion_permisos.php');
-require_once('../clases/conexion_mantenimientos.php');
 
+//Lineas de msj al cargar pagina de acuerdo a actualizar o eliminar datos
+if (isset($_REQUEST['msj'])) {
+    $msj = $_REQUEST['msj'];
+
+    if ($msj == 1) {
+        echo '<script type="text/javascript">
+    swal({
+        title: "",
+        text: "Lo sentimos el periodo ya existe",
+        type: "info",
+        showConfirmButton: false,
+        timer: 3000
+    });
+</script>';
+    }
+
+    if ($msj == 2) {
+
+
+        echo '<script type="text/javascript">
+    swal({
+        title: "",
+        text: "Los datos se almacenaron correctamente",
+        type: "success",
+        showConfirmButton: false,
+        timer: 3000
+    });
+</script>';
+
+
+
+        $sqltabla = "select * FROM tbl_periodo";
+        $resultadotabla = $mysqli->query($sqltabla);
+    }
+    if ($msj == 3) {
+
+
+        echo '<script type="text/javascript">
+    swal({
+        title: "",
+        text: "Error al actualizar lo sentimos, intente de nuevo.",
+        type: "error",
+        showConfirmButton: false,
+        timer: 3000
+    });
+</script>';
+    }
+}
 
 
 $Id_objeto = 55;
-
 $visualizacion = permiso_ver($Id_objeto);
 
 
+
 if ($visualizacion == 0) {
+    // header('location:  ../vistas/menu_roles_vista.php');
     echo '<script type="text/javascript">
                               swal({
                                    title:"",
@@ -25,153 +74,307 @@ if ($visualizacion == 0) {
                                    showConfirmButton: false,
                                    timer: 3000
                                 });
-                           window.location = "../vistas/menu_carga_academica_vista.php";
+                           window.location = "../vistas/menu_roles_vista.php";
 
                             </script>';
 } else {
 
-    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INGRESO', ' A MANTENIMIENTO PERIODO');
+    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A mantenimiento periodo');
+
 
     if (permisos::permiso_modificar($Id_objeto) == '1') {
-        $_SESSION['btn_periodo_guardar_carga'] = "";
+        $_SESSION['btn_modificar_periodo'] = "";
     } else {
-        $_SESSION['btn_periodo_guardar_carga'] = "disabled";
+        $_SESSION['btn_modificar_periodo'] = "disabled";
+    }
+
+
+    /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
+    $sqltabla = "SELECT *,
+    (SELECT tp.descripcion FROM tbl_tipo_periodo AS tp WHERE tp.id_tipo_periodo = tbl_periodo.id_tipo_periodo LIMIT 1) tipo_periodo
+    
+    FROM tbl_periodo";
+    $resultadotabla = $mysqli->query($sqltabla);
+
+
+
+    /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
+    if (isset($_GET['fecha_inicio'])) {
+        $sqltabla = "SELECT *,
+       (SELECT tp.descripcion FROM tbl_tipo_periodo AS tp WHERE tp.id_tipo_periodo = tbl_periodo.id_tipo_periodo LIMIT 1) tipo_periodo
+        
+        FROM tbl_periodo";
+        $resultadotabla = $mysqli->query($sqltabla);
+
+        /* Esta variable recibe el estado de modificar */
+        $fecha_inicio = $_GET['fecha_inicio'];
+
+        /* Iniciar la variable de sesion y la crea */
+        /* Hace un select para mandar a traer todos los datos de la 
+ tabla donde rol sea igual al que se ingreso en el input */
+        $sql = "SELECT *,
+        (SELECT tp.descripcion FROM tbl_tipo_periodo AS tp WHERE tp.id_tipo_periodo = tbl_periodo.id_tipo_periodo LIMIT 1) tipo_periodo
+        
+        FROM tbl_periodo WHERE fecha_inicio = '$fecha_inicio'";
+        $resultado = $mysqli->query($sql);
+        /* Manda a llamar la fila */
+        $row = $resultado->fetch_array(MYSQLI_ASSOC);
+
+        /* Aqui obtengo el id_actividad de la tabla de la base el cual me sirve para enviarla a la pagina actualizar.php para usarla en el where del update   */
+        $_SESSION['id_periodo'] = $row['id_periodo'];
+        $_SESSION['num_periodo'] = $row['num_periodo'];
+        $_SESSION['num_anno'] = $row['num_anno'];
+        $_SESSION['fecha_inicio'] = $row['fecha_inicio'];
+        $_SESSION['fecha_final'] = $row['fecha_final'];
+        $_SESSION['tipo_periodo'] = $row['tipo_periodo'];
+        $_SESSION['fecha_adic_canc'] = $row['fecha_adic_canc'];
+        /*Aqui levanto el modal*/
+
+        if (isset($_SESSION['fecha_inicio'])) {
+
+
+?>
+            <script>
+                $(function() {
+                    $('#modal_modificar_periodo').modal('toggle')
+
+                })
+            </script>;
+
+            <?php
+            ?>
+
+<?php
+
+
+        }
     }
 }
 
-$sql2 = $mysqli->prepare("SELECT tbl_periodo.id_periodo AS id_periodo, tbl_periodo.num_periodo AS num_periodo, tbl_periodo.num_anno AS num_anno, tbl_periodo.fecha_adic_canc AS fecha_adic_canc, tbl_periodo.fecha_inicio as fecha_inicio, tbl_periodo.fecha_final as fecha_final, tbl_periodo.fecha_desbloqueo AS fecha_desbloqueo,
-(SELECT tp.descripcion FROM tbl_tipo_periodo AS tp INNER JOIN tbl_periodo AS pdo ON tp.id_tipo_periodo=pdo.id_tipo_periodo
-			WHERE tp.id_tipo_periodo= tbl_periodo.id_tipo_periodo LIMIT 1) AS tipo_periodo,
-			(SELECT tp.horas_validas FROM tbl_tipo_periodo AS tp INNER JOIN tbl_periodo AS pdo ON tp.id_tipo_periodo=pdo.id_tipo_periodo
-			WHERE tp.id_tipo_periodo= tbl_periodo.id_tipo_periodo LIMIT 1) AS horas_validas
-FROM tbl_periodo
-ORDER BY id_periodo DESC LIMIT 1;");
-$sql2->execute();
-$resultado2 = $sql2->get_result();
-$row2 = $resultado2->fetch_array(MYSQLI_ASSOC);
-
 ob_end_flush();
 
-?>
 
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Gestion de Periodo</title>
+    <title></title>
 </head>
 
-<body onload="blo_desblo_periodo();">
+
+<body>
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Mantenimiento del Periodo</h1>
+
+
+                        <h1>PERIODO
+                        </h1>
                     </div>
 
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
-                            <li class="breadcrumb-item"><a href="../vistas/mantenimiento_crear_periodo_vista.php"> Mantenimiento Periodo</a></li>
+                            <li class="breadcrumb-item active"><a href="../vistas/menu_mantenimiento.php">Menu Mantenimiento</a></li>
+                            <li class="breadcrumb-item active"><a href="../vistas/mantenimiento_crear_periodo_vista.php">Nuevo Periodo</a></li>
                         </ol>
                     </div>
 
+                    <div class="RespuestaAjax"></div>
 
                 </div>
             </div><!-- /.container-fluid -->
         </section>
-        <div class="RespuestaAjax"></div>
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid ">
-                <!-- pantalla 1 -->
 
-                <form action="../Controlador/actualizar_periodo_controlador.php" method="post" data-form="save" class="FormularioAjax" autocomplete="off">
 
-                    <div class="card card-default ">
-                        <div class="card-header center">
-                            <h3 class="card-title">Modificar Periodo</h3>
+        <!--Pantalla 2-->
 
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                            </div>
-                            <br>
-                            <div class=" px-12">
-                                <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
-                            </div>
+        <div class="card card-default">
+            <div class="card-header">
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                </div>
+                <br>
+                <div class=" px-12">
+                    <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
+                </div>
+            </div>
+            <div class="card-body">
 
-                        </div>
+                <table id="tabla" class="table table-bordered table-striped">
 
-                        <input hidden class="form-control" type="text" id="fecha_desbloqueo" name="fecha_desbloqueo" value="<?php echo $row2['fecha_desbloqueo'] ?>">
 
-                        <!-- /.card-header -->
-                        <div class="card-body ">
+
+                    <thead>
+                        <tr>
+                            <th hidden>ID </th>
+                            <th>N. PERIODO</th>
+                            <th>AÑO</th>
+                            <th>FECHA INICIO </th>
+                            <th>FECHA FINAL</th>
+                            <th>TIPO PERIODO </th>
+                            <th>ADICIONES/CANCELACIONES</th>
+                            <th>MODIFICAR</th>
+                            <th>ELIMINAR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = $resultadotabla->fetch_array(MYSQLI_ASSOC)) { ?>
+                            <tr>
+                                <td hidden><?php echo $row['id_periodo']; ?></td>
+                                <td><?php echo $row['num_periodo']; ?></td>
+                                <td><?php echo $row['num_anno']; ?></td>
+                                <td><?php echo $row['fecha_inicio']; ?></td>
+                                <td><?php echo $row['fecha_final']; ?></td>
+                                <td><?php echo $row['tipo_periodo']; ?></td>
+                                <td><?php echo $row['fecha_adic_canc']; ?></td>
+
+
+                                <td style="text-align: center;">
+
+                                <a href="../vistas/mantenimiento_periodo_vista.php?fecha_inicio=<?php echo $row['fecha_inicio'];?>" class="btn btn-primary btn-raised btn-xs">
+                                        <i class="far fa-edit" style="display:<?php echo $_SESSION['modificar_periodo'] ?> "></i>
+                                    </a>
+                                </td>
+
+                                <td style="text-align: center;">
+
+                                    <form action="../Controlador/eliminar_periodo_controlador.php?id_periodo=<?php echo $row['id_periodo']; ?>" method="POST" class="FormularioAjax" data-form="delete" autocomplete="off">
+                                        <button type="submit" class="btn btn-danger btn-raised btn-xs">
+
+                                            <i class="far fa-trash-alt" style="display:<?php echo $_SESSION['eliminar_periodo'] ?> "></i>
+                                        </button>
+                                        <div class="RespuestaAjax"></div>
+                                    </form>
+                                </td>
+
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+
+
+        <!-- /.card-body -->
+        <div class="card-footer">
+
+        </div>
+    </div>
+
+
+
+
+
+    <!-- *********************Creacion del modal 
+
+-->
+
+    <form action="../Controlador/actualizar_periodo_controlador.php?id_periodo=<?php echo $_SESSION['id_periodo']; ?>" method="post" data-form="update" autocomplete="off">
+
+
+
+        <div class="modal fade" id="modal_modificar_periodo">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"> Actualizar Periodo</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+
+                    <!--Cuerpo del modal-->
+                    <div class="modal-body">
+
+
+                        <div class="card-body">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group " hidden>
-                                        <label>id periodo</label>
-                                        <input class="form-control" type="text" id="id_periodo" name="id_periodo" style="text-transform: uppercase" onkeypress="return Numeros(event)" value="<?php echo $row2['id_periodo'] ?>">
-                                    </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
 
-                                    <div class="form-group ">
-                                        <label>Periodo Academico</label>
-                                        <input class="form-control" type="text" id="num_periodo" name="num_periodo" style="text-transform: uppercase" onkeypress="return Numeros(event)" value="<?php echo $row2['num_periodo'] ?>" readonly>
+                                        <label>Numero Periodo</label>
+                                        <input class="form-control" type="text" id="num_periodo" name="num_periodo" style="text-transform: uppercase" onkeypress="return Numeros(event)" value="<?php echo $_SESSION['num_periodo']; ?>">
                                     </div>
-
                                     <div class="form-group">
                                         <label>Año Academico</label>
-                                        <input class="form-control" type="text" id="num_anno" name="num_anno" style="text-transform: uppercase" onkeypress="return Numeros(event)" value="<?php echo $row2['num_anno'] ?>" readonly>
+                                        <input class="form-control" type="text" id="num_anno" name="num_anno" style="text-transform: uppercase" onkeypress="return Numeros(event)" value="<?php echo $_SESSION['num_anno']; ?>">
                                     </div>
+
                                     <div class="form-group">
                                         <label>Inicio del Periodo</label>
-                                        <input class="form-control" type="date" id="fecha_inicio" name="fecha_inicio" value="<?php echo $row2['fecha_inicio'] ?>">
+                                        <input class="form-control" type="date" id="fecha_inicio" name="fecha_inicio" value="<?php echo $_SESSION['fecha_inicio']; ?>">
                                     </div>
+
                                     <div class="form-group">
                                         <label>Finalizacion del Periodo</label>
-                                        <input class="form-control" type="date" id="fecha_final" name="fecha_final" value="<?php echo $row2['fecha_final'] ?>">
+                                        <input class="form-control" type="date" id="fecha_final" name="fecha_final" value="<?php echo $_SESSION['fecha_final']; ?>">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Adiciones y Cancelaciones</label>
-                                        <input class="form-control" type="date" id="fecha_adic_canc" name="fecha_adic_canc" value="<?php echo $row2['fecha_adic_canc'] ?>">
+                                        <label>Adiciones/Cancelaciones</label>
+                                        <input class="form-control" type="date" id="fecha_adic_canc" name="fecha_adic_canc" value="<?php echo $_SESSION['fecha_adic_canc']; ?>">
                                     </div>
 
-                                    <!-- <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Tipo de Periodo:</label>
-                                            <td><select class="form-control" onchange="mostrar_tipo_periodo($('#tipo_periodo').val());" id="tipo_periodo" class="" name="">
-                                                    <option value="">Seleccionar</option>
-                                                </select></td>
+                                    <input class="form-control" type="text" id="tipo_p" hidden name="tipo_p" style="text-transform: uppercase">
 
-                                        </div>
-                                    </div> -->
+                                    <div class="form-group">
+                                        <label>Tipo de Periodo</label>
+                                        <select class="form-control-lg select2" type="text" id="tipo_periodo" name="tipo_periodo" style="width: 100%;">
+                                        <option value="">Seleccione una opción</option>
+                                        </select>
+                                    </div>
 
-
-                                    <p class="text-center" style="margin-top: 20px;">
-                                        <button type="submit" class="btn btn-primary" id="btn_guardar_periodo" name="btn_guardar_periodo" <?php echo $_SESSION['btn_guardar_periodo']; ?>><i class="zmdi zmdi-floppy"></i> Guardar</button>
-                                    </p>
 
                                 </div>
                             </div>
                         </div>
 
-
-
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-
-                        </div>
                     </div>
 
-
-
-                    <div class="RespuestaAjax"></div>
-                </form>
-
+                    <!--Footer del modal-->
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" id="btn_modificar_periodo" name="btn_modificar_periodo" <?php echo $_SESSION['btn_modificar_periodo']; ?>>Guardar Cambios</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
             </div>
-        </section>
+            <!-- /.modal-dialog -->
+        </div>
+
+        <!-- /.  finaldel modal -->
+
+        <!--mosdal crear -->
+
+
+
+    </form>
+
+
+
+
+    <script type="text/javascript">
+        $(function() {
+
+            $('#tabla').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": true,
+                "responsive": true,
+            });
+        });
+    </script>
 
 
 </body>
@@ -183,6 +386,17 @@ ob_end_flush();
     }
 </script>
 
+<script type="text/javascript" language="javascript">
+    $(document).ready(function() {
+
+        $('.select2').select2({
+            placeholder: 'Seleccione una opcion',
+            theme: 'bootstrap4',
+            tags: true,
+        });
+
+    });
+</script>
+
 <script type="text/javascript" src="../js/ca2.js"></script>
-<script type="text/javascript" src="../js/valida_text.js"></script>
-<script type="text/javascript" src="../js/fechas_anteriores.js"></script>
+

@@ -59,7 +59,8 @@ ob_end_flush();
 
 
     <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 
 </head>
 
@@ -74,7 +75,7 @@ ob_end_flush();
                     <div class="col-sm-6">
 
 
-                        <h1>Historial de Carga Academica</h1>
+                        <h1>Historial de Carga Académica</h1>
                     </div>
 
                     <div class="col-sm-6">
@@ -102,9 +103,9 @@ ob_end_flush();
                 <!--COMBOBOX-->
 
                 <div class="row">
-                   
+
                     <input type="text" id="id_periodo_actual" hidden name="id_periodo_actual" value="<?php echo $row2['id_periodo'] ?>" readonly>
-                    
+
                     <div class="col-md-3" style="width:75px">
                         <div class="input-group mb-3 input-group">
                             <div class="input-group-prepend">
@@ -112,17 +113,17 @@ ob_end_flush();
                             </div>
                             <input class="form-control" type="text" id="txt_periodo" name="txt_periodo" value="<?php echo $row2['num_periodo'] ?>" readonly>
                         </div>
-                       
+
                     </div>
 
                     <div class="col-md-3" style="width:75px">
                         <div class="input-group mb-3 input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" style="font-weight: bold;">Año Academico</span>
+                                <span class="input-group-text" style="font-weight: bold;">Año Académico</span>
                             </div>
                             <input class="form-control" type="text" id="txt_anno" name="txt_anno" value="<?php echo $row2['num_anno'] ?>" readonly>
                         </div>
-                       
+
                     </div>
                     <div class="col-md-3" style="width:75px">
                         <div class="input-group mb-3 input-group">
@@ -131,7 +132,7 @@ ob_end_flush();
                             </div>
                             <input class="form-control" type="text" id="inicio_periodo" name="inicio_periodo" value="<?php echo $row2['fecha_inicio'] ?>" readonly>
                         </div>
-                        
+
                     </div>
                     <div class="col-md-3" style="width:75px">
                         <div class="input-group mb-3 input-group">
@@ -140,9 +141,9 @@ ob_end_flush();
                             </div>
                             <input class="form-control" type="text" id="final_periodo" name="final_periodo" value="<?php echo $row2['fecha_final'] ?>" readonly>
                         </div>
-                       
+
                     </div>
-                
+
                 </div>
 
             </div>
@@ -153,7 +154,7 @@ ob_end_flush();
                         <div class="col-sm-6">
 
 
-                            <h2>Copiar Carga Academica - Datos</h2>
+                            <h2>Copiar Carga Académica - Datos</h2>
                         </div>
 
 
@@ -168,7 +169,7 @@ ob_end_flush();
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-3" style="width:75px">
-                        
+
 
                         <div class="input-group mb-3 input-group">
                             <div class="input-group-prepend">
@@ -179,7 +180,7 @@ ob_end_flush();
                     </div>
 
                     <div class="col-md-3" style="width:75px">
-                        
+
                         <div class="input-group mb-3 input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" style="font-weight: bold;">Ingrese Año</span>
@@ -198,7 +199,7 @@ ob_end_flush();
                     <div class="px-1">
                         <button class="btn btn-danger " id="btn_copiar_carga" onclick="copiar_carga();"><i class="fas fa-copy"></i> <a style="font-weight: bold;">Comenzar carga desde</a></button>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -211,7 +212,7 @@ ob_end_flush();
                 <div class="box-body">
 
                     <div class="row">
-                        
+
                         <div class="col-md-2">
                             <button class="btn btn-primary " id="limpiar" onclick="limpiar()"><i class="fas fa-sync-alt"></i> <a style="font-weight: bold;">limpiar tabla</a></button>
 
@@ -227,10 +228,10 @@ ob_end_flush();
                                         <th>ID</th>
                                         <th>Empleado</th>
                                         <th>Nombre</th>
-                                        <th>control</th>
-                                        <th>Codigo</th>
+                                        <th>contról</th>
+                                        <th>Código</th>
                                         <th>Asignatura</th>
-                                        <th>seccion</th>
+                                        <th>sección</th>
                                         <th>Inicio</th>
                                         <th>Final</th>
                                         <th>Aula</th>

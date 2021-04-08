@@ -13,29 +13,29 @@ require_once ('../clases/Conexion.php');
       {
 
     $nombreestuadiante=$_GET['estudianteaprobadas'];
-	if (isset($_POST['asignatura'])) {
-			$array_id= $_POST['asignatura'];
-	}
-	
-	if (empty($nombreestuadiante) or empty($array_id)) {
-		    $array_id="[1,1]";
+  if (isset($_POST['asignatura'])) {
+      $array_id= $_POST['asignatura'];
+  }
+  
+  if (empty($nombreestuadiante) or empty($array_id)) {
+        $array_id="[1,1]";
                                 
         header("location:../vistas/gestion_asignaturas_aprobadas_vista.php?msj=1"); 
 
-	} 
+  } 
 
 
 else
 {
 
-		
+    
 
-    	
+      
      
 
     $Id_objeto=16 ; 
      
- $sqlid=("select id_persona as usuario  from tbl_personas where nombre='$nombreestuadiante'");
+ $sqlid=("select p.id_persona as 'usuario'  from tbl_personas p, tbl_personas_extendidas px where p.id_persona=px.id_persona and  px.valor='$nombreestuadiante'");
  //Obtener la fila del query
 $iduser = mysqli_fetch_assoc($mysqli->query($sqlid));
 $idproc=$iduser['usuario'];
@@ -44,14 +44,14 @@ $idproc=$iduser['usuario'];
     {
 
        
-$sqlexiste=("select count(Id_asignatura) as asignatura  from tbl_asignaturas_aprobadas where Id_asignatura='$idasignatura' and id_persona=(select id_persona from tbl_personas where nombre='$nombreestuadiante')");
+$sqlexiste=("select count(Id_asignatura) as asignatura  from tbl_asignaturas_aprobadas where  Id_asignatura='$idasignatura' and id_persona=(select p.id_persona from tbl_personas p, tbl_personas_extendidas px where p.id_persona=px.id_persona and  px.valor='$nombreestuadiante')");
  //Obtener la fila del query
 $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
   if ($existe['asignatura']>=1)
     {
    /*   require"../contenidos/crearRol-view.php";
- 	header('location: ../contenidos/crearRol-view.php?msj=1'); */
- 	        header("location:../vistas/gestion_asignaturas_aprobadas_vista.php?msj=2"); 
+  header('location: ../contenidos/crearRol-view.php?msj=1'); */
+          header("location:../vistas/gestion_asignaturas_aprobadas_vista.php?msj=2"); 
 
     }
     else
@@ -82,7 +82,7 @@ $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
       else 
       {
 
-      	        header("location:../vistas/gestion_asignaturas_aprobadas_vista.php?msj=4"); 
+                header("location:../vistas/gestion_asignaturas_aprobadas_vista.php?msj=4"); 
 
                                   }
 
@@ -99,7 +99,12 @@ $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 
 
 
-	if ($R = $mysqli->query("select p.id_persona,p.nombre, p.documento, count(ca.Id_asignatura) as clases from tbl_personas p ,tbl_asignaturas_aprobadas ca where ca.id_persona=p.id_persona  GROUP BY p.id_persona ")) {
+  if ($R = $mysqli->query("select p.id_persona,concat(p.nombres,' ',p.apellidos) as 'nombre', px.valor as 'valor', count(ca.Id_asignatura) as 'clases' from tbl_personas p ,tbl_asignaturas_aprobadas ca ,tbl_personas_extendidas px
+ where px.id_atributo=12 and px.id_persona=p.id_persona and ca.id_persona=p.id_persona 
+  GROUP BY p.id_persona ,px.valor")) {
+
+
+
             $items = [];
 
             while ($row = $R->fetch_assoc()) {

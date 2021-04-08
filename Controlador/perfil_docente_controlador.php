@@ -9,10 +9,17 @@ $grado = isset($_POST["grado"]) ? limpiarCadena1($_POST["grado"]) : "";
 $especialidad = isset($_POST["especialidad"]) ? limpiarCadena1($_POST["especialidad"]) : "";
 $telefono = isset($_POST["telefono"]) ? limpiarCadena1($_POST["telefono"]) : "";
 $eliminar_tel = isset($_POST["eliminar_tel"]) ? limpiarCadena1($_POST["eliminar_tel"]) : "";
+$eliminar_correo = isset($_POST["eliminar_correo"]) ? limpiarCadena1($_POST["eliminar_correo"]) : "";
 $id_persona = isset($_POST["id_persona"]) ? limpiarCadena1($_POST["id_persona"]) : "";
 $nacionalidad = isset($_POST["nacionalidad"]) ? limpiarCadena1($_POST["nacionalidad"]) : "";
-$estado_civil = isset($_POST["estado_civil"]) ? limpiarCadena1($_POST["estado_civil"]) : "";
+$estado_civil = isset($_POST["id_estado_civil"]) ? limpiarCadena1($_POST["id_estado_civil"]) : "";
 $valor = isset($_POST["valor"]) ? limpiarCadena1($_POST["valor"]) : "";
+$curriculum = isset($_POST["curriculum"]) ? limpiarCadena1($_POST["curriculum"]) : "";
+$estado = isset($_POST["estado_civil"]) ? limpiarCadena1($_POST["estado_civil"]) : "";
+$codigo = isset($_POST["codigo"]) ? limpiarCadena1($_POST["codigo"]) : "";
+$id_genero = isset($_POST["id_genero"]) ? limpiarCadena1($_POST["id_genero"]) : "";
+$genero = isset($_POST["genero"]) ? limpiarCadena1($_POST["genero"]) : "";
+$sexo = isset($_POST["sexo"]) ? limpiarCadena1($_POST["sexo"]) : "";
 
 $id_persona_prueba = '10';
 
@@ -50,7 +57,7 @@ if (isset($_GET['op'])) {
 
         case 'EditarPerfil':
 
-            $rspta = $instancia_modelo->Actualizar($nombre, $apellido, $identidad, $id_persona, $nacionalidad, $estado_civil);
+            $rspta = $instancia_modelo->Actualizar($nombre, $apellido, $identidad, $id_persona, $nacionalidad, $estado, $sexo);
             break;
 
         case 'AgregarEpecialidad':
@@ -70,6 +77,12 @@ if (isset($_GET['op'])) {
 
 
             $rspta = $instancia_modelo->AgregarTelefono($telefono, $id_persona);
+            break;
+
+        case 'AgregarCorreo':
+
+
+            $rspta = $instancia_modelo->AgregarCorreo($id_persona, $correo);
 
             break;
 
@@ -80,21 +93,29 @@ if (isset($_GET['op'])) {
 
             break;
 
-            case 'CambiarFoto':
+        case 'EliminarCorreo':
 
 
-                $ruta_carpeta="../Imagenes_Perfil_Docente/";
-                $nombre_archivo = "imagen".date("dHis").".".pathinfo($_FILES["imagen"]["name"],PATHINFO_EXTENSION);
-    
-    
-                $ruta_guardar_archivo = $ruta_carpeta.$nombre_archivo;
-                //echo $ruta_guardar_archivo;
-                move_uploaded_file($_FILES["imagen"]["tmp_name"],$ruta_guardar_archivo);
-                $rspta=$instancia_modelo->CambiarFoto($ruta_guardar_archivo);
-                echo json_encode($ruta_guardar_archivo);
-    
-    
-                
+            $rspta = $instancia_modelo->EliminarCorreo($eliminar_correo);
+
+            break;
+
+
+        case 'CambiarFoto':
+
+
+            $ruta_carpeta = "../Imagenes_Perfil_Docente/";
+            $nombre_archivo = "imagen" . date("dHis") . "." . pathinfo($_FILES["imagen"]["name"], PATHINFO_EXTENSION);
+
+
+            $ruta_guardar_archivo = $ruta_carpeta . $nombre_archivo;
+            //echo $ruta_guardar_archivo;
+            move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta_guardar_archivo);
+            $rspta = $instancia_modelo->CambiarFoto($ruta_guardar_archivo, $id_persona);
+            echo json_encode($ruta_guardar_archivo);
+
+
+
             break;
 
         case 'Actividades':
@@ -120,11 +141,43 @@ if (isset($_GET['op'])) {
 
             break;
 
+        case 'ver_estado_c':
+
+
+            $rspta = $instancia_modelo->ver_estado_c($id_persona);
+            echo json_encode($rspta);
+
+            break;
+
+        case 'ver_genero':
+
+
+            $rspta = $instancia_modelo->ver_genero($id_persona);
+            echo json_encode($rspta);
+
+            break;
+
         case 'ExisteIdentidad':
 
 
             $rspta = $instancia_modelo->ExisteIdentidad($identidad);
             echo json_encode($rspta);
+
+            break;
+        case 'cambiarCurriculum':
+
+            if (is_array($_FILES) && count($_FILES) > 0) {
+
+                if (move_uploaded_file($_FILES["c"]["tmp_name"],"../curriculum_docentes/".$_FILES["c"]["name"])) {
+                    $nombrearchivo2 = '../curriculum_docentes/'.$_FILES["c"]["name"];
+                    $consulta = $instancia_modelo->Registrar_curriculum($nombrearchivo2, $id_persona);
+                    echo json_encode($nombrearchivo2);
+                } else {
+                    return 0;
+                }
+            } else {
+                return 0;
+            }
 
             break;
 
@@ -149,6 +202,55 @@ if (isset($_GET['op'])) {
 
         default:
             # code...
+            break;
+
+
+
+        case 'mayoria_edad':
+            $rspta = $instancia_modelo->mayoria_edad();
+            //Codificar el resultado utilizando json
+            echo json_encode($rspta);
+            break;
+
+        case 'validar_depto':
+            $respuesta = $instancia_modelo->validardepto($codigo);
+            echo json_encode($respuesta);
+
+            break;
+
+        case 'mostrar_estado_civil':
+            $rspta2 = $instancia_modelo->mostrar_estado_civil($estado_civil);
+            //Codificar el resultado utilizando json
+            echo json_encode($rspta2);
+            break;
+        case 'estado_civil':
+
+            $data = array();
+            $respuesta2 = $instancia_modelo->listar_estado_civil();
+
+            while ($r2 = $respuesta2->fetch_object()) {
+
+
+                # code...
+                echo "<option value='" . $r2->id_estado_civil . "'> " . $r2->estado_civil . " </option>";
+            }
+            break;
+
+        case 'mostrar_genero':
+            $rspta2 = $instancia_modelo->mostrar_genero($genero);
+            echo json_encode($rspta2);
+            break;
+        case 'genero':
+
+            $data = array();
+            $respuesta2 = $instancia_modelo->listar_genero();
+
+            while ($r2 = $respuesta2->fetch_object()) {
+
+
+                # code...
+                echo "<option value='" . $r2->id_genero . "'> " . $r2->genero . " </option>";
+            }
             break;
     }
 }

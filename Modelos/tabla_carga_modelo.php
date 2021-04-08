@@ -129,6 +129,19 @@ class modeloCarga
         }
     }
 
+    function respuesta1($id_persona)
+    {
+        global $instancia_conexion;
+        $sql = "call sel_area_pref_doce('$id_persona')";
+
+        if ($consulta = $instancia_conexion->ejecutarConsulta($sql)) {
+            while ($consulta_VU = mysqli_fetch_all($consulta)) {
+                $arreglo["data"][] = $consulta_VU;
+            }
+            return $arreglo;
+        }
+    }
+
    
 
 }

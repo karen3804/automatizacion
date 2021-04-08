@@ -24,6 +24,11 @@ if ((document.getElementsByName = 'cbm_departamento')) {
 if ((document.getElementsByName = 'cbm_facultad')) {
 	llenar_facultad();
 }
+if ((document.getElementsByName = 'tipo_periodo')) {
+	llenar_facultad();
+}
+
+
 
 
 function llenar_persona() {
@@ -172,6 +177,21 @@ $("#cbm_facultad").change(function () {
 	$("#facultad1").val(nombre);
 
 });
+
+function llenar_tipo_periodo() {
+	var cadena = "&activar=activar";
+	$.ajax({
+	  url: "../Controlador/reporte_carga_controlador.php?op=select8",
+	  type: "POST",
+	  data: cadena,
+	  success: function (r) {
+		  
+		$("#tipo_periodo").html(r).fadeIn();
+	  },
+	});
+  }
+  llenar_carrera();
+
 
 
 

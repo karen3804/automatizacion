@@ -40,8 +40,8 @@ if (isset($_REQUEST['msj'])) {
 
 
 
-    $sqltabla = "select  actividad, descripcion, nombre_proyecto, horas_semanales, id_comisiones
-FROM tbl_actividades";
+    $sqltabla = "SELECT tbl_actividades.id_actividad AS id_actividad,tbl_actividades.actividad AS actividad,tbl_actividades.descripcion AS descripcion,tbl_actividades.nombre_proyecto AS nombre_proyecto,tbl_actividades.horas_semanales AS horas_semanales,tbl_actividades.id_comisiones AS id_comisiones,
+(SELECT c.comision FROM tbl_comisiones c WHERE c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS tipo_comision FROM tbl_actividades";
     $resultadotabla = $mysqli->query($sqltabla);
   }
   if ($msj == 3) {
@@ -91,24 +91,26 @@ if ($visualizacion == 0) {
 
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
-  $sqltabla = "select  actividad, descripcion, nombre_proyecto, horas_semanales, id_comisiones FROM tbl_actividades";
+  $sqltabla = "SELECT tbl_actividades.id_actividad AS id_actividad,tbl_actividades.actividad AS actividad,tbl_actividades.descripcion AS descripcion,tbl_actividades.nombre_proyecto AS nombre_proyecto,tbl_actividades.horas_semanales AS horas_semanales,tbl_actividades.id_comisiones AS id_comisiones,
+(SELECT c.comision FROM tbl_comisiones c WHERE c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS tipo_comision FROM tbl_actividades";
   $resultadotabla = $mysqli->query($sqltabla);
 
 
 
   /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
-  if (isset($_GET['id_actividad'])) {
-    $sqltabla = "select  actividad, descripcion, nombre_proyecto, horas_semanales, id_comisiones
-    FROM tbl_actividades";
+  if (isset($_GET['actividad'])) {
+    $sqltabla = "SELECT tbl_actividades.id_actividad AS id_actividad,tbl_actividades.actividad AS actividad,tbl_actividades.descripcion AS descripcion,tbl_actividades.nombre_proyecto AS nombre_proyecto,tbl_actividades.horas_semanales AS horas_semanales,tbl_actividades.id_comisiones AS id_comisiones,
+(SELECT c.comision FROM tbl_comisiones c WHERE c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS tipo_comision FROM tbl_actividades";
     $resultadotabla = $mysqli->query($sqltabla);
 
     /* Esta variable recibe el estado de modificar */
-    $actividad = $_GET['id_actividad'];
+    $actividad = $_GET['actividad'];
 
     /* Iniciar la variable de sesion y la crea */
     /* Hace un select para mandar a traer todos los datos de la 
  tabla donde rol sea igual al que se ingreso en el input */
-    $sql = "select * FROM tbl_actividades WHERE actividad = '$actividad'";
+    $sql = "SELECT tbl_actividades.id_actividad AS id_actividad,tbl_actividades.actividad AS actividad,tbl_actividades.descripcion AS descripcion,tbl_actividades.nombre_proyecto AS nombre_proyecto,tbl_actividades.horas_semanales AS horas_semanales,tbl_actividades.id_comisiones AS id_comisiones,
+(SELECT c.comision FROM tbl_comisiones c WHERE c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS tipo_comision FROM tbl_actividades WHERE actividad = '$actividad'";
     $resultado = $mysqli->query($sql);
     /* Manda a llamar la fila */
     $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -120,9 +122,10 @@ if ($visualizacion == 0) {
     $_SESSION['nombre_proyecto'] = $row['nombre_proyecto'];
     $_SESSION['horas_semanales'] = $row['horas_semanales'];
     $_SESSION['id_comisiones'] = $row['id_comisiones'];
+    $_SESSION['tipo_comision'] = $row['tipo_comision'];
     /*Aqui levanto el modal*/
 
-    if (isset($_SESSION['id_actividad'])) {
+    if (isset($_SESSION['actividad'])) {
 
 
 ?>
@@ -221,7 +224,7 @@ ob_end_flush();
                 <td><?php echo $row['descripcion']; ?></td>
                 <td><?php echo $row['nombre_proyecto']; ?></td>
                 <td><?php echo $row['horas_semanales']; ?></td>
-                <td><?php echo $row['id_comisiones']; ?></td>
+                <td><?php echo $row['tipo_comision']; ?></td>
 
 
                 <td style="text-align: center;">

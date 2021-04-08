@@ -97,7 +97,7 @@ function modificar_carga_academica() {
   var cb_aula = $("#cbm_aula_edita").val();
   var cb_modalidad = $("#cbm_modalidad_edita").val();
   var matriculados = $("#txt_matriculados_edita").val();
-  //var control = $("#txt_control_edita").val();
+  var control = $("#txt_control_edita").val();
   var idPersona = $("#txt_id_docente").val();
   var idPeriodo = $("#txt_id_periodo").val();
   //para validar que modifico
@@ -119,8 +119,8 @@ function modificar_carga_academica() {
     // cb_edif.length == 0 ||
     cb_aula == null ||
     matriculados.length == 0 ||
-    cb_modalidad == null 
-   // control.length == 0
+    cb_modalidad == null
+    // control.length == 0
   ) {
     swal({
       title: "alerta",
@@ -164,7 +164,11 @@ function modificar_carga_academica() {
       // document.getElementById("cbm_hi_edita").value = "";
       document.getElementById("cbm_hf_edita").value = "";
     } else {
-      if (entradatabla != cb_hi || aulatabla != cb_aula || salidatabla != cb_hf) {
+      if (
+        entradatabla != cb_hi ||
+        aulatabla != cb_aula ||
+        salidatabla != cb_hf
+      ) {
         $.post(
           "../Controlador/reporte_carga_controlador.php?op=verificarCarga",
           {
@@ -367,7 +371,6 @@ function validaentrada_edita() {
   }
 }
 
-
 function validahoraperiodo_edita() {
   var hora_final = document.getElementById("cbm_hf_edita").value;
   var hrSalida = document.getElementById("txtsalida").value;
@@ -416,8 +419,6 @@ function validahoraperiodo_edita() {
     });
   }
 }
-
-
 
 /* para modal editar DATOS*/
 var id_aula;
@@ -478,7 +479,6 @@ $("#tabla_carga").on("click", ".editar", function () {
   mostrar2(id_asignatura);
 
   seleccionar_dias($("#txt_dias_edita").val(), ",");
- 
 });
 
 /* para validar si existe y modifica */
@@ -636,7 +636,6 @@ function TablaCarga() {
     info: true,
     autoWidth: true,
     responsive: true,
-    ordering: true,
     // LengthChange: false,
     searching: { regex: true },
     lengthMenu: [
@@ -652,6 +651,55 @@ function TablaCarga() {
       url: "../Controlador/tabla_carga_controlador.php",
       type: "POST",
     },
+    dom: "Bfrtilp",
+   
+    buttons: [
+      {
+        extend: "excelHtml5",
+        text: '<i class="fas fa-file-excel"></i> ',
+        titleAttr: "Exportar a Excel",
+        className: "btn btn-success",
+      },
+      {
+        extend: "pdfHtml5",
+      
+        customize: function (doc) {
+          doc["footer"] = function (page, pages) {
+            return {
+              columns: [
+                {
+                  alignment: "center",
+                  text: [
+                    { text: page.toString(), italics: true },
+                    " of ",
+                    { text: pages.toString(), italics: true },
+                  ],
+                },
+              ],
+              margin: [10, 0],
+            };
+          };
+
+        },
+
+        text: '<i class="fas fa-file-pdf"></i> ',
+        titleAttr: "Exportar a PDF",
+        className: "btn btn-danger",
+        orientation: "landscape",
+        pageSize: "A4",
+        exportOptions: {
+          columns: [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+        },
+        title: " Carga Academica",
+        messageTop: "REPORTE DE CARGA ACADEMICA", //Coloca el título dentro del PDF
+      },
+      {
+        extend: "print",
+        text: '<i class="fa fa-print"></i> ',
+        titleAttr: "Imprimir",
+        className: "btn btn-info",
+      },
+    ],
     columns: [
       {
         defaultContent:
@@ -679,7 +727,6 @@ function TablaCarga() {
     language: idioma_espanol,
     select: true,
   });
-
 }
 
 // ----------------- COMBOBOX DE ASIGNATURA----------------
@@ -729,25 +776,20 @@ $("#cbm_asignatura_edita").change(function () {
 });
 
 function valida_matriculados_edita() {
-        var capacidad = document.getElementById("txt_capacidad_edita").value;
-        var matriculados = document.getElementById("txt_matriculados_edita").value;
-        if (matriculados > capacidad) {
-            swal({
-                    title: "Alerta",
-                    text: "Esta excediendo la capacidad, desea continuar?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-
-
-                    } else {
-
-                        document.getElementById("txt_matriculados_edita").value = "";
-                    }
-                });
-
-        }
-    }
+  var capacidad = document.getElementById("txt_capacidad_edita").value;
+  var matriculados = document.getElementById("txt_matriculados_edita").value;
+  if (matriculados > capacidad) {
+    swal({
+      title: "Alerta",
+      text: "Esta excediendo la capacidad, desea continuar?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+      } else {
+        document.getElementById("txt_matriculados_edita").value = "";
+      }
+    });
+  }
+}

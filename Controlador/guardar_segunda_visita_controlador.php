@@ -19,9 +19,12 @@ $solicitar=isset($_POST["solicitar_practicante_sv"])? ($_POST["solicitar_practic
 $representante=isset($_POST["representante_sv"])? ($_POST["representante_sv"]):"";
 $lugar=isset($_POST["lugar_sv"])? ($_POST["lugar_sv"]):"";
 $oportunidad=isset($_POST["oportunidad_empleo_sv"])? ($_POST["oportunidad_empleo_sv"]):"";
+$id_persona=isset($_POST["id_persona"])? ($_POST["id_persona"]):"";
 
 
 
+
+$prueba="selectCurso";
 
 
 
@@ -35,6 +38,25 @@ switch ($_GET["op"]){
 			echo $rspta ? "Encuesta registrada con exito" : "La encuesta no se pudo registrar";
 		
 	break;
+
+    case 'selectCurso':
+		$rspta=$modelo->selectCurso();
+        while ($r = mysqli_fetch_array($rspta)) {
+            echo '<option value="'.$r['id_persona'].' "  >'.$r['nombres']. ' ' .$r['apellidos']. '</option>';
+
+        }
+
+
+        break;
+
+    
+        
+    case 'rellenarDatos':
+$rspta=$modelo->rellenarDatos($id_persona);
+echo json_encode($rspta);
+break;
+
+
 
 
 	

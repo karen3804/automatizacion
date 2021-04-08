@@ -82,7 +82,7 @@ $_SESSION['gestion_pregunta_menu']="No
   <div class="icon">
     <i class="far fa-plus-square"></i>
   </div>
-  <a href="../vistas/crear_pregunta_vista.php" class="small-box-footer">
+  <a href="http://www.informaticaunah.com/automatizacion/vistas/crear_pregunta_vista.php" class="small-box-footer">
    Ir <i class="fas fa-arrow-circle-right"></i>
   </a>
 </div>

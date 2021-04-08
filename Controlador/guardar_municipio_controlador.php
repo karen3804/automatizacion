@@ -9,7 +9,7 @@
 
 $municipio=strtoupper ($_POST['txt_municipio1']);
 	$codigo=strtoupper ($_POST['txt_codigo1']);
-  $departamento=strtoupper ($_POST['txt_departamento1']);
+  $departamento=strtoupper ($_POST['departamento1']);
 
 
  
@@ -21,7 +21,7 @@ $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 
 
 /* Logica para que no acepte campos vacios */
-if ($_POST['txt_municipio1']  <>' ' and  $_POST['txt_codigo1']<> ''and  $_POST['txt_departamento1']<> '')
+if ($_POST['txt_municipio1']  <>' ' and  $_POST['txt_codigo1']<> ''and  $_POST['departamento1']<> '')
 {
 
  

@@ -40,7 +40,10 @@ if (isset($_REQUEST['msj'])) {
 
 
 
-    $sqltabla = "select id_aula, codigo, descripcion, capacidad, id_edificio, id_tipo_aula FROM tbl_aula";
+    $sqltabla = "SELECT tbl_aula.id_aula AS id_aula,tbl_aula.codigo AS codigo,tbl_aula.descripcion AS descripcion,tbl_aula.capacidad AS capacidad,tbl_aula.id_edificio AS id_edificio,tbl_aula.id_tipo_aula AS id_tipo_aula,
+(SELECT e.nombre FROM tbl_edificios e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS edificio,
+(SELECT t.tipo_aula FROM tbl_tipo_aula t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
+FROM tbl_aula";
     $resultadotabla = $mysqli->query($sqltabla);
   }
   if ($msj == 3) {
@@ -90,14 +93,20 @@ if ($visualizacion == 0) {
 
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
-  $sqltabla = "select id_aula, codigo, descripcion, capacidad, id_edificio, id_tipo_aula FROM tbl_aula";
+  $sqltabla = "SELECT tbl_aula.id_aula AS id_aula,tbl_aula.codigo AS codigo,tbl_aula.descripcion AS descripcion,tbl_aula.capacidad AS capacidad,tbl_aula.id_edificio AS id_edificio,tbl_aula.id_tipo_aula AS id_tipo_aula,
+(SELECT e.nombre FROM tbl_edificios e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS edificio,
+(SELECT t.tipo_aula FROM tbl_tipo_aula t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
+FROM tbl_aula";
   $resultadotabla = $mysqli->query($sqltabla);
 
 
 
   /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
   if (isset($_GET['codigo'])) {
-    $sqltabla = "select id_aula, codigo, descripcion, capacidad, id_edifico, id_tipo_aula FROM tbl_aula";
+    $sqltabla = "SELECT tbl_aula.id_aula AS id_aula,tbl_aula.codigo AS codigo,tbl_aula.descripcion AS descripcion,tbl_aula.capacidad AS capacidad,tbl_aula.id_edificio AS id_edificio,tbl_aula.id_tipo_aula AS id_tipo_aula,
+(SELECT e.nombre FROM tbl_edificios e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS edificio,
+(SELECT t.tipo_aula FROM tbl_tipo_aula t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
+FROM tbl_aula";
     $resultadotabla = $mysqli->query($sqltabla);
 
     /* Esta variable recibe el estado de modificar */
@@ -106,7 +115,10 @@ if ($visualizacion == 0) {
     /* Iniciar la variable de sesion y la crea */
     /* Hace un select para mandar a traer todos los datos de la 
  tabla donde rol sea igual al que se ingreso en el input */
-    $sql = "select * FROM tbl_aula WHERE codigo = '$codigo'";
+    $sql = "SELECT tbl_aula.id_aula AS id_aula,tbl_aula.codigo AS codigo,tbl_aula.descripcion AS descripcion,tbl_aula.capacidad AS capacidad,tbl_aula.id_edificio AS id_edificio,tbl_aula.id_tipo_aula AS id_tipo_aula,
+(SELECT e.nombre FROM tbl_edificios e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS edificio,
+(SELECT t.tipo_aula FROM tbl_tipo_aula t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
+FROM tbl_aula WHERE codigo = '$codigo'";
     $resultado = $mysqli->query($sql);
     /* Manda a llamar la fila */
     $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -118,6 +130,8 @@ if ($visualizacion == 0) {
     $_SESSION['capacidad'] = $row['capacidad'];
     $_SESSION['id_edificio'] = $row['id_edificio'];
     $_SESSION['id_tipo_aula'] = $row['id_tipo_aula'];
+    $_SESSION['edificio'] = $row['edificio'];
+    $_SESSION['tipo_aula'] = $row['tipo_aula'];
     /*Aqui levanto el modal*/
 
     if (isset($_SESSION['codigo'])) {
@@ -220,8 +234,8 @@ ob_end_flush();
                 <td><?php echo $row['codigo']; ?></td>
                 <td><?php echo $row['descripcion']; ?></td>
                 <td><?php echo $row['capacidad']; ?></td>
-                <td><?php echo $row['id_edificio']; ?></td>
-                <td><?php echo $row['id_tipo_aula']; ?></td>
+                <td><?php echo $row['edificio']; ?></td>
+                <td><?php echo $row['tipo_aula']; ?></td>
 
 
                 <td style="text-align: center;">
@@ -265,7 +279,7 @@ ob_end_flush();
 
 -->
 
-  <form action="../Controlador/actualizar_aula_controlador.php?codigo=<?php echo $_SESSION['codigo']; ?>" method="post" data-form="update" autocomplete="off">
+  <form action="../Controlador/actualizar_aula_controlador.php?id_aula=<?php echo $_SESSION['id_aula']; ?>" method="post" data-form="update" autocomplete="off">
 
 
 
@@ -340,7 +354,7 @@ ob_end_flush();
                       <option value="">Seleccione una opción</option>
                     </select>
                   </div>
-                  <input class="form-control" id="aula" name="aula" value="<?php echo $_SESSION['id_tipo_aula']; ?>" hidden>
+                  <input class="form-control" id="aula" name="aula" value="<?php echo $_SESSION['id_tipo_aula']; ?>"hidden >
 
                 </div>
               </div>

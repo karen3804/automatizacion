@@ -194,6 +194,7 @@ ob_end_flush();
                     </div>
                     <p hidden id="TextoIdentidad" style="color:red;">¡Ya existe un registro con esta identidad! </p>
                     <p hidden id="Textopasaporte" style="color:red;">¡Ya existe un registro con este pasaporte! </p>
+                    <p hidden id="Textomayor" style="color:red;">¡Es menor de edad! </p>
 
                   </div>
 
@@ -471,7 +472,7 @@ ob_end_flush();
                       <select class="form-control" name="jornada" id="jornada" value="" style="text-transform: uppercase">
                       </select>
                     </div>
-                    <input type="text" name="jornada_id" id="jornada_id" readonly>
+                    <input hidden type="text" name="jornada_id" id="jornada_id" readonly>
 
                   </div>
 

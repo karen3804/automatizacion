@@ -79,17 +79,23 @@ ob_end_flush();
             <div class="row">
 
             <div class="col-sm-12">
-                  <label>DATOS GENERALES</label>
+            <label>DATOS GENERALES</label>
                   <hr>
                   </div>
-
-                  <div class="col-sm-6">
+                  <div class="col-sm-12">
                   <div class="form-group">
-                  <label>Buscar por numero de cuenta</label>
-                    <input autofocus class="form-control"  type="text" id="busqueda_cuenta_sv"    maxlength="60">
+                  <p><label>Seleccione un Alumno</label>
+                  <select class="form-control" name="curso" id="curso" onchange='llenarCampos(this);'> 
+                  <option value="" selected hidden>Seleccione</option>
+                </select>
                 </div>
                  </div>
                  
+
+                  
+                   
+                    <input type="text" id="idInput" name="idInput" class="input" hidden />
+            
 
                 
 
@@ -143,6 +149,27 @@ ob_end_flush();
                   <div class="form-group">
                   <label>Nombre del estudiante</label>
                     <input class="form-control" type="text" id="estudiante_sv" name="estudiante_sv"   maxlength="60" readonly >
+                </div>
+                 </div>
+
+                 <div class="col-sm-6">
+                  <div class="form-group">
+                  <label>Fecha de inicio</label>
+                    <input class="form-control" type="text" id="inicio_sv" name="inicio_sv"  maxlength="60" readonly >
+                </div>
+                 </div>
+
+                 <div class="col-sm-6">
+                  <div class="form-group">
+                  <label>Fecha de finalizacion</label>
+                    <input class="form-control" type="text" id="finalizacion_sv" name="finalizacion_sv"  maxlength="60" readonly >
+                </div>
+                 </div>
+
+                 <div class="col-sm-6">
+                  <div class="form-group">
+                  <label>Horas</label>
+                    <input class="form-control" type="text" id="horas_sv" name="horas_sv"  maxlength="60" readonly >
                 </div>
                  </div>
 
@@ -417,16 +444,73 @@ ob_end_flush();
  </div>
 
 
- <script type="text/javascript">
 	
+
+  <script type="text/javascript">
+function llenar_select2(){
+  
+  var cadena="&activar=activar"
+  $.ajax({
+      url: "../Controlador/guardar_segunda_visita_controlador.php?op=selectCurso",
+        type: "POST",
+        data: cadena,
+        success: function(r){
+        
+      
+          $("#curso").html(r).fadeIn();
+        }
+      
+
+  });
+ 
+}
+llenar_select2();
+
+
+
+	function llenarCampos(inputSelect){
+    document.getElementById("idInput").value = inputSelect.options[inputSelect.selectedIndex].value;
+    var id_persona1=inputSelect.options[inputSelect.selectedIndex].value;
+    console.log(id_persona1);
+    console.log("hola");
+
+   
+
+
+ $.post("../Controlador/guardar_segunda_visita_controlador.php?op=rellenarDatos",{id_persona: id_persona1}, function(data, status)
+	{
+    
+		data = JSON.parse(data);
+		console.log(data);
+		//mostrarform(true);
+
+		//TBL_PRACTICA_ESTUDIANTES
+		$("#inicio_sv").val(data.fecha_inicio);
+		$("#finalizacion_sv").val(data.fecha_finaliza);
+		$("#horas_sv").val(data.horas);
+//TBL_PERSONAS_EXTENDIDAS
+		$("#cuenta_sv").val(data.valor);
+//TBL_EMPRESAS_PRACTICA
+    $("#empresa_sv").val(data.nombre_empresa);
+ 		$("#jefe_sv").val(data.jefe_inmediato);
+		$("#titulo_sv").val(data.titulo_jefe_inmediato);
+		$("#correo_sv").val(data.correo_jefe_inmediato);
+		$("#telefono_sv").val(data.telefono_jefe_inmediato);
+//TBL_PERSONAS
+		$("#estudiante_sv").val(data.nombres);
+
+
+
+
+	 })
+
+}
+
 
 
  </script>
 
-<script>
 
-
-  </script>
 
 
 

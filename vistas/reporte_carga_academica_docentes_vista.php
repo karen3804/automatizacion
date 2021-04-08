@@ -161,7 +161,7 @@ ob_end_flush();
       </div>
       <script type="text/javascript" language="javascript">
         function ventana3() {
-          window.open("../Controlador/reporte_mantenimiento_nacionalidad_controlador.php", "REPORTE");
+          window.open("../Controlador/reporte_mantenimiento_periodo_controlador.php", "REPORTE");
         }
       </script>
 
