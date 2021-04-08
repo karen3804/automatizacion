@@ -56,12 +56,12 @@ ob_end_flush();
 <html>
 
 <head>
-<link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-<link rel=" stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
+    <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel=" stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
 
     <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-            <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 
 
 
@@ -86,6 +86,7 @@ ob_end_flush();
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
                             <li class="breadcrumb-item"><a href="../vistas/menu_carga_academica_vista.php">Menu Carga Académica</a></li>
                             <li class="breadcrumb-item">Historial de Carga Académica</li>
+                            <li class="breadcrumb-item"><a href="../vistas/gestion_carga_academica_vista.php">Ir a Carga Académica</a></li>
 
                         </ol>
                     </div>
@@ -314,12 +315,15 @@ ob_end_flush();
 </script>
 <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js">
-
-<script type="text/javascript" src="../js/pdf_mantenimientos.js"></script>
+    < script type = "text/javascript"
+    src = "../js/pdf_mantenimientos.js" >
+</script>
 <script src="../plugins/select2/js/select2.min.js"></script>
-/* <!-- datatables JS --> */
+/*
+<!-- datatables JS --> */
 <script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script>
- /*  <!-- para usar botones en datatables JS --> */
+/*
+<!-- para usar botones en datatables JS --> */
 <script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
 <script src="../plugins/datatables/JSZip-2.5.0/jszip.min.js"></script>
 <script src="../plugins/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
