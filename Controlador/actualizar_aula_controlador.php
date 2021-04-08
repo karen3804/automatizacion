@@ -19,7 +19,7 @@ $id_aula = $_GET['id_aula'];
 
 
 ///Logica para el rol que se repite
-$sqlexiste = ("select count(codigo) as codigo  from tbl_aula where codigo='$codigo' and id_aula<>'$id_aula'  ;");
+$sqlexiste = ("select count(codigo) as codigo  from tbl_aula where codigo='$codigo' and id_aula='$id_aula'  ;");
 //Obtener la fila del query
 $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 

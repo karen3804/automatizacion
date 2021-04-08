@@ -332,7 +332,7 @@ ob_end_flush();
                       <option value="">Seleccione una opción</option>
                     </select>
                   </div>
-                  <input class="form-control" id="comision1" name="comision1" value="<?php echo $_SESSION['id_comisiones']; ?>" hidden>
+                  <input class="form-control" id="comision1" name="comision1" value="<?php echo $_SESSION['id_comisiones']; ?>">
 
                 </div>
               </div>
