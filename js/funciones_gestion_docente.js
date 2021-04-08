@@ -326,7 +326,7 @@ function persona() {
 } */
 $(document).ready(function() {
 	function eliminar() {
-		var confirmLeave = confirm('¿Desea Eliminar el Número de telefono del docente?');
+		var confirmLeave = confirm('¿Desea eliminar actividad del docente?');
 		if (confirmLeave == true) {
 			var id = $(this).attr('id');
 			var eliminar_actividad = document.getElementById('tel' + id).value;

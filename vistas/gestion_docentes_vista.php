@@ -191,7 +191,7 @@ ob_end_flush();
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Editar Datos de Carga</h5>
+                                <h5 class="modal-title">Editar Datos</h5>
                                 <button onclick="limpiar();actualizar_tabla();" class="close" data-dismiss="modal">
                                     &times;
                                 </button>
