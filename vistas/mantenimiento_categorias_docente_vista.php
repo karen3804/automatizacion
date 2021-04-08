@@ -196,7 +196,7 @@ ob_end_flush();
                 </div>
                 <br>
                 <div class=" px-12">
-                    <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
+                    <!-- <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button> -->
                 </div>
             </div>
             <div class="card-body">

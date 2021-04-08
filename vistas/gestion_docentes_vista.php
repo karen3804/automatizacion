@@ -134,7 +134,7 @@ ob_end_flush();
 
                 <div class="px-1">
 
-                    <a href="../vistas/registro_docentes_vista.php" class="btn btn-warning"><i class="fas fa-arrow"></i>Registrar Nuevo Usuario</a>
+                    <a href="../vistas/registro_docentes_vista.php" class="btn btn-warning"><i class="fas fa-arrow"></i>Registrar Nuevo Docente</a>
 
                 </div>
 
@@ -338,7 +338,7 @@ ob_end_flush();
 
 
 
-        <a class="btn btn-success " onclick=" ventana1()">Generar PDF</a>
+     <!-- <a class="btn btn-success " onclick=" ventana1()">Generar PDF</a> -->
     </div>
     </div>
 
