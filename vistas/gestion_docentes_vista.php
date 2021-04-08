@@ -65,13 +65,31 @@ ob_end_flush();
 
 <head>
 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="../plugins/datatables/datatables.min.css" />
+    <!--datables estilo bootstrap 4 CSS-->
+    <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+   <!--  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"> -->
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.colVis.min.js"></script> -->
+
+
+
+
+
+    <link rel=" stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- css -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+
 </head>
 
 
@@ -144,12 +162,12 @@ ob_end_flush();
                                     <th>COMISIÓN</th>
                                     <th>ACTIVIDAD</th>
                                     <th>FORMACIÓN ACADÉMICA</th>
-                                    <th>FOTO</th>
-                                    <th>CURRICULUM</th>
+                                   <!--  <th>FOTO</th>
+                                    <th>CURRICULUM</th> -->
                                     <th>ESTADO</th>
                                     <th>MODIFICAR ESTADO</th>
                                     <th>MODIFICAR INFORMACIÓN</th>
-                                    
+
 
 
                                 </tr>
@@ -173,7 +191,7 @@ ob_end_flush();
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Editar Datos de Carga</h5>
-                                <button onclick="limpiar()" class="close" data-dismiss="modal">
+                                <button onclick="limpiar();actualizar_tabla();" class="close" data-dismiss="modal">
                                     &times;
                                 </button>
 
@@ -262,9 +280,9 @@ ob_end_flush();
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-primary" id="guardar" name="guardar" onclick="modificar_carga_academica();">Guardar</button>
+                                    <!--  <button class="btn btn-primary" id="guardar" name="guardar" onclick="modificar_carga_academica();">Guardar</button> -->
 
-                                    <button class="btn btn-secondary" data-dismiss="modal" onclick="limpiar();" id="salir">Cancelar</button>
+                                    <button class="btn btn-secondary" data-dismiss="modal" onclick="limpiar(); actualizar_tabla();" id="salir">Cancelar</button>
                                 </div>
                             </div>
 
@@ -305,7 +323,7 @@ ob_end_flush();
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-success" onclick="addTask3(); saveAll3();">Agregar</button>
+                                <button class="btn btn-success" onclick="saveAll3();addTask3(); ">Agregar</button>
                                 <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
@@ -345,6 +363,7 @@ ob_end_flush();
     $(document).ready(function() {
         TablaDocente();
 
+
     });
 </script>
 
@@ -379,4 +398,14 @@ ob_end_flush();
     }
 </script>
 <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js">
+<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+<script src="../plugins/select2/js/select2.min.js"></script>
+<!-- datatables JS -->
+<script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script>
+<!-- para usar botones en datatables JS -->
+<script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="../plugins/datatables/JSZip-2.5.0/jszip.min.js"></script>
+<script src="../plugins/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script src="../plugins/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="../plugins/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+

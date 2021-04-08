@@ -36,6 +36,7 @@
 		}
 	});
 } */
+
 var table;
 function TablaDocente() {
 	table = $('#tabladocentes').DataTable({
@@ -48,7 +49,7 @@ function TablaDocente() {
 		ordering: true,
 		// LengthChange: false,
 		searching: { regex: true },
-		lengthMenu: [ [ 10, 25, 50, 100, -1 ], [ 10, 25, 50, 100, 'All' ] ],
+		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']],
 		sortable: false,
 		pageLength: 15,
 		destroy: true,
@@ -58,6 +59,62 @@ function TablaDocente() {
 			url: '../Controlador/tabla_docente_controlador.php',
 			type: 'POST'
 		},
+		dom: "Bfrtilp",
+		
+		buttons: [	
+			  
+
+        {
+        extend: "excelHtml5",
+        text: '<i class="fas fa-file-excel"></i> ',
+        titleAttr: "Exportar a Excel",
+		className: "btn btn-success",
+				exportOptions: {
+					columns: [1, 2, 3, 4, 5, 6, 7, 8],
+				},
+				title: " Carga Academica",
+				messageTop: "REPORTE DE GESTION DOCENTES",
+      },
+      {
+        extend: "pdfHtml5",
+      
+        customize: function (doc) {
+          doc["footer"] = function (page, pages) {
+            return {
+              columns: [
+                {
+                  alignment: "center",
+                  text: [
+                    { text: page.toString(), italics: true },
+                    " of ",
+                    { text: pages.toString(), italics: true },
+                  ],
+                },
+              ],
+              margin: [10, 0],
+            };
+          };
+
+        },
+
+        text: '<i class="fas fa-file-pdf"></i> ',
+        titleAttr: "Exportar a PDF",
+        className: "btn btn-danger",
+        orientation: "landscape",
+        pageSize: "Legal",
+        exportOptions: {
+          columns: [1, 2, 3, 4, 5, 6, 7, 8],
+        },
+        title: " Carga Academica",
+        messageTop: "REPORTE DE GESTION DOCENTES", //Coloca el título dentro del PDF
+      },
+      {
+        extend: "print",
+        text: '<i class="fa fa-print"></i> ',
+        titleAttr: "Imprimir",
+        className: "btn btn-info",
+      },  
+    ],
 		columns: [
 			{ data: 'id_persona' },
 			{ data: 'numero_empleado' },
@@ -67,8 +124,8 @@ function TablaDocente() {
 			{ data: 'comision' },
 			{ data: 'actividad' },
 			{ data: 'formacion_academica' },
-			{ data: 'foto' },
-			{ data: 'curriculum' },
+			/* { data: 'foto' },
+			{ data: 'curriculum' }, */
 			{data: 'Estado',
 				render: function(data, type, row) {
 					if (data == 'ACTIVO') {
@@ -288,9 +345,9 @@ function Actividades() {
 					'">' +
 					'<td id="celda' +
 					i +
-					'"><input maxlength="9"   onkeyup="javascript:mascara()" id="tel' +
+					'"><input maxlength="9" onkeyup="javascript:mascara()" id="tel' +
 					i +
-					'"  type="tel" name="tel" class="form-control name_list" value="' +
+					'" type="tel" name="tel" class="form-control name_list" value="' +
 					data['actividades'][i].id_act_persona +
 					'" placeholder="___-___"/></td>' +
 					'<td>' +
@@ -317,7 +374,7 @@ var comisiones = document.getElementById('comisiones');
 var id_persona = document.getElementById('txt_id_persona1');
 
 var tbl_comisiones = document.getElementById('tbl_comisiones');
-
+var actividades1 = document.getElementById('actividades');
 var addTask3 = () => {
 	var item3 = {
 		id_persona: id_persona.value,
@@ -333,6 +390,7 @@ var addTask3 = () => {
 	list3.push(item3);
 	viewlist3();
 };
+
 
 var viewlist3 = () => {
 	if (list3.length > 0) {
@@ -355,31 +413,65 @@ var viewlist3 = () => {
 function limpiar_arreglo() {
 	list3.pop();
 }
-var saveAll3 = () => {
-	if (list3.length > 0) {
-		/* var id_persona = $('#txt_id_persona1').val(); */
-		sendData3.id = 1;
-		sendData3.data = list3;
-		console.log(sendData3);
+function actualizar_tabla() {
+	table.ajax.reload();
+}
+function saveAll3 () {
 
-		fetch('../api/guardar_comisiones.php', {
-			method: 'POST',
-			body: JSON.stringify(sendData3)
-		})
-			.then((response) => response.json())
-			.then((response) => console.log(response));
-		swal('Buen trabajo!', '¡ Se insertaron nuevas comisiones y actividades!', 'success');
-		limpiar_arreglo();
+	var actividades1_ = actividades1.value;
+	var id_persona1 = id_persona.value;
+	$.post(
+		"../Controlador/gestion_docente_controlador.php?op=existe_actividad",
+		{ id_actividad: actividades1_, id_persona1: id_persona1 },
 
-		//data['actividades'][i].comision
-	} else {
-		//alert("No Registró comisiones!");
-		// Location.reload()
-	}
-};
+		function (data, status) {
+			console.log(data);
+			data = JSON.parse(data);
+
+			if (data == null  ) {
+			
+				insert_actividades();
+
+			} else {
+				swal({
+					title: "Alerta",
+					text: "El docente ya cuenta con esta actividad!",
+					icon: "warning",
+					showConfirmButton: true,
+					timer: 20000,
+				});
+				document.getElementById("actividades").value = "";
+				$('#ModalTask2').modal('hide');
+			
+				limpiar();
+				
+			}
+			});
+
+	
+}
+function insert_actividades() {
+	var id_persona = document.getElementById('txt_id_persona1');
+	var actividades1 = document.getElementById('actividades');
+	var actividades1_ = actividades1.value;
+	var id_persona1 = id_persona.value;
+	$.post(
+		"../Controlador/gestion_docente_controlador.php?op=insertar_actividades",
+		{ id_actividad: actividades1_, id_persona1: id_persona1 },
+
+		function (data, status) {
+			console.log(data);
+			data = JSON.parse(data);
+			swal('Buen trabajo!', '¡ Se insertaron nuevas comisiones y actividades!', 'success');
+			limpiar_arreglo();
+			Actividades();
+			/* tbl_comisiones.reload(); */
+		});
+	
+}
 function eliminar() {
 	// let i = ContarTel();
-	var confirmLeave = confirm('¿Desea Eliminar el Número de telefono del docente?');
+	var confirmLeave = confirm('¿Esta seguro de eliminar la actividad del docente?');
 	if (confirmLeave == true) {
 		var id = $(this).attr('id');
 		var eliminar_tel = document.getElementById('tel' + id).value;

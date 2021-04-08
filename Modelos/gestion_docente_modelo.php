@@ -68,6 +68,23 @@ class modelo_gestion_docente
     }
     
   }
+  function existe_actividad($id_persona1, $id_actividad)
+  {
+    global $instancia_conexion;
+    $sql5 = "CALL sel_actividades_personas('$id_persona1','$id_actividad')";
+    return $instancia_conexion->ejecutarConsultaSimpleFila($sql5);
+  }
+  function insertar_actividades($actividades, $id_persona)
+  {
+    global $instancia_conexion;
+    $sql = "CALL proc_prueba_api($actividades, $id_persona);";
+
+    if ($consulta = $instancia_conexion->ejecutarConsulta($sql)) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
 
 }
 
