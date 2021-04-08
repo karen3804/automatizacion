@@ -70,9 +70,9 @@ ob_end_flush();
     <link rel="stylesheet" type="text/css" href="../plugins/datatables/datatables.min.css" />
     <!--datables estilo bootstrap 4 CSS-->
     <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-   <!--  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <!--  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"> -->
-<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
@@ -157,12 +157,13 @@ ob_end_flush();
                                     <th>ID PERSONA</th>
                                     <th>N EMPLEADO</th>
                                     <th>NOMBRE</th>
+                                    <th>JORNADA</th>
+                                    <th>HORARIO</th>
+                                     <th>COMISIÓNES Y ACTIVIDADES</th>
+                                    <th>FORMACIÓN ACADÉMICA</th>
                                     <th>CORREOS</th>
                                     <th>CONTACTOS</th>
-                                    <th>COMISIÓN</th>
-                                    <th>ACTIVIDAD</th>
-                                    <th>FORMACIÓN ACADÉMICA</th>
-                                   <!--  <th>FOTO</th>
+                                    <!--  <th>FOTO</th>
                                     <th>CURRICULUM</th> -->
                                     <th>ESTADO</th>
                                     <th>MODIFICAR ESTADO</th>
@@ -408,4 +409,3 @@ ob_end_flush();
 <script src="../plugins/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
 <script src="../plugins/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
 <script src="../plugins/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
-
