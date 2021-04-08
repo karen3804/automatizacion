@@ -46,7 +46,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
 
     if ($valor_viejo['actividad'] <> $actividad and $valor_viejo['descripcion'] <> $descripcion and $valor_viejo['nombre_proyecto'] <> $proyecto and $valor_viejo['horas_semanales'] <> $horas and $valor_viejo['id_comisiones'] <> $comision) {
 
-        $Id_objeto = 79;
+        $Id_objeto = 74;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' LA ACTIVIDAD ' . $valor_viejo['actividad'] . 'Y POR ' . $actividad . ', LA DESCRIPCION DE LA ACTIVIDAD ' . $actividad . ' ');
 
 
@@ -75,7 +75,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
     } elseif ($valor_viejo['descripcion'] <> $descripcion) 
     {
 
-        $Id_objeto = 79;
+        $Id_objeto = 74;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' LA DESCRIPCION DE LA ACTIVIDAD A ' . $descripcion. ' ');
         /* Hace el query para que actualize*/
 
@@ -89,7 +89,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
     } elseif ($valor_viejo['nombre_proyecto'] <> $proyecto) 
     {
 
-        $Id_objeto = 79;
+        $Id_objeto = 74;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' EL NOMBRE DEL PROYECTO DE LA ACTIVIDAD A  ' . $proyecto. ' ');
         /* Hace el query para que actualize*/
 
@@ -103,7 +103,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
     }elseif ($valor_viejo['horas_semanales'] <> $horas) 
     {
 
-        $Id_objeto = 79;
+        $Id_objeto = 74;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' LAS HORAS SEMANALES DE LA ACTIVIDAD A  ' . $horas. ' ');
         /* Hace el query para que actualize*/
 
@@ -117,7 +117,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
     }elseif ($valor_viejo['id_comisiones'] <> $comision) 
     {
 
-        $Id_objeto = 79;
+        $Id_objeto = 74;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' LA COMISION DE LA ACTIVIDAD A  ' . $comision. ' ');
         /* Hace el query para que actualize*/
 

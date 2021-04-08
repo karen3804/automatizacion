@@ -148,7 +148,7 @@ ob_end_flush();
                                         <option value="">Seleccione una opción</option>
                                         </select>
                                     </div>
-                                    <input class="form-control"  id="carrera1" name="carrera1" >
+                                    <input class="form-control"  id="carrera1" name="carrera1" hidden>
 
 
 
