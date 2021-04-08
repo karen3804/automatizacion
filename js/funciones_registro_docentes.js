@@ -895,7 +895,7 @@ function valida_jornada_hora() {
 	var hora_entrada = $('#txt_hi').val();
 	var hora_salida = $('#txt_hf').val();
 
-	if (jornada == 'TIEMPO_COMPLETO' && hora_salida - hora_entrada < 600) {
+	if (jornada == 'TIEMPO COMPLETO' && ((hora_salida - hora_entrada) < 600)) {
 		swal({
 			title: 'Alerta',
 			text: 'Deben ser al menos 6 horas laborales para jornada completa',
@@ -905,7 +905,7 @@ function valida_jornada_hora() {
 		});
 		document.getElementById('txt_hi').value = '';
 		document.getElementById('txt_hf').value = '';
-	} else if (jornada == 'MEDIO_TIEMPO' && hora_salida - hora_entrada < 300) {
+	} else if (jornada == 'MEDIO TIEMPO' && ((hora_salida - hora_entrada) < 300)) {
 		swal({
 			title: 'Alerta',
 			text: 'Deben ser al menos 3 horas laborales para media jornada',
@@ -918,6 +918,7 @@ function valida_jornada_hora() {
 	} else {
 	}
 }
+
 //CUANDO SE ELIGE LA JORNADA CAMBIAN LOS HORARIOS
 $('#jornada').change(function() {
 	var jornada = $(this).val();
