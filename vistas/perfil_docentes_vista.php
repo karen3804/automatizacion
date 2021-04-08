@@ -97,6 +97,7 @@ WHERE id_persona = '$usuario';";
 $consulta10 = $mysqli->query($sql10);
 $row10 = $consulta10->fetch_all(MYSQLI_ASSOC);
 
+
 //      --------------------------------
 
 //      TRAER LAS PREGUNTAS QUE NO HA CONTESTADO EL DOCENTE
@@ -948,7 +949,7 @@ function mascara(){
 
                                 foreach ($row10 as $id) {
                                     echo '<br>';
-                                    echo '<input class="pregunta4" type="checkbox" name="asignatura4[]" value="' . $id["id_desea_asig_doce"] . '">' . $id["desea_asig"];
+                                    echo '<input class="pregunta4" checked = "checked" type="checkbox" name="asignatura4[]" value="' . $id["id_desea_asig_doce"] . '">' . $id["desea_asig"];
 
                                 }
 
