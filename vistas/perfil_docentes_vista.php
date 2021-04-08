@@ -943,7 +943,7 @@ function mascara(){
 
                                 foreach ($row10 as $id) {
                                     echo '<br>';
-                                    echo '<input class="pregunta4" type="checkbox" name="asignatura4[]" value="' . $id["id_desea_asig_doce"] . '">' . $id["desea_asig"];
+                                    echo '<input class="pregunta4" type="checkbox" checked = "checked" name="asignatura4[]" value="' . $id["id_desea_asig_doce"] . '">' . $id["desea_asig"];
                                 }
 
                                 foreach ($row11 as $id) {
