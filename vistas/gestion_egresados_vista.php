@@ -38,27 +38,20 @@ else
 
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INGRESO' , 'A GESTION DE EGRESADOS');
 
-if (permisos::permiso_modificar($Id_objeto)=='1')
- {
-  $_SESSION['btn_modificar_egresado']="";
-}
-else
-{
-    $_SESSION['btn_modificar_egresado']="disabled";
-}
+
 
 
    }
 
 
    $counter = 0;
-   $sql_tabla_egresados = json_decode( file_get_contents('http://localhost:80/Automatizacion/api/egresados_api.php'), true );
+   $sql_tabla_egresados = json_decode( file_get_contents('http://localhost/automatizacion/api/egresados_api.php'), true );
 
 if (isset($_GET['id_egresado'])) 
 {
 
   $_SESSION["id_egresado"] = $_GET['id_egresado']; 
-$sql_egresados = json_decode( file_get_contents("http://localhost:80/Automatizacion/api/egresados_api.php?id_egresado=".$_SESSION["id_egresado"]), true );
+$sql_egresados = json_decode( file_get_contents("http://localhost/automatizacion/api/egresados_api.php?id_egresado=".$_SESSION["id_egresado"]), true );
  $_SESSION["nombre_completo_gestion"]=$sql_egresados["ROWS"][0]["nombre"];
  $_SESSION["telefono_gestion_egresado"]=$sql_egresados["ROWS"][0]["telefono_egresado"];
  $_SESSION["celular_gestion_egresado"]=$sql_egresados["ROWS"][0]["celular_egresado"];
@@ -176,7 +169,7 @@ ob_end_flush();
      <td style="text-align: center;">
               
                        <a href="../vistas/gestion_egresados_vista.php?id_egresado=<?php echo $sql_tabla_egresados["ROWS"][$counter]["id_egresado"]; ?>" class="btn btn-primary btn-raised btn-xs">
-                      <i class="far fa-edit" style="display:<?php echo $_SESSION['modificar_egresado'] ?> " ></i>
+                      <i class="far fa-edit" ></i>
                     </a>
                   </td>
       
@@ -402,7 +395,7 @@ echo "SI";
             <!--Footer del modal-->
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              <button type="submit" class="btn btn-primary" id="btn_modificar_egresado" name="btn_modificar_egresado"  <?php echo $_SESSION['btn_modificar_egresado']; ?> >Guardar Cambios</button>
+              <button type="submit" class="btn btn-primary" id="btn_modificar_egresado" name="btn_modificar_egresado" >Guardar Cambios</button>
             </div>
           </div>
           <!-- /.modal-content -->
