@@ -40,7 +40,8 @@ if (isset($_REQUEST['msj'])) {
 
 
 
-    $sqltabla = "select  municipio,codigo, id_departamento
+    $sqltabla = "SELECT tbl_municipios_hn.id_municipio AS id_municipio,tbl_municipios_hn.municipio AS municipio,tbl_municipios_hn.codigo AS codigo,tbl_municipios_hn.id_departamento AS id_departamento,
+(SELECT d.departamento FROM tbl_departamentos d WHERE d.id_departamento= tbl_municipios_hn.id_departamento LIMIT 1) AS departamento
 FROM tbl_municipios_hn";
     $resultadotabla = $mysqli->query($sqltabla);
   }
@@ -91,14 +92,18 @@ if ($visualizacion == 0) {
 
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
-  $sqltabla = "select  municipio, codigo, id_departamento FROM tbl_municipios_hn";
+  /*$sqltabla = "select  municipio, codigo, id_departamento FROM tbl_municipios_hn";*/
+  $sqltabla="SELECT tbl_municipios_hn.id_municipio AS id_municipio,tbl_municipios_hn.municipio AS municipio,tbl_municipios_hn.codigo AS codigo,tbl_municipios_hn.id_departamento AS id_departamento,
+(SELECT d.departamento FROM tbl_departamentos d WHERE d.id_departamento= tbl_municipios_hn.id_departamento LIMIT 1) AS departamento
+FROM tbl_municipios_hn";
   $resultadotabla = $mysqli->query($sqltabla);
 
 
 
   /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
   if (isset($_GET['municipio'])) {
-    $sqltabla = "select  municipio, codigo, id_departamento   
+    $sqltabla = "SELECT tbl_municipios_hn.id_municipio AS id_municipio,tbl_municipios_hn.municipio AS municipio,tbl_municipios_hn.codigo AS codigo,tbl_municipios_hn.id_departamento AS id_departamento,
+(SELECT d.departamento FROM tbl_departamentos d WHERE d.id_departamento= tbl_municipios_hn.id_departamento LIMIT 1) AS departamento
 FROM tbl_municipios_hn";
     $resultadotabla = $mysqli->query($sqltabla);
 
@@ -108,7 +113,9 @@ FROM tbl_municipios_hn";
     /* Iniciar la variable de sesion y la crea */
     /* Hace un select para mandar a traer todos los datos de la 
  tabla donde rol sea igual al que se ingreso en el input */
-    $sql = "select * FROM tbl_municipios_hn WHERE municipio = '$municipio'";
+    $sql = "SELECT tbl_municipios_hn.id_municipio AS id_municipio,tbl_municipios_hn.municipio AS municipio,tbl_municipios_hn.codigo AS codigo,tbl_municipios_hn.id_departamento AS id_departamento,
+(SELECT d.departamento FROM tbl_departamentos d WHERE d.id_departamento= tbl_municipios_hn.id_departamento LIMIT 1) AS departamento
+FROM tbl_municipios_hn WHERE municipio = '$municipio'";
     $resultado = $mysqli->query($sql);
     /* Manda a llamar la fila */
     $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -118,6 +125,8 @@ FROM tbl_municipios_hn";
     $_SESSION['municipio'] = $row['municipio'];
     $_SESSION['codigo'] = $row['codigo'];
     $_SESSION['id_departamento'] = $row['id_departamento'];
+     $_SESSION['departamento'] = $row['departamento'];
+    
 
 
     /*Aqui levanto el modal*/
@@ -205,6 +214,7 @@ ob_end_flush();
 
           <thead>
             <tr>
+            
               <th>MUNICIPIOS</th>
               <th>CÓDIGO </th>
               <th>DEPARTAMENTO </th>
@@ -217,7 +227,7 @@ ob_end_flush();
               <tr>
                 <td><?php echo $row['municipio']; ?></td>
                 <td><?php echo $row['codigo']; ?></td>
-                <td><?php echo $row['id_departamento']; ?></td>
+                <td><?php echo $row['departamento']; ?></td>
 
                 <td style="text-align: center;">
 

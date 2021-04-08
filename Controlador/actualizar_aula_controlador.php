@@ -9,8 +9,8 @@ require_once('../clases/funcion_bitacora.php');
 $codigo = strtoupper($_POST['txt_codigo']);
 $descripcion = strtoupper($_POST['txt_descripcion']);
 $capacidad = strtoupper($_POST['txt_capacidad']);
-$edificio = strtoupper($_POST['txt_edificio']);
-$tipoaula = strtoupper($_POST['id_tipo_aula']);
+$edificio = strtoupper($_POST['edificio']);
+$tipoaula = strtoupper($_POST['aula']);
 $id_aula = $_GET['id_aula'];
 
 
@@ -114,7 +114,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
         } else {
             header("location:../vistas/mantenimiento_aula_vista.php?msj=3");
         }
-    }elseif ($valor_viejo['id_tipo_a-ula'] <> $tipoaula) 
+    }elseif ($valor_viejo['id_tipo_aula'] <> $tipoaula) 
     {
 
         $Id_objeto = 60;

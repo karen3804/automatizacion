@@ -154,7 +154,7 @@ ob_end_flush();
                                         <option value="">Seleccione una opción</option>
                                         </select>
                                     </div>
-                                    <input class="form-control"  id="departamento1" hidden >
+                                    <input class="form-control"  id="departamento1" name="departamento1" hidden >
 
 
                                     <p class="text-center" style="margin-top: 20px;">

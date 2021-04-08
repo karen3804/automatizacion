@@ -40,7 +40,8 @@ if (isset($_REQUEST['msj'])) {
 
 
 
-        $sqltabla = "select Descripcion, Id_facultad
+        $sqltabla = "SELECT tbl_carrera.id_carrera AS id_carrera,tbl_carrera.Descripcion AS Descripcion,tbl_carrera.Id_facultad AS Id_facultad,
+(SELECT f.nombre FROM tbl_facultades f WHERE f.Id_facultad= tbl_carrera.Id_facultad LIMIT 1) AS facultad
 FROM tbl_carrera";
         $resultadotabla = $mysqli->query($sqltabla);
     }
@@ -92,7 +93,8 @@ if ($visualizacion == 0) {
 
 
     /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
-    $sqltabla = "select Descripcion, Id_facultad           
+    $sqltabla = "SELECT tbl_carrera.id_carrera AS id_carrera,tbl_carrera.Descripcion AS Descripcion,tbl_carrera.Id_facultad AS Id_facultad,
+(SELECT f.nombre FROM tbl_facultades f WHERE f.Id_facultad= tbl_carrera.Id_facultad LIMIT 1) AS facultad
 FROM tbl_carrera";
     $resultadotabla = $mysqli->query($sqltabla);
 
@@ -100,7 +102,8 @@ FROM tbl_carrera";
 
     /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
     if (isset($_GET['Descripcion'])) {
-        $sqltabla = "select Descripcion, Id_facultad           
+        $sqltabla = "SELECT tbl_carrera.id_carrera AS id_carrera,tbl_carrera.Descripcion AS Descripcion,tbl_carrera.Id_facultad AS Id_facultad,
+(SELECT f.nombre FROM tbl_facultades f WHERE f.Id_facultad= tbl_carrera.Id_facultad LIMIT 1) AS facultad
 FROM tbl_carrera";
         $resultadotabla = $mysqli->query($sqltabla);
 
@@ -110,7 +113,9 @@ FROM tbl_carrera";
         /* Iniciar la variable de sesion y la crea */
         /* Hace un select para mandar a traer todos los datos de la 
  tabla donde rol sea igual al que se ingreso en el input */
-        $sql = "select * FROM tbl_carrera WHERE Descripcion = '$Descripcion'";
+        $sql = "SELECT tbl_carrera.id_carrera AS id_carrera,tbl_carrera.Descripcion AS Descripcion,tbl_carrera.Id_facultad AS Id_facultad,
+(SELECT f.nombre FROM tbl_facultades f WHERE f.Id_facultad= tbl_carrera.Id_facultad LIMIT 1) AS facultad
+FROM tbl_carrera WHERE Descripcion = '$Descripcion'";
         $resultado = $mysqli->query($sql);
         /* Manda a llamar la fila */
         $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -119,6 +124,7 @@ FROM tbl_carrera";
         $_SESSION['id_carrera'] = $row['id_carrera'];
         $_SESSION['Descripcion'] = $row['Descripcion'];
         $_SESSION['Id_facultad'] = $row['Id_facultad'];
+        $_SESSION['facultad'] = $row['facultad'];
 
 
         /*Aqui levanto el modal*/
@@ -217,7 +223,7 @@ ob_end_flush();
                         <?php while ($row = $resultadotabla->fetch_array(MYSQLI_ASSOC)) { ?>
                             <tr>
                                 <td><?php echo $row['Descripcion']; ?></td>
-                                <td><?php echo $row['Id_facultad']; ?></td>
+                                <td><?php echo $row['facultad']; ?></td>
 
                                 <td style="text-align: center;">
 

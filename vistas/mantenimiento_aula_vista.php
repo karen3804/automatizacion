@@ -40,7 +40,10 @@ if (isset($_REQUEST['msj'])) {
 
 
 
-    $sqltabla = "select id_aula, codigo, descripcion, capacidad, id_edificio, id_tipo_aula FROM tbl_aula";
+    $sqltabla = "SELECT tbl_aula.id_aula AS id_aula,tbl_aula.codigo AS codigo,tbl_aula.descripcion AS descripcion,tbl_aula.capacidad AS capacidad,tbl_aula.id_edificio AS id_edificio,tbl_aula.id_tipo_aula AS id_tipo_aula,
+(SELECT e.nombre FROM tbl_edificios e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS edificio,
+(SELECT t.tipo_aula FROM tbl_tipo_aula t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
+FROM tbl_aula";
     $resultadotabla = $mysqli->query($sqltabla);
   }
   if ($msj == 3) {
@@ -90,14 +93,20 @@ if ($visualizacion == 0) {
 
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
-  $sqltabla = "select id_aula, codigo, descripcion, capacidad, id_edificio, id_tipo_aula FROM tbl_aula";
+  $sqltabla = "SELECT tbl_aula.id_aula AS id_aula,tbl_aula.codigo AS codigo,tbl_aula.descripcion AS descripcion,tbl_aula.capacidad AS capacidad,tbl_aula.id_edificio AS id_edificio,tbl_aula.id_tipo_aula AS id_tipo_aula,
+(SELECT e.nombre FROM tbl_edificios e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS edificio,
+(SELECT t.tipo_aula FROM tbl_tipo_aula t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
+FROM tbl_aula";
   $resultadotabla = $mysqli->query($sqltabla);
 
 
 
   /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
   if (isset($_GET['codigo'])) {
-    $sqltabla = "select id_aula, codigo, descripcion, capacidad, id_edifico, id_tipo_aula FROM tbl_aula";
+    $sqltabla = "SELECT tbl_aula.id_aula AS id_aula,tbl_aula.codigo AS codigo,tbl_aula.descripcion AS descripcion,tbl_aula.capacidad AS capacidad,tbl_aula.id_edificio AS id_edificio,tbl_aula.id_tipo_aula AS id_tipo_aula,
+(SELECT e.nombre FROM tbl_edificios e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS edificio,
+(SELECT t.tipo_aula FROM tbl_tipo_aula t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
+FROM tbl_aula";
     $resultadotabla = $mysqli->query($sqltabla);
 
     /* Esta variable recibe el estado de modificar */
@@ -106,7 +115,10 @@ if ($visualizacion == 0) {
     /* Iniciar la variable de sesion y la crea */
     /* Hace un select para mandar a traer todos los datos de la 
  tabla donde rol sea igual al que se ingreso en el input */
-    $sql = "select * FROM tbl_aula WHERE codigo = '$codigo'";
+    $sql = "SELECT tbl_aula.id_aula AS id_aula,tbl_aula.codigo AS codigo,tbl_aula.descripcion AS descripcion,tbl_aula.capacidad AS capacidad,tbl_aula.id_edificio AS id_edificio,tbl_aula.id_tipo_aula AS id_tipo_aula,
+(SELECT e.nombre FROM tbl_edificios e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS edificio,
+(SELECT t.tipo_aula FROM tbl_tipo_aula t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
+FROM tbl_aula WHERE codigo = '$codigo'";
     $resultado = $mysqli->query($sql);
     /* Manda a llamar la fila */
     $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -118,6 +130,8 @@ if ($visualizacion == 0) {
     $_SESSION['capacidad'] = $row['capacidad'];
     $_SESSION['id_edificio'] = $row['id_edificio'];
     $_SESSION['id_tipo_aula'] = $row['id_tipo_aula'];
+    $_SESSION['edificio'] = $row['edificio'];
+    $_SESSION['tipo_aula'] = $row['tipo_aula'];
     /*Aqui levanto el modal*/
 
     if (isset($_SESSION['codigo'])) {
@@ -203,7 +217,7 @@ ob_end_flush();
 
           <thead>
             <tr>
-              <th>ID </th>
+              <th hidden>ID </th>
               <th>CODIGO AULAS</th>
               <th>DESCRIPCION </th>
               <th>CAPACIDAD </th>
@@ -216,17 +230,17 @@ ob_end_flush();
           <tbody>
             <?php while ($row = $resultadotabla->fetch_array(MYSQLI_ASSOC)) { ?>
               <tr>
-                <td><?php echo $row['id_aula']; ?></td>
+                <td hidden><?php echo $row['id_aula']; ?></td>
                 <td><?php echo $row['codigo']; ?></td>
                 <td><?php echo $row['descripcion']; ?></td>
                 <td><?php echo $row['capacidad']; ?></td>
-                <td><?php echo $row['id_edificio']; ?></td>
-                <td><?php echo $row['id_tipo_aula']; ?></td>
+                <td><?php echo $row['edificio']; ?></td>
+                <td><?php echo $row['tipo_aula']; ?></td>
 
 
                 <td style="text-align: center;">
 
-                  <a href="../vistas/mantenimiento_aula_vista.php?id_aula=<?php echo $row['id_aula']; ?>" class="btn btn-primary btn-raised btn-xs">
+                  <a href="../vistas/mantenimiento_aula_vista.php?codigo=<?php echo $row['codigo']; ?>" class="btn btn-primary btn-raised btn-xs">
                     <i class="far fa-edit" style="display:<?php echo $_SESSION['modificar_aula'] ?> "></i>
                   </a>
                 </td>
@@ -293,14 +307,14 @@ ob_end_flush();
 
 
 
-                  <div class="form-group">
+                <div class="form-group">
+
+                  
 
 
+                      <input hidden class="form-control" type="text" id="txt_idaula" name="txt_idaula" value="<?php echo $_SESSION['id_aula']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Numeros(event)" maxlength="30">
 
-
-                    <input hidden class="form-control" type="text" id="txt_idaula" name="txt_idaula" value="<?php echo $_SESSION['id_aula']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Numeros(event)" maxlength="30">
-
-                  </div>
+                </div>
                   <div class="form-group">
 
                     <label>Modificar Codigo Aula</label>
@@ -340,7 +354,7 @@ ob_end_flush();
                       <option value="">Seleccione una opción</option>
                     </select>
                   </div>
-                  <input class="form-control" id="aula" name="aula" value="<?php echo $_SESSION['id_tipo_aula']; ?>" hidden>
+                  <input class="form-control" id="aula" name="aula" value="<?php echo $_SESSION['id_tipo_aula']; ?>"hidden >
 
                 </div>
               </div>
