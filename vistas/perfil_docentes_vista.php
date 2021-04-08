@@ -965,7 +965,7 @@ function mascara(){
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" onclick="enviarpregunta3();">Guardar</button>
+                        <button type="button" class="btn btn-primary" onclick="enviarpregunta3();enviarpregunta4();">Guardar</button>
                     </div>
                 </div>
             </div>
