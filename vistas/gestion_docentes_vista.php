@@ -161,7 +161,6 @@ ob_end_flush();
                                     <th>HORARIO</th>
                                     <th>CATEGORIA</th>
                                      <th>COMISIÓNES Y ACTIVIDADES</th>
-                                    <th>FORMACIÓN ACADÉMICA</th>
                                     <th>CORREOS</th>
                                     <th>CONTACTOS</th>
                                     <!--  <th>FOTO</th>
@@ -227,6 +226,24 @@ ob_end_flush();
 
                                             </div>
                                         </div>
+
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                             <label>Jornada</label>
+                                                <select class="form-control" name="jornada_edita" id="jornada_edita"></select>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                            <label>N° Empleado</label>
+                                                <input class="form-control" name="nempleado_edita" id="nempleado_edita">
+
+                                            </div>
+                                        </div>
+
+                                        
 
                                     </div>
                                     <div class="card " style="width:600px;border-color:gray;">

@@ -86,6 +86,14 @@ class modelo_gestion_docente
     }
   }
 
+  function listar_selectJOR(){
+    global $instancia_conexion;
+    $consulta=$instancia_conexion->ejecutarConsulta('select * from tbl_jornadas');
+
+    return $consulta;
+
+}
+
 }
 
 

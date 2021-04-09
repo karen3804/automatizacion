@@ -44,6 +44,27 @@ switch ($_GET["op"])
 
     break;
 
+    case 'selectJOR':
+      if (isset($_POST['activar'])) {
+          $data=array();
+          $respuesta=$instancia_modelo->listar_selectJOR();
+         
+            while ($r=$respuesta->fetch_object()) {
+         
+               
+                 # code...
+                 echo "<option value='". $r->id_jornada."'> ".$r->jornada." </option>";
+                 
+             }
+         
+          
+           }
+           else{
+             echo 'No hay informacion';
+           }
+         
+  break;
+
  }
 
 

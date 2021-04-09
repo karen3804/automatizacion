@@ -116,7 +116,7 @@ function TablaDocente() {
         orientation: "landscape",
         pageSize: "legal",
         exportOptions: {
-          columns: [2, 3, 5, 6, 7, 9, 10],
+          columns: [2, 3, 5, 6, 7, 9],
         }, 
 		title: "Universidad Nacional Autónoma De Honduras                                                                                                                                                                                                                                "
 		+ " Facultad De Ciencias Económicas,Administrativas Y Contables                                                                                                                      "
@@ -141,7 +141,6 @@ function TablaDocente() {
 			{ data: 'categoria' },
 			{ data: 'Comisiones_Actividades' },
 			/* { data: 'actividad' }, */
-			{ data: 'formacion_academica' },
 			{ data: 'correos' },
 			{ data: 'contactos' },
 			/* { data: 'foto' },
@@ -271,6 +270,23 @@ function Modificar_Estatus(id_persona_,Estado){
 
 
 }
+function llenar_selectJOR() {
+	var cadena = '&activar=activar';
+	$.ajax({
+		url: '../Controlador/gestion_docente_controlador.php?op=selectJOR',
+		type: 'POST',
+		data: cadena,
+		success: function(r) {
+			// console.log(r);
+
+			$('#jornada_edita').html(r).fadeIn();
+		}
+	});
+}
+llenar_selectJOR();
+/* if ((document.getElementsByName = 'jornada')) {
+	llenar_selectJOR();
+} */
 
 
 
@@ -285,6 +301,9 @@ $('#tabladocentes').on('click', '.editar', function() {
 	$('#modal_editar').modal('show');
 	$('#txt_id_persona').val(data.id_persona);
 	$('#txt_nombre_docente').val(data.nombre);
+	$('#nempleado_edita').val(data.numero_empleado);
+	//$("#jornada_edita").val(data.jornada).trigger("change");
+
 	//var id_persona=$("#txt_id_persona").val();
 
 	Actividades();
