@@ -558,7 +558,7 @@ ob_end_flush();
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Control:</label>
-                                    <td> <input maxlength="5" class="form-control" onkeypress="return Numeros(event)" type="text" id="txt_control_edita" name="txt_control" value="" onkeyup="Espacio(this, event)" required></td>
+                                    <td> <input maxlength="6" class="form-control" onkeypress="return Numeros(event)" type="text" id="txt_control_edita" name="txt_control" value="" onkeyup="Espacio(this, event)" required></td>
 
                                 </div>
                             </div>
@@ -841,7 +841,7 @@ ob_end_flush();
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Control:</label>
-                                        <td> <input maxlength="5" class="form-control" onkeypress="return Numeros(event)" type="text" id="txt_control" name="txt_control" value="" onkeyup="Espacio(this, event)" required></td>
+                                        <td> <input maxlength="6" class="form-control" onkeypress="return Numeros(event)" type="text" id="txt_control" name="txt_control" value="" onkeyup="Espacio(this, event)" required></td>
 
                                     </div>
                                 </div>
