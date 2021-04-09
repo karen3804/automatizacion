@@ -159,6 +159,7 @@ ob_end_flush();
                                     <th>NOMBRE</th>
                                     <th>JORNADA</th>
                                     <th>HORARIO</th>
+                                    <th>CATEGORIA</th>
                                      <th>COMISIÓNES Y ACTIVIDADES</th>
                                     <th>FORMACIÓN ACADÉMICA</th>
                                     <th>CORREOS</th>

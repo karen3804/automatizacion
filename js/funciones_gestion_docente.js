@@ -116,12 +116,12 @@ function TablaDocente() {
         orientation: "landscape",
         pageSize: "legal",
         exportOptions: {
-          columns: [2, 3, 5, 6, 7, 9],
+          columns: [2, 3, 5, 6, 7, 9, 10],
         }, 
 		title: "Universidad Nacional Autónoma De Honduras                                                                                                                                                                                                                                "
 		+ " Facultad De Ciencias Económicas,Administrativas Y Contables                                                                                                                      "
-		+ " Departamento De Informática ",
-		messageTop: "REPORTE DE DOCENTES                                                                                                                                                                                                                                                                               " + "FECHA: "+ fechaYHora, //Coloca el título dentro del PDF
+		+ " Departamento De Informática                                                                                               																												" +  "REPORTE DE DOCENTES",
+		messageTop:"FECHA: "+ fechaYHora, //Coloca el título dentro del PDF
       },
 	  
 
@@ -138,6 +138,7 @@ function TablaDocente() {
 			{ data: 'nombre' },
 			{ data: 'jornada' },
 			{ data: 'Horario' },
+			{ data: 'categoria' },
 			{ data: 'Comisiones_Actividades' },
 			/* { data: 'actividad' }, */
 			{ data: 'formacion_academica' },
