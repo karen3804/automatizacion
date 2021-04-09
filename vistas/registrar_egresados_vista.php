@@ -82,7 +82,7 @@ ob_end_flush();
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
-              <li class="breadcrumb-item active">Vinculacion</li>
+              <li class="breadcrumb-item active">Vinculación</li>
             </ol>
           </div>
 
@@ -130,7 +130,7 @@ ob_end_flush();
 
                  <div class="col-sm-4">
                   <div class="form-group">
-                  <label>Año de Graduacion</label>
+                  <label>Año de Graduación</label>
                   <select class="form-control" id="txt_fecha_graduacion" name="txt_fecha_graduacion" >
 <?php while ($ano_graduacion >= 1980) { ?>
   <option value="<?php echo($ano_graduacion); ?>"><?php echo($ano_graduacion); ?></option>
@@ -141,7 +141,7 @@ ob_end_flush();
 
                  <div class="col-sm-4">
                   <div class="form-group">
-                  <label>Telefono Fijo</label>
+                  <label>Teléfono Fijo</label>
                     <input class="form-control" type="text" id="txt_telefono_fijo" name="txt_telefono_fijo"  value="" data-inputmask='"mask": " 9999-9999"' data-mask>
                 </div>
                  </div>
@@ -165,9 +165,9 @@ ob_end_flush();
 
                  <div class="col-sm-4">
                   <div class="form-group">
-                  <label>Posee Maestria</label>
+                  <label>Posee Maestría</label>
                     <select class="form-control" name="cb_maestria" id="cb_maestria" onchange="Mostrarmaestria();"> 
-          <option value="0">Seleccione una opcion:</option>
+          <option value="0">Seleccione una opción:</option>
                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
                 </select>
@@ -177,7 +177,7 @@ ob_end_flush();
 
                  <div class="col-sm-4">
                   <div class="form-group">
-                  <label name="lblmaestria" id="lblmaestria">Maestria</label>
+                  <label name="lblmaestria" id="lblmaestria">Maestría</label>
                     <input class="form-control" type="text" id="txtmaestria" name="txtmaestria"  value=""   onkeyup="DobleEspacio(this, event)" style="text-transform: uppercase" maxlength="50">
                 </div>
                  </div>
@@ -188,7 +188,7 @@ ob_end_flush();
                   <div class="form-group">
                   <label>Posee Certificados</label>
                     <select class="form-control" name="cb_certificado" id="cb_certificado" onchange="Mostrarcertificado();">
-          <option value="0">Seleccione una opcion:</option>
+          <option value="0">Seleccione una opción:</option>
                 <option value="SI">SI</option>
                     <option value="NO">NO</option>
                 </select>
@@ -211,7 +211,7 @@ ob_end_flush();
                   <div class="form-group">
                   <label>Labora</label>
                     <select class="form-control" name="cb_labora" id="cb_labora" onchange="Mostrarlabor();">
-          <option value="0">Seleccione una opcion:</option>
+          <option value="0">Seleccione una opción:</option>
                     <option value="SI">SI</option>
                     <option value="NO">NO</option>
                 </select>
@@ -227,7 +227,7 @@ ob_end_flush();
 
                     <div class="col-sm-4">
                     <div class="form-group">
-                 <label name="lbllaboradepartamento" id="lbllaboradepartamento">Departamento</label>
+                 <label name="lbllaboradepartamento" id="lbllaboradepartamento">Departamento de la Empresa</label>
                     <input class="form-control" type="text"  maxlength="60" id="txt_departamento" name="txt_departamento"  value=""  style="text-transform: uppercase"   onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" >
                 </div>
                  </div>
@@ -236,7 +236,7 @@ ob_end_flush();
 
                  <div class="col-sm-4" >
                   <div class="form-group">
-                  <label name="lbllaboradireccion" id="lbllaboradireccion">Direccion de la Empresa</label>
+                  <label name="lbllaboradireccion" id="lbllaboradireccion">Dirección de la Empresa</label>
                     <input class="form-control" type="text"  maxlength="150" id="txt_direccion_empresa" name="txt_direccion_empresa"  value=""  style="text-transform: uppercase"  onkeyup="DobleEspacio(this, event)" >
                 </div>
                  </div>
@@ -245,7 +245,7 @@ ob_end_flush();
 
                  <div class="col-sm-4">
                   <div class="form-group">
-                   <label name="lbllaboratelefono" id="lbllaboratelefono">Telefono</label>
+                   <label name="lbllaboratelefono" id="lbllaboratelefono">Teléfono</label>
                     <input class="form-control" type="text" id="txt_telefono_empresa" name="txt_telefono_empresa"  value="" data-inputmask='"mask": " 9999-9999"' data-mask>
                 </div>
                  </div>
