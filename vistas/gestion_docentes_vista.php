@@ -44,11 +44,11 @@ if ($visualizacion == 0) {
 
 
 
-    if (permisos::permiso_modificar($Id_objeto) == '1') {
-        $_SESSION['btn_modificar_CA'] = "";
-    } else {
-        $_SESSION['btn_modificar_CA'] = "disabled";
-    }
+    // if (permisos::permiso_modificar($Id_objeto) == '1') {
+    //     $_SESSION['btn_modificar_CA'] = "";
+    // } else {
+    //     $_SESSION['btn_modificar_CA'] = "disabled";
+    // }
 }
 
 ob_end_flush();
@@ -72,7 +72,7 @@ ob_end_flush();
     <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
     <!--  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"> -->
-    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <!--  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
@@ -134,7 +134,7 @@ ob_end_flush();
 
                 <div class="px-1">
 
-                    <a href="../vistas/registro_docentes_vista.php" class="btn btn-warning"><i class="fas fa-arrow"></i>Registrar Nuevo Usuario</a>
+                    <a href="../vistas/registro_docentes_vista.php" class="btn btn-warning"><i class="fas fa-arrow"></i>Registrar Nuevo Docente</a>
 
                 </div>
 
@@ -159,6 +159,7 @@ ob_end_flush();
                                     <th>NOMBRE</th>
                                     <th>JORNADA</th>
                                     <th>HORARIO</th>
+                                    <th>CATEGORIA</th>
                                      <th>COMISIÓNES Y ACTIVIDADES</th>
                                     <th>FORMACIÓN ACADÉMICA</th>
                                     <th>CORREOS</th>
@@ -191,7 +192,7 @@ ob_end_flush();
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Editar Datos de Carga</h5>
+                                <h5 class="modal-title">Editar Datos</h5>
                                 <button onclick="limpiar();actualizar_tabla();" class="close" data-dismiss="modal">
                                     &times;
                                 </button>
@@ -205,7 +206,7 @@ ob_end_flush();
                                     <input type="hidden">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" id="txt_id_persona" readonly>
+                                            <input hidden type="text" id="txt_id_persona" readonly>
 
                                             <label> Docente: </label>
                                             <input class="form-control" type="text" id="txt_nombre_docente" name="txt_nombre_docente" readonly>
@@ -307,7 +308,7 @@ ob_end_flush();
                             <div class="modal-body">
                                 <div class="container">
                                     <div class="form-group">
-                                        <input type="text" id="txt_id_persona1" readonly>
+                                        <input hidden type="text" id="txt_id_persona1" readonly>
 
 
                                         <label>Comisiones</label>
@@ -338,7 +339,7 @@ ob_end_flush();
 
 
 
-        <a class="btn btn-success " onclick=" ventana1()">Generar PDF</a>
+     <!-- <a class="btn btn-success " onclick=" ventana1()">Generar PDF</a> -->
     </div>
     </div>
 

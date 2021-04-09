@@ -25,6 +25,7 @@ $id_persona_prueba = '10';
 
 
 $instancia_modelo = new modelo_perfil_docentes();
+
 if (isset($_GET['op'])) {
 
     switch ($_GET['op']) {
@@ -251,6 +252,61 @@ if (isset($_GET['op'])) {
                 # code...
                 echo "<option value='" . $r2->id_genero . "'> " . $r2->genero . " </option>";
             }
+            break;
+
+        case 'EliminarPregunta1':
+
+
+            $rspta = $instancia_modelo->EliminarPregunta1($id_persona);
+
+            break;
+
+        case 'contarPregunta1':
+
+            $rspta = $instancia_modelo->Existepregunta1($id_persona);
+            echo json_encode($rspta);
+
+            break;
+
+        case 'EliminarPregunta2':
+
+
+            $rspta = $instancia_modelo->EliminarPregunta2($id_persona);
+
+            break;
+
+        case 'contarPregunta2':
+
+            $rspta = $instancia_modelo->Existepregunta2($id_persona);
+            echo json_encode($rspta);
+
+            break;
+        case 'EliminarPregunta3':
+
+
+            $rspta = $instancia_modelo->EliminarPregunta3($id_persona);
+
+            break;
+
+        case 'contarPregunta3':
+
+            $rspta = $instancia_modelo->Existepregunta3($id_persona);
+            echo json_encode($rspta);
+
+            break;
+
+        case 'EliminarPregunta4':
+
+
+            $rspta = $instancia_modelo->EliminarPregunta4($id_persona);
+
+            break;
+
+        case 'contarPregunta4':
+
+            $rspta = $instancia_modelo->Existepregunta4($id_persona);
+            echo json_encode($rspta);
+
             break;
     }
 }

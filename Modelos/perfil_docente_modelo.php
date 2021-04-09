@@ -270,6 +270,66 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11;
         return $consulta;
     }
 
+    function Existepregunta1($id_persona)
+    {
+        global $instancia_conexion;
+
+        $sql = "call proc_count_preg1('$id_persona')";
+        return $instancia_conexion->ejecutarConsultaSimpleFila($sql);
+    }
+
+    function EliminarPregunta1($id_persona)
+    {
+        global $instancia_conexion;
+        $consulta = $instancia_conexion->ejecutarConsulta("DELETE FROM tbl_pref_area_docen WHERE id_persona = '$id_persona';");
+
+        return $consulta;
+    }
+    function Existepregunta2($id_persona)
+    {
+        global $instancia_conexion;
+
+        $sql = "call proc_count_preg2('$id_persona')";
+        return $instancia_conexion->ejecutarConsultaSimpleFila($sql);
+    }
+
+    function EliminarPregunta2($id_persona)
+    {
+        global $instancia_conexion;
+        $consulta = $instancia_conexion->ejecutarConsulta("DELETE FROM tbl_expe_academica_docente WHERE id_persona = '$id_persona';");
+
+        return $consulta;
+    }
+    function Existepregunta3($id_persona)
+    {
+        global $instancia_conexion;
+
+        $sql = "call proc_count_preg3('$id_persona')";
+        return $instancia_conexion->ejecutarConsultaSimpleFila($sql);
+    }
+
+    function EliminarPregunta3($id_persona)
+    {
+        global $instancia_conexion;
+        $consulta = $instancia_conexion->ejecutarConsulta("DELETE FROM tbl_pref_asig_docen WHERE id_persona = '$id_persona';");
+
+        return $consulta;
+    }
+    function Existepregunta4($id_persona)
+    {
+        global $instancia_conexion;
+
+        $sql = "call proc_count_preg4('$id_persona')";
+        return $instancia_conexion->ejecutarConsultaSimpleFila($sql);
+    }
+
+    function EliminarPregunta4($id_persona)
+    {
+        global $instancia_conexion;
+        $consulta = $instancia_conexion->ejecutarConsulta("DELETE FROM tbl_desea_asig_doce WHERE id_persona = '$id_persona';");
+
+        return $consulta;
+    }
 
     
 }

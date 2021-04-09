@@ -74,6 +74,11 @@ $sql2->execute();
 $resultado2 = $sql2->get_result();
 $desbloqueo = $resultado2->fetch_array(MYSQLI_ASSOC);
 
+$sql3 = $mysqli->prepare("SELECT valor from tbl_parametros WHERE Parametro = 'num_periodo_maximo' LIMIT 1;");
+$sql3->execute();
+$resultado3 = $sql3->get_result();
+$max_periodo = $resultado3->fetch_array(MYSQLI_ASSOC);
+
 
 ob_end_flush();
 
@@ -91,7 +96,7 @@ ob_end_flush();
 
 </head>
 
-<body onload="bloqueo_periodo();">
+<body>
 
 
     <div class="content-wrapper">
@@ -104,7 +109,7 @@ ob_end_flush();
 
                         <h1>Periodo</h1>
                     </div>
-
+                    <input class="form-control" hidden type="text" id="max_periodo" name="max_periodo" value="<?php echo $max_periodo['valor'] ?>">
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
@@ -142,13 +147,15 @@ ob_end_flush();
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group ">
-                                        <label>Periodo Academico</label>
-                                        <input class="form-control" type="text" id="num_periodo" name="num_periodo" style="text-transform: uppercase" onkeypress="return Numeros(event)">
+                                        <label>Periodo Académico</label>
+                                        <input class="form-control" type="text" minlength="1" maxlength="1" min="1" max="3" size="3" id="num_periodo" name="num_periodo" style="text-transform: uppercase" onkeypress="return Numeros(event)" onblur="comprobar()">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Año Academico</label>
-                                        <input class="form-control" type="text" id="num_anno" name="num_anno" style="text-transform: uppercase" onkeypress="return Numeros(event)">
+                                        <label>Año Académico</label>
+                                        <input readonly class="form-control" type="text" id="num_anno" name="num_anno" style="text-transform: uppercase" onkeypress="return Numeros(event)"  value="<?php echo date("Y"); ?>">
+
+                                        
                                     </div>
                                     <div class="form-group">
                                         <label>Inicio del Periodo</label>

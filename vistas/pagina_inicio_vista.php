@@ -258,7 +258,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <li class="nav-item" style="display:<?php echo $_SESSION['carga_academica_vista'] ?>">
                   <a href="../vistas/menu_carga_academica_vista.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p> Carga Academica </p>
+                    <p> Carga Académica </p>
                   </a>
                 </li>
               </ul>

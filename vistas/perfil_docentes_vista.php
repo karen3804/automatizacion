@@ -97,6 +97,7 @@ WHERE id_persona = '$usuario';";
 $consulta10 = $mysqli->query($sql10);
 $row10 = $consulta10->fetch_all(MYSQLI_ASSOC);
 
+
 //      --------------------------------
 
 //      TRAER LAS PREGUNTAS QUE NO HA CONTESTADO EL DOCENTE
@@ -802,7 +803,6 @@ function mascara(){
                                 foreach ($row2 as $id) {
                                     echo '<br>';
                                     echo '<input class="pregunta1" type="checkbox" checked = "checked" name="areas[]" value="' . $id["id_pref_area_doce"] . '">' . $id["area_docente"];
-
                                 }
 
                                 foreach ($row3 as $id) {
@@ -810,7 +810,6 @@ function mascara(){
                                     echo '<br>';
                                     echo '<input class="pregunta1" type="checkbox" name="areas[]" value="' . $id["id_area"] . '">' . $id["areas_vacias"];
                                 }
-
                             } else {
                                 foreach ($row1 as $id) {
                                     echo '<br>';
@@ -859,7 +858,6 @@ function mascara(){
                                 foreach ($row5 as $id) {
                                     echo '<br>';
                                     echo '<input class="pregunta2" type="checkbox" checked = "checked" name="areas2[]" value="' . $id["area_docente"] . '">' . $id["area_docente"];
-
                                 }
 
                                 foreach ($row6 as $id) {
@@ -867,13 +865,12 @@ function mascara(){
                                     echo '<br>';
                                     echo '<input class="pregunta2" type="checkbox" name="areas2[]" value="' . $id["id_area"] . '">' . $id["expe_areas_vacias"];
                                 }
-
                             } else {
-                                
-                            foreach ($row4 as $area) {
-                                echo '<br>';
-                                echo '<input  class="pregunta2" type="checkbox" name="areas2[]" value="' . $area["id_area"] . '">' . $area["area"];
-                            }
+
+                                foreach ($row4 as $area) {
+                                    echo '<br>';
+                                    echo '<input  class="pregunta2" type="checkbox" name="areas2[]" value="' . $area["id_area"] . '">' . $area["area"];
+                                }
                             };
 
                             ?>
@@ -885,7 +882,8 @@ function mascara(){
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" onclick="enviarpregunta2();">Guardar</button>
+                    <button type="button" class="btn btn-primary" onclick="enviarpregunta3(); enviarpregunta4();">Guardar</button>
+
                 </div>
             </div>
         </div>
@@ -910,14 +908,13 @@ function mascara(){
                             en la que tiene mayor experiencia?</h5>
                         <div class="form-check">
                             <?php
-                            
+
 
                             if ($row != $row7) {
 
                                 foreach ($row7 as $id) {
                                     echo '<br>';
                                     echo '<input class="pregunta3" type="checkbox" checked = "checked" name="asignatura3[]" value="' . $id["id_pref_asig_docen"] . '">' . $id["asig_docente"];
-
                                 }
 
                                 foreach ($row8 as $id) {
@@ -925,14 +922,12 @@ function mascara(){
                                     echo '<br>';
                                     echo '<input class="pregunta3" type="checkbox" name="asignatura3[]" value="' . $id["id_asignatura"] . '">' . $id["asig_vacias"];
                                 }
-
                             } else {
-                                
+
                                 foreach ($row as $id) {
                                     echo '<br>';
                                     echo '<input  required class="pregunta3" type="checkbox" name="asignatura3[]" value="' . $id["Id_asignatura"] . '">' . $id["asignatura"];
                                 }
-
                             };
 
                             ?>
@@ -948,8 +943,7 @@ function mascara(){
 
                                 foreach ($row10 as $id) {
                                     echo '<br>';
-                                    echo '<input class="pregunta4" type="checkbox" name="asignatura4[]" value="' . $id["id_desea_asig_doce"] . '">' . $id["desea_asig"];
-
+                                    echo '<input class="pregunta4" type="checkbox" checked = "checked" name="asignatura4[]" value="' . $id["id_desea_asig_doce"] . '">' . $id["desea_asig"];
                                 }
 
                                 foreach ($row11 as $id) {
@@ -957,14 +951,11 @@ function mascara(){
                                     echo '<br>';
                                     echo '<input class="pregunta4" type="checkbox" name="asignatura4[]" value="' . $id["id_asignatura"] . '">' . $id["asig_vacias"];
                                 }
-
                             } else {
-                                    foreach ($row9 as $id) {
-                                        echo '<br>';
-                                        echo '<input required class="pregunta4" type="checkbox" name="asignatura4[]" value="' . $id["Id_asignatura"] . '">' . $id["asignatura"];
-                                    }
-                                
-
+                                foreach ($row9 as $id) {
+                                    echo '<br>';
+                                    echo '<input required class="pregunta4" type="checkbox" name="asignatura4[]" value="' . $id["Id_asignatura"] . '">' . $id["asignatura"];
+                                }
                             };
 
                             ?>
@@ -974,7 +965,7 @@ function mascara(){
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" onclick="enviarpregunta3();">Guardar</button>
+                        <button type="button" class="btn btn-primary" onclick="enviarpregunta3();enviarpregunta4();">Guardar</button>
                     </div>
                 </div>
             </div>
