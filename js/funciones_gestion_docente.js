@@ -137,7 +137,8 @@ function TablaDocente() {
 			{ data: 'numero_empleado' },
 			{ data: 'nombre' },
 			{ data: 'jornada' },
-			{ data: 'Horario' },
+			{ data: 'hr_inicial' },
+			{ data: 'hr_final' },
 			{ data: 'categoria' },
 			{ data: 'Comisiones_Actividades' },
 			/* { data: 'actividad' }, */
@@ -284,11 +285,126 @@ function llenar_selectJOR() {
 	});
 }
 llenar_selectJOR();
-/* if ((document.getElementsByName = 'jornada')) {
-	llenar_selectJOR();
-} */
+
+function llenar_selectCAT() {
+	var cadena = '&activar=activar';
+	$.ajax({
+		url: '../Controlador/gestion_docente_controlador.php?op=selectCAT',
+		type: 'POST',
+		data: cadena,
+		success: function(r) {
+			// console.log(r);
+
+			$('#categoria_edita').html(r).fadeIn();
+		}
+	});
+}
+llenar_selectCAT();
+
+function llenar_selectHEN() {
+	var cadena = '&activar=activar';
+	$.ajax({
+		url: '../Controlador/gestion_docente_controlador.php?op=selectHEN',
+		type: 'POST',
+		data: cadena,
+		success: function(r) {
+			console.log(r);
+
+			$('#hr_inicio_edita').html(r).fadeIn();
+		}
+	});
+}
+llenar_selectHEN();
+function llenar_selectHSAL() {
+	var cadena = '&activar=activar';
+	$.ajax({
+		url: '../Controlador/gestion_docente_controlador.php?op=selectHSAL',
+		type: 'POST',
+		data: cadena,
+		success: function(r) {
+			console.log(r);
+
+			$('#hr_final_edita').html(r).fadeIn();
+		}
+	});
+}
+llenar_selectHSAL();
 
 
+
+//VALIDAR HORARIOS
+function valida_horario_edita() {
+	var hora_inicial = document.getElementById('hr_inicio_edita').value;
+	var hora_final = document.getElementById('hr_final_edita').value;
+
+	if (hora_inicial > hora_final) {
+		//alert("Hora inicial incorrecta");
+		swal({
+			title: 'alerta',
+			text: 'Hora incorrecta',
+			type: 'warning',
+			showConfirmButton: true,
+			timer: 20000
+		});
+		document.getElementById('hr_inicio_edita').value = '';
+		document.getElementById('hr_final_edita').value = '';
+	} else {
+		if (hora_inicial == hora_final) {
+			swal({
+				title: 'alerta',
+				text: 'Las horas son iguales',
+				type: 'warning',
+				showConfirmButton: true,
+				timer: 20000
+			});
+			// alert("Las horas son iguales");
+			document.getElementById('hr_inicio_edita').value = '';
+			document.getElementById('hr_final_edita').value = '';
+		}
+	}
+}
+$('#jornada_edita').change(function() {
+	var jornada = $(this).val();
+	console.log(jornada);
+
+	$.post('../Controlador/registro_docente_controlador.php?op=descripcion', { id_jornada: jornada }, function(
+		data_,
+		status
+	) {
+		data_ = JSON.parse(data_);
+
+		// console.log(data_.capacidad);
+		$('#jornada_id').val(data_.jornada);
+	});
+});
+function valida_jornada_hora() {
+	var jornada = $('#jornada_id').val();
+	var hora_entrada = $('#hr_inicio_edita').val();
+	var hora_salida = $('#hr_final_edita').val();
+
+	if (jornada == 'TIEMPO COMPLETO' && ((hora_salida - hora_entrada) < 600)) {
+		swal({
+			title: 'Alerta',
+			text: 'Deben ser al menos 6 horas laborales para jornada completa',
+			type: 'warning',
+			showConfirmButton: true,
+			timer: 10000
+		});
+		document.getElementById('hr_inicio_edita').value = '';
+		document.getElementById('hr_final_edita').value = '';
+	} else if (jornada == 'MEDIO TIEMPO' && ((hora_salida - hora_entrada) < 300)) {
+		swal({
+			title: 'Alerta',
+			text: 'Deben ser al menos 3 horas laborales para media jornada',
+			type: 'warning',
+			showConfirmButton: true,
+			timer: 20000
+		});
+		document.getElementById('hr_inicio_edita').value = '';
+		document.getElementById('hr_final_edita').value = '';
+	} else {
+	}
+}
 
 
 $('#tabladocentes').on('click', '.editar', function() {
@@ -302,7 +418,12 @@ $('#tabladocentes').on('click', '.editar', function() {
 	$('#txt_id_persona').val(data.id_persona);
 	$('#txt_nombre_docente').val(data.nombre);
 	$('#nempleado_edita').val(data.numero_empleado);
-	//$("#jornada_edita").val(data.jornada).trigger("change");
+	$("#jornada_edita").val(data.id_jornada).trigger("change");
+	$("#categoria_edita").val(data.id_categoria).trigger("change");
+	$("#hr_inicio_edita").val(data.hr_inicial).trigger("change");
+	$("#hr_final_edita").val(data.hr_final).trigger("change");
+	
+	
 
 	//var id_persona=$("#txt_id_persona").val();
 
@@ -384,7 +505,7 @@ function Actividades() {
 					'">' +
 					'<td id="celda' +
 					i +
-					'"><input maxlength="9" onkeyup="javascript:mascara()" id="tel' +
+					'"><input maxlength="9" hidden readonly onkeyup="javascript:mascara()" id="tel' +
 					i +
 					'" type="tel" name="tel" class="form-control name_list" value="' +
 					data['actividades'][i].id_act_persona +

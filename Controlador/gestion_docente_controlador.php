@@ -7,7 +7,7 @@ $id_persona_ = isset($_POST["id_persona_"]) ? limpiarCadena1($_POST["id_persona_
 $Estado = isset($_POST["Estado"]) ? limpiarCadena1($_POST["Estado"]) : "";
 $id_persona1 = isset($_POST["id_persona1"]) ? limpiarCadena1($_POST["id_persona1"]) : "";
 $id_actividad = isset($_POST["id_actividad"]) ? limpiarCadena1($_POST["id_actividad"]) : "";
-
+$id_jornada = isset($_POST["id_jornada"]) ? limpiarCadena1($_POST["id_jornada"]) : "";
 $instancia_modelo=new modelo_gestion_docente();
 
 switch ($_GET["op"])
@@ -65,7 +65,78 @@ switch ($_GET["op"])
          
   break;
 
+  case 'selectCAT':
+    if (isset($_POST['activar'])) {
+        $data=array();
+        $respuesta=$instancia_modelo->listar_selectCAT();
+       
+          while ($r=$respuesta->fetch_object()) {
+       
+             
+               # code...
+               echo "<option value='". $r->id_categoria."'> ".$r->categoria." </option>";
+               
+           }
+       
+        
+         }
+         else{
+           echo 'No hay informacion';
+         }
+       
+  break;
+
+  case 'selectHEN':
+    if (isset($_POST['activar'])) {
+        $data=array();
+        $respuesta=$instancia_modelo->listar_selectHOR();
+       
+          while ($r=$respuesta->fetch_object()) {
+       
+             
+               # code...
+               echo "<option value='". $r->hora."'> ".$r->hora." </option>";
+               
+           }
+       
+        
+         }
+         else{
+           echo 'No hay informacion';
+         }
+       
+  break;
+  
+  case 'selectHSAL':
+    if (isset($_POST['activar'])) {
+        $data=array();
+        $respuesta=$instancia_modelo->listar_selectHOR();
+       
+          while ($r=$respuesta->fetch_object()) {
+       
+             
+               # code...
+               echo "<option value='". $r->hora."'> ".$r->hora." </option>";
+               
+           }
+       
+        
+         }
+         else{
+           echo 'No hay informacion';
+         }
+       
+  break;
+
+  case 'descripcion':
+    $rspta = $instancia_modelo->descripcion_jornada($id_jornada);
+    //Codificar el resultado utilizando json
+    echo json_encode($rspta);
+    break;
+
  }
+
+
 
 
 ?>

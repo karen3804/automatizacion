@@ -158,7 +158,8 @@ ob_end_flush();
                                     <th>N EMPLEADO</th>
                                     <th>NOMBRE</th>
                                     <th>JORNADA</th>
-                                    <th>HORARIO</th>
+                                    <th>H_INICIAL</th>
+                                    <th>H_FINAL</th>
                                     <th>CATEGORIA</th>
                                      <th>COMISIÓNES Y ACTIVIDADES</th>
                                     <th>CORREOS</th>
@@ -203,7 +204,7 @@ ob_end_flush();
 
                                 <div class="row">
                                     <input type="hidden">
-                                    <div class="col-sm-6">
+                                         <div class="col-sm-6">
                                         <div class="form-group">
                                             <input hidden type="text" id="txt_id_persona" readonly>
 
@@ -212,30 +213,17 @@ ob_end_flush();
 
 
                                         </div>
-                                        <div class="col-sm-6">
-
-                                            <p class="" style="margin-top: 10px;">
-                                                <button type="submit" class="btn btn-primary btn" data-toggle="modal" data-target="#ModalTask2" id="agregarotra" name="agregarotra" onclick="persona()">
-                                                    <i class="zmdi zmdi-floppy"></i>AGREGAR +</button>
-                                            </p>
-
                                         </div>
-                                        <div class="col-md-3">
+
+                                        <!-- <div class="col-md-1">
                                             <div class="form-group">
                                                 <input class="form-control" hidden type="text" id="txt_hidden" name="txt_hidden" value="" readonly>
 
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                             <label>Jornada</label>
-                                                <select class="form-control" name="jornada_edita" id="jornada_edita"></select>
 
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-5">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                             <label>N° Empleado</label>
                                                 <input class="form-control" name="nempleado_edita" id="nempleado_edita">
@@ -243,9 +231,47 @@ ob_end_flush();
                                             </div>
                                         </div>
 
-                                        
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                             <label>Jornada</label>
+                                                <select class="form-control" name="jornada_edita" id="jornada_edita"></select>
+                                                <input hidden type="text" name="jornada_id" id="jornada_id" readonly>
+                                            </div>
+                                        </div>
 
-                                    </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                             <label>Categoria</label>
+                                                <select class="form-control" name="categoria_edita" id="categoria_edita"></select>
+                                               
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                             <label>Hora Entrada</label>
+                                                <select class="form-control" name="hr_inicio_edita" id="hr_inicio_edita"></select>
+                                               
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                             <label>Hora Salida</label>
+                                                <select class="form-control" name="hr_final_edita" id="hr_final_edita" onblur="valida_horario_edita(); valida_jornada_hora();"></select>
+                                               
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+
+                                            <p class="" style="margin-top: 10px;">
+                                            <button type="submit" class="btn btn-primary btn" data-toggle="modal" data-target="#ModalTask2" id="agregarotra" name="agregarotra" onclick="persona()">
+                                            <i class="zmdi zmdi-floppy"></i>AGREGAR +</button>
+                                            </p>
+
+                                        </div>
+
                                     <div class="card " style="width:600px;border-color:gray;">
                                         <!--comisiones-->
                                         <div class="card-body">
@@ -254,7 +280,7 @@ ob_end_flush();
                                                 <table class="table table-bordered table-striped m-0">
                                                     <thead>
                                                         <tr>
-                                                            <th>#</th>
+                                                            <th></th>
                                                             <th>Comisión</th>
                                                             <th>Actividad</th>
                                                         </tr>
@@ -300,7 +326,10 @@ ob_end_flush();
                                 </div>
                                 <div class="modal-footer">
                                     <!--  <button class="btn btn-primary" id="guardar" name="guardar" onclick="modificar_carga_academica();">Guardar</button> -->
+                                    
+                                <button type="button" class="btn btn-info" onclick="habilitar_editar();" id="editar_info" name="editar_info">Guardar Cambios</button>
 
+                               
                                     <button class="btn btn-secondary" data-dismiss="modal" onclick="limpiar(); actualizar_tabla();" id="salir">Cancelar</button>
                                 </div>
                             </div>

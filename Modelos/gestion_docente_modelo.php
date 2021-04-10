@@ -94,6 +94,29 @@ class modelo_gestion_docente
 
 }
 
+function listar_selectCAT(){
+  global $instancia_conexion;
+  $consulta=$instancia_conexion->ejecutarConsulta('select * from tbl_categorias');
+
+  return $consulta;
+
+}
+
+function listar_selectHOR(){
+  global $instancia_conexion;
+  $consulta=$instancia_conexion->ejecutarConsulta('select * from tbl_hora');
+
+  return $consulta;
+
+}
+
+function descripcion_jornada($id_jornada)
+    {
+        global $instancia_conexion;
+        $sql = "call sel_jornada_docente('$id_jornada')";
+        return $instancia_conexion->ejecutarConsultaSimpleFila($sql);
+    }
+
 }
 
 
