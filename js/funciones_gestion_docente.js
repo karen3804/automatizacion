@@ -684,3 +684,89 @@ function actualizar_pagina() {
 
 	$("#txt_actividad").val(id_tipo_periodo);
 }); */
+function modificar_gestion() {
+	var jornada1 = $("#jornada_edita").val();
+	var categoria1 = $("#categoria_edita").val();
+	var id_persona__ = $('#txt_id_persona').val();
+	var jornada = document.getElementById('jornada_edita');
+	var jornada_ = jornada.value;
+	console.log(jornada_);
+	var categoria = document.getElementById('categoria_edita');
+	var categoria_ = categoria.value;
+	console.log(categoria_);
+	
+	// var num_doce = $("#txt_num_doc_edita").val();
+	// var nombre_doce = $("#txt_nombre_doc_edita").val();
+	// var cod_asig = $("#txt_cod_asignatura_edita").val();
+	var hra_inicio = $("#hr_inicio_edita").val();
+	var hra_final = $("#hr_inicio_edita").val();
+	/* var hra_inicio = $('hr_inicio_edita').val(); */
+	console.log(hra_inicio);
+/* 	var hra_final = $('hr_inicio_edita').val(); */
+	console.log(hra_final);
+
+	console.log(id_persona__);
+	
+	
+	if (	
+		hra_inicio == null ||
+		hra_final == null ||
+		jornada1 == null ||
+		categoria1 == null
+		
+	) {
+		swal({
+			title: "alerta",
+			text: "Llene o seleccione los campos vacios",
+			type: "warning",
+			showConfirmButton: true,
+			timer: 15000,
+		});
+	} else {
+		swal({
+			title: "alerta",
+			text: "Por favor espere",
+			type: "warning",
+			showConfirmButton: false,
+			timer: 20000,
+		});	
+						
+							
+			
+				$.ajax({
+					url: "../Controlador/gestion_docente_controlador.php?op=modificar_gestion",
+					type: "POST",
+					data: {
+						// cod_asig: ,
+						hra_inicio: hra_inicio,
+						hra_final: hra_final,
+						jornada_: jornada_,
+						categoria_: categoria_,	
+						id_persona__: id_persona__
+					},
+				}).done(function (resp) {
+					if (resp > 0) {
+						$("#modal_editar").modal("hide");
+						swal(
+							"Buen trabajo!",
+							"datos actualizados correctamente!",
+							"success"
+						);
+						document.getElementById('hr_inicio_edita').value = '';
+						document.getElementById('hr_final_edita').value = '';
+						document.getElementById('jornada_edita').value = '';
+						document.getElementById('categoria_edita').value = '';
+
+						table.ajax.reload();
+					} else {
+						swal("Alerta!", "No se pudo completar la actualización", "warning");
+						
+					}
+				});
+			
+
+			//  } else { */
+			/* toda la validacion de existe, y modificar */
+	}
+}
+	

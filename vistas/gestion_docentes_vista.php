@@ -72,7 +72,7 @@ ob_end_flush();
     <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
     <!--  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"> -->
-   <!--  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
@@ -161,7 +161,7 @@ ob_end_flush();
                                     <th>H_INICIAL</th>
                                     <th>H_FINAL</th>
                                     <th>CATEGORIA</th>
-                                     <th>COMISIÓNES Y ACTIVIDADES</th>
+                                    <th>COMISIÓNES Y ACTIVIDADES</th>
                                     <th>CORREOS</th>
                                     <th>CONTACTOS</th>
                                     <!--  <th>FOTO</th>
@@ -204,7 +204,7 @@ ob_end_flush();
 
                                 <div class="row">
                                     <input type="hidden">
-                                         <div class="col-sm-6">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <input hidden type="text" id="txt_id_persona" readonly>
 
@@ -213,9 +213,9 @@ ob_end_flush();
 
 
                                         </div>
-                                        </div>
+                                    </div>
 
-                                        <!-- <div class="col-md-1">
+                                    <!-- <div class="col-md-1">
                                             <div class="form-group">
                                                 <input class="form-control" hidden type="text" id="txt_hidden" name="txt_hidden" value="" readonly>
 
@@ -223,54 +223,54 @@ ob_end_flush();
                                         </div> -->
 
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
                                             <label>N° Empleado</label>
-                                                <input class="form-control" name="nempleado_edita" id="nempleado_edita">
+                                            <input class="form-control" name="nempleado_edita" id="nempleado_edita">
 
-                                            </div>
                                         </div>
+                                    </div>
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                             <label>Jornada</label>
-                                                <select class="form-control" name="jornada_edita" id="jornada_edita"></select>
-                                                <input hidden type="text" name="jornada_id" id="jornada_id" readonly>
-                                            </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Jornada</label>
+                                            <select class="form-control" name="jornada_edita" id="jornada_edita"></select>
+                                            <input hidden type="text" name="jornada_id" id="jornada_id" readonly>
                                         </div>
+                                    </div>
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                             <label>Categoria</label>
-                                                <select class="form-control" name="categoria_edita" id="categoria_edita"></select>
-                                               
-                                            </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Categoria</label>
+                                            <select class="form-control" name="categoria_edita" id="categoria_edita"></select>
+
                                         </div>
+                                    </div>
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                             <label>Hora Entrada</label>
-                                                <select class="form-control" name="hr_inicio_edita" id="hr_inicio_edita"></select>
-                                               
-                                            </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Hora Entrada</label>
+                                            <select class="form-control" name="hr_inicio_edita" id="hr_inicio_edita"></select>
+
                                         </div>
+                                    </div>
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                             <label>Hora Salida</label>
-                                                <select class="form-control" name="hr_final_edita" id="hr_final_edita" onblur="valida_horario_edita(); valida_jornada_hora();"></select>
-                                               
-                                            </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Hora Salida</label>
+                                            <select class="form-control" name="hr_final_edita" id="hr_final_edita" onblur="valida_horario_edita(); valida_jornada_hora();"></select>
+
                                         </div>
+                                    </div>
 
-                                        <div class="col-sm-6">
+                                    <div class="col-sm-6">
 
-                                            <p class="" style="margin-top: 10px;">
+                                        <p class="" style="margin-top: 10px;">
                                             <button type="submit" class="btn btn-primary btn" data-toggle="modal" data-target="#ModalTask2" id="agregarotra" name="agregarotra" onclick="persona()">
-                                            <i class="zmdi zmdi-floppy"></i>AGREGAR +</button>
-                                            </p>
+                                                <i class="zmdi zmdi-floppy"></i>AGREGAR +</button>
+                                        </p>
 
-                                        </div>
+                                    </div>
 
                                     <div class="card " style="width:600px;border-color:gray;">
                                         <!--comisiones-->
@@ -326,10 +326,10 @@ ob_end_flush();
                                 </div>
                                 <div class="modal-footer">
                                     <!--  <button class="btn btn-primary" id="guardar" name="guardar" onclick="modificar_carga_academica();">Guardar</button> -->
-                                    
-                                <button type="button" class="btn btn-info" onclick="habilitar_editar();" id="editar_info" name="editar_info">Guardar Cambios</button>
 
-                               
+                                    <button type="button" class="btn btn-info" onclick=" modificar_gestion();" id="editar_info" name="editar_info">Guardar Cambios</button>
+
+
                                     <button class="btn btn-secondary" data-dismiss="modal" onclick="limpiar(); actualizar_tabla();" id="salir">Cancelar</button>
                                 </div>
                             </div>
@@ -385,7 +385,7 @@ ob_end_flush();
 
 
 
-     <!-- <a class="btn btn-success " onclick=" ventana1()">Generar PDF</a> -->
+        <!-- <a class="btn btn-success " onclick=" ventana1()">Generar PDF</a> -->
     </div>
     </div>
 

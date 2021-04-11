@@ -117,6 +117,21 @@ function descripcion_jornada($id_jornada)
         return $instancia_conexion->ejecutarConsultaSimpleFila($sql);
     }
 
+
+  function modificar_gestion($id_jornada_, $id_categoria_, $hr_inicial_, $hr_final_, $id_persona_)
+  {
+
+    global $instancia_conexion;
+
+    $sql = "call proc_modificar_gestion('$id_jornada_','$id_categoria_','$hr_inicial_','$hr_final_','$id_persona_')";
+
+    if ($consulta = $instancia_conexion->ejecutarConsulta($sql)) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
 }
 
 

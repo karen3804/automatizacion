@@ -8,6 +8,12 @@ $Estado = isset($_POST["Estado"]) ? limpiarCadena1($_POST["Estado"]) : "";
 $id_persona1 = isset($_POST["id_persona1"]) ? limpiarCadena1($_POST["id_persona1"]) : "";
 $id_actividad = isset($_POST["id_actividad"]) ? limpiarCadena1($_POST["id_actividad"]) : "";
 $id_jornada = isset($_POST["id_jornada"]) ? limpiarCadena1($_POST["id_jornada"]) : "";
+$jornada_=isset($_POST["jornada_"]) ? limpiarCadena1($_POST["jornada_"]) : "";
+$categoria_ = isset($_POST["categoria_"]) ? limpiarCadena1($_POST["categoria_"]) : "";
+$hra_inicio = isset($_POST["hra_inicio"]) ? limpiarCadena1($_POST["hra_inicio"]) : "";
+$hra_final = isset($_POST["hra_final"]) ? limpiarCadena1($_POST["hra_final"]) : "";
+$id_persona__= isset($_POST["id_persona__"]) ? limpiarCadena1($_POST["id_persona__"]) : "";
+
 $instancia_modelo=new modelo_gestion_docente();
 
 switch ($_GET["op"])
@@ -133,6 +139,12 @@ switch ($_GET["op"])
     //Codificar el resultado utilizando json
     echo json_encode($rspta);
     break;
+  case 'modificar_gestion':
+    $rspta = $instancia_modelo->modificar_gestion($jornada_, $categoria_, $hra_inicio, $hra_final, $id_persona__);
+    //Codificar el resultado utilizando json
+    echo json_encode($rspta);
+    break;
+
 
  }
 
