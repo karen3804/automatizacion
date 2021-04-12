@@ -121,6 +121,49 @@ function llenar_selectHEN() {
 	});
 }
 
+$(document).ready(function () {
+	$('[name="check[]"]').click(function () {
+	  var arr = $('[name="check[]"]:checked')
+		.map(function () {
+		  return this.value;
+		})
+		.get();
+  
+	  
+  
+	  $("#arr").text(JSON.stringify(arr));
+  
+	  
+  
+	  $("#tipo_docente").val(arr);
+  
+	  console.log(str);
+	});
+  });
+
+$(document).click(function () {
+	var checked = $(".CheckedAK:checked").length;
+	//var tipo_persona = document.getElementById("tipo_persona").value;
+  
+	if (checked == '2') {
+	  swal({
+		title: "Alerta",
+		text:
+		  "Solo puede seleccionar una opción ",
+		type: "warning",
+		showConfirmButton: true,
+		timer: 10000,
+		
+	  });
+	  document.getElementById('tipo_docente').value = '';
+	  document.getElementById("si").checked = false;
+	  document.getElementById("no").checked = false;
+	 
+
+	} 
+  })
+	.trigger("click");
+
 if ((document.getElementsByName = 'categoria')) {
 	llenar_selectCAT();
 }
@@ -972,6 +1015,7 @@ function RegistarDocente(
 	hi,
 	hf,
 	nempleado,
+	tipo_docente,
 	fecha_ingreso
 ) {
 	var idjornada = $('#jornada').children('option:selected').val();
@@ -993,6 +1037,7 @@ function RegistarDocente(
 		hi == null ||
 		hf == null ||
 		nempleado.length == 0 ||
+		tipo_docente.length == 0 ||
 		fecha_ingreso.length == 0 ||
 		idjornada == null ||
 		idcategoria == null
@@ -1009,6 +1054,7 @@ function RegistarDocente(
 		apellidos = apellidos.toUpperCase();
 		identidad = identidad.toUpperCase();
 		nacionalidad = nacionalidad.toUpperCase();
+		tipo_docente = tipo_docente.toUpperCase();
 
 		estado = estado.toUpperCase();
 		sexo = sexo.toUpperCase();
@@ -1026,6 +1072,7 @@ function RegistarDocente(
 				hi: hi,
 				hf: hf,
 				nempleado: nempleado,
+				tipo_docente: tipo_docente,
 				fecha_ingreso: fecha_ingreso,
 				idjornada: idjornada,
 				idcategoria: idcategoria
@@ -1059,6 +1106,7 @@ function RegistarDocente2(
 	hi,
 	hf,
 	nempleado,
+	tipo_docente,
 	fecha_ingreso
 ) {
 	var idjornada = $('#jornada').children('option:selected').val();
@@ -1080,6 +1128,7 @@ function RegistarDocente2(
 		hi == null ||
 		hf == null ||
 		nempleado.length == 0 ||
+		tipo_docente.length == 0 ||
 		fecha_ingreso.length == 0 ||
 		idjornada == null ||
 		idcategoria == null
@@ -1095,6 +1144,7 @@ function RegistarDocente2(
 		nombre = nombre.toUpperCase();
 		apellidos = apellidos.toUpperCase();
 		nacionalidad = nacionalidad.toUpperCase();
+		tipo_docente = tipo_docente.toUpperCase();
 
 		estado = estado.toUpperCase();
 		sexo = sexo.toUpperCase();
@@ -1112,6 +1162,7 @@ function RegistarDocente2(
 				hi: hi,
 				hf: hf,
 				nempleado: nempleado,
+				tipo_docente: tipo_docente,
 				fecha_ingreso: fecha_ingreso,
 				idjornada: idjornada,
 				idcategoria: idcategoria

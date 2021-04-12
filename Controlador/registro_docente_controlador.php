@@ -12,6 +12,7 @@ $fecha_nacimiento=isset($_POST["fecha_nacimiento"]) ? limpiarCadena1($_POST["fec
 $estado=isset($_POST["estado"]) ? limpiarCadena1($_POST["estado"]) : "";
 $sexo=isset($_POST["sexo"]) ? limpiarCadena1($_POST["sexo"]) : "";
 $nempleado=isset($_POST["nempleado"]) ? limpiarCadena1($_POST["nempleado"]) : "";
+$tipo_docente=isset($_POST["tipo_docente"]) ? limpiarCadena1($_POST["tipo_docente"]) : "";
 $fecha_ingreso=isset($_POST["fecha_ingreso"]) ? limpiarCadena1($_POST["fecha_ingreso"]) : "";
 $idjornada=isset($_POST["idjornada"]) ? limpiarCadena1($_POST["idjornada"]) : "";
 $idcategoria=isset($_POST["idcategoria"]) ? limpiarCadena1($_POST["idcategoria"]) : "";
@@ -96,6 +97,7 @@ break;
              }
            
     break;
+
     case 'selectGEN':
         if (isset($_POST['activar'])) {
             $data=array();
@@ -217,11 +219,11 @@ case 'Existepasaporte':
 break;
 
     case 'registar':
-      $respuesta=$instancia_modelo->registar($nombre,$apellidos, $sexo, $identidad, $nacionalidad, $estado, $fecha_nacimiento, $hi, $hf, $nempleado, $fecha_ingreso, $idjornada, $idcategoria);
+      $respuesta=$instancia_modelo->registar($nombre,$apellidos, $sexo, $identidad, $nacionalidad, $estado, $fecha_nacimiento, $hi, $hf, $nempleado, $tipo_docente, $fecha_ingreso, $idjornada, $idcategoria);
       
     break;
     case 'registar2':
-      $respuesta=$instancia_modelo->registar2($nombre,$apellidos, $sexo, $pasaporte, $nacionalidad, $estado, $fecha_nacimiento, $hi, $hf, $nempleado, $fecha_ingreso, $idjornada, $idcategoria);
+      $respuesta=$instancia_modelo->registar2($nombre,$apellidos, $sexo, $pasaporte, $nacionalidad, $estado, $fecha_nacimiento, $hi, $hf, $nempleado, $tipo_docente, $fecha_ingreso, $idjornada, $idcategoria);
       
     break;
     

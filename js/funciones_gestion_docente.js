@@ -422,6 +422,7 @@ $('#tabladocentes').on('click', '.editar', function() {
 	$("#categoria_edita").val(data.id_categoria).trigger("change");
 	$("#hr_inicio_edita").val(data.hr_inicial).trigger("change");
 	$("#hr_final_edita").val(data.hr_final).trigger("change");
+	$("#identidad_edita").val(data.identidad);
 	
 	
 

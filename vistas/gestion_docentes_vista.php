@@ -263,6 +263,14 @@ ob_end_flush();
                                         </div>
                                     </div>
 
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Identificación</label>
+                                            <input class="form-control" name="identidad_edita" id="identidad_edita" >
+
+                                        </div>
+                                    </div>
+
                                     <div class="col-sm-6">
 
                                         <p class="" style="margin-top: 10px;">

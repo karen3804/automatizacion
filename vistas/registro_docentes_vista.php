@@ -439,13 +439,27 @@ ob_end_flush();
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="row">
-                  <div class="col-sm-3">
+                  <div class="col-sm-2">
                     <div class="form-group">
                       <!-- NUMERO DE EMPLEADO -->
                       <label>Número Empleado</label>
                       <input class="form-control" type="text" id="txt_n_empleado" name="txt_n_empleado" maxlength="6" value="" onkeypress="return solonumeros(event)" onKeyUp="pierdeFoco(this)" required>
                     </div>
                   </div>
+                  
+                  <div class="col-sm-3">
+                                <label>Docente SUED</label>
+                                <div class="form-group">
+                                <input class="form-control" id="tipo_docente" name="tipo_docente" type="text">
+                                        <span class="form-control">
+                                            <label class="checkbox-inline"><input class="CheckedAK" id="si" type="checkbox" name="check[]" class="ch" value="si">Si</label>
+                                            <label class="checkbox-inline"><input class="CheckedAK" id="no" type="checkbox" name="check[]" class="ch" value="no">No</label>
+                                      
+
+                                        </span>
+                                    </div>
+                               
+                            </div>
 
                   <div class="col-sm-3">
                     <div class="form-group">
@@ -571,6 +585,7 @@ ob_end_flush();
                   </div>
                 </div>
 
+
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
@@ -579,9 +594,9 @@ ob_end_flush();
           </div>
           <!-- /.card-body -->
           <p class="text-center" style="margin-top: 10px;">
-            <button type="submit" class="btn btn-primary btn-lg" id="btn_guardar_registro_docentes" name="btn_guardar_registro_docentes" onclick="RegistarDocente($('#txt_nombres').val(), $('#txt_apellidos').val(), $('#cb_genero').val(), $('#identidad').val(), $('#cb_nacionalidad').val(), $('#cb_ecivil').val(), $('#txt_fecha_nacimiento').val(), $('#txt_hi').val(), $('#txt_hf').val(), $('#txt_n_empleado').val(), $('#txt_fecha_ingreso').val());   ">
+            <button type="submit" class="btn btn-primary btn-lg" id="btn_guardar_registro_docentes" name="btn_guardar_registro_docentes" onclick="RegistarDocente($('#txt_nombres').val(), $('#txt_apellidos').val(), $('#cb_genero').val(), $('#identidad').val(), $('#cb_nacionalidad').val(), $('#cb_ecivil').val(), $('#txt_fecha_nacimiento').val(), $('#txt_hi').val(), $('#txt_hf').val(), $('#txt_n_empleado').val(), $('#tipo_docente').val(), $('#txt_fecha_ingreso').val());   ">
               <i class="zmdi zmdi-floppy"></i>GUARDAR</button>
-              <button hidden type="submit" class="btn btn-primary btn-lg" id="btn_guardar_registro_docentes2" name="btn_guardar_registro_docentes2" onclick="RegistarDocente2($('#txt_nombres').val(), $('#txt_apellidos').val(), $('#cb_genero').val(), $('#pasaporte').val(), $('#cb_nacionalidad').val(), $('#cb_ecivil').val(), $('#txt_fecha_nacimiento').val(), $('#txt_hi').val(), $('#txt_hf').val(), $('#txt_n_empleado').val(), $('#txt_fecha_ingreso').val());   ">
+              <button hidden type="submit" class="btn btn-primary btn-lg" id="btn_guardar_registro_docentes2" name="btn_guardar_registro_docentes2" onclick="RegistarDocente2($('#txt_nombres').val(), $('#txt_apellidos').val(), $('#cb_genero').val(), $('#pasaporte').val(), $('#cb_nacionalidad').val(), $('#cb_ecivil').val(), $('#txt_fecha_nacimiento').val(), $('#txt_hi').val(), $('#txt_hf').val(), $('#txt_n_empleado').val(), $('#tipo_docente').val(), $('#txt_fecha_ingreso').val());   ">
               <i class="zmdi zmdi-floppy"></i>GUARDAR</button>
           </p>
 
