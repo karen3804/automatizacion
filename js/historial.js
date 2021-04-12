@@ -433,10 +433,5 @@ $("#tabla_historial_vista").on("click", ".copiar", function () {
    // $("#pdf").css("display", "none");  
 //   $("#pdf").enabled("true");
 //  });
-    function ventana() {
-      window.open(
-        "../Controlador/reporte_carga_gestion_controlador.php",
-        "REPORTE"
-      );
-    }
+  
 

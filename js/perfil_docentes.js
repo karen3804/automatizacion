@@ -138,11 +138,16 @@ function AgregarEspecialidad(grado, especialidad) {
     function (e) {
       alert("se agrego correctamente, asegurate de actualizar tu curriculum");
       limpiartext();
-      especialidad();
+     //especialidad()
 
     }
+    
+     
   );
+
+   
 }
+
 function limpiartext() {
   document.getElementById("especialidad").value = "";
 }
@@ -287,6 +292,7 @@ $("#guardarFormacion").click(function () {
     seleccionar();
     $("#id_select").val(0);
     $("#especialidad").val("");
+     especialidad();
 
 
   }
@@ -1372,7 +1378,12 @@ function especialidad() {
       }
     }
   );
+  limpiar();
 
+}
+
+function limpiar() {
+  $("#tbl_especialidad").empty();
 }
 $(document).ready(function () {
   function eliminar_espe() {
