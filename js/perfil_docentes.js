@@ -150,8 +150,14 @@ function AgregarEspecialidad(grado, especialidad) {
     { grado: grado, especialidad: especialidad, id_persona: id_persona },
     function (e) {
       alert("se agrego correctamente, asegurate de actualizar tu curriculum");
+      limpiartext();
+      especialidad();
+      
     }
   );
+}
+function limpiartext() {
+   document.getElementById("especialidad").value = "";
 }
 
 //Funcion para ingresar grados y especialidades academicas
@@ -286,13 +292,15 @@ $("#guardarFormacion").click(function () {
   if (grado == "SELECCIONAR" || txt_especialidad == "") {
     alert("Debe Elegir Un grado y Su especialidad.");
   } else {
-    txt_especialidad = grado_text + "-" + txt_especialidad;
+   
     AgregarEspecialidad(grado, txt_especialidad);
     agregarFormacion(txt_especialidad);
     $("#myModal").modal("hide");
     seleccionar();
     $("#id_select").val(0);
     $("#especialidad").val("");
+   
+ 
   }
 });
 
@@ -770,144 +778,7 @@ function ventana() {
   window.open("../vistas/encuesta_docente_vista.php", "Encuesta");
 }
 
-function enviarpregunta1() {
-  var id_persona = $("#id_persona").val();
 
-  var id_area = $('[name="areas[]"]:checked')
-    .map(function () {
-      return this.value;
-    })
-    .get();
-
-  console.log(id_area);
-  console.log(id_persona);
-  $.ajax({
-    type: "POST",
-    url: "../Controlador/encuesta1_docente_controlador.php",
-    //  data: { array: id_area}, //capturo array
-    data: { array_prefe: JSON.stringify(id_area), id_persona: id_persona },
-    success: function (data) {
-      swal(
-        "Ingresado!",
-        "Datos ingresados correctamente!",
-        "success"
-      );
-    },
-  });
-
-  //enviar(id_persona);
-  // var arr = [];
-
-  // $("input:checkbox[name=areas]:checked").each(function () {
-  //   arr.push($(this).val());
-  // });
-  //  console.log(arr);
-}
-function enviarpregunta2() {
-  var id_persona = $("#id_persona").val();
-
-  var id_area = $('[name="areas2[]"]:checked')
-    .map(function () {
-      return this.value;
-    })
-    .get();
-
-  console.log(id_area);
-  console.log(id_persona);
-  $.ajax({
-    type: "POST",
-    url: "../Controlador/encuesta2_docente_controlador.php",
-    //  data: { array: id_area}, //capturo array
-    data: { array_prefe1: JSON.stringify(id_area), id_persona: id_persona },
-    success: function (data) {
-      swal(
-        "Ingresado!",
-        "Datos ingresados correctamente!",
-        "success"
-      );
-    },
-  });
-
-  //enviar(id_persona);
-  // var arr = [];
-
-  // $("input:checkbox[name=areas]:checked").each(function () {
-  //   arr.push($(this).val());
-  // });
-  //  console.log(arr);
-}
-function enviarpregunta3() {
-  var id_persona = $("#id_persona").val();
-
-  var id_asignatura = $('[name="asignatura3[]"]:checked')
-    .map(function () {
-      return this.value;
-    })
-    .get();
-
-  console.log(id_asignatura);
-  console.log(id_persona);
-  $.ajax({
-    type: "POST",
-    url: "../Controlador/encuesta3_docente_controlador.php",
-    //  data: { array: id_area}, //capturo array
-    data: {
-      array_prefe1: JSON.stringify(id_asignatura),
-      id_persona: id_persona,
-    },
-    success: function (data) {
-      swal(
-        "Ingresado!",
-        "Datos ingresados correctamente!",
-        "success"
-      );
-    },
-  });
-
-  //enviar(id_persona);
-  // var arr = [];
-
-  // $("input:checkbox[name=areas]:checked").each(function () {
-  //   arr.push($(this).val());
-  // });
-  //  console.log(arr);
-}
-function enviarpregunta4() {
-  var id_persona = $("#id_persona").val();
-
-  var id_asignatura = $('[name="asignatura4[]"]:checked')
-    .map(function () {
-      return this.value;
-    })
-    .get();
-
-  console.log(id_asignatura);
-  console.log(id_persona);
-  $.ajax({
-    type: "POST",
-    url: "../Controlador/encuesta4_docente_controlador.php",
-    //  data: { array: id_area}, //capturo array
-    data: {
-      array_prefe1: JSON.stringify(id_asignatura),
-      id_persona: id_persona,
-    },
-    success: function (data) {
-      swal(
-        "Ingresado!",
-        "Datos ingresados correctamente!",
-        "success"
-      );
-    },
-  });
-
-  //enviar(id_persona);
-  // var arr = [];
-
-  // $("input:checkbox[name=areas]:checked").each(function () {
-  //   arr.push($(this).val());
-  // });
-  //  console.log(arr);
-}
 
 $("#btn_modal1").click(function () {
   var persona = $("#id_persona").val();
@@ -1294,7 +1165,9 @@ function eliminar_pregunta4(persona) {
   $.post(
     "../Controlador/perfil_docente_controlador.php?op=EliminarPregunta4",
     { id_persona: persona },
-    function (e) {}
+    function (e) {
+      
+    }
   );
 }
 
@@ -1387,3 +1260,107 @@ function enviarpregunta4() {
     }
   );
 }
+
+
+function especialidad() {
+  var id_persona = $("#id_persona").val();
+
+  $.post(
+    "../Controlador/perfil_docente_controlador.php?op=especialidad",
+    { id_persona: id_persona },
+    function (data, status) {
+      data = JSON.parse(data);
+      console.log(data);
+      for (i = 0; i < data.especialidad.length; i++) {
+        $("#tbl_especialidad").append(
+          '<tr id="rowe' +
+            i +
+            '">' +
+            '<td id="celda' +
+            i +
+            '"><input maxlength="9" id="tel1' +
+            i +
+            '" type="tel" name="tel"readonly hidden class="form-control name_list" value="' +
+            data["especialidad"][i].id_grado_aca_personas +
+            '" placeholder="___-___"/></td>' +
+            "<td>" +
+            data["especialidad"][i].grado_academico +
+            "</td>" +
+            "<td>" +
+            data["especialidad"][i].especialidad +
+            "</td>" +
+            '<td><button type="button" name="remove" id="' +
+            i +
+            '" class="btn btn-danger btn_remove_espe">X</button></td>' +
+            "</tr>"
+        );
+      }
+    }
+  );
+ 
+}
+$(document).ready(function () {
+  function eliminar_espe() {
+    
+  var id_persona = $("#id_persona").val();
+    var confirmLeave = confirm("¿Desea eliminar la formacion del docente?");
+    if (confirmLeave == true) {
+      var id = $(this).attr("id");
+      var eliminar_formacion = document.getElementById("tel1" + id).value;
+      console.log(eliminar_formacion);
+      $("#rowe" + id).remove();
+      console.log(id);
+      $.post(
+        "../Controlador/perfil_docente_controlador.php?op=eliminar_formacion",
+        { eliminar_formacion: eliminar_formacion , id_persona:id_persona},
+        function (e) {}
+      );
+
+      swal(
+        "Buen trabajo!",
+        "¡ Se eliminaron !",
+        "success"
+      );
+    }
+  }
+
+  $(document).on("click", ".btn_remove_espe", eliminar_espe);
+
+  especialidad();
+});
+
+// var table2;
+// function TablaEspecialidad() {
+  
+//   var id_persona_ = $("#id_persona").val();
+//   table2 = $("#tabla_especialidad_grado").DataTable({
+   
+//     autoWidth: true,
+//     responsive: true,
+  
+//     destroy: true,
+//     async: false,
+//     processing: true,
+//     ajax: {
+//       url: "../Controlador/tabla_especialidad_controlador.php",
+//       type: "POST",
+//       data: { id_persona: id_persona_},
+//     },
+//     columns: [
+//       {
+//         defaultContent:
+//           " <button id='borrar' class='borrar btn btn-danger btn-m '><i class='fas fa-trash-alt'></i></button></div></div>",
+//       },
+//       { data: "id_grado_aca_personas" },
+//       { data: "grado_academico" },
+//       { data: "especialidad" },
+//     ],
+
+//     language: idioma_espanol,
+//     select: true,
+//   });
+// }
+// $("#tabla_especialidad_grado").dataTable({
+//   paging: false, //Ocultar paginación
+// });
+

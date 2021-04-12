@@ -331,9 +331,29 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11;
         return $consulta;
     }
 
-    
+    function especialidad($id_persona)
+    {
+        global $instancia_conexion;
+        $consulta = $instancia_conexion->ejecutarConsulta("SELECT GRP.id_grado_aca_personas, GRA.grado_academico, ESG.especialidad  
+        FROM tbl_especialidad_grado ESG JOIN tbl_grados_academicos_personas GRP ON GRP.id_especialidad=ESG.id_especialidad JOIN tbl_grados_academicos GRA ON GRA.id_grado_academico=ESG.id_grado_academico WHERE GRP.id_persona = $id_persona
+        ");
+
+        $especialidad = array();
+
+
+        while ($row = $consulta->fetch_assoc()) {
+
+            $especialidad['especialidad'][] = $row;
+        }
+
+        //echo '<pre>';print_r($actividades);echo'</pre>';
+        return $especialidad;
+    }
+    function eliminar_formacion($eliminar_formacion,$id_persona)
+    {
+        global $instancia_conexion;
+        $consulta = $instancia_conexion->ejecutarConsulta("DELETE from tbl_grados_academicos_personas WHERE id_grado_aca_personas ='$eliminar_formacion' AND id_persona='$id_persona';");
+
+        return $consulta;
+    }
 }
-
-?>
-
-

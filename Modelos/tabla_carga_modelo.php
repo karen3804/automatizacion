@@ -141,6 +141,18 @@ class modeloCarga
             return $arreglo;
         }
     }
+    function listar_periodo_carga()
+    {
+        global $instancia_conexion;
+        $sql = "call proc_sel_tabla_historial()";
+        $arreglo = array();
+        if ($consulta = $instancia_conexion->ejecutarConsulta($sql)) {
+            while ($consulta_VU = mysqli_fetch_assoc($consulta)) {
+                $arreglo["data"][] = $consulta_VU;
+            }
+            return $arreglo;
+        }
+    }
 
    
 

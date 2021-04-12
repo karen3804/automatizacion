@@ -519,12 +519,68 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
                             <div class="card " style="width:420px;border-color:gray;">
                                 <div class="card-body">
-                                    <h4 class="card-title ">Formación Academica</h4>
-                                    <button type="button" class="btn btn-primary card-title" data-toggle="modal" data-target="#myModal">Agregar Formación Academica <i class="fa fa-user-plus"></i></button>
+                                    <h4 class="card-title">Encuesta Docente</h4>
+                                    <div class="card-text">
+                                        <button type="button" id="btn_modal1" class="btn btn-info " onclick="pregunta1();">Pregunta 1</button>
+                                        <button type="button" id="btn_modal2" class="btn btn-info " onclick="pregunta2();">Pregunta 2</button>
+                                        <button type="button" id="btn_modal3" class="btn btn-info " onclick="pregunta3();">Pregunta 3</button>
+                                    </div>
+                                </div>
 
-                                    <ul class="card-text" id="ulFormacion">
 
-                                    </ul>
+                            </div>
+
+
+
+                            <div class="card " style="width:600px;border-color:gray;">
+                                <!--comisiones-->
+                                <div class="card-body">
+                                    <h4 class="card-title">Comisiones y Actividades</h4>
+                                    <div class="card-text">
+                                        <table class="table table-bordered table-striped m-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Comisión</th>
+                                                    <th>Actividad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbl_comisiones"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div><!-- Comisiones-->
+
+                            <div class="card " style="width:600px;border-color:gray;">
+                                <!--comisiones-->
+
+                                <div class="card-body">
+                                    <h4 class="card-title ">Formación Academica</h4><br>
+
+
+                                    <!-- <ul class="card-text" id="ulFormacion">
+
+                                    </ul> -->
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-primary card-title" data-toggle="modal" data-target="#myModal">Agregar Formación Academica <i class="fa fa-user-plus"></i></button>
+                                        <h4 class="card-title"></h4>
+                                        <div class="card-text">
+                                            <table class="table table-bordered table-striped m-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Grado</th>
+                                                        <th>especialidad</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbl_especialidad"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
 
                                     <!-- The Modal -->
                                     <div class="modal fade" id="myModal">
@@ -581,43 +637,6 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                     </div>
 
                                 </div>
-                            </div>
-
-
-
-                            <div class="card " style="width:600px;border-color:gray;">
-                                <!--comisiones-->
-                                <div class="card-body">
-                                    <h4 class="card-title">Comisiones y Actividades</h4>
-                                    <div class="card-text">
-                                        <table class="table table-bordered table-striped m-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Comisión</th>
-                                                    <th>Actividad</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="tbl_comisiones"></tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-
-                            </div><!-- Comisiones-->
-
-                            <div class="card " style="width:600px;border-color:gray;">
-                                <!--comisiones-->
-                                <div class="card-body">
-                                    <h4 class="card-title">Encuesta Docente</h4>
-                                    <div class="card-text">
-                                        <button type="button" id="btn_modal1" class="btn btn-info " onclick="pregunta1();">Pregunta 1</button>
-                                        <button type="button" id="btn_modal2" class="btn btn-info " onclick="pregunta2();">Pregunta 2</button>
-                                        <button type="button" id="btn_modal3" class="btn btn-info " onclick="pregunta3();">Pregunta 3</button>
-                                    </div>
-                                </div>
-
-
                             </div><!-- Comisiones-->
 
 

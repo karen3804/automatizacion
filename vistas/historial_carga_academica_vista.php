@@ -56,12 +56,11 @@ ob_end_flush();
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
     <link rel=" stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
 
-    <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css"> -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 
 
 
@@ -170,7 +169,7 @@ ob_end_flush();
 
             <!-- /.card-header -->
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <div class="card-header">
+            <!-- <div class="card-header">
                 <div class="row">
                     <div class="col-md-3" style="width:75px">
 
@@ -192,9 +191,7 @@ ob_end_flush();
                             <input type="text" class="form-control" id="txt_anno1" name="txt_anno1" maxlength="4" onkeypress="return Numeros(event)" onkeyup="Espacio(this, event)">
                         </div>
                     </div>
-                    <input type="text" class="form-control" id="txt_id_periodo_busca" name="txt_id_periodo_busca" readonly hidden>
-
-                    <input type="text" class="form-control" id="txt_count" name="txt_count" readonly hidden>
+                   
                     <div class="px-1">
 
                         <button class="btn btn-success " onclick="cargartablaabajo();"><i class="fas fa-search"></i> <a style="font-weight: bold;">Buscar</a></button>
@@ -205,8 +202,41 @@ ob_end_flush();
                     </div>
 
                 </div>
+                
 
+            </div> -->
+
+
+            <div class="card-body">
+                <input type="text" class="form-control" id="anno_busca" name="anno_busca" readonly hidden>
+
+                <input type="text" class="form-control" id="num_per_busca" name="num_per_busca" readonly hidden>
+                <input type="text" class="form-control" id="txt_id_periodo_busca" name="txt_id_periodo_busca" readonly hidden>
+
+                <input type="text" class="form-control" id="txt_count" name="txt_count" readonly hidden>
+
+                <div class="table-responsive" style="width: auto;">
+                    <table id="tabla_historial_vista" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+
+                                <th>Periodo</th>
+                                <th>Año</th>
+                                <th>Cargas Asignadas</th>
+                                <th>Acción</th>
+
+                            </tr>
+                        </thead>
+
+
+                    </table>
+                    <br>
+
+
+                </div>
             </div>
+
+
         </div>
 
         <!-- tabla de ver carga -->
@@ -275,7 +305,8 @@ ob_end_flush();
 <!-- para datatable -->
 <script>
     $(document).ready(function() {
-        TablaHistorial();
+        Tablaverperiodo();
+
 
     });
 </script>
@@ -313,18 +344,25 @@ ob_end_flush();
         }
     }
 </script>
-<script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js">
+<!-- <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script> -->
 
-</script>
-<script src="../plugins/select2/js/select2.min.js"></script>
+<!-- -->
 
-<!-- datatables JS --> 
-<script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script>
-
-<!-- para usar botones en datatables JS --> 
-<script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+<!-- para usar botones en datatables JS -->
+<!-- <script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
 <script src="../plugins/datatables/JSZip-2.5.0/jszip.min.js"></script>
 <script src="../plugins/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
 <script src="../plugins/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-<script src="../plugins/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+<script src="../plugins/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script> -->
+
+
+<script src="../plugins/select2/js/select2.min.js"></script>
+<!-- datatables JS -->
+<script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script>
+<!-- para usar botones en datatables JS -->
+<!-- <script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="../plugins/datatables/JSZip-2.5.0/jszip.min.js"></script>
+<script src="../plugins/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script src="../plugins/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="../plugins/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script> -->

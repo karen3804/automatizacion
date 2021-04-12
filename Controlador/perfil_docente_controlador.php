@@ -9,6 +9,7 @@ $grado = isset($_POST["grado"]) ? limpiarCadena1($_POST["grado"]) : "";
 $especialidad = isset($_POST["especialidad"]) ? limpiarCadena1($_POST["especialidad"]) : "";
 $telefono = isset($_POST["telefono"]) ? limpiarCadena1($_POST["telefono"]) : "";
 $eliminar_tel = isset($_POST["eliminar_tel"]) ? limpiarCadena1($_POST["eliminar_tel"]) : "";
+$eliminar_formacion = isset($_POST["eliminar_formacion"]) ? limpiarCadena1($_POST["eliminar_formacion"]) : "";
 $eliminar_correo = isset($_POST["eliminar_correo"]) ? limpiarCadena1($_POST["eliminar_correo"]) : "";
 $id_persona = isset($_POST["id_persona"]) ? limpiarCadena1($_POST["id_persona"]) : "";
 $nacionalidad = isset($_POST["nacionalidad"]) ? limpiarCadena1($_POST["nacionalidad"]) : "";
@@ -306,6 +307,19 @@ if (isset($_GET['op'])) {
 
             $rspta = $instancia_modelo->Existepregunta4($id_persona);
             echo json_encode($rspta);
+
+            break;
+        case 'especialidad':
+
+            $rspta = $instancia_modelo->especialidad($id_persona);
+            echo json_encode($rspta);
+
+            break;
+
+        case 'eliminar_formacion':
+
+
+            $rspta = $instancia_modelo->eliminar_formacion($eliminar_formacion,$id_persona);
 
             break;
     }
