@@ -667,8 +667,11 @@ function TablaCarga() {
       },
       {
         extend: "pdfHtml5",
+        
         download: 'open',
+        
         customize: function (doc) {
+          doc.content[1].margin = [ 100, 0, 100, 0 ] //left, top, right, bottom
           doc.content.splice(1, 0, {
             margin: 12,
             alignment: 'left',
@@ -714,6 +717,7 @@ function TablaCarga() {
         messageTop: "REPORTE CARGA ACADÉMICA                                                     " + "FECHA: " + fechaYHora,
         //Coloca el título dentro del PDF
       },
+      
     ],
     columns: [
       {
@@ -808,3 +812,4 @@ function valida_matriculados_edita() {
     });
   }
 }
+

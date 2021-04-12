@@ -61,9 +61,9 @@ ob_end_flush();
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-    <link rel=" stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
-    <!-- css -->
+    <!-- <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css"> -->
+    <!-- <link rel=" stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
+    css -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
@@ -77,11 +77,11 @@ ob_end_flush();
     <datables CSS básico-->
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../plugins/datatables/datatables.min.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="../plugins/datatables/datatables.min.css" /> -->
     <!--datables estilo bootstrap 4 CSS-->
-    <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"> -->
 
 
 </head>
@@ -139,11 +139,12 @@ ob_end_flush();
 
                         </div>
                     </div>
+                    <input class="" type="text" id="txt_id_periodo" name="txt_periodo" value="<?php echo $row2['id_periodo'] ?>" readonly hidden>
+
                     <!-- <div class="col-md-3" style="width:75px"> -->
                     <!-- <div class="input-group mb-3 input-group"> -->
 
                     <!-- <span class=" input-group-text" style="font-weight: bold;">id</span> -->
-                    <input class="" type="text" id="txt_id_periodo" name="txt_periodo" value="<?php echo $row2['id_periodo'] ?>" readonly hidden>
 
 
                     <!-- </div> -->
@@ -232,9 +233,12 @@ ob_end_flush();
                     <div class=" px-4">
                         <button class="btn btn-warning btn-lg" hidden> <a></a></button>
                     </div>
-                    <!-- 
-                    <div class=" px-12">
-                        <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
+
+                    <!-- <div class=" px-12">
+                        <form method="post" action="../Controlador/reporte_carga_gestion_controlador.php">
+                            <button class="btn btn-success " id="pdf"> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;">Exportar a PDF</a> </button>
+                            
+                        </form>
                     </div> -->
                     <div class=" px-6">
                         <button class="btn btn-warning btn-lg" hidden> <a></a></button>
@@ -1103,20 +1107,11 @@ ob_end_flush();
 
 <script src="../plugins/select2/js/select2.min.js"></script>
 <!-- datatables JS -->
-<script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script>
-
-<!-- para usar botones en datatables JS -->
-<script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
-<script src="../plugins/datatables/JSZip-2.5.0/jszip.min.js"></script>
-<script src="../plugins/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
-<script src="../plugins/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-<script src="../plugins/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
-
+<!-- <script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script> -->
 
 <script type="text/javascript" src="../js/pdf_mantenimientos.js"></script>
-<script src="../plugins/select2/js/select2.min.js"></script>
 <!-- datatables JS -->
-<script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script>
+<!-- <script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script> -->
 <!-- para usar botones en datatables JS -->
 <script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
 <script src="../plugins/datatables/JSZip-2.5.0/jszip.min.js"></script>

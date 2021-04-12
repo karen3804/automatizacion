@@ -211,9 +211,10 @@ ob_end_flush();
                 <input type="text" class="form-control" id="anno_busca" name="anno_busca" readonly hidden>
 
                 <input type="text" class="form-control" id="num_per_busca" name="num_per_busca" readonly hidden>
-                <input type="text" class="form-control" id="txt_id_periodo_busca" name="txt_id_periodo_busca" readonly hidden>
 
                 <input type="text" class="form-control" id="txt_count" name="txt_count" readonly hidden>
+
+
 
                 <div class="table-responsive" style="width: auto;">
                     <table id="tabla_historial_vista" class="table table-bordered table-striped">
@@ -222,7 +223,7 @@ ob_end_flush();
 
                                 <th>Periodo</th>
                                 <th>Año</th>
-                                <th>Cargas Asignadas</th>
+                                <th>Secciones Aperturadas</th>
                                 <th>Acción</th>
 
                             </tr>
@@ -251,9 +252,16 @@ ob_end_flush();
                             <button class="btn btn-primary " id="limpiar" onclick="limpiar()"><i class="fas fa-sync-alt"></i> <a style="font-weight: bold;">limpiar tabla</a></button>
 
                         </div>
+                        <div class=" px-12">
+                            <form method="post" action="../Controlador/reporte_carga_gestion_controlador.php">
+                                <button disabled class="btn btn-success " id="pdf"> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;">Exportar a PDF</a> </button>
+                                <input type="text" class="form-control" id="txt_count1" name="txt_count1" readonly hidden>
+
+                            </form>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive" style="width: 98%;">
+                        <div class="table-responsive" style="width: auto;">
 
                             <table id="ver_carga" class="table table-bordered table-striped">
                                 <thead>
@@ -262,7 +270,7 @@ ob_end_flush();
                                         <th>ID</th>
                                         <th>Empleado</th>
                                         <th>Nombre</th>
-                                        <th>contról</th>
+                                        <th>control</th>
                                         <th>Código</th>
                                         <th>Asignatura</th>
                                         <th>sección</th>
@@ -275,9 +283,9 @@ ob_end_flush();
 
                                     </tr>
                                 </thead>
-                                <tbody id="tabla_carga_historial_ver">
+                                <!-- <tbody id="tabla_carga_historial_ver">
 
-                                </tbody>
+                                </tbody> -->
 
                             </table>
                         </div>
@@ -344,25 +352,10 @@ ob_end_flush();
         }
     }
 </script>
-<!-- <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script> -->
 
 <!-- -->
-
-<!-- para usar botones en datatables JS -->
-<!-- <script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
 <script src="../plugins/datatables/JSZip-2.5.0/jszip.min.js"></script>
 <script src="../plugins/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
 <script src="../plugins/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-<script src="../plugins/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script> -->
-
-
-<script src="../plugins/select2/js/select2.min.js"></script>
-<!-- datatables JS -->
-<script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script>
-<!-- para usar botones en datatables JS -->
-<!-- <script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
-<script src="../plugins/datatables/JSZip-2.5.0/jszip.min.js"></script>
-<script src="../plugins/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
-<script src="../plugins/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-<script src="../plugins/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script> -->
+<script src="../plugins/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>

@@ -19,26 +19,27 @@ function cargartablaabajo(anno,periodo) {
   console.log(anno);
 }
 
-$("#tabla_periodo").on("click", ".ver", function () {
-  var data = table.row($(this).parents("tr")).data();
-  if (table.row(this).child.isShown()) {
-    var data = table.row(this).data();
-  }
+// $("#tabla_periodo").on("click", ".ver", function () {
+//   var data = table.row($(this).parents("tr")).data();
+//   if (table.row(this).child.isShown()) {
+//     var data = table.row(this).data();
+//   }
 
-  //  var table1 = $("#tabla_periodo").DataTable();
-  // table1.ajax.reload();
+//   //  var table1 = $("#tabla_periodo").DataTable();
+//   // table1.ajax.reload();
 
-  $("#txt_num_periodo").val(data.num_periodo);
-  $("#txt_anno1").val(data.num_anno);
+//   $("#txt_num_periodo").val(data.num_periodo);
+//   $("#txt_anno1").val(data.num_anno);
+//   $("#txt_count1").val(data.id_periodo);
 
-  // table.ajax.reload("#tabla_periodo");
+//   // table.ajax.reload("#tabla_periodo");
 
-  //  TablaHcargahistorial(anno,periodo);
+//   //  TablaHcargahistorial(anno,periodo);
 
-  // table.ajax.reload();
+//   // table.ajax.reload();
 
-  // TablaHcargahistorial(anno,periodo);
-});
+//   // TablaHcargahistorial(anno,periodo);
+// });
 
 function cambiar(a, p) {
   console.log(a);
@@ -96,17 +97,7 @@ function TablaHcargahistorial(anno1, periodo1) {
       data: { num_anno: anno1, num_periodo: periodo1 },
     },
     buttons: [
-      {
-        extend: "excelHtml5",
-        text: '<i class="fas fa-file-excel"></i> ',
-        titleAttr: "Exportar a Excel",
-        className: "btn btn-success",
-        exportOptions: {
-          columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-        },
-        title: " Departamento De Informática ",
-        messageTop: "REPORTE DE CARGA ACADÉMICA                      " + "FECHA: " + fechaYHora,
-      },
+      
       {
         extend: "pdfHtml5",
         download: 'open',
@@ -127,7 +118,7 @@ function TablaHcargahistorial(anno1, periodo1) {
 
 
 
-        messageTop: "REPORTE CARGA ACADÉMICA                                                     " + "FECHA: " + fechaYHora,
+        // messageTop: "REPORTE CARGA ACADÉMICA                                                     " + "FECHA: " + fechaYHora,
         //Coloca el título dentro del PDF
       },
     ],
@@ -388,12 +379,22 @@ $("#tabla_historial_vista").on("click", ".ver", function () {
   if (table2.row(this).child.isShown()) {
     var data = table2.row(this).data();
   }
+  // $("#pdf").removeAttr("hidden");
+  //  var btn_1 = document.getElementById("pdf");
+  // btn_1.style.display = "inline";
+  
+  // $("#pdf").css("display", "none"); 
+
+  $("#pdf").removeAttr("disabled");//habilita boton
 
    $("#anno_busca").val(data.num_anno);
-   $("#num_per_busca").val(data.num_periodo);
+  $("#num_per_busca").val(data.num_periodo);
+  $("#txt_count1").val(data.id_periodo);
+  
  
   var anno = $("#anno_busca").val();
   var periodo = $("#num_per_busca").val();
+
 
   cargartablaabajo(anno,periodo);
   
@@ -420,4 +421,22 @@ $("#tabla_historial_vista").on("click", ".copiar", function () {
 });
 
 
+// $(document).on("click", "#limpiar", function () {
+  // var btn_1 = document.getElementById("pdf");
+  //  btn_1.style.display = "none";
+  //  $("#pdf").css("display", "hidden");
+  // $("#pdf").attr("disabled");//desabilita boton
+  // $("#pdf").css("display", "none");
+// });
+
+// $(document).ready(function () {
+   // $("#pdf").css("display", "none");  
+//   $("#pdf").enabled("true");
+//  });
+    function ventana() {
+      window.open(
+        "../Controlador/reporte_carga_gestion_controlador.php",
+        "REPORTE"
+      );
+    }
 
