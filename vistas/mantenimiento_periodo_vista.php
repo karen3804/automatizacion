@@ -366,7 +366,7 @@ ob_end_flush();
     <script type="text/javascript">
         $(function() {
 
-            $('#tabla14').DataTable({
+            $('#tabla16').DataTable({
                 "paging": true,
                 "lengthChange": true,
                 "searching": true,

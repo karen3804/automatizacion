@@ -1088,7 +1088,7 @@ function ver_sued() {
   $.post("../Controlador/perfil_docente_controlador.php?op=ver_sued", { id_persona: id_persona }, function (data, status) {
     data = JSON.parse(data);
 
-    $("#sued").val(data.sexo)
+    $("#sued").val(data.valor)
 
   });
 }
