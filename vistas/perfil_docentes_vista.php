@@ -97,7 +97,6 @@ WHERE id_persona = '$usuario';";
 $consulta10 = $mysqli->query($sql10);
 $row10 = $consulta10->fetch_all(MYSQLI_ASSOC);
 
-
 //      --------------------------------
 
 //      TRAER LAS PREGUNTAS QUE NO HA CONTESTADO EL DOCENTE
@@ -145,11 +144,41 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 <head>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style type="text/css" media="print">
+        @page {
+            size: auto;
+            margin: 0mm;
+        }
 
+        ;
+    </style>
+
+    <style>
+        #fecha_actual {
+            font-family: Tahoma, Verdana, Arial;
+            font-size: 24px;
+            color: #707070;
+            background-color: #FFFFFF;
+            border-width: 0;
+        }
+
+        ;
+    </style>
     <title></title>
 </head>
 
 <body>
+
+    <center hidden id="titulo_1">
+        <h3>Universidad Nacional Autónoma De Honduras</h2>
+            <h3>Facultad De Ciencias Económicas, Administrativas Y Contables</h2>
+                <h3> Departamento De Informática </h2>
+    </center>
+
+    <img style="margin-left: 100px;" hidden src="../Imagenes_Perfil_Docente/imagen23053148.png" alt="" class="brand-image img-circle elevation-3" height="175" width="175"  id="foto_carrera">
+
+    <input hidden class="form-control" type="text" id="fecha_actual" name="fecha_actual" style="margin-left: 140px;" value="<?php echo date("d/m/y"); ?>">
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -158,9 +187,6 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                     <div class="col-sm-6">
                         <h1>Perfil Docente</h1>
                     </div>
-
-
-
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
@@ -177,62 +203,72 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <!-- pantalla 1 -->
-
-
-
                 <form action="" method="post" role="form" enctype="multipart/form-data" data-form="perfil" autocomplete="off" class="FormularioAjax">
 
                     <div class="card card-default">
-                        <div class="card-header">
+                        <div class="card-header" id="datos_docente">
                             <h3 class="card-title">Datos Docente</h3>
 
                             <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" id="boton_colapse"><i class="fas fa-minus"></i></button>
                             </div>
                         </div>
 
 
                         <!-- /.card-header -->
 
-                        <div class="col-sm-12" style="text-align: center">
-                            <div class="col-sm-2" style="left: 520px;">
-                                <div class="card-body">
-                                    <img src="" alt="" class="brand-image img-circle elevation-3" id="foto" height="175" width="175">
+                        <div class="col-sm-12">
 
-                                    <form action="" method="POST" role="form" enctype="multipart/form-data" id="frmimagen">
-                                        <div class="form-group">
-                                            <!-- FOTOGRAFIA  -->
+                            <div class="col-sm-2">
+                                <div class="card-body" class="text-center">
 
-                                            <input hidden type="file" accept=".png, .jpg, .JPG, .jpeg" maxlength="8388608" name="imagen" id="imagen" style="text-transform: uppercase">
-                                        </div>
-                                        <button type="button" id="btn_mostrar" class="btn btn-info" onclick="MostrarBoton();"></i>Cambiar foto de Perfil</button>
+                                    <!-- <div class="" style="right: 520px;" id="foto_carrera">
+                                        
+                                    </div> -->
+                                    
 
-                                        <button hidden type="submit" id="btn_foto" class="btn btn-dark btn_foto"></i>Guardar
-                                            foto de Perfil</button>
-                                        <input class="form-control" hidden value="<?php echo $usuario ?>" type="text" name="id_persona" id="id_persona">
+                                    <div class="col-sm-2">
 
-                                    </form>
+                                        
+
+                                        <img style="margin-left: 680px;" src="" alt="" class="brand-image img-circle elevation-3" id="foto" height="175" width="175">
+
+                                    </div>
 
                                 </div>
                             </div>
 
+                            <p class="text-center" style="margin-top: 20px;" id="parrafo_boton_editar">
 
+                            <form action="" method="POST" role="form" enctype="multipart/form-data" id="frmimagen">
+                                <div class="form-group">
+                                    <!-- FOTOGRAFIA  -->
+                                    <input hidden type="file" accept=".png, .jpg, .JPG, .jpeg" maxlength="8388608" name="imagen" id="imagen" style="text-transform: uppercase">
+                                </div>
+                                <button style="color:white;font-weight: bold;" type="button" id="btn_mostrar" class="btn btn-info" onclick="MostrarBoton();"></i>Cambiar foto de Perfil</button>
 
-                            <p class="text-center" style="margin-top: 20px;">
-                                <button type="button" class="btn btn-info" onclick="habilitar_editar();" id="editar_info" name="editar_info"><i class="fas fa-user-edit"></i>Editar Información</button>
+                                <button style="color:white;font-weight: bold;" hidden type="submit" id="btn_foto" class="btn btn-dark btn_foto"></i>Guardar
+                                    foto de Perfil</button>
+                                <input class="form-control" hidden value="<?php echo $usuario ?>" type="text" name="id_persona" id="id_persona">
 
-                                <button hidden type="button" class="btn btn-info" onclick="desabilitar();" id="btn_editar" name="btn_editar"><i class="fas fa-user-edit"></i>Editar Información</button>
+                            </form>
 
+                            <button type="button" style="color:white;font-weight: bold;" class="btn btn-info" onclick="habilitar_editar();" id="editar_info" name="editar_info"><i class="fas fa-user-edit"></i>Editar Información</button>
+
+                            <button hidden type="button" style="color:white;font-weight: bold;" class="btn btn-info" onclick="desabilitar();" id="btn_editar" name="btn_editar"><i class="fas fa-user-edit"></i>Editar Información</button>
+
+                            <button class="btn btn-info" style="color:white;font-weight: bold;" id="btn_editar_curri" name="btn_editar_curri"><i class="fas fa-print"></i>Imprimir</button>
 
                             </p>
 
                             <p class="text-center" style="margin-top: 20px;">
                                 <button hidden type="button" class="btn btn-info" id="btn_guardar_edicion" name="btn_guardar_edicion" onclick="EditarPerfil($('#Nombre').val(),$('#txt_apellido').val(),$('#identidad').val(),$('#estado_civil_text').val()); ver_estado_civil();"><i class="fas fa-user-edit"></i>Guardar Información</button>
                             </p>
+
+
                             <div class="d-flex justify-content-around flex-row bd-highlight row">
 
-                                <div class="col">
+                                <div class="col" id="parrafo_numEmpleado">
                                     <label for="">Nº Empleado:</label>
 
                                     <div class="form-group">
@@ -249,7 +285,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
+                                            <span class="input-group-text" id="icono_nombre"><i class="fas fa-file-signature"></i></span>
                                             <input disabled name="" type="text" onkeyup="Mayuscula('Nombre'); MismaLetra('Nombre'); DobleEspacio(this, event);" onkeypress="return sololetras(event)" class="form-control" id="Nombre" required>
 
                                         </div>
@@ -261,29 +297,29 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
+                                            <span class="input-group-text" id="icono_apellido"><i class="fas fa-file-signature"></i></span>
                                             <input disabled name="" type="text" onkeyup="Mayuscula('txt_apellido');MismaLetra('txt_apellido'); DobleEspacio(this, event);" onkeypress="return sololetras(event);" class="form-control" id="txt_apellido" required>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col" id="parrafor_jornada">
                                     <label for="">Jornada:</label>
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user icon"></i></span>
+                                            <span class="input-group-text" id="icono_jornada"><i class="fas fa-user icon"></i></span>
                                             <input disabled name="" type="text" class="form-control" id="jornada">
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col" id="parrafo_genero">
                                     <label for="email">Genero:</label>
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
+                                            <span class="input-group-text" id="icono_genero"><i class="fas fa-toggle-on"></i></span>
 
                                             <input value="" type="text" disabled name="ver_genero" id="ver_genero" class="form-control">
 
@@ -292,21 +328,17 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
                             </div>
                             <input type="text" name="mayoria_edad" id="mayoria_edad" hidden readonly onload="mayoria_edad()">
                             <div class="d-flex justify-content-around flex-row bd-highlight row">
 
 
-                                <div class="col">
+                                <div class="col" id="parrafo_identidad">
                                     <label for="">Nº Identidad:</label>
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                            <span class="input-group-text" id="icono_identidad"><i class="fas fa-id-card"></i></span>
                                             <input disabled name="" type="text" data-inputmask="'mask': '9999-9999-99999'" data-mask class="form-control" id="identidad" required onkeyup="ValidarIdentidad($('#identidad').val());" onblur="ExisteIdentidad();">
 
                                         </div>
@@ -317,12 +349,12 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                 </div>
 
 
-                                <div class="col">
+                                <div class="col" id="parrafo_nacionalidad">
                                     <label for="">Nacionalidad:</label>
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-flag"></i></span>
+                                            <span class="input-group-text" id="icono_nacionalidad"><i class="fas fa-flag"></i></span>
                                             <input disabled name="" type="text" onkeyup="Mayuscula('nacionalidad');" class="form-control" id="nacionalidad">
 
                                         </div>
@@ -330,24 +362,24 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                 </div>
 
 
-                                <div class="col">
+                                <div class="col" id="parrafo_categoria">
                                     <label for="">Categoria:</label>
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user icon"></i></span>
+                                            <span class="input-group-text" id="icono_categoria"><i class="fas fa-user icon"></i></span>
                                             <input disabled name="" type="text" class="form-control" id="categoria">
 
                                         </div>
                                     </div>
                                 </div>
                                 <input class="form-control" readonly hidden id="age" name="age" maxlength="25" value="" required style="text-transform: uppercase">
-                                <div class="col">
+                                <div class="col" id="parrafo_nacimiento">
                                     <label for="">Fecha Nacimiento:</label>
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                            <span class="input-group-text" id="icono_nacimiento"><i class="far fa-calendar-alt"></i></span>
                                             <input disabled="true" value="" type="date" name="Fecha" id="fecha" class="form-control" onblur="valida_mayoria()" onkeydown="return false">
                                         </div>
 
@@ -356,12 +388,12 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
                                 </div>
 
-                                <div class="col">
+                                <div class="col" id="parrafo_estadoC">
                                     <label for="">Estado Civil:</label>
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user icon"></i></span>
+                                            <span class="input-group-text" id="icono_estado"><i class="fas fa-user icon"></i></span>
 
                                             <input value="" type="text" disabled name="ver_estado" id="ver_estado" class="form-control">
 
@@ -371,30 +403,40 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-
-                            <div class="d-flex justify-content-around flex-row bd-highlight row">
-
-
-
-                                <div class="col-md-20">
+                                <div class="col" id="parrafo_sued">
+                                    <label for="">Sued:</label>
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
-                                            <button class="btn btn-info " id="" name=""> <a href="" target="_blank" id="curriculum" style="color:white;font-weight: bold;">Curriculum</a></button>
+                                            <span class="input-group-text" id="icono_estado"><i class="fas fa-user icon"></i></span>
 
+                                            <input class="form-control" readonly value="" type="text" name="sued" id="sued">
 
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-20">
+                            </div>
+                            
+                            <div class="d-flex justify-content-around flex-row bd-highlight row">
+
+                                <div class="col-md-20" id="curriculum_parrafo">
+
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-info " id="" name=""> <a href="" target="_blank" id="curriculum" style="color:white;font-weight: bold;">Curriculum</a></button>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-20" id="parrafo_curriculum">
                                     <div class="form-group">
                                         <div class="input-group-prepend">
 
                                             <form action="" method="POST" role="form" enctype="multipart/form-data" id="frmimagen">
-                                                <button type="button" id="btn_mostrar_curriculum" class="btn btn-info" onclick="MostrarBotonCurriculum();"></i>Actualizar Curriculum</button>
+                                                <button style="color:white;font-weight: bold;" type="button" id="btn_mostrar_curriculum" class="btn btn-info" onclick="MostrarBotonCurriculum();"></i>Actualizar Curriculum</button>
 
                                                 <input hidden class="btn btn-info" type="file" accept=".doc, .docx, .pdf" maxlength="60" id="c_vitae" name="c_vitae" value="" style="text-transform: uppercase">
 
@@ -411,7 +453,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
 
                         <div class="d-flex justify-content-around flex-row bd-highlight row">
-                            <div class="card " style="width:420px;border-color:gray;">
+                            <div class="card " style="width:420px;border-color:gray;" id="card_telefono">
                                 <div class="card-body">
                                     <h4 class="card-title">Contactos</h4>
                                     <div class="form-group card-text">
@@ -423,7 +465,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                                 <tr>
 
                                                     <th>Telefono</th>
-                                                    <th>Eliminar</th>
+                                                    <th id="eliminar_telefono_tabla">Eliminar</th>
 
                                                 </tr>
                                             </thead>
@@ -445,7 +487,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                                 <tr>
 
                                                     <th>Correo</th>
-                                                    <th>Eliminar</th>
+                                                    <th id="eliminar_correo_tabla">Eliminar</th>
 
                                                 </tr>
                                             </thead>
@@ -517,7 +559,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
 
 
-                            <div class="card " style="width:420px;border-color:gray;">
+                            <div class="card " style="width:420px;border-color:gray;" id="parrafo_encuesta">
                                 <div class="card-body">
                                     <h4 class="card-title">Encuesta Docente</h4>
                                     <div class="card-text">
@@ -532,7 +574,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
 
 
-                            <div class="card " style="width:600px;border-color:gray;">
+                            <div class="card " style="width:600px;border-color:gray;" id="parrafo_comisiones">
                                 <!--comisiones-->
                                 <div class="card-body">
                                     <h4 class="card-title">Comisiones y Actividades</h4>
@@ -553,18 +595,18 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
                             </div><!-- Comisiones-->
 
-                            <div class="card " style="width:600px;border-color:gray;">
+                            <div class="card " style="width:600px;border-color:gray;" id="parrafo_formacion">
                                 <!--comisiones-->
 
                                 <div class="card-body">
-                                    <h4 class="card-title ">Formación Academica</h4><br>
+                                    <h4 class="card-title ">Formación Académica</h4><br>
 
 
                                     <!-- <ul class="card-text" id="ulFormacion">
 
                                     </ul> -->
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary card-title" data-toggle="modal" data-target="#myModal">Agregar Formación Academica <i class="fa fa-user-plus"></i></button>
+                                        <button type="button" class="btn btn-primary card-title" data-toggle="modal" data-target="#myModal">Agregar Formación Académica <i class="fa fa-user-plus"></i></button>
                                         <h4 class="card-title"></h4>
                                         <div class="card-text">
                                             <table class="table table-bordered table-striped m-0">
@@ -572,7 +614,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                                     <tr>
                                                         <th></th>
                                                         <th>Grado</th>
-                                                        <th>especialidad</th>
+                                                        <th>Especialidad</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tbl_especialidad"></tbody>
@@ -589,14 +631,14 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
                                                 <!-- Modal Header -->
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Nueva Formación Academica</h4>
+                                                    <h4 class="modal-title">Nueva Formación Académica</h4>
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 </div>
 
                                                 <!-- Modal body -->
                                                 <div class="modal-body">
                                                     <br>
-                                                    <label for="">GRADO ACADEMICO:</label>
+                                                    <label for="">GRADO ACADÉMICO:</label>
 
                                                     <div class="form-group">
                                                         <div class="input-group-prepend">
@@ -627,7 +669,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
                                                 <!-- Modal footer -->
                                                 <div class="modal-footer">
-                                                    <button type="button" id="guardarFormacion" class="btn btn-primary">Guardar Formación Academica <i class="fa fa-user-plus"></i></button>
+                                                    <button type="button" id="guardarFormacion" class="btn btn-primary">Guardar Formación Académica <i class="fa fa-user-plus"></i></button>
 
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 </div>
@@ -812,7 +854,7 @@ function mascara(){
                     <div style="text-align:left">
 
 
-                        <h5 style="font-weight: bold; font-size: 15px"> 1. ¿En que áreas de la Carrera imparte clases?</h5>
+                        <h5 style="font-weight: bold; font-size: 15px"> 1. ¿En que áreas de la carrera imparte clases?</h5>
                         <div class="form-check">
                             <?php
 

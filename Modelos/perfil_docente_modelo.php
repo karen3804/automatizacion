@@ -270,6 +270,13 @@ WHERE PER.id_persona= $id_persona AND PEX.id_atributo = 11;
         return $consulta;
     }
 
+    function ver_sued($id_persona){
+        global $instancia_conexion;
+        $consulta=$instancia_conexion->ejecutarConsultaSimpleFila("SELECT valor FROM tbl_personas_extendidas where id_persona = $id_persona and id_atributo = 14 LIMIT 1;");
+      
+        return $consulta;
+    }
+
     function Existepregunta1($id_persona)
     {
         global $instancia_conexion;

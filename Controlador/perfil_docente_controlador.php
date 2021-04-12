@@ -159,6 +159,14 @@ if (isset($_GET['op'])) {
 
             break;
 
+        case 'ver_sued':
+
+
+            $rspta = $instancia_modelo->ver_sued($id_persona);
+            echo json_encode($rspta);
+
+            break;
+
         case 'ExisteIdentidad':
 
 
@@ -170,8 +178,8 @@ if (isset($_GET['op'])) {
 
             if (is_array($_FILES) && count($_FILES) > 0) {
 
-                if (move_uploaded_file($_FILES["c"]["tmp_name"],"../curriculum_docentes/".$_FILES["c"]["name"])) {
-                    $nombrearchivo2 = '../curriculum_docentes/'.$_FILES["c"]["name"];
+                if (move_uploaded_file($_FILES["c"]["tmp_name"], "../curriculum_docentes/" . $_FILES["c"]["name"])) {
+                    $nombrearchivo2 = '../curriculum_docentes/' . $_FILES["c"]["name"];
                     $consulta = $instancia_modelo->Registrar_curriculum($nombrearchivo2, $id_persona);
                     echo json_encode($nombrearchivo2);
                 } else {
@@ -319,7 +327,7 @@ if (isset($_GET['op'])) {
         case 'eliminar_formacion':
 
 
-            $rspta = $instancia_modelo->eliminar_formacion($eliminar_formacion,$id_persona);
+            $rspta = $instancia_modelo->eliminar_formacion($eliminar_formacion, $id_persona);
 
             break;
     }
