@@ -133,6 +133,27 @@ switch ($_GET["op"])
          }
        
   break;
+  
+  case 'selectNACI':
+    if (isset($_POST['activar'])) {
+        $data=array();
+        $respuesta=$instancia_modelo->listar_selectNACI();
+       
+          while ($r=$respuesta->fetch_object()) {
+       
+             
+               # code...
+               echo "<option value='". $r->nacionalidad."'> ".$r->nacionalidad." </option>";
+               
+           }
+       
+        
+         }
+         else{
+           echo 'No hay informacion';
+         }
+       
+break;
 
   case 'descripcion':
     $rspta = $instancia_modelo->descripcion_jornada($id_jornada);

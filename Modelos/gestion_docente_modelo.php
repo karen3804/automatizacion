@@ -110,6 +110,14 @@ function listar_selectHOR(){
 
 }
 
+function listar_selectNACI(){
+  global $instancia_conexion;
+  $consulta=$instancia_conexion->ejecutarConsulta('select * from tbl_nacionalidad');
+
+  return $consulta;
+
+}
+
 function descripcion_jornada($id_jornada)
     {
         global $instancia_conexion;

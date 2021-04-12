@@ -450,7 +450,7 @@ ob_end_flush();
                   <div class="col-sm-3">
                                 <label>Docente SUED</label>
                                 <div class="form-group">
-                                <input class="form-control" id="tipo_docente" name="tipo_docente" type="text">
+                                <input hidden class="form-control" id="tipo_docente" name="tipo_docente" type="text">
                                         <span class="form-control">
                                             <label class="checkbox-inline"><input class="CheckedAK" id="si" type="checkbox" name="check[]" class="ch" value="si">Si</label>
                                             <label class="checkbox-inline"><input class="CheckedAK" id="no" type="checkbox" name="check[]" class="ch" value="no">No</label>

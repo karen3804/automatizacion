@@ -215,6 +215,22 @@ ob_end_flush();
                                         </div>
                                     </div>
 
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Nacionalidad</label>
+                                            <select class="form-control" name="nacionalidad_edita" id="nacionalidad_edita"></select>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Identificación</label>
+                                            <input class="form-control" name="identidad_edita" data-inputmask="'mask': '9999-9999-99999'" data-mask id="identidad_edita" onkeyup="ValidarIdentidad($('#identidad_edita').val());" >
+                                            
+                                        </div>
+                                    </div>
+
                                     <!-- <div class="col-md-1">
                                             <div class="form-group">
                                                 <input class="form-control" hidden type="text" id="txt_hidden" name="txt_hidden" value="" readonly>
@@ -223,7 +239,7 @@ ob_end_flush();
                                         </div> -->
 
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <label>N° Empleado</label>
                                             <input class="form-control" name="nempleado_edita" id="nempleado_edita">
@@ -239,15 +255,9 @@ ob_end_flush();
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Categoria</label>
-                                            <select class="form-control" name="categoria_edita" id="categoria_edita"></select>
 
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <label>Hora Entrada</label>
                                             <select class="form-control" name="hr_inicio_edita" id="hr_inicio_edita"></select>
@@ -255,7 +265,7 @@ ob_end_flush();
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <label>Hora Salida</label>
                                             <select class="form-control" name="hr_final_edita" id="hr_final_edita" onblur="valida_horario_edita(); valida_jornada_hora();"></select>
@@ -265,20 +275,23 @@ ob_end_flush();
 
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Identificación</label>
-                                            <input class="form-control" name="identidad_edita" id="identidad_edita" >
+                                            <label>Categoria</label>
+                                            <select class="form-control" name="categoria_edita" id="categoria_edita"></select>
 
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-6">
 
-                                        <p class="" style="margin-top: 10px;">
-                                            <button type="submit" class="btn btn-primary btn" data-toggle="modal" data-target="#ModalTask2" id="agregarotra" name="agregarotra" onclick="persona()">
-                                                <i class="zmdi zmdi-floppy"></i>AGREGAR +</button>
-                                        </p>
-
+                                    
+                                    
+                                    
+                                    <div class="col-sm-3">
+                                   
+                                   <button type="submit" class="btn btn-primary btn" data-toggle="modal" data-target="#ModalTask2" id="agregarotra" name="agregarotra" onclick="persona()">AGREGAR COMISIONES</button>
+                                     
                                     </div>
+                                    
+                                   
 
                                     <div class="card " style="width:600px;border-color:gray;">
                                         <!--comisiones-->

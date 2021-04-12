@@ -114,9 +114,9 @@ function TablaDocente() {
         titleAttr: "Exportar a PDF",
         className: "btn btn-danger",
         orientation: "landscape",
-        pageSize: "legal",
+        pageSize: "Legal",
         exportOptions: {
-          columns: [2, 3, 5, 6, 7, 9],
+          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
         }, 
 		title: "Universidad Nacional Autónoma De Honduras                                                                                                                                                                                                                                "
 		+ " Facultad De Ciencias Económicas,Administrativas Y Contables                                                                                                                      "
@@ -286,6 +286,21 @@ function llenar_selectJOR() {
 }
 llenar_selectJOR();
 
+function llenar_selectNACI() {
+	var cadena = '&activar=activar';
+	$.ajax({
+		url: '../Controlador/gestion_docente_controlador.php?op=selectNACI',
+		type: 'POST',
+		data: cadena,
+		success: function(r) {
+			//  console.log(r);
+
+			$('#nacionalidad_edita').html(r).fadeIn();
+		}
+	});
+}
+llenar_selectNACI();
+
 function llenar_selectCAT() {
 	var cadena = '&activar=activar';
 	$.ajax({
@@ -423,6 +438,7 @@ $('#tabladocentes').on('click', '.editar', function() {
 	$("#hr_inicio_edita").val(data.hr_inicial).trigger("change");
 	$("#hr_final_edita").val(data.hr_final).trigger("change");
 	$("#identidad_edita").val(data.identidad);
+	$("#nacionalidad_edita").val(data.nacionalidad).trigger("change");
 	
 	
 
@@ -431,6 +447,70 @@ $('#tabladocentes').on('click', '.editar', function() {
 	Actividades();
 });
 
+function ValidarIdentidad(identidad) {
+	//console.log(n);
+	var n = identidad.search('_');
+	console.log(n);
+	
+	var depto = identidad.substring(0, 4);
+	var contar = depto;
+
+	console.log(contar);
+
+	if (n == 5) {
+		var ver = false;
+		$.post('../Controlador/registro_docente_controlador.php?op=validar_depto', { codigo: contar }, function(
+			data,
+			status
+		) {
+			console.log(data);
+			data = JSON.parse(data);
+			console.log(data);
+			/*si no tiene datos va copiar  */
+			//$("#contar_depto").val(data.regis);
+
+			if (data.regis == 0) {
+				var ver = true;
+
+				if (ver == true) {
+					swal(
+						'Datos incorrectos',
+						'Asegurese de Introducir los digitos correspondientes a su departamento y municipio',
+						'warning'
+					);
+					//$('#contar_depto').val('');
+					$('#identidad_edita').val('');
+					$('#identidad_edita').attr('placeholder', '____-____-_____');
+				}
+			}
+		});
+	}
+
+	if (n == 10) {
+		var currentTime = new Date();
+		//var year = currentTime.getFullYear();
+		var anio = identidad.substring(5, 9);
+		//console.log(year-anio);
+
+		if (anio == '0000') {
+			swal('Aviso', 'Año invalido', 'warning');
+			$('#identidad_edita').val('');
+			$('#identidad_edita').attr('placeholder', '____-____-_____');
+		} else {
+		}
+	}
+
+	if (n == -1) {
+		var ultimo = identidad.substring(10, 15);
+		// console.log(anio);
+		if (ultimo == '00000') {
+			swal('Aviso', 'no se permiten 5 ceros', 'warning');
+			$('#identidad_edita').val('');
+			$('#identidad_edita').attr('placeholder', '____-____-_____');
+		} else {
+		}
+	}
+}
 function persona() {
 	document.getElementById('txt_id_persona1').value = document.getElementById('txt_id_persona').value;
 
