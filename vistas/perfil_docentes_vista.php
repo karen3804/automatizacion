@@ -315,7 +315,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                     </div>
                                 </div>
                                 <div class="col" id="parrafo_genero">
-                                    <label for="email">Genero:</label>
+                                    <label for="email">Género:</label>
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
@@ -363,7 +363,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
 
                                 <div class="col" id="parrafo_categoria">
-                                    <label for="">Categoria:</label>
+                                    <label for="">Categoría:</label>
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
@@ -458,13 +458,13 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                     <h4 class="card-title">Contactos</h4>
                                     <div class="form-group card-text">
                                         <!-- TABLA CONTACTOS -->
-                                        <button type="button" name="add" id="add" class="btn btn-primary card-title" data-toggle="modal" data-target="#ModalTel">Agregar Telefono</button>
+                                        <button type="button" name="add" id="add" class="btn btn-primary card-title" data-toggle="modal" data-target="#ModalTel">Agregar Teléfono</button>
 
                                         <table class="table table-bordered table-striped m-0">
                                             <thead>
                                                 <tr>
 
-                                                    <th>Telefono</th>
+                                                    <th>Teléfono</th>
                                                     <th id="eliminar_telefono_tabla">Eliminar</th>
 
                                                 </tr>

@@ -17,7 +17,7 @@ $(document).ready(function () {
     let i = ContarTel();
 
     if (i >= 3) {
-      alert("Numero maximo de telefonos es de 3");
+      alert("Numero maximo de telefonos es de 2");
       return false;
     } else {
       i++;
