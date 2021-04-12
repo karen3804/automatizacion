@@ -207,14 +207,6 @@ if (permiso_ver('76') == '1') {
   tiene permisos para visualizar";
 }
 
-if (permiso_ver('93') == '1') {
-
-  $_SESSION['mantenimiento_crear_areas'] = "...";
-} else {
-  $_SESSION['mantenimiento_crear_areas'] = "No 
-  tiene permisos para visualizar";
-}
-
 if (permiso_ver('77') == '1') {
 
   $_SESSION['mantenimiento_departamento_vista'] = "...";
@@ -250,14 +242,6 @@ if (permiso_ver('89') == '1') {
   $_SESSION['mantenimiento_carrera_vista'] = "...";
 } else {
   $_SESSION['mantenimiento_carrera_vista'] = "No 
-  tiene permisos para visualizar";
-}
-
-if (permiso_ver('93') == '1') {
-
-  $_SESSION['mantenimiento_area_vista'] = "...";
-} else {
-  $_SESSION['mantenimiento_area_vista'] = "No 
   tiene permisos para visualizar";
 }
 
@@ -381,7 +365,7 @@ if (permiso_ver('93') == '1') {
             <div class="col-6 col-sm-6 col-md-4">
               <div class="small-box bg-light">
                 <div class="inner">
-                  <h4>Crear Periodo </h4>
+                  <h4>Crear Período </h4>
                   <p><?php echo $_SESSION['mantenimiento_crear_periodo_vista']; ?></p>
                 </div>
                 <div class="icon">
@@ -400,7 +384,7 @@ if (permiso_ver('93') == '1') {
             <div class="col-6 col-sm-6 col-md-4">
               <div class="small-box bg-primary">
                 <div class="inner">
-                  <h4>Mantenimiento Periodo </h4>
+                  <h4>Mantenimiento Período </h4>
                   <p><?php echo $_SESSION['mantenimiento_periodo_vista']; ?></p>
                 </div>
                 <div class="icon">
@@ -431,7 +415,7 @@ if (permiso_ver('93') == '1') {
             <div class="col-6 col-sm-6 col-md-4">
               <div class="small-box bg-light">
                 <div class="inner">
-                  <h4>Crear edificio</h4>
+                  <h4>Crear Edificio</h4>
                   <p><?php echo $_SESSION['mantenimiento_crear_edificio_vista']; ?></p>
                 </div>
                 <div class="icon">
@@ -520,60 +504,6 @@ if (permiso_ver('93') == '1') {
       </section>
 
 
-
-
-
-
-
-
-      <section class="content">
-        <div class="container-fluid">
-          <!-- Info boxes -->
-          <div class="row" style="  display: flex;
-    align-items: center;
-    justify-content: center;">
-            <div class="col-6 col-sm-6 col-md-4">
-              <div class="small-box bg-light">
-                <div class="inner">
-                  <h4>Crear Areas</h4>
-                  <p><?php echo $_SESSION['mantenimiento_crear_areas']; ?></p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-plus-square"></i>
-                </div>
-
-                <a href="../vistas/mantenimiento_crear_areas.php" class="small-box-footer">
-                  Ir <i class="fas fa-arrow-circle-right"></i>
-                </a>
-              </div>
-
-            </div>
-            <!-- fix for small devices only -->
-            <div class="clearfix hidden-md-up"></div>
-            <!-- /.info-box -->
-            <div class="col-6 col-sm-6 col-md-4">
-              <div class="small-box bg-primary">
-                <div class="inner">
-                  <h4>Mantenimiento Área </h4>
-                  <p><?php echo $_SESSION['mantenimiento_area_vista']; ?></p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-edit"></i>
-                </div>
-
-                <a href="../vistas/mantenimiento_area_vista.php" class="small-box-footer">
-                  Ir <i class="fas fa-arrow-circle-right"></i>
-                </a>
-              </div>
-
-            </div>
-            <!-- /.row -->
-          </div>
-          <!--/. container-fluid -->
-        </div>
-      </section>
-
-
   <!-- /.form-group -->
                 </div>
                 <!-- /.col -->
@@ -618,7 +548,7 @@ if (permiso_ver('93') == '1') {
             <div class="col-6 col-sm-6 col-md-4">
               <div class="small-box bg-light">
                 <div class="inner">
-                  <h4>Crear Comision </h4>
+                  <h4>Crear Comisión </h4>
                   <p><?php echo $_SESSION['mantenimiento_crear_comisiones_vista']; ?></p>
                 </div>
                 <div class="icon">
@@ -666,7 +596,7 @@ if (permiso_ver('93') == '1') {
             <div class="col-6 col-sm-6 col-md-4">
               <div class="small-box bg-light">
                 <div class="inner">
-                  <h4>Crear Grados Academicos </h4>
+                  <h4>Crear Grados Académicos </h4>
                   <p><?php echo $_SESSION['mantenimiento_crear_grados_academicos_vista']; ?></p>
                 </div>
                 <div class="icon">
@@ -685,7 +615,7 @@ if (permiso_ver('93') == '1') {
             <div class="col-6 col-sm-6 col-md-4">
               <div class="small-box bg-primary">
                 <div class="inner">
-                  <h4>Mantenimiento Grados Academicos </h4>
+                  <h4>Mantenimiento Grados Académicos </h4>
                   <p><?php echo $_SESSION['mantenimiento_grados_academicos_vista']; ?></p>
                 </div>
                 <div class="icon">
@@ -714,7 +644,7 @@ if (permiso_ver('93') == '1') {
             <div class="col-6 col-sm-6 col-md-4">
               <div class="small-box bg-light">
                 <div class="inner">
-                  <h4>Crear Categoria </h4>
+                  <h4>Crear Categoría </h4>
                   <p><?php echo $_SESSION['mantenimiento_crear_categoria_vista']; ?></p>
                 </div>
                 <div class="icon">
@@ -733,7 +663,7 @@ if (permiso_ver('93') == '1') {
             <div class="col-6 col-sm-6 col-md-4">
               <div class="small-box bg-primary">
                 <div class="inner">
-                  <h4>Mantenimiento Categorias </h4>
+                  <h4>Mantenimiento Categorías </h4>
                   <p><?php echo $_SESSION['mantenimiento_categorias_docente_vista']; ?></p>
                 </div>
                 <div class="icon">
@@ -863,7 +793,7 @@ if (permiso_ver('93') == '1') {
             <div class="col-6 col-sm-6 col-md-4">
               <div class="small-box bg-light">
                 <div class="inner">
-                  <h4>Crear Genero </h4>
+                  <h4>Crear Género </h4>
                   <p><?php echo $_SESSION['mantenimiento_crear_genero_vista']; ?></p>
                 </div>
                 <div class="icon">

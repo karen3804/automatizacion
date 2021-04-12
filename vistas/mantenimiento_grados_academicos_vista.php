@@ -17,7 +17,7 @@ if (isset($_REQUEST['msj'])) {
         echo '<script type="text/javascript">
     swal({
         title: "",
-        text: "Lo sentimos el grado academico ya existe",
+        text: "Lo sentimos el grado académico ya existe",
         type: "info",
         showConfirmButton: false,
         timer: 3000
@@ -80,7 +80,7 @@ if ($visualizacion == 0) {
                             </script>';
 } else {
 
-    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A Mantenimiento Grado Academico');
+    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A Mantenimiento Grado Académico');
 
 
     if (permisos::permiso_modificar($Id_objeto) == '1') {
@@ -166,7 +166,7 @@ ob_end_flush();
                     <div class="col-sm-6">
 
 
-                        <h1>Grados Academicos Docentes
+                        <h1>Grados Académicos Docentes
                         </h1>
                     </div>
 
@@ -189,7 +189,7 @@ ob_end_flush();
 
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="card-title">Grados Academicos Existentes</h3>
+                <h3 class="card-title">Grados Académicos Existentes</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 </div>
@@ -206,7 +206,7 @@ ob_end_flush();
 
                     <thead>
                         <tr>
-                            <th>GRADO ACADEMICO</th>
+                            <th>GRADO ACADÉMICO</th>
                             <th>DESCRIPCIÓN </th>
                             <th>MODIFICAR</th>
                             <th>ELIMINAR</th>
@@ -267,7 +267,7 @@ ob_end_flush();
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title"> Actualizar Grado Academico</h4>
+                        <h4 class="modal-title"> Actualizar Grado Académico</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -286,7 +286,7 @@ ob_end_flush();
                                 <div class="col-md-12">
                                     <div class="form-group">
 
-                                        <label>Modificar Grado Academico</label>
+                                        <label>Modificar Grado Académico</label>
 
 
                                         <input class="form-control" type="text" id="txtgrado_academico" name="txtgrado_academico" value="<?php echo $_SESSION['grado_academico']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txtgrado_academico');" onkeypress="return sololetras(event)" maxlength="30">
@@ -295,7 +295,7 @@ ob_end_flush();
 
 
                                     <div class="form-group">
-                                        <label class="control-label">Descripcion</label>
+                                        <label class="control-label">Descripción</label>
 
                                         <input class="form-control" type="text" id="txtdescripcion" name="txtdescripcion" value="<?php echo $_SESSION['descripcion']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txtdescripcion');" onkeypress="return sololetras(event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
 

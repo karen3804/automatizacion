@@ -17,7 +17,7 @@ if (isset($_REQUEST['msj'])) {
         echo '<script type="text/javascript">
     swal({
         title: "",
-        text: "Lo sentimos el periodo ya existe",
+        text: "Lo sentimos el período ya existe",
         type: "info",
         showConfirmButton: false,
         timer: 3000
@@ -79,7 +79,7 @@ if ($visualizacion == 0) {
                             </script>';
 } else {
 
-    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A mantenimiento periodo');
+    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A mantenimiento período');
 
 
     if (permisos::permiso_modificar($Id_objeto) == '1') {
@@ -175,7 +175,7 @@ ob_end_flush();
                     <div class="col-sm-6">
 
 
-                        <h1>PERIODO
+                        <h1>PERÍODO
                         </h1>
                     </div>
 
@@ -183,7 +183,7 @@ ob_end_flush();
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
                             <li class="breadcrumb-item active"><a href="../vistas/menu_mantenimiento.php">Menu Mantenimiento</a></li>
-                            <li class="breadcrumb-item active"><a href="../vistas/mantenimiento_crear_periodo_vista.php">Nuevo Periodo</a></li>
+                            <li class="breadcrumb-item active"><a href="../vistas/mantenimiento_crear_periodo_vista.php">Nuevo Período</a></li>
                         </ol>
                     </div>
 
@@ -215,11 +215,11 @@ ob_end_flush();
                     <thead>
                         <tr>
                             <th hidden>ID </th>
-                            <th>N. PERIODO</th>
+                            <th>N. PERÍODO</th>
                             <th>AÑO</th>
                             <th>FECHA INICIO </th>
                             <th>FECHA FINAL</th>
-                            <th>TIPO PERIODO </th>
+                            <th>TIPO PERÍODO </th>
                             <th>ADICIONES/CANCELACIONES</th>
                             <th>MODIFICAR</th>
                             <th>ELIMINAR</th>
@@ -286,7 +286,7 @@ ob_end_flush();
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title"> Actualizar Periodo</h4>
+                        <h4 class="modal-title"> Actualizar Período</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -302,21 +302,21 @@ ob_end_flush();
                                 <div class="col-md-12">
                                     <div class="form-group">
 
-                                        <label>Numero Periodo</label>
+                                        <label>Número Período</label>
                                         <input class="form-control" type="text" id="num_periodo" name="num_periodo" style="text-transform: uppercase" onkeypress="return Numeros(event)" value="<?php echo $_SESSION['num_periodo']; ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label>Año Academico</label>
+                                        <label>Año Académico</label>
                                         <input class="form-control" type="text" id="num_anno" name="num_anno" style="text-transform: uppercase" onkeypress="return Numeros(event)" value="<?php echo $_SESSION['num_anno']; ?>">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Inicio del Periodo</label>
+                                        <label>Inicio del Período</label>
                                         <input class="form-control" type="date" id="fecha_inicio" name="fecha_inicio" value="<?php echo $_SESSION['fecha_inicio']; ?>">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Finalizacion del Periodo</label>
+                                        <label>Finalización del Período</label>
                                         <input class="form-control" type="date" id="fecha_final" name="fecha_final" value="<?php echo $_SESSION['fecha_final']; ?>">
                                     </div>
 
@@ -328,7 +328,7 @@ ob_end_flush();
                                     <input class="form-control" type="text" id="tipo_p" hidden name="tipo_p" style="text-transform: uppercase">
 
                                     <div class="form-group">
-                                        <label>Tipo de Periodo</label>
+                                        <label>Tipo de Período</label>
                                         <select class="form-control-lg select2" type="text" id="tipo_periodo" name="tipo_periodo" style="width: 100%;">
                                         <option value="">Seleccione una opción</option>
                                         </select>

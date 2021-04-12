@@ -107,14 +107,14 @@ ob_end_flush();
                     <div class="col-sm-6">
 
 
-                        <h1>Periodo</h1>
+                        <h1>Período</h1>
                     </div>
                     <input class="form-control" hidden type="text" id="max_periodo" name="max_periodo" value="<?php echo $max_periodo['valor'] ?>">
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
                             <li class="breadcrumb-item"><a href="../vistas/menu_mantenimiento.php">Menu Mantenimiento</a></li>
-                            <li class="breadcrumb-item"><a href="../vistas/mantenimiento_periodo_vista.php"> Mantenimiento Periodo</a></li>
+                            <li class="breadcrumb-item"><a href="../vistas/mantenimiento_periodo_vista.php"> Mantenimiento Período</a></li>
                         </ol>
                     </div>
 
@@ -133,7 +133,7 @@ ob_end_flush();
 
                     <div class="card card-default ">
                         <div class="card-header center">
-                            <h3 class="card-title">Nuevo Periodo</h3>
+                            <h3 class="card-title">Nuevo Período</h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -147,7 +147,7 @@ ob_end_flush();
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group ">
-                                        <label>Periodo Académico</label>
+                                        <label>Período Académico</label>
                                         <input class="form-control" type="text" minlength="1" maxlength="1" min="1" max="3" size="3" id="num_periodo" name="num_periodo" style="text-transform: uppercase" onkeypress="return Numeros(event)" onblur="comprobar()">
                                     </div>
 
@@ -158,11 +158,11 @@ ob_end_flush();
                                         
                                     </div>
                                     <div class="form-group">
-                                        <label>Inicio del Periodo</label>
+                                        <label>Inicio del Período</label>
                                         <input class="form-control" type="date" id="fecha_inicio" name="fecha_inicio">
                                     </div>
                                     <div class="form-group">
-                                        <label>Finalizacion del Periodo</label>
+                                        <label>Finalización del Período</label>
                                         <input class="form-control" type="date" id="fecha_final" name="fecha_final">
                                     </div>
 
@@ -176,7 +176,7 @@ ob_end_flush();
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Tipo de Periodo:</label>
+                                            <label>Tipo de Período:</label>
                                             <td><select class="form-control" onchange="mostrar_tipo_periodo($('#tipo_periodo').val());" id="tipo_periodo" class="" name="">
                                                     <option value="">Seleccionar</option>
                                                 </select></td>

@@ -220,8 +220,8 @@ ob_end_flush();
           <thead>
             <tr>
               <th hidden>ID </th>
-              <th>CODIGO AULAS</th>
-              <th>DESCRIPCION </th>
+              <th>CÓDIGO AULAS</th>
+              <th>DESCRIPCIÓN </th>
               <th>CAPACIDAD </th>
               <th>EDIFICIO</th>
               <th>TIPO AULA </th>
@@ -319,7 +319,7 @@ ob_end_flush();
                 </div>
                   <div class="form-group">
 
-                    <label>Modificar Codigo Aula</label>
+                    <label>Modificar Código Aula</label>
 
 
                     <input class="form-control" type="text" id="txt_codigo" name="txt_codigo" value="<?php echo $_SESSION['codigo']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Numeros(event)" maxlength="30">
@@ -328,7 +328,7 @@ ob_end_flush();
 
 
                   <div class="form-group">
-                    <label class="control-label">Descripcion</label>
+                    <label class="control-label">Descripción</label>
 
                     <input class="form-control" type="text" id="txt_descripcion" name="txt_descripcion" value="<?php echo $_SESSION['descripcion']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_descripcion');" onkeypress="return sololetras(event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
 

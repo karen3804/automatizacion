@@ -182,7 +182,7 @@ ob_end_flush();
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
                             <li class="breadcrumb-item active"><a href="../vistas/menu_mantenimiento.php">Menu Mantenimiento</a></li>
-                            <li class="breadcrumb-item active"><a href="../vistas/mantenimiento_crear_comisiones_vista.php">Nueva Comision</a></li>
+                            <li class="breadcrumb-item active"><a href="../vistas/mantenimiento_crear_comisiones_vista.php">Nueva Comisión</a></li>
                         </ol>
                     </div>
 
@@ -214,7 +214,7 @@ ob_end_flush();
 
                     <thead>
                         <tr>
-                            <th>COMISION</th>
+                            <th>COMISIÓN</th>
                             <th>CARRERA </th>
                             <th>MODIFICAR</th>
                             <th>ELIMINAR</th>
@@ -275,7 +275,7 @@ ob_end_flush();
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title"> Actualizar Comision</h4>
+                        <h4 class="modal-title"> Actualizar Comisión</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -294,7 +294,7 @@ ob_end_flush();
                                 <div class="col-md-12">
                                     <div class="form-group">
 
-                                        <label>Modificar Comision</label>
+                                        <label>Modificar Comisión</label>
 
 
                                         <input class="form-control" type="text" id="txtcomision" name="txtcomision" value="<?php echo $_SESSION['comision']; ?>" required style="text-transform: uppercase"onkeyup="DobleEspacio(this, event); MismaLetra('txtcomision');" onkeypress="return sololetras(event)" maxlength="30">

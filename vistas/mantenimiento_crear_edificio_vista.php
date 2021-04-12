@@ -143,7 +143,7 @@ ob_end_flush();
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Codigo</label>
+                                        <label>Código</label>
                                         <input class="form-control" type="text" id="txt_codigo" name="txt_codigo" required="" maxlength="30" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_codigo');" onkeypress="return LetrasyNumeros(event)"  onkeypress="return comprobar(this.value, event, this.id)">
                                     </div>
 

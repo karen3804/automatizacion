@@ -17,7 +17,7 @@ if (isset($_REQUEST['msj'])) {
         echo '<script type="text/javascript">
     swal({
         title: "",
-        text: "Lo sentimos la categoria ya existe",
+        text: "Lo sentimos la categoría ya existe",
         type: "info",
         showConfirmButton: false,
         timer: 3000
@@ -80,7 +80,7 @@ if ($visualizacion == 0) {
                             </script>';
 } else {
 
-    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A Mantenimiento Categorias');
+    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A Mantenimiento Categorías');
 
 
     if (permisos::permiso_modificar($Id_objeto) == '1') {
@@ -166,7 +166,7 @@ ob_end_flush();
                     <div class="col-sm-6">
 
 
-                        <h1>Mantenimiento Categorias
+                        <h1>Mantenimiento Categorías
                         </h1>
                     </div>
 
@@ -175,7 +175,7 @@ ob_end_flush();
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
                             <li class="breadcrumb-item active"><a href="../vistas/menu_mantenimiento.php">Menu
                                     Mantenimiento</a></li>
-                            <li class="breadcrumb-item active"><a href="../vistas/mantenimiento_crear_categoria_vista.php">Nueva Categoria</a></li>
+                            <li class="breadcrumb-item active"><a href="../vistas/mantenimiento_crear_categoria_vista.php">Nueva Categoría</a></li>
                         </ol>
                     </div>
 
@@ -190,7 +190,7 @@ ob_end_flush();
 
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="card-title">Categorias Existentes</h3>
+                <h3 class="card-title">Categorías Existentes</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 </div>
@@ -207,8 +207,8 @@ ob_end_flush();
 
                     <thead>
                         <tr>
-                            <th>CATEGORIA</th>
-                            <th>DESCRIPCION </th>
+                            <th>CATEGORÍA</th>
+                            <th>DESCRIPCIÓN </th>
                             <th>MODIFICAR</th>
                             <th>ELIMINAR</th>
                         </tr>
@@ -268,7 +268,7 @@ ob_end_flush();
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title"> Actualizar Categoria</h4>
+                        <h4 class="modal-title"> Actualizar Categoría</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -287,7 +287,7 @@ ob_end_flush();
                                 <div class="col-md-12">
                                     <div class="form-group">
 
-                                        <label>Modificar Categoria</label>
+                                        <label>Modificar Categoría</label>
 
 
                                         <input class="form-control" type="text" id="txtcategoria" name="txtcategoria" value="<?php echo $_SESSION['categoria']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_categoria');" onkeypress="return LetrasyNumeros(event)" maxlength="30">
@@ -296,7 +296,7 @@ ob_end_flush();
 
 
                                     <div class="form-group">
-                                        <label class="control-label">Descripcion</label>
+                                        <label class="control-label">Descripción</label>
 
                                         <input class="form-control" type="text" id="txtdescripcion" name="txtdescripcion" value="<?php echo $_SESSION['descripcion']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txtdescripcion');" onkeypress="return sololetras(event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
 

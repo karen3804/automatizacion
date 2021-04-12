@@ -173,7 +173,7 @@ ob_end_flush();
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
               <li class="breadcrumb-item active"><a href="../vistas/menu_mantenimiento.php">Menu Mantenimiento</a></li>
-              <li class="breadcrumb-item active"><a href="../vistas/mantenimiento_crear_genero_vista.php">Nuevo Genero</a></li>
+              <li class="breadcrumb-item active"><a href="../vistas/mantenimiento_crear_genero_vista.php">Nuevo Género</a></li>
             </ol>
           </div>
 
@@ -188,7 +188,7 @@ ob_end_flush();
 
     <div class="card card-default">
       <div class="card-header">
-        <h3 class="card-title">Generos Existentes</h3>
+        <h3 class="card-title">Géneros Existentes</h3>
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
         </div>
@@ -205,7 +205,7 @@ ob_end_flush();
 
           <thead>
             <tr>
-              <th>GENERO</th>
+              <th>GÉNERO</th>
               <th>MODIFICAR</th>
               <th>ELIMINAR</th>
             </tr>
