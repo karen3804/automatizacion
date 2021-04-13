@@ -213,7 +213,7 @@ ob_end_flush();
                 <input type="text" class="form-control" id="num_per_busca" name="num_per_busca" readonly hidden>
 
                 <input type="text" class="form-control" id="txt_count" name="txt_count" readonly hidden>
-
+                <input type="text" class="form-control" id="txt_id_periodo_busca" name="txt_id_periodo_busca" readonly hidden>
 
 
                 <div class="table-responsive" style="width: auto;">
@@ -255,7 +255,7 @@ ob_end_flush();
                         <div class=" px-12">
                             <form method="post" action="../Controlador/reporte_carga_gestion_controlador.php">
                                 <button disabled class="btn btn-success " id="pdf"> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;">Exportar a PDF</a> </button>
-                                <input type="text" class="form-control" id="txt_count1" name="txt_count1" readonly hidden>
+                                <input type="text" class="form-control" id="txt_count1" name="txt_count1" readonly>
 
                             </form>
                         </div>
