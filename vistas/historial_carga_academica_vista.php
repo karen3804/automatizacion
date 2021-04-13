@@ -255,7 +255,7 @@ ob_end_flush();
                         <div class=" px-12">
                             <form method="post" action="../Controlador/reporte_carga_gestion_controlador.php">
                                 <button disabled class="btn btn-success " id="pdf"> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;">Exportar a PDF</a> </button>
-                                <input type="text" class="form-control" id="txt_count1" name="txt_count1" readonly>
+                                <input type="text" class="form-control" id="txt_count1" name="txt_count1" readonly hidden>
 
                             </form>
                         </div>
