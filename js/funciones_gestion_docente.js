@@ -41,6 +41,20 @@ fecha = hoy.getDate() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getFullYear();
 hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
 fechaYHora = fecha + ' ' + hora;
 var table;
+
+/* function select_periodo() {
+	$.post(
+		"../Controlador/reporte_docente_controlador.php?op=select_periodo",
+		function (data, status) {
+			data = JSON.parse(data);
+			// console.log(data);
+			//mostrarform(true);
+			$("#txt_periodo").val(data.num_periodo);
+			$("#txt_año").val(data.num_anno);
+		}
+	);
+} */
+
 function TablaDocente() {
 	table = $('#tabladocentes').DataTable({
 		paging: true,
@@ -62,6 +76,7 @@ function TablaDocente() {
 			url: '../Controlador/tabla_docente_controlador.php',
 			type: 'POST'
 		},
+		
 		dom: "Bfrtilp",
 		
 		buttons: [	
@@ -121,8 +136,9 @@ function TablaDocente() {
 		title: "Universidad Nacional Autónoma De Honduras                                                                                                                                                                                                                                "
 		+ " Facultad De Ciencias Económicas,Administrativas Y Contables                                                                                                                      "
 		+ " Departamento De Informática                                                                                               																												" +  "REPORTE DE DOCENTES",
-		messageTop:"FECHA: "+ fechaYHora, //Coloca el título dentro del PDF
-      },
+		  messageTop: "FECHA: " + fechaYHora + "     PERIODO: "+ num_periodo +" AÑO: "+ num_año, //Coloca el título dentro del PDF
+	  },
+	  
 	  
 
      /*  {
@@ -130,12 +146,15 @@ function TablaDocente() {
         text: '<i class="fa fa-print"></i> ',
         titleAttr: "Imprimir",
         className: "btn btn-info",
-      }, */  
-    ],
+	  }, */
+	  
+	],
+	
 		columns: [
 			{ data: 'id_persona' },
 			{ data: 'numero_empleado' },
 			{ data: 'nombre' },
+			{ data: 'identidad' },
 			{ data: 'jornada' },
 			{ data: 'hr_inicial' },
 			{ data: 'hr_final' },
@@ -176,8 +195,11 @@ function TablaDocente() {
 
 		language: idioma_espanol,
 		select: true
-	});
+			});
+		
 }
+var num_periodo = document.getElementById('txt_periodo').value;
+var num_año = document.getElementById('txt_anno').value;
 
 //funciones de activar usuario
 $('#tabladocentes').on('click', '.activar', function () {
@@ -766,6 +788,11 @@ function actualizar_pagina() {
 	$("#txt_actividad").val(id_tipo_periodo);
 }); */
 function modificar_gestion() {
+	var identidad = $('#identidad_edita').val();
+	console.log(identidad);
+	var num_empleado = $('#nempleado_edita').val();
+	var sued = $('#sued').val();
+	console.log(num_empleado);
 	var jornada1 = $("#jornada_edita").val();
 	var categoria1 = $("#categoria_edita").val();
 	var id_persona__ = $('#txt_id_persona').val();
@@ -780,7 +807,7 @@ function modificar_gestion() {
 	// var nombre_doce = $("#txt_nombre_doc_edita").val();
 	// var cod_asig = $("#txt_cod_asignatura_edita").val();
 	var hra_inicio = $("#hr_inicio_edita").val();
-	var hra_final = $("#hr_inicio_edita").val();
+	var hra_final = $("#hr_final_edita").val();
 	/* var hra_inicio = $('hr_inicio_edita').val(); */
 	console.log(hra_inicio);
 /* 	var hra_final = $('hr_inicio_edita').val(); */
@@ -790,10 +817,16 @@ function modificar_gestion() {
 	
 	
 	if (	
+
 		hra_inicio == null ||
 		hra_final == null ||
 		jornada1 == null ||
-		categoria1 == null
+		categoria1 == null ||
+		identidad.length == 0 ||
+		num_empleado.length == 0 ||
+		sued == null
+
+
 		
 	) {
 		swal({
@@ -803,7 +836,9 @@ function modificar_gestion() {
 			showConfirmButton: true,
 			timer: 15000,
 		});
-	} else {
+
+	} 
+	else {
 		swal({
 			title: "alerta",
 			text: "Por favor espere",
@@ -818,7 +853,9 @@ function modificar_gestion() {
 					url: "../Controlador/gestion_docente_controlador.php?op=modificar_gestion",
 					type: "POST",
 					data: {
-						// cod_asig: ,
+						sued:sued,
+						num_empleado: num_empleado,
+						identidad: identidad,
 						hra_inicio: hra_inicio,
 						hra_final: hra_final,
 						jornada_: jornada_,
@@ -850,4 +887,16 @@ function modificar_gestion() {
 			/* toda la validacion de existe, y modificar */
 	}
 }
+/* function ver_sued() {
+  var id_persona = $('#txt_id_persona').val();
+
+  $.post("../Controlador/perfil_docente_controlador.php?op=ver_sued", { id_persona: id_persona }, function (data, status) {
+    data = JSON.parse(data);
+
+    $("#sued").val(data.valor)
+
+  });
+} */
+
+
 	
