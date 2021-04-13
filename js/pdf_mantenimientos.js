@@ -1391,7 +1391,7 @@ $(document).ready(function() {
               titleAttr: "Exportar a Excel",
               className: "btn btn-success",
                       exportOptions: {
-                          columns: [0,1],
+                          columns: [1],
                       },
                       title: "Universidad Nacional Autónoma De Honduras"
               + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
@@ -1434,7 +1434,7 @@ $(document).ready(function() {
               orientation: "portrait",
               pageSize: "A5",
               exportOptions: {
-                columns: [0,1],
+                columns: [1],
               },
               
               title: "Universidad Nacional Autónoma De Honduras"
