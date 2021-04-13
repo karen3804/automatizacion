@@ -56,11 +56,13 @@ ob_end_flush();
 <html>
 
 <head>
+    <!-- <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel=" stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
 
-
-    <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css"> -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-            <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+
+
 
 </head>
 
@@ -83,6 +85,7 @@ ob_end_flush();
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
                             <li class="breadcrumb-item"><a href="../vistas/menu_carga_academica_vista.php">Menu Carga Académica</a></li>
                             <li class="breadcrumb-item">Historial de Carga Académica</li>
+                            <li class="breadcrumb-item"><a href="../vistas/gestion_carga_academica_vista.php">Ir a Carga Académica</a></li>
 
                         </ol>
                     </div>
@@ -166,7 +169,7 @@ ob_end_flush();
 
             <!-- /.card-header -->
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <div class="card-header">
+            <!-- <div class="card-header">
                 <div class="row">
                     <div class="col-md-3" style="width:75px">
 
@@ -188,9 +191,7 @@ ob_end_flush();
                             <input type="text" class="form-control" id="txt_anno1" name="txt_anno1" maxlength="4" onkeypress="return Numeros(event)" onkeyup="Espacio(this, event)">
                         </div>
                     </div>
-                    <input type="text" class="form-control" id="txt_id_periodo_busca" name="txt_id_periodo_busca" readonly hidden>
-
-                    <input type="text" class="form-control" id="txt_count" name="txt_count" readonly hidden>
+                   
                     <div class="px-1">
 
                         <button class="btn btn-success " onclick="cargartablaabajo();"><i class="fas fa-search"></i> <a style="font-weight: bold;">Buscar</a></button>
@@ -201,8 +202,42 @@ ob_end_flush();
                     </div>
 
                 </div>
+                
 
+            </div> -->
+
+
+            <div class="card-body">
+                <input type="text" class="form-control" id="anno_busca" name="anno_busca" readonly hidden>
+
+                <input type="text" class="form-control" id="num_per_busca" name="num_per_busca" readonly hidden>
+
+                <input type="text" class="form-control" id="txt_count" name="txt_count" readonly hidden>
+                <input type="text" class="form-control" id="txt_id_periodo_busca" name="txt_id_periodo_busca" readonly hidden>
+
+
+                <div class="table-responsive" style="width: auto;">
+                    <table id="tabla_historial_vista" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+
+                                <th>Periodo</th>
+                                <th>Año</th>
+                                <th>Secciones Aperturadas</th>
+                                <th>Acción</th>
+
+                            </tr>
+                        </thead>
+
+
+                    </table>
+                    <br>
+
+
+                </div>
             </div>
+
+
         </div>
 
         <!-- tabla de ver carga -->
@@ -217,9 +252,16 @@ ob_end_flush();
                             <button class="btn btn-primary " id="limpiar" onclick="limpiar()"><i class="fas fa-sync-alt"></i> <a style="font-weight: bold;">limpiar tabla</a></button>
 
                         </div>
+                        <div class=" px-12">
+                            <form method="post" action="../Controlador/reporte_carga_gestion_controlador.php">
+                                <button disabled class="btn btn-success " id="pdf"> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;">Exportar a PDF</a> </button>
+                                <input type="text" class="form-control" id="txt_count1" name="txt_count1" readonly hidden>
+
+                            </form>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive" style="width: 98%;">
+                        <div class="table-responsive" style="width: auto;">
 
                             <table id="ver_carga" class="table table-bordered table-striped">
                                 <thead>
@@ -228,7 +270,7 @@ ob_end_flush();
                                         <th>ID</th>
                                         <th>Empleado</th>
                                         <th>Nombre</th>
-                                        <th>contról</th>
+                                        <th>control</th>
                                         <th>Código</th>
                                         <th>Asignatura</th>
                                         <th>sección</th>
@@ -241,9 +283,9 @@ ob_end_flush();
 
                                     </tr>
                                 </thead>
-                                <tbody id="tabla_carga_historial_ver">
+                                <!-- <tbody id="tabla_carga_historial_ver">
 
-                                </tbody>
+                                </tbody> -->
 
                             </table>
                         </div>
@@ -271,7 +313,8 @@ ob_end_flush();
 <!-- para datatable -->
 <script>
     $(document).ready(function() {
-        TablaHistorial();
+        Tablaverperiodo();
+
 
     });
 </script>
@@ -309,5 +352,10 @@ ob_end_flush();
         }
     }
 </script>
-<script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js">
+
+<!-- -->
+<script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="../plugins/datatables/JSZip-2.5.0/jszip.min.js"></script>
+<script src="../plugins/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script src="../plugins/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="../plugins/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>

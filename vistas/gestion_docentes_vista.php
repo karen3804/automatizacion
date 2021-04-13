@@ -44,13 +44,22 @@ if ($visualizacion == 0) {
 
 
 
-    if (permisos::permiso_modificar($Id_objeto) == '1') {
-        $_SESSION['btn_modificar_CA'] = "";
-    } else {
-        $_SESSION['btn_modificar_CA'] = "disabled";
-    }
+    // if (permisos::permiso_modificar($Id_objeto) == '1') {
+    //     $_SESSION['btn_modificar_CA'] = "";
+    // } else {
+    //     $_SESSION['btn_modificar_CA'] = "disabled";
+    // }
 }
-
+$sql2 = $mysqli->prepare("SELECT tbl_periodo.id_periodo AS id_periodo, tbl_periodo.num_periodo AS num_periodo, tbl_periodo.num_anno AS num_anno, tbl_periodo.fecha_adic_canc AS fecha_adic_canc, tbl_periodo.fecha_desbloqueo AS fecha_desbloqueo,
+(SELECT tp.descripcion FROM tbl_tipo_periodo AS tp INNER JOIN tbl_periodo AS pdo ON tp.id_tipo_periodo=pdo.id_tipo_periodo
+			WHERE tp.id_tipo_periodo= tbl_periodo.id_tipo_periodo LIMIT 1) AS tipo_periodo,
+			(SELECT tp.horas_validas FROM tbl_tipo_periodo AS tp INNER JOIN tbl_periodo AS pdo ON tp.id_tipo_periodo=pdo.id_tipo_periodo
+			WHERE tp.id_tipo_periodo= tbl_periodo.id_tipo_periodo LIMIT 1) AS horas_validas
+FROM tbl_periodo
+ORDER BY id_periodo DESC LIMIT 1;");
+$sql2->execute();
+$resultado2 = $sql2->get_result();
+$row2 = $resultado2->fetch_array(MYSQLI_ASSOC);
 ob_end_flush();
 
 
@@ -72,7 +81,7 @@ ob_end_flush();
     <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
     <!--  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"> -->
-    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
@@ -134,7 +143,7 @@ ob_end_flush();
 
                 <div class="px-1">
 
-                    <a href="../vistas/registro_docentes_vista.php" class="btn btn-warning"><i class="fas fa-arrow"></i>Registrar Nuevo Usuario</a>
+                    <a href="../vistas/registro_docentes_vista.php" class="btn btn-warning"><i class="fas fa-arrow"></i>Registrar Nuevo Docente</a>
 
                 </div>
 
@@ -145,6 +154,9 @@ ob_end_flush();
             </div>
             <!-- /.card-header -->
             <div class="card-footer">
+                <input hidden class="form-control" type="text" id="txt_periodo" name="txt_periodo" value="<?php echo $row2['num_periodo'] ?>" readonly>
+                <input hidden class="form-control" type="text" id="txt_anno" name="txt_anno" value="<?php echo $row2['num_anno'] ?>" readonly>
+
 
 
 
@@ -157,12 +169,14 @@ ob_end_flush();
                                     <th>ID PERSONA</th>
                                     <th>N EMPLEADO</th>
                                     <th>NOMBRE</th>
+                                    <th>IDENTIDAD</th>
                                     <th>JORNADA</th>
-                                    <th>HORARIO</th>
-                                     <th>COMISIÓNES Y ACTIVIDADES</th>
-                                    <th>FORMACIÓN ACADÉMICA</th>
+                                    <th>H_INICIAL</th>
+                                    <th>H_FINAL</th>
+                                    <th>CATEGORIA</th>
+                                    <th>COMISIÓNES Y ACTIVIDADES</th>
                                     <th>CORREOS</th>
-                                    <th>CONTACTOS</th>
+                                    <th>TELÉFONOS</th>
                                     <!--  <th>FOTO</th>
                                     <th>CURRICULUM</th> -->
                                     <th>ESTADO</th>
@@ -191,7 +205,7 @@ ob_end_flush();
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Editar Datos de Carga</h5>
+                                <h5 class="modal-title">Editar Datos</h5>
                                 <button onclick="limpiar();actualizar_tabla();" class="close" data-dismiss="modal">
                                     &times;
                                 </button>
@@ -205,29 +219,107 @@ ob_end_flush();
                                     <input type="hidden">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" id="txt_id_persona" readonly>
+                                            <input hidden type="text" id="txt_id_persona" readonly>
 
                                             <label> Docente: </label>
                                             <input class="form-control" type="text" id="txt_nombre_docente" name="txt_nombre_docente" readonly>
 
 
                                         </div>
-                                        <div class="col-sm-6">
+                                    </div>
 
-                                            <p class="" style="margin-top: 10px;">
-                                                <button type="submit" class="btn btn-primary btn" data-toggle="modal" data-target="#ModalTask2" id="agregarotra" name="agregarotra" onclick="persona()">
-                                                    <i class="zmdi zmdi-floppy"></i>AGREGAR +</button>
-                                            </p>
+                                    <!--  <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Nacionalidad</label>
+                                            <select class="form-control" name="nacionalidad_edita" id="nacionalidad_edita"></select>
 
                                         </div>
-                                        <div class="col-md-3">
+                                    </div> -->
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Identificación</label>
+                                            <input class="form-control" name="identidad_edita" data-inputmask="'mask': '9999-9999-99999'" data-mask id="identidad_edita" onkeyup="ValidarIdentidad($('#identidad_edita').val());">
+
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="col-md-1">
                                             <div class="form-group">
                                                 <input class="form-control" hidden type="text" id="txt_hidden" name="txt_hidden" value="" readonly>
 
                                             </div>
+                                        </div> -->
+
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>N° Empleado</label>
+                                            <input class="form-control" name="nempleado_edita" id="nempleado_edita" onkeypress="return solonumeros(event)" onkeyUp="pierdeFoco(this)" maxlength="6" required>
+
                                         </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Jornada</label>
+                                            <select class="form-control" name="jornada_edita" id="jornada_edita"></select>
+                                            <input hidden type="text" name="jornada_id" id="jornada_id" readonly>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Hora Entrada</label>
+                                            <select class="form-control" name="hr_inicio_edita" id="hr_inicio_edita"></select>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Hora Salida</label>
+                                            <select class="form-control" name="hr_final_edita" id="hr_final_edita" onblur="valida_horario_edita(); valida_jornada_hora();"></select>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                            <label>Categoria</label>
+                                            <select class="form-control" name="categoria_edita" id="categoria_edita"></select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+
+                                            <label>SUED</label>
+                                            <select class="form-control" name="sued" id="sued">
+                                                <option value="SI">SI</option>
+                                                <option value="NO">NO</option>
+                                            </select>
+                                            
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="col-sm-3">
+
+                                        <button type="submit" class="btn btn-primary btn" data-toggle="modal" data-target="#ModalTask2" id="agregarotra" name="agregarotra" onclick="persona()">AGREGAR COMISIONES</button>
 
                                     </div>
+
+
+
                                     <div class="card " style="width:600px;border-color:gray;">
                                         <!--comisiones-->
                                         <div class="card-body">
@@ -236,7 +328,7 @@ ob_end_flush();
                                                 <table class="table table-bordered table-striped m-0">
                                                     <thead>
                                                         <tr>
-                                                            <th>#</th>
+                                                            <th></th>
                                                             <th>Comisión</th>
                                                             <th>Actividad</th>
                                                         </tr>
@@ -283,6 +375,9 @@ ob_end_flush();
                                 <div class="modal-footer">
                                     <!--  <button class="btn btn-primary" id="guardar" name="guardar" onclick="modificar_carga_academica();">Guardar</button> -->
 
+                                    <button type="button" class="btn btn-info" onclick=" modificar_gestion();" id="editar_info" name="editar_info">Guardar Cambios</button>
+
+
                                     <button class="btn btn-secondary" data-dismiss="modal" onclick="limpiar(); actualizar_tabla();" id="salir">Cancelar</button>
                                 </div>
                             </div>
@@ -307,7 +402,7 @@ ob_end_flush();
                             <div class="modal-body">
                                 <div class="container">
                                     <div class="form-group">
-                                        <input type="text" id="txt_id_persona1" readonly>
+                                        <input hidden type="text" id="txt_id_persona1" readonly>
 
 
                                         <label>Comisiones</label>
@@ -338,7 +433,7 @@ ob_end_flush();
 
 
 
-        <a class="btn btn-success " onclick=" ventana1()">Generar PDF</a>
+        <!-- <a class="btn btn-success " onclick=" ventana1()">Generar PDF</a> -->
     </div>
     </div>
 
@@ -353,6 +448,8 @@ ob_end_flush();
 
 </body>
 <html>
+<script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
+<script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>
 
 <script language="javascript">
     function ventana1() {

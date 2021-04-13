@@ -138,12 +138,12 @@ ob_end_flush();
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group ">
-                                        <label>Ingrese el codigo de aula</label>
+                                        <label>Ingrese el código de aula</label>
                                         <input class="form-control " type="text" id="txt_codigo1" name="txt_codigo1" required="" maxlength="30" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Numeros(event)" onkeypress="return comprobar(this.value, event, this.id)">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Descripcion</label>
+                                        <label>Descripción</label>
                                         <input class="form-control" type="text" id="txt_descripcion1" name="txt_descripcion1" required="" maxlength="30" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_descripcion1');" onkeypress="return sololetras(event)" onkeypress="return comprobar(this.value, event, this.id)">
                                     </div>
 

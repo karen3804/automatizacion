@@ -106,7 +106,7 @@ ob_end_flush();
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
                             <li class="breadcrumb-item"><a href="../vistas/menu_mantenimiento.php">Menu Mantenimiento</a></li>
-                            <li class="breadcrumb-item"><a href="../vistas/mantenimiento_categorias_vista.php"> Mantenimiento Categoría</a></li>
+                            <li class="breadcrumb-item"><a href="../vistas/mantenimiento_categorias_docente_vista.php"> Mantenimiento Categoría</a></li>
                         </ol>
                     </div>
 
@@ -143,7 +143,7 @@ ob_end_flush();
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Descripcion</label>
+                                        <label>Descripción</label>
                                         <input class="form-control" type="text" id="txt_descripcion" name="txt_descripcion" required="" maxlength="30" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_descripcion');" onkeypress="return sololetras(event)"onkeypress="return comprobar(this.value, event, this.id)">
                                     </div>
 

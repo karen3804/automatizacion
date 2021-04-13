@@ -10,9 +10,9 @@ class modelo_registro_docentes
 {
 
     //Insertar registros
-    public function registar($nombre,$apellidos,$sexo,$identidad,$nacionalidad,$estado,$fecha_nacimiento,$hi,$hf,$nempleado,$fecha_ingreso,$idcategoria,$idjornada){
+    public function registar($nombre,$apellidos,$sexo,$identidad,$nacionalidad,$estado,$fecha_nacimiento,$hi,$hf,$nempleado, $tipo_docente, $fecha_ingreso,$idcategoria,$idjornada){
         global $instancia_conexion;
-        $sql="call proc_insertar_docentes_personas ('$nombre', '$apellidos', '$sexo', '$identidad', '$nacionalidad', '$estado', '$fecha_nacimiento', '1', 'ACTIVO', '$idjornada', '$idcategoria', '$hi', '$hf', '$nempleado', '$fecha_ingreso')";
+        $sql="call proc_insertar_docentes_personas ('$nombre', '$apellidos', '$sexo', '$identidad', '$nacionalidad', '$estado', '$fecha_nacimiento', '1', 'ACTIVO', '$idjornada', '$idcategoria', '$hi', '$hf', '$nempleado', '$fecha_ingreso', '$tipo_docente')";
         
 
         return $instancia_conexion->ejecutarConsulta($sql);
@@ -20,7 +20,7 @@ class modelo_registro_docentes
     }
     public function registar2($nombre,$apellidos,$sexo,$pasaporte,$nacionalidad,$estado,$fecha_nacimiento,$hi,$hf,$nempleado,$fecha_ingreso,$idcategoria,$idjornada){
         global $instancia_conexion;
-        $sql="call proc_insertar_docentes_personas ('$nombre', '$apellidos', '$sexo', '$pasaporte', '$nacionalidad', '$estado', '$fecha_nacimiento', '1', 'ACTIVO', '$idjornada', '$idcategoria', '$hi', '$hf', '$nempleado', '$fecha_ingreso')";
+        $sql="call proc_insertar_docentes_personas ('$nombre', '$apellidos', '$sexo', '$pasaporte', '$nacionalidad', '$estado', '$fecha_nacimiento', '1', 'ACTIVO', '$idjornada', '$idcategoria', '$hi', '$hf', '$nempleado', '$fecha_ingreso', '$tipo_docente')";
         
 
         return $instancia_conexion->ejecutarConsulta($sql);
@@ -88,6 +88,7 @@ class modelo_registro_docentes
         return $consulta;
 
     }
+
 
     function listar_selectCOM(){
         global $instancia_conexion;

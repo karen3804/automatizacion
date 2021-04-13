@@ -9,6 +9,7 @@ $grado = isset($_POST["grado"]) ? limpiarCadena1($_POST["grado"]) : "";
 $especialidad = isset($_POST["especialidad"]) ? limpiarCadena1($_POST["especialidad"]) : "";
 $telefono = isset($_POST["telefono"]) ? limpiarCadena1($_POST["telefono"]) : "";
 $eliminar_tel = isset($_POST["eliminar_tel"]) ? limpiarCadena1($_POST["eliminar_tel"]) : "";
+$eliminar_formacion = isset($_POST["eliminar_formacion"]) ? limpiarCadena1($_POST["eliminar_formacion"]) : "";
 $eliminar_correo = isset($_POST["eliminar_correo"]) ? limpiarCadena1($_POST["eliminar_correo"]) : "";
 $id_persona = isset($_POST["id_persona"]) ? limpiarCadena1($_POST["id_persona"]) : "";
 $nacionalidad = isset($_POST["nacionalidad"]) ? limpiarCadena1($_POST["nacionalidad"]) : "";
@@ -25,6 +26,7 @@ $id_persona_prueba = '10';
 
 
 $instancia_modelo = new modelo_perfil_docentes();
+
 if (isset($_GET['op'])) {
 
     switch ($_GET['op']) {
@@ -157,6 +159,14 @@ if (isset($_GET['op'])) {
 
             break;
 
+        case 'ver_sued':
+
+
+            $rspta = $instancia_modelo->ver_sued($id_persona);
+            echo json_encode($rspta);
+
+            break;
+
         case 'ExisteIdentidad':
 
 
@@ -168,8 +178,8 @@ if (isset($_GET['op'])) {
 
             if (is_array($_FILES) && count($_FILES) > 0) {
 
-                if (move_uploaded_file($_FILES["c"]["tmp_name"],"../curriculum_docentes/".$_FILES["c"]["name"])) {
-                    $nombrearchivo2 = '../curriculum_docentes/'.$_FILES["c"]["name"];
+                if (move_uploaded_file($_FILES["c"]["tmp_name"], "../curriculum_docentes/" . $_FILES["c"]["name"])) {
+                    $nombrearchivo2 = '../curriculum_docentes/' . $_FILES["c"]["name"];
                     $consulta = $instancia_modelo->Registrar_curriculum($nombrearchivo2, $id_persona);
                     echo json_encode($nombrearchivo2);
                 } else {
@@ -251,6 +261,74 @@ if (isset($_GET['op'])) {
                 # code...
                 echo "<option value='" . $r2->id_genero . "'> " . $r2->genero . " </option>";
             }
+            break;
+
+        case 'EliminarPregunta1':
+
+
+            $rspta = $instancia_modelo->EliminarPregunta1($id_persona);
+
+            break;
+
+        case 'contarPregunta1':
+
+            $rspta = $instancia_modelo->Existepregunta1($id_persona);
+            echo json_encode($rspta);
+
+            break;
+
+        case 'EliminarPregunta2':
+
+
+            $rspta = $instancia_modelo->EliminarPregunta2($id_persona);
+
+            break;
+
+        case 'contarPregunta2':
+
+            $rspta = $instancia_modelo->Existepregunta2($id_persona);
+            echo json_encode($rspta);
+
+            break;
+        case 'EliminarPregunta3':
+
+
+            $rspta = $instancia_modelo->EliminarPregunta3($id_persona);
+
+            break;
+
+        case 'contarPregunta3':
+
+            $rspta = $instancia_modelo->Existepregunta3($id_persona);
+            echo json_encode($rspta);
+
+            break;
+
+        case 'EliminarPregunta4':
+
+
+            $rspta = $instancia_modelo->EliminarPregunta4($id_persona);
+
+            break;
+
+        case 'contarPregunta4':
+
+            $rspta = $instancia_modelo->Existepregunta4($id_persona);
+            echo json_encode($rspta);
+
+            break;
+        case 'especialidad':
+
+            $rspta = $instancia_modelo->especialidad($id_persona);
+            echo json_encode($rspta);
+
+            break;
+
+        case 'eliminar_formacion':
+
+
+            $rspta = $instancia_modelo->eliminar_formacion($eliminar_formacion, $id_persona);
+
             break;
     }
 }

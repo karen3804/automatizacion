@@ -61,8 +61,9 @@ ob_end_flush();
 <html>
 
 <head>
-
-    <!-- css -->
+    <!-- <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css"> -->
+    <!-- <link rel=" stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
+    css -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
@@ -76,11 +77,11 @@ ob_end_flush();
     <datables CSS básico-->
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../plugins/datatables/datatables.min.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="../plugins/datatables/datatables.min.css" /> -->
     <!--datables estilo bootstrap 4 CSS-->
-    <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"> -->
 
 
 </head>
@@ -104,7 +105,7 @@ ob_end_flush();
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
                             <li class="breadcrumb-item"><a href="../vistas/menu_carga_academica_vista.php">Menu Carga Académica</a></li>
                             <li class="breadcrumb-item">Gestión Carga Académica</li>
-
+                            <li class="breadcrumb-item"><a href="../vistas/historial_carga_academica_vista.php">Ir a Historial Carga Académica</a></li>
                         </ol>
                     </div>
 
@@ -138,11 +139,12 @@ ob_end_flush();
 
                         </div>
                     </div>
+                    <input class="" type="text" id="txt_id_periodo" name="txt_periodo" value="<?php echo $row2['id_periodo'] ?>" readonly hidden>
+
                     <!-- <div class="col-md-3" style="width:75px"> -->
                     <!-- <div class="input-group mb-3 input-group"> -->
 
                     <!-- <span class=" input-group-text" style="font-weight: bold;">id</span> -->
-                    <input class="" type="text" id="txt_id_periodo" name="txt_periodo" value="<?php echo $row2['id_periodo'] ?>" readonly hidden>
 
 
                     <!-- </div> -->
@@ -151,7 +153,7 @@ ob_end_flush();
                     <div class="col-md-3" style="width:75px">
                         <div class="input-group mb-3 input-group">
 
-                            <span class=" input-group-text" style="font-weight: bold;">Año Academico</span>
+                            <span class=" input-group-text" style="font-weight: bold;">Año Académico</span>
                             <input class="form-control" type="text" id="txt_anno" name="txt_anno" value="<?php echo $row2['num_anno'] ?>" readonly>
 
                         </div>
@@ -231,9 +233,12 @@ ob_end_flush();
                     <div class=" px-4">
                         <button class="btn btn-warning btn-lg" hidden> <a></a></button>
                     </div>
-<!-- 
-                    <div class=" px-12">
-                        <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
+
+                    <!-- <div class=" px-12">
+                        <form method="post" action="../Controlador/reporte_carga_gestion_controlador.php">
+                            <button class="btn btn-success " id="pdf"> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;">Exportar a PDF</a> </button>
+                            
+                        </form>
                     </div> -->
                     <div class=" px-6">
                         <button class="btn btn-warning btn-lg" hidden> <a></a></button>
@@ -280,14 +285,14 @@ ob_end_flush();
                                         <th>Código</th>
                                         <th>Asignatura</th>
                                         <th>Unidades Val.</th>
-                                        <th>sección</th>
+                                        <th>Sección</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Final</th>
                                         <th>Dia</th>
                                         <th>Aula</th>
                                         <th>Edificio</th>
                                         <th>N. Alumnos</th>
-                                        <th>control</th>
+                                        <th>Control</th>
                                         <th>Modalidad</th>
                                     </tr>
                                 </thead>
@@ -300,14 +305,14 @@ ob_end_flush();
                                         <th>Código</th>
                                         <th>Asignatura</th>
                                         <th>Unidades Val.</th>
-                                        <th>sección</th>
+                                        <th>Sección</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Final</th>
-                                        <th>Dia</th>
+                                        <th>Día</th>
                                         <th>Aula</th>
                                         <th>Edificio</th>
                                         <th>N. Alumnos</th>
-                                        <th>control</th>
+                                        <th>Control</th>
                                         <th>Modalidad</th>
                                     </tr>
                                 </tfoot>
@@ -531,7 +536,7 @@ ob_end_flush();
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Seccion:</label>
+                                    <label>Sección:</label>
                                     <td><input maxlength="4" class="form-control" type="text" id="txt_seccion_edita" name="txt_seccion" value="" onkeypress="return Numeros(event)" onkeyup="Espacio(this, event)"></td>
 
                                 </div>
@@ -557,7 +562,7 @@ ob_end_flush();
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Control:</label>
-                                    <td> <input maxlength="5" class="form-control" onkeypress="return Numeros(event)" type="text" id="txt_control_edita" name="txt_control" value="" onkeyup="Espacio(this, event)" required></td>
+                                    <td> <input maxlength="6" class="form-control" onkeypress="return Numeros(event)" type="text" id="txt_control_edita" name="txt_control" value="" onkeyup="Espacio(this, event)" required></td>
 
                                 </div>
                             </div>
@@ -607,7 +612,7 @@ ob_end_flush();
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title">Nueva Carga Academica</h5>
+                        <h5 class="modal-title">Nueva Carga Académica</h5>
                         <button class="close" data-dismiss="modal" onclick="limpiar();">
                             &times;
                         </button>
@@ -802,7 +807,7 @@ ob_end_flush();
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Seccion:</label>
+                                        <label>Sección:</label>
                                         <td><input maxlength="4" class="form-control" type="text" id="txt_seccion" name="txt_seccion" value="" onkeypress="return Numeros(event)" onkeyup="Espacio(this, event)"></td>
 
                                     </div>
@@ -840,7 +845,7 @@ ob_end_flush();
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Control:</label>
-                                        <td> <input maxlength="5" class="form-control" onkeypress="return Numeros(event)" type="text" id="txt_control" name="txt_control" value="" onkeyup="Espacio(this, event)" required></td>
+                                        <td> <input maxlength="6" class="form-control" onkeypress="return Numeros(event)" type="text" id="txt_control" name="txt_control" value="" onkeyup="Espacio(this, event)" required></td>
 
                                     </div>
                                 </div>
@@ -1018,7 +1023,7 @@ ob_end_flush();
 
                         <div class="input-group mb-3 input-group-sm">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" style="font-weight: bold;">Seccion</span>
+                                <span class="input-group-text" style="font-weight: bold;">Sección</span>
                             </div>
                             <input class="form-control" type="text" id="txt_seccion_eliminar" name="txt_seccion_eliminar" readonly>
                         </div>
@@ -1102,8 +1107,11 @@ ob_end_flush();
 
 <script src="../plugins/select2/js/select2.min.js"></script>
 <!-- datatables JS -->
-<script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script>
+<!-- <script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script> -->
 
+<script type="text/javascript" src="../js/pdf_mantenimientos.js"></script>
+<!-- datatables JS -->
+<!-- <script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script> -->
 <!-- para usar botones en datatables JS -->
 <script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
 <script src="../plugins/datatables/JSZip-2.5.0/jszip.min.js"></script>

@@ -125,7 +125,7 @@ ob_end_flush();
 
                     <div class="card card-default ">
                         <div class="card-header center">
-                            <h3 class="card-title">Nueva Comision</h3>
+                            <h3 class="card-title">Nueva Comisión</h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -138,7 +138,7 @@ ob_end_flush();
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group ">
-                                        <label>Ingrese la Nueva Comision</label>
+                                        <label>Ingrese la Nueva Comisión</label>
                                         <input class="form-control " type="text" id="txt_comision" name="txt_comision" required="" maxlength="30" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_comision');" onkeypress="return sololetras(event)"  onkeypress="return comprobar(this.value, event, this.id)">
                                     </div>
 

@@ -19,7 +19,7 @@ $id_aula = $_GET['id_aula'];
 
 
 ///Logica para el rol que se repite
-$sqlexiste = ("select count(codigo) as codigo  from tbl_aula where codigo='$codigo' and id_aula<>'$id_aula'  ;");
+$sqlexiste = ("select count(codigo) as codigo  from tbl_aula where codigo='$codigo' and id_aula='$id_aula'and id_edificio='$edificio' ;");
 //Obtener la fila del query
 $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 
@@ -44,7 +44,7 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
     $result_valor = $mysqli->query($valor);
     $valor_viejo = $result_valor->fetch_array(MYSQLI_ASSOC);
 
-    if ($valor_viejo['codigo'] <> $codigo and $valor_viejo['descripcion'] <> $descripcion and $valor_viejo['capacidad'] <> $capacidad and $valor_viejo['id_edifico'] <> $edificio and $valor_viejo['id_tipo_aula'] <> $tipoaula) {
+    if ($valor_viejo['codigo'] <> $codigo and $valor_viejo['descripcion'] <> $descripcion and $valor_viejo['capacidad'] <> $capacidad and $valor_viejo['id_edificio'] <> $edificio and $valor_viejo['id_tipo_aula'] <> $tipoaula) {
 
         $Id_objeto = 60;
         bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' EL AULA ' . $valor_viejo['codigo'] . 'Y POR ' . $codigo . ', LA DESCRIPCION DEL AULA A ' . $codigo . ' ');

@@ -1,6 +1,6 @@
-function cargartablaabajo() {
-  var periodo = $("#txt_num_periodo").val();
-  var anno = $("#txt_anno1").val();
+function cargartablaabajo(anno,periodo) {
+  // var periodo = $("#txt_num_periodo").val();
+  // var anno = $("#txt_anno1").val();
 
   if (periodo.length == 0 || anno.length == 0) {
    // swal("Alerta!", "ingrese datos a buscar!", "warning");
@@ -19,26 +19,27 @@ function cargartablaabajo() {
   console.log(anno);
 }
 
-$("#tabla_periodo").on("click", ".ver", function () {
-  var data = table.row($(this).parents("tr")).data();
-  if (table.row(this).child.isShown()) {
-    var data = table.row(this).data();
-  }
+// $("#tabla_periodo").on("click", ".ver", function () {
+//   var data = table.row($(this).parents("tr")).data();
+//   if (table.row(this).child.isShown()) {
+//     var data = table.row(this).data();
+//   }
 
-  //  var table1 = $("#tabla_periodo").DataTable();
-  // table1.ajax.reload();
+//   //  var table1 = $("#tabla_periodo").DataTable();
+//   // table1.ajax.reload();
 
-  $("#txt_num_periodo").val(data.num_periodo);
-  $("#txt_anno1").val(data.num_anno);
+//   $("#txt_num_periodo").val(data.num_periodo);
+//   $("#txt_anno1").val(data.num_anno);
+//   $("#txt_count1").val(data.id_periodo);
 
-  // table.ajax.reload("#tabla_periodo");
+//   // table.ajax.reload("#tabla_periodo");
 
-  //  TablaHcargahistorial(anno,periodo);
+//   //  TablaHcargahistorial(anno,periodo);
 
-  // table.ajax.reload();
+//   // table.ajax.reload();
 
-  // TablaHcargahistorial(anno,periodo);
-});
+//   // TablaHcargahistorial(anno,periodo);
+// });
 
 function cambiar(a, p) {
   console.log(a);
@@ -95,6 +96,33 @@ function TablaHcargahistorial(anno1, periodo1) {
       type: "POST",
       data: { num_anno: anno1, num_periodo: periodo1 },
     },
+    buttons: [
+      
+      {
+        extend: "pdfHtml5",
+        download: 'open',
+      
+        text: '<i class="fas fa-file-pdf"></i> ',
+        titleAttr: "Exportar a PDF",
+        className: "btn btn-danger",
+        orientation: "landscape",
+        pageSize: "letter",
+        exportOptions: {
+          columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+        },
+
+        title: " Universidad Nacional Autónoma De Honduras                                                                                                  "
+          + " Facultad De Ciencias Económicas,   Administrativas Y Contables                                                                                            "
+          + "    Departamento De Informática ",
+
+
+
+
+        // messageTop: "REPORTE CARGA ACADÉMICA                                                     " + "FECHA: " + fechaYHora,
+        //Coloca el título dentro del PDF
+      },
+    ],
+   
     columns: [
       { data: "id_carga_academica" },
       { data: "num_empleado" },
@@ -114,21 +142,12 @@ function TablaHcargahistorial(anno1, periodo1) {
     language: idioma_espanol,
     select: true,
   });
-  // document.getElementById("ver_carga_filter").style.display = "none";
-  // $("input.global_filter").on("keyup click", function () {
-  //   filterGlobal();
-  // });
-  // $("input.column_filter").on("keyup click", function () {
-  //   filterColumn($(this).parents("tr").attr("data-column"));
-  // });
-  // function filterGlobal() {
-  //   $("#ver_carga").DataTable().search($("#global_filter").val()).draw();
-  // }
+ 
 }
 // comprobar datos para copiar carga
-function copiar_carga() {
-  var periodo2 = $("#txt_num_periodo").val();
-  var anno2 = $("#txt_anno1").val();
+function copiar_carga(anno2, periodo2) {
+  // var periodo2 = $("#txt_num_periodo").val();
+  // var anno2 = $("#txt_anno1").val();
   console.log(anno2);
   console.log(periodo2);
   if (periodo2.length == 0 || anno2.length == 0) {
@@ -140,25 +159,22 @@ function copiar_carga() {
       showConfirmButton: true,
       timer: 20000,
     });
-
   } else {
-
     swal({
       title: "Estas seguro?",
-      text:
-        "Una vez hecho, se copiará la carga al periodo actual!",
+      text: "Una vez hecho, se copiará la carga al periodo actual!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-         swal({
-           title: "alerta",
-           text: "verificando datos",
-           icon: "warning",
-           showConfirmButton: false,
-           timer: 20000,
-         });
+        swal({
+          title: "alerta",
+          text: "verificando datos",
+          icon: "warning",
+          showConfirmButton: true,
+          timer: 20000,
+        });
         /* 1 trae el id del periodo que ingresa */
         $.post(
           "../Controlador/reporte_carga_controlador.php?op=id_periodo_historial",
@@ -181,7 +197,6 @@ function copiar_carga() {
               document.getElementById("txt_id_periodo_busca").value = "";
               /* 1 hasta aqui */
             } else {
-             
               $("#txt_id_periodo_busca").val(data.id_periodo);
               /* si esxiste el periodo hace la validacion de que no tenga datos el periodo nuevo */
               var idnuevo = $("#id_periodo_actual").val();
@@ -229,9 +244,7 @@ function copiar_carga() {
       } else {
         swal("Cancelado!");
       }
-    }); 
-
-    
+    });
   }
 }
 //insertar la carga al periodo nuevo
@@ -317,4 +330,108 @@ function insertarCopia(periodobusca,periodonuevo) {
   });
 }
 
+//////////////////////
+var table2;
+function Tablaverperiodo() {
+  table2 = $("#tabla_historial_vista").DataTable({
+    paging: true,
+    lengthChange: true,
+    ordering: true,
+    info: true,
+    autoWidth: true,
+    responsive: false,
+    ordering: true,
+    // LengthChange: false,
+    searching: { regex: true },
+    lengthMenu: [
+      [10, 25, 50, 100, -1],
+      [10, 25, 50, 100, "All"],
+    ],
+    sortable: false,
+    pageLength: 15,
+    destroy: true,
+    async: false,
+    processing: true,
+    ajax: {
+      url: "../Controlador/tabla_historial_periodo_controlador.php",
+      type: "POST",
+    },
+    
+    columns: [
+      { data: "num_periodo" },
+      { data: "num_anno" },
+      { data: "total_carga" },
+      {
+        defaultContent:
+          
+          "<div class='text-center'><div class='btn-group'><button class='ver btn btn-primary btn-m '><i class='fas fa-eye'></i></button>  <button  class='copiar btn btn-danger btn-m '><i class='fas fa-copy'></i></button></div></div>",
+      },
+    ],
+
+    language: idioma_espanol,
+    select: true,
+  });
+ 
+}
+
+$("#tabla_historial_vista").on("click", ".ver", function () {
+  var data = table2.row($(this).parents("tr")).data();
+  if (table2.row(this).child.isShown()) {
+    var data = table2.row(this).data();
+  }
+  // $("#pdf").removeAttr("hidden");
+  //  var btn_1 = document.getElementById("pdf");
+  // btn_1.style.display = "inline";
+  
+  // $("#pdf").css("display", "none"); 
+
+  $("#pdf").removeAttr("disabled");//habilita boton
+
+   $("#anno_busca").val(data.num_anno);
+  $("#num_per_busca").val(data.num_periodo);
+  $("#txt_count1").val(data.id_periodo);
+  
+ 
+  var anno = $("#anno_busca").val();
+  var periodo = $("#num_per_busca").val();
+
+
+  cargartablaabajo(anno,periodo);
+  
+
+ // seleccionar_dias($("#txt_dias_edita").val(), ",");
+});
+
+$("#tabla_historial_vista").on("click", ".copiar", function () {
+  var data = table2.row($(this).parents("tr")).data();
+  if (table2.row(this).child.isShown()) {
+    var data = table2.row(this).data();
+  }
+
+  $("#anno_busca").val(data.num_anno);
+  $("#num_per_busca").val(data.num_periodo);
+
+  var anno = $("#anno_busca").val();
+  var periodo = $("#num_per_busca").val();
+
+  copiar_carga(anno,periodo);
+
+
+  // seleccionar_dias($("#txt_dias_edita").val(), ",");
+});
+
+
+// $(document).on("click", "#limpiar", function () {
+  // var btn_1 = document.getElementById("pdf");
+  //  btn_1.style.display = "none";
+  //  $("#pdf").css("display", "hidden");
+  // $("#pdf").attr("disabled");//desabilita boton
+  // $("#pdf").css("display", "none");
+// });
+
+// $(document).ready(function () {
+   // $("#pdf").css("display", "none");  
+//   $("#pdf").enabled("true");
+//  });
+  
 

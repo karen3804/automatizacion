@@ -17,7 +17,7 @@ if (isset($_REQUEST['msj'])) {
         echo '<script type="text/javascript">
     swal({
         title: "",
-        text: "Lo sentimos el grado academico ya existe",
+        text: "Lo sentimos el grado académico ya existe",
         type: "info",
         showConfirmButton: false,
         timer: 3000
@@ -80,7 +80,7 @@ if ($visualizacion == 0) {
                             </script>';
 } else {
 
-    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A Mantenimiento Grado Academico');
+    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A Mantenimiento Grado Académico');
 
 
     if (permisos::permiso_modificar($Id_objeto) == '1') {
@@ -150,6 +150,8 @@ ob_end_flush();
 <html>
 
 <head>
+<link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+<link rel=" stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
     <title></title>
 </head>
 
@@ -164,7 +166,7 @@ ob_end_flush();
                     <div class="col-sm-6">
 
 
-                        <h1>Grados Academicos Docentes
+                        <h1>Grados Académicos Docentes
                         </h1>
                     </div>
 
@@ -187,24 +189,24 @@ ob_end_flush();
 
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="card-title">Grados Academicos Existentes</h3>
+                <h3 class="card-title">Grados Académicos Existentes</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 </div>
                 <br>
                 <div class=" px-12">
-                    <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
+                    <!-- <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button> -->
                 </div>
             </div>
             <div class="card-body">
 
-                <table id="tabla" class="table table-bordered table-striped">
+                <table id="tabla9" class="table table-bordered table-striped">
 
 
 
                     <thead>
                         <tr>
-                            <th>GRADO ACADEMICO</th>
+                            <th>GRADO ACADÉMICO</th>
                             <th>DESCRIPCIÓN </th>
                             <th>MODIFICAR</th>
                             <th>ELIMINAR</th>
@@ -265,7 +267,7 @@ ob_end_flush();
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title"> Actualizar Grado Academico</h4>
+                        <h4 class="modal-title"> Actualizar Grado Académico</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -284,7 +286,7 @@ ob_end_flush();
                                 <div class="col-md-12">
                                     <div class="form-group">
 
-                                        <label>Modificar Grado Academico</label>
+                                        <label>Modificar Grado Académico</label>
 
 
                                         <input class="form-control" type="text" id="txtgrado_academico" name="txtgrado_academico" value="<?php echo $_SESSION['grado_academico']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txtgrado_academico');" onkeypress="return sololetras(event)" maxlength="30">
@@ -293,7 +295,7 @@ ob_end_flush();
 
 
                                     <div class="form-group">
-                                        <label class="control-label">Descripcion</label>
+                                        <label class="control-label">Descripción</label>
 
                                         <input class="form-control" type="text" id="txtdescripcion" name="txtdescripcion" value="<?php echo $_SESSION['descripcion']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txtdescripcion');" onkeypress="return sololetras(event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
 
@@ -337,7 +339,7 @@ ob_end_flush();
     <script type="text/javascript">
         $(function() {
 
-            $('#tabla').DataTable({
+            $('#tabla9').DataTable({
                 "paging": true,
                 "lengthChange": true,
                 "searching": true,
@@ -355,3 +357,14 @@ ob_end_flush();
 </html>
 <script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
   <script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>
+
+  <script type="text/javascript" src="../js/pdf_mantenimientos.js"></script>
+<script src="../plugins/select2/js/select2.min.js"></script>
+<!-- datatables JS -->
+<script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script>
+  <!-- para usar botones en datatables JS -->
+<script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="../plugins/datatables/JSZip-2.5.0/jszip.min.js"></script>
+<script src="../plugins/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script src="../plugins/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="../plugins/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>

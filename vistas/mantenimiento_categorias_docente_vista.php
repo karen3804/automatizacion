@@ -17,7 +17,7 @@ if (isset($_REQUEST['msj'])) {
         echo '<script type="text/javascript">
     swal({
         title: "",
-        text: "Lo sentimos la categoria ya existe",
+        text: "Lo sentimos la categoría ya existe",
         type: "info",
         showConfirmButton: false,
         timer: 3000
@@ -80,7 +80,7 @@ if ($visualizacion == 0) {
                             </script>';
 } else {
 
-    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A Mantenimiento Categorias');
+    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A Mantenimiento Categorías');
 
 
     if (permisos::permiso_modificar($Id_objeto) == '1') {
@@ -150,6 +150,8 @@ ob_end_flush();
 <html>
 
 <head>
+<link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+<link rel=" stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
     <title></title>
 </head>
 
@@ -164,7 +166,7 @@ ob_end_flush();
                     <div class="col-sm-6">
 
 
-                        <h1>Mantenimiento Categorias
+                        <h1>Mantenimiento Categorías
                         </h1>
                     </div>
 
@@ -173,7 +175,7 @@ ob_end_flush();
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
                             <li class="breadcrumb-item active"><a href="../vistas/menu_mantenimiento.php">Menu
                                     Mantenimiento</a></li>
-                            <li class="breadcrumb-item active"><a href="../vistas/mantenimiento_crear_categoria_vista.php">Nueva Categoria</a></li>
+                            <li class="breadcrumb-item active"><a href="../vistas/mantenimiento_crear_categoria_vista.php">Nueva Categoría</a></li>
                         </ol>
                     </div>
 
@@ -188,25 +190,25 @@ ob_end_flush();
 
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="card-title">Categorias Existentes</h3>
+                <h3 class="card-title">Categorías Existentes</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 </div>
                 <br>
                 <div class=" px-12">
-                    <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
+                    <!-- <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button> -->
                 </div>
             </div>
             <div class="card-body">
 
-                <table id="tabla" class="table table-bordered table-striped">
+                <table id="tabla3" class="table table-bordered table-striped">
 
 
 
                     <thead>
                         <tr>
-                            <th>CATEGORIA</th>
-                            <th>DESCRIPCION </th>
+                            <th>CATEGORÍA</th>
+                            <th>DESCRIPCIÓN </th>
                             <th>MODIFICAR</th>
                             <th>ELIMINAR</th>
                         </tr>
@@ -266,7 +268,7 @@ ob_end_flush();
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title"> Actualizar Categoria</h4>
+                        <h4 class="modal-title"> Actualizar Categoría</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -285,7 +287,7 @@ ob_end_flush();
                                 <div class="col-md-12">
                                     <div class="form-group">
 
-                                        <label>Modificar Categoria</label>
+                                        <label>Modificar Categoría</label>
 
 
                                         <input class="form-control" type="text" id="txtcategoria" name="txtcategoria" value="<?php echo $_SESSION['categoria']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_categoria');" onkeypress="return LetrasyNumeros(event)" maxlength="30">
@@ -294,7 +296,7 @@ ob_end_flush();
 
 
                                     <div class="form-group">
-                                        <label class="control-label">Descripcion</label>
+                                        <label class="control-label">Descripción</label>
 
                                         <input class="form-control" type="text" id="txtdescripcion" name="txtdescripcion" value="<?php echo $_SESSION['descripcion']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txtdescripcion');" onkeypress="return sololetras(event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
 
@@ -338,7 +340,7 @@ ob_end_flush();
     <script type="text/javascript">
         $(function() {
 
-            $('#tabla').DataTable({
+            $('#tabla3').DataTable({
                 "paging": true,
                 "lengthChange": true,
                 "searching": true,
@@ -355,3 +357,14 @@ ob_end_flush();
 </html>
 <script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
   <script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>
+
+  <script type="text/javascript" src="../js/pdf_mantenimientos.js"></script>
+<script src="../plugins/select2/js/select2.min.js"></script>
+<!-- datatables JS -->
+<script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script>
+  <!-- para usar botones en datatables JS -->
+<script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="../plugins/datatables/JSZip-2.5.0/jszip.min.js"></script>
+<script src="../plugins/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script src="../plugins/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="../plugins/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>

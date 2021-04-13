@@ -163,6 +163,8 @@ ob_end_flush();
 <html>
 
 <head>
+<link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+<link rel=" stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
   <title></title>
 </head>
 
@@ -206,20 +208,20 @@ ob_end_flush();
         </div>
         <br>
         <div class=" px-12">
-          <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button>
+          <!-- <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()">Exportar a PDF</a> </button> -->
         </div>
       </div>
       <div class="card-body">
 
-        <table id="tabla" class="table table-bordered table-striped">
+        <table id="tabla2" class="table table-bordered table-striped">
 
 
 
           <thead>
             <tr>
               <th hidden>ID </th>
-              <th>CODIGO AULAS</th>
-              <th>DESCRIPCION </th>
+              <th>CÓDIGO AULAS</th>
+              <th>DESCRIPCIÓN </th>
               <th>CAPACIDAD </th>
               <th>EDIFICIO</th>
               <th>TIPO AULA </th>
@@ -317,7 +319,7 @@ ob_end_flush();
                 </div>
                   <div class="form-group">
 
-                    <label>Modificar Codigo Aula</label>
+                    <label>Modificar Código Aula</label>
 
 
                     <input class="form-control" type="text" id="txt_codigo" name="txt_codigo" value="<?php echo $_SESSION['codigo']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event)" onkeypress="return Numeros(event)" maxlength="30">
@@ -326,7 +328,7 @@ ob_end_flush();
 
 
                   <div class="form-group">
-                    <label class="control-label">Descripcion</label>
+                    <label class="control-label">Descripción</label>
 
                     <input class="form-control" type="text" id="txt_descripcion" name="txt_descripcion" value="<?php echo $_SESSION['descripcion']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_descripcion');" onkeypress="return sololetras(event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
 
@@ -390,7 +392,7 @@ ob_end_flush();
   <script type="text/javascript">
     $(function() {
 
-      $('#tabla').DataTable({
+      $('#tabla2').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
@@ -426,3 +428,14 @@ ob_end_flush();
 
   });
 </script>
+
+<script type="text/javascript" src="../js/pdf_mantenimientos.js"></script>
+<script src="../plugins/select2/js/select2.min.js"></script>
+<!-- datatables JS -->
+<script type="text/javascript" src="../plugins/datatables/datatables.min.js"></script>
+  <!-- para usar botones en datatables JS -->
+<script src="../plugins/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="../plugins/datatables/JSZip-2.5.0/jszip.min.js"></script>
+<script src="../plugins/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script src="../plugins/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="../plugins/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>

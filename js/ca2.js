@@ -967,4 +967,17 @@ $(document).ready(function() {
 
 });
 
+function comprobar(){
+ 
+  var periodo_num = document.getElementById('num_periodo').value; 
+  var max_periodo = document.getElementById('max_periodo').value; 
+  if(periodo_num > max_periodo){
+   document.getElementById('num_periodo').value = max_periodo;
+  
+  } else{
+  
+  }
+   
+  }
+
 

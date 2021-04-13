@@ -26,8 +26,7 @@ class modelo_modal
     function listar_select1()
     {
         global $instancia_conexion;
-        $consulta = $instancia_conexion->ejecutarConsulta('SELECT id_persona, nombres, apellidos FROM tbl_personas WHERE id_tipo_persona =1 ORDER BY nombres ASC');
-
+        $consulta = $instancia_conexion->ejecutarConsulta("SELECT id_persona, nombres, apellidos FROM tbl_personas WHERE id_tipo_persona =1 and Estado='ACTIVO' ORDER BY nombres ASC");
         return $consulta;
     }
 
