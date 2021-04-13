@@ -194,7 +194,7 @@ ob_end_flush();
             </div>
             <div class="card-body">
 
-                <table id="tabla14" class="table table-bordered table-striped">
+                <table id="tabla16" class="table table-bordered table-striped">
 
 
 
