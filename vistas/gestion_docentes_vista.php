@@ -50,7 +50,16 @@ if ($visualizacion == 0) {
     //     $_SESSION['btn_modificar_CA'] = "disabled";
     // }
 }
-
+$sql2 = $mysqli->prepare("SELECT tbl_periodo.id_periodo AS id_periodo, tbl_periodo.num_periodo AS num_periodo, tbl_periodo.num_anno AS num_anno, tbl_periodo.fecha_adic_canc AS fecha_adic_canc, tbl_periodo.fecha_desbloqueo AS fecha_desbloqueo,
+(SELECT tp.descripcion FROM tbl_tipo_periodo AS tp INNER JOIN tbl_periodo AS pdo ON tp.id_tipo_periodo=pdo.id_tipo_periodo
+			WHERE tp.id_tipo_periodo= tbl_periodo.id_tipo_periodo LIMIT 1) AS tipo_periodo,
+			(SELECT tp.horas_validas FROM tbl_tipo_periodo AS tp INNER JOIN tbl_periodo AS pdo ON tp.id_tipo_periodo=pdo.id_tipo_periodo
+			WHERE tp.id_tipo_periodo= tbl_periodo.id_tipo_periodo LIMIT 1) AS horas_validas
+FROM tbl_periodo
+ORDER BY id_periodo DESC LIMIT 1;");
+$sql2->execute();
+$resultado2 = $sql2->get_result();
+$row2 = $resultado2->fetch_array(MYSQLI_ASSOC);
 ob_end_flush();
 
 
@@ -145,6 +154,9 @@ ob_end_flush();
             </div>
             <!-- /.card-header -->
             <div class="card-footer">
+                <input hidden class="form-control" type="text" id="txt_periodo" name="txt_periodo" value="<?php echo $row2['num_periodo'] ?>" readonly>
+                <input hidden class="form-control" type="text" id="txt_anno" name="txt_anno" value="<?php echo $row2['num_anno'] ?>" readonly>
+
 
 
 
@@ -157,13 +169,14 @@ ob_end_flush();
                                     <th>ID PERSONA</th>
                                     <th>N EMPLEADO</th>
                                     <th>NOMBRE</th>
+                                    <th>IDENTIDAD</th>
                                     <th>JORNADA</th>
                                     <th>H_INICIAL</th>
                                     <th>H_FINAL</th>
                                     <th>CATEGORIA</th>
                                     <th>COMISIÓNES Y ACTIVIDADES</th>
                                     <th>CORREOS</th>
-                                    <th>CONTACTOS</th>
+                                    <th>TELÉFONOS</th>
                                     <!--  <th>FOTO</th>
                                     <th>CURRICULUM</th> -->
                                     <th>ESTADO</th>
@@ -215,19 +228,19 @@ ob_end_flush();
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <!--  <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Nacionalidad</label>
                                             <select class="form-control" name="nacionalidad_edita" id="nacionalidad_edita"></select>
 
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Identificación</label>
-                                            <input class="form-control" name="identidad_edita" data-inputmask="'mask': '9999-9999-99999'" data-mask id="identidad_edita" onkeyup="ValidarIdentidad($('#identidad_edita').val());" >
-                                            
+                                            <input class="form-control" name="identidad_edita" data-inputmask="'mask': '9999-9999-99999'" data-mask id="identidad_edita" onkeyup="ValidarIdentidad($('#identidad_edita').val());">
+
                                         </div>
                                     </div>
 
@@ -242,7 +255,7 @@ ob_end_flush();
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label>N° Empleado</label>
-                                            <input class="form-control" name="nempleado_edita" id="nempleado_edita">
+                                            <input class="form-control" name="nempleado_edita" id="nempleado_edita" onkeypress="return solonumeros(event)" onkeyUp="pierdeFoco(this)" maxlength="6" required>
 
                                         </div>
                                     </div>
@@ -275,23 +288,37 @@ ob_end_flush();
 
                                     <div class="col-md-3">
                                         <div class="form-group">
+
                                             <label>Categoria</label>
                                             <select class="form-control" name="categoria_edita" id="categoria_edita"></select>
 
                                         </div>
                                     </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+
+                                            <label>SUED</label>
+                                            <select class="form-control" name="sued" id="sued">
+                                                <option value="SI">SI</option>
+                                                <option value="NO">NO</option>
+                                            </select>
+                                            
 
 
-                                    
-                                    
-                                    
-                                    <div class="col-sm-3">
-                                   
-                                   <button type="submit" class="btn btn-primary btn" data-toggle="modal" data-target="#ModalTask2" id="agregarotra" name="agregarotra" onclick="persona()">AGREGAR COMISIONES</button>
-                                     
+                                        </div>
                                     </div>
-                                    
-                                   
+
+
+
+
+
+                                    <div class="col-sm-3">
+
+                                        <button type="submit" class="btn btn-primary btn" data-toggle="modal" data-target="#ModalTask2" id="agregarotra" name="agregarotra" onclick="persona()">AGREGAR COMISIONES</button>
+
+                                    </div>
+
+
 
                                     <div class="card " style="width:600px;border-color:gray;">
                                         <!--comisiones-->
@@ -421,6 +448,8 @@ ob_end_flush();
 
 </body>
 <html>
+<script type="text/javascript" src="../js/funciones_registro_docentes.js"></script>
+<script type="text/javascript" src="../js/validar_registrar_docentes.js"></script>
 
 <script language="javascript">
     function ventana1() {
