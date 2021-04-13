@@ -27,7 +27,7 @@
     <div class="card-body login-card-body">
 
       <div class="login-logo">
-     <img src="dist/img/logo_informatica.jpg" width="40%" height="40%" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+     <img src="dist/img/lOGO_OFICIAL.jpg" width="40%" height="40%" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
         </div>
 

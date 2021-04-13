@@ -105,7 +105,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="../vistas/pagina_principal_vista.php" class="brand-link">
-        <img src="../dist/img/logo_informatica.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="../dist/img/lOGO_OFICIAL.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Informática </span>
       </a>
 

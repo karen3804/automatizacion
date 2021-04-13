@@ -25,7 +25,7 @@ require_once ('../clases/Conexion.php');
           </div>
 
 		<div class="full-box text-center">
-				<img src="../dist/img/logo_informatica.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+				<img src="../dist/img/lOGO_OFICIAL.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
 			<img src="../dist/img/logo-unah-blue.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
