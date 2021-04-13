@@ -35,6 +35,7 @@ $(document).ready(function() {
                         title: "Universidad Nacional Autónoma De Honduras"
                         + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
                         + " Departamento De Informática ",
+
                         messageTop: "REPORTE DE ACTIVIDADES                                " + "FECHA: "+ fechaYHora,
               },
               {
@@ -75,10 +76,12 @@ $(document).ready(function() {
                 exportOptions: {
                   columns: [0, 1, 2, 3, 4],
                 },
-                  title: " DEPARTAMENTO DE INFORMÁTICA ",
-                  
+                title: "Universidad Nacional Autónoma De Honduras                                                                                                                                                                                           "
+                + " Facultad De Ciencias Económicas, Administrativas Y Contables                                                                                                                                                                                                                                "
+                + "                                                                                           Departamento De Informática                                                                                                                                                                                                                                                 "
+                +             " Reporte de Actividades ",
                 
-                messageTop: "REPORTE DE ACTIVIDADES", //Coloca el título dentro del PDF
+                messageTop: "FECHA: "+ fechaYHora,
               },
         ]
     } );
@@ -160,8 +163,10 @@ $(document).ready(function() {
                 },
                 title: "Universidad Nacional Autónoma De Honduras"
                 + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                + " Departamento De Informática ",
-                messageTop: "REPORTE DE ATRIBUTOS                                          " + "FECHA: "+ fechaYHora,
+                + " Departamento De Informática                                                                  "
+                + "                Reporte de Atributos ",
+
+                messageTop: "FECHA: "+ fechaYHora,
               },
         ]
     } );
@@ -240,14 +245,12 @@ $(document).ready(function() {
                   columns: [1, 2, 3, 4],
                 },
                 
-                  title: "Universidad Nacional Autónoma De Honduras"
-                  + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                  + " Departamento De Informática ",
-                 
+                title: "Universidad Nacional Autónoma De Honduras"
+                + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
+                + " Departamento De Informática                                                                  "
+                + "                Reporte de Aulas ",
 
-
-                
-                messageTop: "REPORTE DE AULAS                                    " + "FECHA: " + fechaYHora,
+                messageTop: "FECHA: "+ fechaYHora,
                //Coloca el título dentro del PDF
               },
         ]
@@ -327,14 +330,12 @@ $(document).ready(function() {
                   columns: [0, 1],
                 },
                 
-                  title: "Universidad Nacional Autónoma De Honduras"
-                  + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                  + " Departamento De Informática ",
-                 
+                title: "Universidad Nacional Autónoma De Honduras"
+                + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
+                + " Departamento De Informática                                                                  "
+                + "                Reporte de Categorias ",
 
-
-                
-                messageTop: "REPORTE DE CATEGORIAS                                 " + "FECHA: " + fechaYHora,
+                messageTop: "FECHA: "+ fechaYHora,
                //Coloca el título dentro del PDF
               },
         ]
@@ -370,10 +371,12 @@ $(document).ready(function() {
                         exportOptions: {
                             columns: [0, 1],
                         },
-                        title: "Universidad Nacional Autónoma De Honduras"
+                title: "Universidad Nacional Autónoma De Honduras"
                 + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                + " Departamento De Informática ",
-                messageTop: "REPORTE DE COMISIONES                          " + "FECHA: "+ fechaYHora,
+                + " Departamento De Informática                                                                  "
+                + "                Reporte de Atributos ",
+
+                messageTop: "FECHA: "+ fechaYHora,
               },
               {
                 extend: "pdfHtml5",
@@ -414,14 +417,12 @@ $(document).ready(function() {
                   columns: [0, 1],
                 },
                 
-                  title: "Universidad Nacional Autónoma De Honduras"
-                  + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                  + " Departamento De Informática ",
-                 
+                title: "Universidad Nacional Autónoma De Honduras"
+                + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
+                + " Departamento De Informática                                                                  "
+                + "                Reporte de Comisiones ",
 
-
-                
-                messageTop: "REPORTE DE COMISIONES                                 " + "FECHA: " + fechaYHora,
+                messageTop: "FECHA: "+ fechaYHora,
                //Coloca el título dentro del PDF
               },
         ]
@@ -501,14 +502,12 @@ $(document).ready(function() {
                   columns: [0],
                 },
                 
-                  title: "Universidad Nacional Autónoma De Honduras"
-                  + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                  + " Departamento De Informática ",
-                 
+                title: "Universidad Nacional Autónoma De Honduras"
+                + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
+                + " Departamento De Informática                                                                  "
+                + "             Reporte de Departamentos ",
 
-
-                
-                messageTop: "REPORTE DE DEPARTAMENTOS                                " + "FECHA: " + fechaYHora,
+                messageTop: "FECHA: "+ fechaYHora,
                //Coloca el título dentro del PDF
               },
         ]
@@ -588,14 +587,12 @@ $(document).ready(function() {
                   columns: [0,1],
                 },
                 
-                  title: "Universidad Nacional Autónoma De Honduras"
-                  + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                  + " Departamento De Informática ",
-                 
+                title: "Universidad Nacional Autónoma De Honduras"
+                + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
+                + " Departamento De Informática                                                                  "
+                + "                Reporte de Edificios ",
 
-
-                
-                messageTop: "REPORTE DE EDIFICIOS                                    " + "FECHA: " + fechaYHora,
+                messageTop: "FECHA: "+ fechaYHora,
                //Coloca el título dentro del PDF
               },
         ]
@@ -675,14 +672,12 @@ $(document).ready(function() {
                   columns: [0,1],
                 },
                 
-                  title: "Universidad Nacional Autónoma De Honduras"
-                  + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                  + " Departamento De Informática ",
-                 
+                title: "Universidad Nacional Autónoma De Honduras"
+                + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
+                + " Departamento De Informática                                                                  "
+                + "           Reporte de Estado Civil ",
 
-
-                
-                messageTop: "REPORTE DE ESTADO CIVIL                                " + "FECHA: " + fechaYHora,
+                messageTop: "FECHA: "+ fechaYHora,
                //Coloca el título dentro del PDF
               },
         ]
@@ -762,14 +757,12 @@ $(document).ready(function() {
                   columns: [0],
                 },
                 
-                  title: "Universidad Nacional Autónoma De Honduras"
-                  + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                  + " Departamento De Informática ",
-                 
+                title: "Universidad Nacional Autónoma De Honduras"
+                + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
+                + " Departamento De Informática                                                                  "
+                + "                Reporte de Género ",
 
-
-                
-                messageTop: "REPORTE DE GÉNERO                                        " + "FECHA: " + fechaYHora,
+                messageTop: "FECHA: "+ fechaYHora,
                //Coloca el título dentro del PDF
               },
         ]
@@ -849,14 +842,12 @@ $(document).ready(function() {
                   columns: [0],
                 },
                 
-                  title: "Universidad Nacional Autónoma De Honduras"
-                  + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                  + " Departamento De Informática ",
-                 
+                title: "Universidad Nacional Autónoma De Honduras"
+                + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
+                + " Departamento De Informática                                                                  "
+                + "                Reporte de Grados Académicos ",
 
-
-                
-                messageTop: "REPORTE DE GRADOS ACADÉMICOS                          " + "FECHA: " + fechaYHora,
+                messageTop: "FECHA: "+ fechaYHora,
                //Coloca el título dentro del PDF
               },
         ]
@@ -936,14 +927,12 @@ $(document).ready(function() {
                 columns: [0,1],
               },
               
-                title: "Universidad Nacional Autónoma De Honduras"
-                + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                + " Departamento De Informática ",
-               
+              title: "Universidad Nacional Autónoma De Honduras"
+              + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
+              + " Departamento De Informática                                                                  "
+              + "                Reporte de Horarios ",
 
-
-              
-              messageTop: "REPORTE DE HORARIOS DOCENTE                   " + "FECHA: " + fechaYHora,
+              messageTop: "FECHA: "+ fechaYHora,
              //Coloca el título dentro del PDF
             },
       ]
@@ -1023,14 +1012,12 @@ $(document).ready(function() {
                 columns: [0,1],
               },
               
-                title: "Universidad Nacional Autónoma De Honduras"
-                + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                + " Departamento De Informática ",
-               
+              title: "Universidad Nacional Autónoma De Honduras"
+              + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
+              + " Departamento De Informática                                                                  "
+              + "                Reporte de Jornadas ",
 
-
-              
-              messageTop: "REPORTE DE JORNADAS                                    " + "FECHA: " +fechaYHora,
+              messageTop: "FECHA: "+ fechaYHora,
              //Coloca el título dentro del PDF
             },
       ]
@@ -1110,14 +1097,12 @@ $(document).ready(function() {
                 columns: [0,1,2],
               },
               
-                title: "Universidad Nacional Autónoma De Honduras"
-                + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                + " Departamento De Informática ",
-               
+              title: "Universidad Nacional Autónoma De Honduras"
+              + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
+              + " Departamento De Informática                                                                  "
+              + "                Reporte de Municipios ",
 
-
-              
-              messageTop: "REPORTE DE MUNICIPIOS DE HONDURAS                           " + "FECHA: " +fechaYHora,
+              messageTop: "FECHA: "+ fechaYHora,
              //Coloca el título dentro del PDF
             },
       ]
@@ -1197,21 +1182,19 @@ $(document).ready(function() {
                 columns: [0,1],
               },
               
-                title: "Universidad Nacional Autónoma De Honduras"
-                + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                + " Departamento De Informática ",
-               
+              title: "Universidad Nacional Autónoma De Honduras"
+              + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
+              + " Departamento De Informática                                                                  "
+              + "                Reporte de Nacionalidades ",
 
-
-              
-              messageTop: "REPORTE DE NACIONALIDADES                     " + "FECHA: " +fechaYHora,
+              messageTop: "FECHA: "+ fechaYHora,
              //Coloca el título dentro del PDF
             },
       ]
   } );
 } );
 
-//REPORTE DE NACIONALIDADES
+//REPORTE DE PERIODOS
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
   $('#tabla14').DataTable( {
@@ -1284,14 +1267,12 @@ $(document).ready(function() {
                 columns: [1,2,3,4,5,6],
               },
               
-                title: "Universidad Nacional Autónoma De Honduras"
-                + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                + " Departamento De Informática ",
-               
+              title: "Universidad Nacional Autónoma De Honduras"
+              + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
+              + " Departamento De Informática                                                                  "
+              + "                Reporte de Periodos ",
 
-
-              
-              messageTop: "REPORTE DE PERÍODOS                                 " + "FECHA: "        +fechaYHora,
+              messageTop: "FECHA: "+ fechaYHora,
              //Coloca el título dentro del PDF
             },
       ]
@@ -1371,14 +1352,12 @@ $(document).ready(function() {
                 columns: [0,1],
               },
               
-                title: "Universidad Nacional Autónoma De Honduras"
-                + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                + " Departamento De Informática ",
-               
+              title: "Universidad Nacional Autónoma De Honduras"
+              + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
+              + " Departamento De Informática                                                                  "
+              + "                Reporte de Carreras ",
 
-
-              
-              messageTop: "REPORTE CARRERAS UNAH                   " + "FECHA: "        +fechaYHora,
+              messageTop: "FECHA: "+ fechaYHora,
              //Coloca el título dentro del PDF
             },
       ]
