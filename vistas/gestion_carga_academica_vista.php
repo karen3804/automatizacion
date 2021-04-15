@@ -86,7 +86,7 @@ ob_end_flush();
 
 </head>
 
-<body onLoad="prueba();">
+<body">
     <div class="content-wrapper">
 
 
@@ -382,10 +382,12 @@ ob_end_flush();
                                 <div class="form-group">
                                     <label>N# Docente:</label>
                                     <input class="form-control" type="text" id="txt_num_doc_edita" name="txt_num_doc_edita" value="" readonly>
+                                   
 
                                 </div>
                             </div>
-
+                            
+                            
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="hidden">
@@ -402,6 +404,7 @@ ob_end_flush();
                                     <td><select class="form-control-lg select2" style="width: 100%;" onchange="mostrar2($('#cbm_modalidad_edita').val());" id="cbm_modalidad_edita" name="cbm_modalidad_edita"></td>
                                 </div>
                             </div>
+
 
                             <div class="col-md-5">
                                 <div class="form-group">
@@ -634,7 +637,7 @@ ob_end_flush();
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input class="form-control" hidden type="text" id="txt_hidden" name="txt_hidden" value="" readonly>
+                                        <input class="form-control" hidden type="text" id="" name="" value="" readonly>
 
                                     </div>
                                 </div>
@@ -691,6 +694,7 @@ ob_end_flush();
                                     <td><select class="form-control-lg select2" onchange="mostrar_modalidad($('#modalidad').val());" id="modalidad" name="modalidad"></td>
                                 </div>
                             </div>
+                            
 
                             <div class="col-md-5">
                                 <div class="form-group">
@@ -921,7 +925,7 @@ ob_end_flush();
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <input class="form-control" hidden type="text" id="txt_hidden" name="txt_hidden" value="" readonly>
+                                            <input class="form-control" hidden type="text" id="" name="" value="" readonly>
 
                                         </div>
                                     </div>

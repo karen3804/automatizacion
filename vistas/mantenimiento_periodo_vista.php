@@ -56,6 +56,20 @@ if (isset($_REQUEST['msj'])) {
     });
 </script>';
     }
+
+    if ($msj == 4) {
+
+
+        echo '<script type="text/javascript">
+    swal({
+        title: "",
+        text: "Periodo no modificable",
+        type: "error",
+        showConfirmButton: false,
+        timer: 3000
+    });
+</script>';
+    }
 }
 
 
@@ -303,11 +317,11 @@ ob_end_flush();
                                     <div class="form-group">
 
                                         <label>Número Período</label>
-                                        <input class="form-control" type="text" id="num_periodo" name="num_periodo" style="text-transform: uppercase" onkeypress="return Numeros(event)" value="<?php echo $_SESSION['num_periodo']; ?>">
+                                        <input class="form-control" readonly type="text" id="num_periodo" name="num_periodo" style="text-transform: uppercase" onkeypress="return Numeros(event)" value="<?php echo $_SESSION['num_periodo']; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Año Académico</label>
-                                        <input class="form-control" type="text" id="num_anno" name="num_anno" style="text-transform: uppercase" onkeypress="return Numeros(event)" value="<?php echo $_SESSION['num_anno']; ?>">
+                                        <input class="form-control" readonly type="text" id="num_anno" name="num_anno" style="text-transform: uppercase" onkeypress="return Numeros(event)" value="<?php echo $_SESSION['num_anno']; ?>">
                                     </div>
 
                                     <div class="form-group">
@@ -318,6 +332,11 @@ ob_end_flush();
                                     <div class="form-group">
                                         <label>Finalización del Período</label>
                                         <input class="form-control" type="date" id="fecha_final" name="fecha_final" value="<?php echo $_SESSION['fecha_final']; ?>">
+                                    </div>
+
+                                    <div class="form-group" hidden>
+                                        <label>Finalización del Período</label>
+                                        <input class="form-control" hidden type="date" id="final_modificar" name="final_modificar" value="<?php echo $_SESSION['fecha_final']; ?>">
                                     </div>
 
                                     <div class="form-group">
