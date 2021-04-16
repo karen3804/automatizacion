@@ -435,7 +435,7 @@ ob_end_flush();
                                 <div class="form-group">
                                     <input type="hidden">
                                     <label>Edificio:</label>
-                                    <td> <select class="form-control-lg select2" style="width: 100%;" name="cbm_edificio_edita" id="cbm_edificio_edita">
+                                    <td> <select class="form-control" style="width: 100%;" name="cbm_edificio_edita" id="cbm_edificio_edita">
                                     </td>
                                 </div>
                             </div>
@@ -459,7 +459,7 @@ ob_end_flush();
                                     <input type="hidden">
 
                                     <label>Aulas:</label>
-                                    <td><select class="form-control-lg select2 " style="width: 100%;" name="cbm_aula_edita" id="cbm_aula_edita">
+                                    <td><select class="form-control" style="width: 100%;" name="cbm_aula_edita" id="cbm_aula_edita">
                                     </td>
                                 </div>
                             </div>
