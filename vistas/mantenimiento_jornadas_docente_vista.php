@@ -295,7 +295,7 @@ ob_end_flush();
 
 
                   <div class="form-group">
-                    <label class="control-label">Descripcion</label>
+                    <label class="control-label">Descripción</label>
 
                     <input class="form-control" type="text" id="txt_descripcion" name="txt_descripcion" value="<?php echo $_SESSION['descripcion']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_descripcion');" onkeypress="return sololetras(event)" maxlength="30" onkeypress="return comprobar(this.value, event, this.id)">
 
