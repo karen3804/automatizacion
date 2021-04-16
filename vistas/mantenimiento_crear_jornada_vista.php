@@ -143,7 +143,7 @@ ob_end_flush();
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Descripcion</label>
+                                        <label>Descripción</label>
                                         <input class="form-control" type="text" id="txt_descripcion" name="txt_descripcion" required="" maxlength="30" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txt_descripcion');" onkeypress="return sololetras(event)"  onkeypress="return comprobar(this.value, event, this.id)">
                                     </div>
 

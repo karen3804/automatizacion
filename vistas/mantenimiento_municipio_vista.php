@@ -315,14 +315,38 @@ ob_end_flush();
 
                   </div>
 
-                  <div class="form-group">
-                    <label>Departamento</label>
-                    <select class="form-control-lg select2" type="text" id="cbm_departamento" name="cmb_departamento" style="width: 100%;">
-                      <option value="">Seleccione una opción</option>
-                    </select>
-                  </div>
-                  <input class="form-control" id="departamento1" name="departamento1" value="<?php echo $_SESSION['id_departamento']; ?>" hidden>
+                 <div class="form-group ">
+                          <label class="control-label">Lista de los departamentos</label>
+                          <select class="form-control" name="departamento1" required="">
+        <option value="0"  >Seleccione un Departamento:</option>
+                  <?php
 
+          if(isset($_SESSION['id_departamento']))
+          {
+                $query = $mysqli -> query ("select * FROM tbl_departamentos  where id_departamento<>$_SESSION[id_departamento] ");
+                while ($resultado = mysqli_fetch_array($query)) 
+                {
+                echo '<option value="'.$resultado['id_departamento'].'"  > '.$resultado['departamento'].'</option>' ;
+                }
+
+                        echo '<option value="'.$_SESSION['id_departamento'].'" selected="" >  '.$_SESSION['departamento'].'</option>' ;
+          } 
+          else
+          {
+              $query = $mysqli -> query ("select * FROM tbl_departamentos ");
+              while ($resultado = mysqli_fetch_array($query))
+               {
+               echo '<option value="'.$resultado['id_departamento'].'"  > '.$resultado['departamento'].'</option>' ;
+               }
+
+          }
+          
+
+        ?>
+        
+      </select>
+                          </div>
+                          
 
                 </div>
               </div>
