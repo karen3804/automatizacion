@@ -40,10 +40,10 @@ if (isset($_REQUEST['msj'])) {
 
 
 
-    $sqltabla = "SELECT tbl_aula.id_aula AS id_aula,tbl_aula.codigo AS codigo,tbl_aula.descripcion AS descripcion,tbl_aula.capacidad AS capacidad,tbl_aula.id_edificio AS id_edificio,tbl_aula.id_tipo_aula AS id_tipo_aula,
-(SELECT e.nombre FROM tbl_edificios e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS edificio,
-(SELECT t.tipo_aula FROM tbl_tipo_aula t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
-FROM tbl_aula";
+    $sqltabla = "SELECT * ,
+(SELECT e.nombre FROM tbl_edificios as e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS nombre,
+(SELECT t.tipo_aula FROM tbl_tipo_aula as t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
+FROM tbl_aula;";
     $resultadotabla = $mysqli->query($sqltabla);
   }
   if ($msj == 3) {
@@ -93,20 +93,20 @@ if ($visualizacion == 0) {
 
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
-  $sqltabla = "SELECT tbl_aula.id_aula AS id_aula,tbl_aula.codigo AS codigo,tbl_aula.descripcion AS descripcion,tbl_aula.capacidad AS capacidad,tbl_aula.id_edificio AS id_edificio,tbl_aula.id_tipo_aula AS id_tipo_aula,
-(SELECT e.nombre FROM tbl_edificios e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS edificio,
-(SELECT t.tipo_aula FROM tbl_tipo_aula t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
-FROM tbl_aula";
+  $sqltabla = "SELECT * ,
+(SELECT e.nombre FROM tbl_edificios as e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS nombre,
+(SELECT t.tipo_aula FROM tbl_tipo_aula as t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
+FROM tbl_aula;";
   $resultadotabla = $mysqli->query($sqltabla);
 
 
 
   /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
   if (isset($_GET['codigo'])) {
-    $sqltabla = "SELECT tbl_aula.id_aula AS id_aula,tbl_aula.codigo AS codigo,tbl_aula.descripcion AS descripcion,tbl_aula.capacidad AS capacidad,tbl_aula.id_edificio AS id_edificio,tbl_aula.id_tipo_aula AS id_tipo_aula,
-(SELECT e.nombre FROM tbl_edificios e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS edificio,
-(SELECT t.tipo_aula FROM tbl_tipo_aula t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
-FROM tbl_aula";
+    $sqltabla = "SELECT * ,
+(SELECT e.nombre FROM tbl_edificios as e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS nombre,
+(SELECT t.tipo_aula FROM tbl_tipo_aula as t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
+FROM tbl_aula;";
     $resultadotabla = $mysqli->query($sqltabla);
 
     /* Esta variable recibe el estado de modificar */
@@ -115,9 +115,9 @@ FROM tbl_aula";
     /* Iniciar la variable de sesion y la crea */
     /* Hace un select para mandar a traer todos los datos de la 
  tabla donde rol sea igual al que se ingreso en el input */
-    $sql = "SELECT tbl_aula.id_aula AS id_aula,tbl_aula.codigo AS codigo,tbl_aula.descripcion AS descripcion,tbl_aula.capacidad AS capacidad,tbl_aula.id_edificio AS id_edificio,tbl_aula.id_tipo_aula AS id_tipo_aula,
-(SELECT e.nombre FROM tbl_edificios e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS edificio,
-(SELECT t.tipo_aula FROM tbl_tipo_aula t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
+    $sql = "SELECT * ,
+(SELECT e.nombre FROM tbl_edificios as e WHERE e.id_edificio=tbl_aula.id_edificio LIMIT 1) AS nombre,
+(SELECT t.tipo_aula FROM tbl_tipo_aula as t WHERE t.id_tipo_aula=tbl_aula.id_tipo_aula LIMIT 1) AS tipo_aula
 FROM tbl_aula WHERE codigo = '$codigo'";
     $resultado = $mysqli->query($sql);
     /* Manda a llamar la fila */
@@ -130,7 +130,7 @@ FROM tbl_aula WHERE codigo = '$codigo'";
     $_SESSION['capacidad'] = $row['capacidad'];
     $_SESSION['id_edificio'] = $row['id_edificio'];
     $_SESSION['id_tipo_aula'] = $row['id_tipo_aula'];
-    $_SESSION['edificio'] = $row['edificio'];
+    $_SESSION['nombre'] = $row['nombre'];
     $_SESSION['tipo_aula'] = $row['tipo_aula'];
     /*Aqui levanto el modal*/
 
@@ -236,7 +236,7 @@ ob_end_flush();
                 <td><?php echo $row['codigo']; ?></td>
                 <td><?php echo $row['descripcion']; ?></td>
                 <td><?php echo $row['capacidad']; ?></td>
-                <td><?php echo $row['edificio']; ?></td>
+                <td><?php echo $row['nombre']; ?></td>
                 <td><?php echo $row['tipo_aula']; ?></td>
 
 
@@ -341,23 +341,69 @@ ob_end_flush();
 
                   </div>
 
-                  <div class="form-group">
-                    <label>Edificio</label>
-                    <select class="form-control-lg select2" type="text" id="cbm_edificio" name="cbm_edificio" style="width: 100%;">
-                      <option value="">Seleccione una opción</option>
-                    </select>
-                  </div>
-                  <input class="form-control" id="edificio" name="edificio" value="<?php echo $_SESSION['id_edificio']; ?>" hidden>
+                  <div class="form-group ">
+                          <label class="control-label">Edificio</label>
+                          <select class="form-control" name="edificio" required="">
+        <option value="0"  >Seleccione una opción:</option>
+                  <?php
 
+          if(isset($_SESSION['id_edificio']))
+          {
+                $query = $mysqli -> query ("select * FROM tbl_edificios  where id_edificio<>$_SESSION[id_edificio] ");
+                while ($resultado = mysqli_fetch_array($query)) 
+                {
+                echo '<option value="'.$resultado['id_edificio'].'"  > '.$resultado['nombre'].'</option>' ;
+                }
 
-                  <div class="form-group">
-                    <label>Tipo Aula</label>
-                    <select class="form-control-lg select2" type="text" id="cbm_aula" name="cbm_aula" style="width: 100%;">
-                      <option value="">Seleccione una opción</option>
-                    </select>
-                  </div>
-                  <input class="form-control" id="aula" name="aula" value="<?php echo $_SESSION['id_tipo_aula']; ?>"hidden >
+                        echo '<option value="'.$_SESSION['id_edificio'].'" selected="" >  '.$_SESSION['nombre'].'</option>' ;
+          } 
+          else
+          {
+              $query = $mysqli -> query ("select * FROM tbl_edificios ");
+              while ($resultado = mysqli_fetch_array($query))
+               {
+               echo '<option value="'.$resultado['id_edificio'].'"  > '.$resultado['nombre'].'</option>' ;
+               }
 
+          }
+          
+
+        ?>
+        
+      </select>
+                          </div>
+
+                  <div class="form-group ">
+                          <label class="control-label">Tipo Aula</label>
+                          <select class="form-control" name="aula" required="">
+        <option value="0"  >Seleccione una opción:</option>
+                  <?php
+
+          if(isset($_SESSION['id_tipo_aula']))
+          {
+                $query = $mysqli -> query ("select * FROM tbl_tipo_aula  where id_tipo_aula<>$_SESSION[id_tipo_aula] ");
+                while ($resultado = mysqli_fetch_array($query)) 
+                {
+                echo '<option value="'.$resultado['id_tipo_aula'].'"  > '.$resultado['tipo_aula'].'</option>' ;
+                }
+
+                        echo '<option value="'.$_SESSION['id_tipo_aula'].'" selected="" >  '.$_SESSION['tipo_aula'].'</option>' ;
+          } 
+          else
+          {
+              $query = $mysqli -> query ("select * FROM tbl_tipo_aula ");
+              while ($resultado = mysqli_fetch_array($query))
+               {
+               echo '<option value="'.$resultado['id_tipo_aula'].'"  > '.$resultado['tipo_aula'].'</option>' ;
+               }
+
+          }
+          
+
+        ?>
+        
+      </select>
+                          </div>
                 </div>
               </div>
             </div>

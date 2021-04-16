@@ -105,7 +105,7 @@ if ($visualizacion == 0) {
 
     /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
     $sqltabla = "SELECT *,
-    (SELECT tp.descripcion FROM tbl_tipo_periodo AS tp WHERE tp.id_tipo_periodo = tbl_periodo.id_tipo_periodo LIMIT 1) tipo_periodo
+    (SELECT tp.descripcion FROM tbl_tipo_periodo AS tp WHERE tp.id_tipo_periodo = tbl_periodo.id_tipo_periodo LIMIT 1) descripcion
     
     FROM tbl_periodo";
     $resultadotabla = $mysqli->query($sqltabla);
@@ -115,7 +115,7 @@ if ($visualizacion == 0) {
     /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
     if (isset($_GET['fecha_inicio'])) {
         $sqltabla = "SELECT *,
-       (SELECT tp.descripcion FROM tbl_tipo_periodo AS tp WHERE tp.id_tipo_periodo = tbl_periodo.id_tipo_periodo LIMIT 1) tipo_periodo
+       (SELECT tp.descripcion FROM tbl_tipo_periodo AS tp WHERE tp.id_tipo_periodo = tbl_periodo.id_tipo_periodo LIMIT 1) descripcion
         
         FROM tbl_periodo";
         $resultadotabla = $mysqli->query($sqltabla);
@@ -127,7 +127,7 @@ if ($visualizacion == 0) {
         /* Hace un select para mandar a traer todos los datos de la 
  tabla donde rol sea igual al que se ingreso en el input */
         $sql = "SELECT *,
-        (SELECT tp.descripcion FROM tbl_tipo_periodo AS tp WHERE tp.id_tipo_periodo = tbl_periodo.id_tipo_periodo LIMIT 1) tipo_periodo
+        (SELECT tp.descripcion FROM tbl_tipo_periodo AS tp WHERE tp.id_tipo_periodo = tbl_periodo.id_tipo_periodo LIMIT 1) descripcion
         
         FROM tbl_periodo WHERE fecha_inicio = '$fecha_inicio'";
         $resultado = $mysqli->query($sql);
@@ -140,8 +140,9 @@ if ($visualizacion == 0) {
         $_SESSION['num_anno'] = $row['num_anno'];
         $_SESSION['fecha_inicio'] = $row['fecha_inicio'];
         $_SESSION['fecha_final'] = $row['fecha_final'];
-        $_SESSION['tipo_periodo'] = $row['tipo_periodo'];
+        $_SESSION['descripcion'] = $row['descripcion'];
         $_SESSION['fecha_adic_canc'] = $row['fecha_adic_canc'];
+        $_SESSION['id_tipo_periodo'] = $row['id_tipo_periodo'];
         /*Aqui levanto el modal*/
 
         if (isset($_SESSION['fecha_inicio'])) {
@@ -247,7 +248,7 @@ ob_end_flush();
                                 <td><?php echo $row['num_anno']; ?></td>
                                 <td><?php echo $row['fecha_inicio']; ?></td>
                                 <td><?php echo $row['fecha_final']; ?></td>
-                                <td><?php echo $row['tipo_periodo']; ?></td>
+                                <td><?php echo $row['descripcion']; ?></td>
                                 <td><?php echo $row['fecha_adic_canc']; ?></td>
 
 
@@ -344,14 +345,37 @@ ob_end_flush();
                                         <input class="form-control" type="date" id="fecha_adic_canc" name="fecha_adic_canc" value="<?php echo $_SESSION['fecha_adic_canc']; ?>">
                                     </div>
 
-                                    <input class="form-control" type="text" id="tipo_p" hidden name="tipo_p" style="text-transform: uppercase">
+                                    <div class="form-group ">
+                          <label class="control-label">Tipo de Período</label>
+                          <select class="form-control" name="tipo_p" required="">
+        <option value="0"  >Seleccione una opción:</option>
+                  <?php
 
-                                    <div class="form-group">
-                                        <label>Tipo de Período</label>
-                                        <select class="form-control-lg select2" type="text" id="tipo_periodo" name="tipo_periodo" style="width: 100%;">
-                                        <option value="">Seleccione una opción</option>
-                                        </select>
-                                    </div>
+          if(isset($_SESSION['id_tipo_periodo']))
+          {
+                $query = $mysqli -> query ("select * FROM tbl_tipo_periodo  where id_tipo_periodo<>$_SESSION[id_tipo_periodo] ");
+                while ($resultado = mysqli_fetch_array($query)) 
+                {
+                echo '<option value="'.$resultado['id_tipo_periodo'].'"  > '.$resultado['descripcion'].'</option>' ;
+                }
+
+                        echo '<option value="'.$_SESSION['id_tipo_periodo'].'" selected="" >  '.$_SESSION['descripcion'].'</option>' ;
+          } 
+          else
+          {
+              $query = $mysqli -> query ("select * FROM tbl_tipo_periodo ");
+              while ($resultado = mysqli_fetch_array($query))
+               {
+               echo '<option value="'.$resultado['id_tipo_periodo'].'"  > '.$resultado['descripcion'].'</option>' ;
+               }
+
+          }
+          
+
+        ?>
+        
+      </select>
+                          </div>
 
 
                                 </div>
