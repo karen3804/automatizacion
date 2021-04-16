@@ -159,6 +159,7 @@ function TablaDocente() {
 			{ data: 'hr_inicial' },
 			{ data: 'hr_final' },
 			{ data: 'categoria' },
+			{ data: 'sued' },
 			{ data: 'Comisiones_Actividades' },
 			/* { data: 'actividad' }, */
 			{ data: 'correos' },
@@ -414,6 +415,31 @@ $('#jornada_edita').change(function() {
 		$('#jornada_id').val(data_.jornada);
 	});
 });
+
+// para borrar horas al seleccionar nueva jornada
+$("#jornada_edita").change(function () {
+  var selected_jornada = jornada_edita.options[jornada_edita.selectedIndex].text;
+
+	if (selected_jornada == "TIEMPO COMPLETO") {
+
+		document.getElementById("hr_inicio_edita").value = "";
+		document.getElementById("hr_final_edita").value = "";
+  
+    
+	} else if (selected_jornada == "MEDIO TIEMPO") {
+
+	document.getElementById("hr_inicio_edita").value = "";
+	document.getElementById("hr_final_edita").value = "";
+    	
+   
+	} else if (selected_jornada == "POR HORA") {
+
+		document.getElementById("hr_inicio_edita").value = "";
+		document.getElementById("hr_final_edita").value = "";
+	}
+
+});
+
 function valida_jornada_hora() {
 	var jornada = $('#jornada_id').val();
 	var hora_entrada = $('#hr_inicio_edita').val();
@@ -459,6 +485,7 @@ $('#tabladocentes').on('click', '.editar', function() {
 	$("#categoria_edita").val(data.id_categoria).trigger("change");
 	$("#hr_inicio_edita").val(data.hr_inicial).trigger("change");
 	$("#hr_final_edita").val(data.hr_final).trigger("change");
+	$("#sued").val(data.sued).trigger("change");
 	$("#identidad_edita").val(data.identidad);
 	$("#nacionalidad_edita").val(data.nacionalidad).trigger("change");
 	
@@ -790,29 +817,29 @@ function actualizar_pagina() {
 function modificar_gestion() {
 	var identidad = $('#identidad_edita').val();
 	console.log(identidad);
+	
 	var num_empleado = $('#nempleado_edita').val();
-	var sued = $('#sued').val();
 	console.log(num_empleado);
+
+	var sued = $('#sued').val();
+	
 	var jornada1 = $("#jornada_edita").val();
 	var categoria1 = $("#categoria_edita").val();
-	var id_persona__ = $('#txt_id_persona').val();
+	
 	var jornada = document.getElementById('jornada_edita');
 	var jornada_ = jornada.value;
 	console.log(jornada_);
+
 	var categoria = document.getElementById('categoria_edita');
 	var categoria_ = categoria.value;
 	console.log(categoria_);
 	
-	// var num_doce = $("#txt_num_doc_edita").val();
-	// var nombre_doce = $("#txt_nombre_doc_edita").val();
-	// var cod_asig = $("#txt_cod_asignatura_edita").val();
 	var hra_inicio = $("#hr_inicio_edita").val();
 	var hra_final = $("#hr_final_edita").val();
-	/* var hra_inicio = $('hr_inicio_edita').val(); */
 	console.log(hra_inicio);
-/* 	var hra_final = $('hr_inicio_edita').val(); */
 	console.log(hra_final);
 
+	var id_persona__ = $('#txt_id_persona').val();
 	console.log(id_persona__);
 	
 	

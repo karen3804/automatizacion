@@ -174,7 +174,8 @@ ob_end_flush();
                                     <th>H_INICIAL</th>
                                     <th>H_FINAL</th>
                                     <th>CATEGORIA</th>
-                                    <th>COMISIÓNES Y ACTIVIDADES</th>
+                                    <th>SUED</th>
+                                    <th>COMISIÓNES</th>
                                     <th>CORREOS</th>
                                     <th>TELÉFONOS</th>
                                     <!--  <th>FOTO</th>
@@ -302,7 +303,7 @@ ob_end_flush();
                                                 <option value="SI">SI</option>
                                                 <option value="NO">NO</option>
                                             </select>
-                                            
+
 
 
                                         </div>
