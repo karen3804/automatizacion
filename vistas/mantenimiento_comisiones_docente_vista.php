@@ -40,9 +40,12 @@ if (isset($_REQUEST['msj'])) {
 
 
 
-        $sqltabla = "SELECT tbl_comisiones.id_comisiones AS id_comisiones,tbl_comisiones.comision AS comision,tbl_comisiones.id_carrera AS id_carrera,
-        (SELECT c.Descripcion FROM tbl_carrera c WHERE c.id_carrera=tbl_comisiones.id_carrera LIMIT 1) AS carrera
+        $sqltabla = "SELECT*, 
+        (SELECT c.Descripcion FROM tbl_carrera as c where c.id_carrera=tbl_comisiones.id_carrera Limit 1) AS Descripcion
         FROM tbl_comisiones";
+        // "SELECT tbl_comisiones.id_comisiones AS id_comisiones,tbl_comisiones.comision AS comision,tbl_comisiones.id_carrera AS id_carrera,
+        // (SELECT c.Descripcion FROM tbl_carrera c WHERE c.id_carrera=tbl_comisiones.id_carrera LIMIT 1) AS carrera
+        // FROM tbl_comisiones";
         $resultadotabla = $mysqli->query($sqltabla);
     }
     if ($msj == 3) {
@@ -93,18 +96,24 @@ if ($visualizacion == 0) {
 
 
     /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
-    $sqltabla = "SELECT tbl_comisiones.id_comisiones AS id_comisiones,tbl_comisiones.comision AS comision,tbl_comisiones.id_carrera AS id_carrera,
-    (SELECT c.Descripcion FROM tbl_carrera c WHERE c.id_carrera=tbl_comisiones.id_carrera LIMIT 1) AS carrera
+    $sqltabla = "SELECT*, 
+    (SELECT c.Descripcion FROM tbl_carrera as c where c.id_carrera=tbl_comisiones.id_carrera Limit 1) AS Descripcion
     FROM tbl_comisiones";
+    // "SELECT tbl_comisiones.id_comisiones AS id_comisiones,tbl_comisiones.comision AS comision,tbl_comisiones.id_carrera AS id_carrera,
+    // (SELECT c.Descripcion FROM tbl_carrera c WHERE c.id_carrera=tbl_comisiones.id_carrera LIMIT 1) AS carrera
+    // FROM tbl_comisiones";
     $resultadotabla = $mysqli->query($sqltabla);
 
 
 
     /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
     if (isset($_GET['comision'])) {
-        $sqltabla = "SELECT tbl_comisiones.id_comisiones AS id_comisiones,tbl_comisiones.comision AS comision,tbl_comisiones.id_carrera AS id_carrera,
-        (SELECT c.Descripcion FROM tbl_carrera c WHERE c.id_carrera=tbl_comisiones.id_carrera LIMIT 1) AS carrera
+        $sqltabla = "SELECT*, 
+        (SELECT c.Descripcion FROM tbl_carrera as c where c.id_carrera=tbl_comisiones.id_carrera Limit 1) AS Descripcion
         FROM tbl_comisiones";
+        // "SELECT tbl_comisiones.id_comisiones AS id_comisiones,tbl_comisiones.comision AS comision,tbl_comisiones.id_carrera AS id_carrera,
+        // (SELECT c.Descripcion FROM tbl_carrera c WHERE c.id_carrera=tbl_comisiones.id_carrera LIMIT 1) AS carrera
+        // FROM tbl_comisiones";
         $resultadotabla = $mysqli->query($sqltabla);
 
         /* Esta variable recibe el estado de modificar */
@@ -113,9 +122,12 @@ if ($visualizacion == 0) {
         /* Iniciar la variable de sesion y la crea */
         /* Hace un select para mandar a traer todos los datos de la 
  tabla donde rol sea igual al que se ingreso en el input */
-        $sql = "SELECT tbl_comisiones.id_comisiones AS id_comisiones,tbl_comisiones.comision AS comision,tbl_comisiones.id_carrera AS id_carrera,
-        (SELECT c.Descripcion FROM tbl_carrera c WHERE c.id_carrera=tbl_comisiones.id_carrera LIMIT 1) AS carrera
+        $sql = "SELECT*, 
+        (SELECT c.Descripcion FROM tbl_carrera as c where c.id_carrera=tbl_comisiones.id_carrera Limit 1) AS Descripcion
         FROM tbl_comisiones where comision ='$comision'";
+        // "SELECT tbl_comisiones.id_comisiones AS id_comisiones,tbl_comisiones.comision AS comision,tbl_comisiones.id_carrera AS id_carrera,
+        // (SELECT c.Descripcion FROM tbl_carrera c WHERE c.id_carrera=tbl_comisiones.id_carrera LIMIT 1) AS carrera
+        // FROM tbl_comisiones where comision ='$comision'";
         $resultado = $mysqli->query($sql);
         /* Manda a llamar la fila */
         $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -124,7 +136,7 @@ if ($visualizacion == 0) {
         $_SESSION['id_comisiones'] = $row['id_comisiones'];
         $_SESSION['comision'] = $row['comision'];
         $_SESSION['id_carrera'] = $row['id_carrera'];
-        $_SESSION['carrera'] = $row['carrera'];
+        $_SESSION['Descripcion'] = $row['Descripcion'];
 
 
         /*Aqui levanto el modal*/
@@ -224,7 +236,7 @@ ob_end_flush();
                         <?php while ($row = $resultadotabla->fetch_array(MYSQLI_ASSOC)) { ?>
                             <tr>
                                 <td><?php echo $row['comision']; ?></td>
-                                <td><?php echo $row['carrera']; ?></td>
+                                <td><?php echo $row['Descripcion']; ?></td>
 
                                 <td style="text-align: center;">
 
@@ -301,15 +313,38 @@ ob_end_flush();
 
                                     </div>
 
-                                    <div class="form-group">
-                                        <label>Carrera</label>
-                                        <select class="form-control-lg select2" type="text" id="cbm_carrera" name="cbm_carrera" style="width: 100%;">
-                                        <option value="">Seleccione una opción</option>
-                                        </select>
-                                    </div>
-                                    <input class="form-control"  id="carrera1" name="carrera1" value="<?php echo $_SESSION['id_carrera']; ?>" hidden>
-                                    
 
+                                    <div class="form-group ">
+                                    <label class="control-label">Carrera</label>
+                                 <select class="form-control" name="carrera1" required="">
+                                <option value="0"  >Seleccione una opción:</option>
+                                <?php
+
+                                    if(isset($_SESSION['id_carrera']))
+                                    {
+                                            $query = $mysqli -> query ("select * FROM tbl_carrera  where id_carrera<>$_SESSION[id_carrera] ");
+                                            while ($resultado = mysqli_fetch_array($query)) 
+                                            {
+                                            echo '<option value="'.$resultado['id_carrera'].'"  > '.$resultado['Descripcion'].'</option>' ;
+                                            }
+
+                                                    echo '<option value="'.$_SESSION['id_carrera'].'" selected="" >  '.$_SESSION['Descripcion'].'</option>' ;
+                                    } 
+                                    else
+                                    {
+                                        $query = $mysqli -> query ("select * FROM tbl_carrera ");
+                                        while ($resultado = mysqli_fetch_array($query))
+                                        {
+                                        echo '<option value="'.$resultado['id_carrera'].'"  > '.$resultado['Descripcion'].'</option>' ;
+                                        }
+
+                                    }
+                        
+
+                                ?>
+                                </select>
+                                    </div>
+                                  
                                 </div>
                             </div>
                         </div>

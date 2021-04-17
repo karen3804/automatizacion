@@ -40,8 +40,11 @@ if (isset($_REQUEST['msj'])) {
 
 
 
-    $sqltabla = "SELECT tbl_actividades.id_actividad AS id_actividad,tbl_actividades.actividad AS actividad,tbl_actividades.descripcion AS descripcion,tbl_actividades.nombre_proyecto AS nombre_proyecto,tbl_actividades.horas_semanales AS horas_semanales,tbl_actividades.id_comisiones AS id_comisiones,
-(SELECT c.comision FROM tbl_comisiones c WHERE c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS tipo_comision FROM tbl_actividades";
+    $sqltabla = "SELECT *,
+    (SELECT c.comision FROM tbl_comisiones as c where c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS comision
+    FROM tbl_actividades";
+//     "SELECT tbl_actividades.id_actividad AS id_actividad,tbl_actividades.actividad AS actividad,tbl_actividades.descripcion AS descripcion,tbl_actividades.nombre_proyecto AS nombre_proyecto,tbl_actividades.horas_semanales AS horas_semanales,tbl_actividades.id_comisiones AS id_comisiones,
+// (SELECT c.comision FROM tbl_comisiones c WHERE c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS tipo_comision FROM tbl_actividades";
     $resultadotabla = $mysqli->query($sqltabla);
   }
   if ($msj == 3) {
@@ -91,16 +94,22 @@ if ($visualizacion == 0) {
 
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
-  $sqltabla = "SELECT tbl_actividades.id_actividad AS id_actividad,tbl_actividades.actividad AS actividad,tbl_actividades.descripcion AS descripcion,tbl_actividades.nombre_proyecto AS nombre_proyecto,tbl_actividades.horas_semanales AS horas_semanales,tbl_actividades.id_comisiones AS id_comisiones,
-(SELECT c.comision FROM tbl_comisiones c WHERE c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS tipo_comision FROM tbl_actividades";
+  $sqltabla = "SELECT *,
+  (SELECT c.comision FROM tbl_comisiones as c where c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS comision
+  FROM tbl_actividades";
+//   "SELECT tbl_actividades.id_actividad AS id_actividad,tbl_actividades.actividad AS actividad,tbl_actividades.descripcion AS descripcion,tbl_actividades.nombre_proyecto AS nombre_proyecto,tbl_actividades.horas_semanales AS horas_semanales,tbl_actividades.id_comisiones AS id_comisiones,
+// (SELECT c.comision FROM tbl_comisiones c WHERE c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS tipo_comision FROM tbl_actividades";
   $resultadotabla = $mysqli->query($sqltabla);
 
 
 
   /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
   if (isset($_GET['actividad'])) {
-    $sqltabla = "SELECT tbl_actividades.id_actividad AS id_actividad,tbl_actividades.actividad AS actividad,tbl_actividades.descripcion AS descripcion,tbl_actividades.nombre_proyecto AS nombre_proyecto,tbl_actividades.horas_semanales AS horas_semanales,tbl_actividades.id_comisiones AS id_comisiones,
-(SELECT c.comision FROM tbl_comisiones c WHERE c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS tipo_comision FROM tbl_actividades";
+    $sqltabla = "SELECT *,
+    (SELECT c.comision FROM tbl_comisiones as c where c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS comision
+    FROM tbl_actividades";
+//     "SELECT tbl_actividades.id_actividad AS id_actividad,tbl_actividades.actividad AS actividad,tbl_actividades.descripcion AS descripcion,tbl_actividades.nombre_proyecto AS nombre_proyecto,tbl_actividades.horas_semanales AS horas_semanales,tbl_actividades.id_comisiones AS id_comisiones,
+// (SELECT c.comision FROM tbl_comisiones c WHERE c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS tipo_comision FROM tbl_actividades";
     $resultadotabla = $mysqli->query($sqltabla);
 
     /* Esta variable recibe el estado de modificar */
@@ -109,8 +118,12 @@ if ($visualizacion == 0) {
     /* Iniciar la variable de sesion y la crea */
     /* Hace un select para mandar a traer todos los datos de la 
  tabla donde rol sea igual al que se ingreso en el input */
-    $sql = "SELECT tbl_actividades.id_actividad AS id_actividad,tbl_actividades.actividad AS actividad,tbl_actividades.descripcion AS descripcion,tbl_actividades.nombre_proyecto AS nombre_proyecto,tbl_actividades.horas_semanales AS horas_semanales,tbl_actividades.id_comisiones AS id_comisiones,
-(SELECT c.comision FROM tbl_comisiones c WHERE c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS tipo_comision FROM tbl_actividades WHERE actividad = '$actividad'";
+    $sql = "SELECT *,
+    (SELECT c.comision FROM tbl_comisiones as c where c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS comision
+    FROM tbl_actividades WHERE actividad = '$actividad'";
+//     "SELECT tbl_actividades.id_actividad AS id_actividad,tbl_actividades.actividad AS actividad,tbl_actividades.descripcion AS descripcion,tbl_actividades.nombre_proyecto AS nombre_proyecto,tbl_actividades.horas_semanales AS horas_semanales,tbl_actividades.id_comisiones AS id_comisiones,
+// (SELECT c.comision FROM tbl_comisiones c WHERE c.id_comisiones=tbl_actividades.id_comisiones LIMIT 1) AS tipo_comision FROM tbl_actividades WHERE actividad = '$actividad'";
+    
     $resultado = $mysqli->query($sql);
     /* Manda a llamar la fila */
     $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -122,7 +135,7 @@ if ($visualizacion == 0) {
     $_SESSION['nombre_proyecto'] = $row['nombre_proyecto'];
     $_SESSION['horas_semanales'] = $row['horas_semanales'];
     $_SESSION['id_comisiones'] = $row['id_comisiones'];
-    $_SESSION['tipo_comision'] = $row['tipo_comision'];
+    $_SESSION['comision'] = $row['comision'];
     /*Aqui levanto el modal*/
 
     if (isset($_SESSION['actividad'])) {
@@ -226,7 +239,7 @@ ob_end_flush();
                 <td><?php echo $row['descripcion']; ?></td>
                 <td><?php echo $row['nombre_proyecto']; ?></td>
                 <td><?php echo $row['horas_semanales']; ?></td>
-                <td><?php echo $row['tipo_comision']; ?></td>
+                <td><?php echo $row['comision']; ?></td>
 
 
                 <td style="text-align: center;">
@@ -326,14 +339,37 @@ ob_end_flush();
 
                   </div>
 
-                  <div class="form-group">
-                    <label>Tipo Comision</label>
-                    <select class="form-control-lg select2" type="text" id="cbm_comision1" name="cbm_comision1" style="width: 100%;">
-                      <option value="">Seleccione una opción</option>
-                    </select>
-                  </div>
-                  <input class="form-control" id="comision1" name="comision1" value="<?php echo $_SESSION['id_comisiones']; ?>" hidden>
+                  <div class="form-group ">
+                          <label class="control-label">Tipo Comision</label>
+                          <select class="form-control" name="comision1" required="">
+        <option value="0"  >Seleccione una opción:</option>
+                  <?php
 
+          if(isset($_SESSION['id_comisiones']))
+          {
+                $query = $mysqli -> query ("select * FROM tbl_comisiones  where id_comisiones<>$_SESSION[id_comisiones] ");
+                while ($resultado = mysqli_fetch_array($query)) 
+                {
+                echo '<option value="'.$resultado['id_comisiones'].'"  > '.$resultado['comision'].'</option>' ;
+                }
+
+                        echo '<option value="'.$_SESSION['id_comisiones'].'" selected="" >  '.$_SESSION['comision'].'</option>' ;
+          } 
+          else
+          {
+              $query = $mysqli -> query ("select * FROM tbl_comisiones ");
+              while ($resultado = mysqli_fetch_array($query))
+               {
+               echo '<option value="'.$resultado['id_comisiones'].'"  > '.$resultado['comision'].'</option>' ;
+               }
+
+          }
+          
+
+        ?>
+        
+      </select>
+                  
                 </div>
               </div>
             </div>

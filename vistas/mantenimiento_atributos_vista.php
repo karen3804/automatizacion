@@ -40,9 +40,12 @@ if (isset($_REQUEST['msj'])) {
 
 
 
-    $sqltabla = "SELECT tbl_atributos.id_atributos AS id_atributos,tbl_atributos.atributo AS atributo , tbl_atributos.requerido As requerido, tbl_atributos.id_tipo_persona AS id_tipo_persona,
-(SELECT tp.tipo_persona FROM tbl_tipos_persona tp WHERE tp.id_tipo_persona=tbl_atributos.id_tipo_persona LIMIT 1) AS TipoPersona
-FROM tbl_atributos";
+    $sqltabla = "SELECT *, 
+    (SELECT tp.tipo_persona from tbl_tipos_persona as tp where tp.id_tipo_persona=tbl_atributos.id_tipo_persona LIMIT 1) AS  tipo_persona
+     from tbl_atributos";
+//     "SELECT tbl_atributos.id_atributos AS id_atributos,tbl_atributos.atributo AS atributo , tbl_atributos.requerido As requerido, tbl_atributos.id_tipo_persona AS id_tipo_persona,
+// (SELECT tp.tipo_persona FROM tbl_tipos_persona tp WHERE tp.id_tipo_persona=tbl_atributos.id_tipo_persona LIMIT 1) AS TipoPersona
+// FROM tbl_atributos";
     $resultadotabla = $mysqli->query($sqltabla);
   }
   if ($msj == 3) {
@@ -92,18 +95,24 @@ if ($visualizacion == 0) {
 
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
-  $sqltabla = "SELECT tbl_atributos.id_atributos AS id_atributos,tbl_atributos.atributo AS atributo , tbl_atributos.requerido As requerido, tbl_atributos.id_tipo_persona AS id_tipo_persona,
-  (SELECT tp.tipo_persona FROM tbl_tipos_persona tp WHERE tp.id_tipo_persona=tbl_atributos.id_tipo_persona LIMIT 1) AS TipoPersona
-  FROM tbl_atributos";
+  $sqltabla = "SELECT *, 
+  (SELECT tp.tipo_persona from tbl_tipos_persona as tp where tp.id_tipo_persona=tbl_atributos.id_tipo_persona LIMIT 1) AS  tipo_persona
+   from tbl_atributos";
+  // "SELECT tbl_atributos.id_atributos AS id_atributos,tbl_atributos.atributo AS atributo , tbl_atributos.requerido As requerido, tbl_atributos.id_tipo_persona AS id_tipo_persona,
+  // (SELECT tp.tipo_persona FROM tbl_tipos_persona tp WHERE tp.id_tipo_persona=tbl_atributos.id_tipo_persona LIMIT 1) AS TipoPersona
+  // FROM tbl_atributos";
   $resultadotabla = $mysqli->query($sqltabla);
 
 
 
   /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
   if (isset($_GET['atributo'])) {
-    $sqltabla = "SELECT tbl_atributos.id_atributos AS id_atributos,tbl_atributos.atributo AS atributo , tbl_atributos.requerido As requerido, tbl_atributos.id_tipo_persona AS id_tipo_persona,
-    (SELECT tp.tipo_persona FROM tbl_tipos_persona tp WHERE tp.id_tipo_persona=tbl_atributos.id_tipo_persona LIMIT 1) AS TipoPersona
-    FROM tbl_atributos";
+    $sqltabla = "SELECT *, 
+    (SELECT tp.tipo_persona from tbl_tipos_persona as tp where tp.id_tipo_persona=tbl_atributos.id_tipo_persona LIMIT 1) AS  tipo_persona
+     from tbl_atributos";
+    // "SELECT tbl_atributos.id_atributos AS id_atributos,tbl_atributos.atributo AS atributo , tbl_atributos.requerido As requerido, tbl_atributos.id_tipo_persona AS id_tipo_persona,
+    // (SELECT tp.tipo_persona FROM tbl_tipos_persona tp WHERE tp.id_tipo_persona=tbl_atributos.id_tipo_persona LIMIT 1) AS TipoPersona
+    // FROM tbl_atributos";
     $resultadotabla = $mysqli->query($sqltabla);
 
     /* Esta variable recibe el estado de modificar */
@@ -112,9 +121,12 @@ if ($visualizacion == 0) {
     /* Iniciar la variable de sesion y la crea */
     /* Hace un select para mandar a traer todos los datos de la 
  tabla donde rol sea igual al que se ingreso en el input */
-    $sql = "SELECT tbl_atributos.id_atributos AS id_atributos,tbl_atributos.atributo AS atributo , tbl_atributos.requerido As requerido, tbl_atributos.id_tipo_persona AS id_tipo_persona,
-    (SELECT tp.tipo_persona FROM tbl_tipos_persona tp WHERE tp.id_tipo_persona=tbl_atributos.id_tipo_persona LIMIT 1) AS TipoPersona
-    FROM tbl_atributos where atributo = '$atributo'";
+    $sql = "SELECT *, 
+    (SELECT tp.tipo_persona from tbl_tipos_persona as tp where tp.id_tipo_persona=tbl_atributos.id_tipo_persona LIMIT 1) AS  tipo_persona
+     from tbl_atributos where atributo = '$atributo'";
+    // "SELECT tbl_atributos.id_atributos AS id_atributos,tbl_atributos.atributo AS atributo , tbl_atributos.requerido As requerido, tbl_atributos.id_tipo_persona AS id_tipo_persona,
+    // (SELECT tp.tipo_persona FROM tbl_tipos_persona tp WHERE tp.id_tipo_persona=tbl_atributos.id_tipo_persona LIMIT 1) AS TipoPersona
+    // FROM tbl_atributos where atributo = '$atributo'";
     $resultado = $mysqli->query($sql);
     /* Manda a llamar la fila */
     $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -124,7 +136,7 @@ if ($visualizacion == 0) {
     $_SESSION['atributo'] = $row['atributo'];
     $_SESSION['requerido'] = $row['requerido'];
     $_SESSION['id_tipo_persona'] = $row['id_tipo_persona'];
-    $_SESSION['TipoPersona'] = $row['TipoPersona'];
+    $_SESSION['tipo_persona'] = $row['tipo_persona'];
 
 
 
@@ -227,7 +239,7 @@ ob_end_flush();
               <tr>
                 <td><?php echo $row['atributo']; ?></td>
                 <td><?php echo $row['requerido']; ?></td>
-                <td><?php echo $row['TipoPersona']; ?></td>
+                <td><?php echo $row['tipo_persona']; ?></td>
 
                 <td style="text-align: center;">
 
@@ -313,13 +325,37 @@ ob_end_flush();
                   </div>
 
                   <div class="form-group">
-                    <label>Tipo Persona</label>
-                    <select class="form-control-lg select2" type="text" id="cbm_persona" name="cbm_persona" style="width: 100%;">
-                      <option value="">Seleccione una opción</option>
+                    <label class="control-label">Tipo Persona</label>
+                    <select class="form-control" name="persona1" required="">
+                    <option value="0">Seleccione una opción</option>
+
+                      <?php
+
+         if(isset($_SESSION['id_tipo_persona']))
+          {
+                $query = $mysqli -> query ("select * FROM tbl_tipos_persona  where id_tipo_persona<>$_SESSION[id_tipo_persona] ");
+                while ($resultado = mysqli_fetch_array($query)) 
+                {
+                echo '<option value="'.$resultado['id_tipo_persona'].'"  > '.$resultado['tipo_persona'].'</option>' ;
+                }
+
+                        echo '<option value="'.$_SESSION['id_tipo_persona'].'" selected="" >  '.$_SESSION['tipo_persona'].'</option>' ;
+          } 
+          else
+          {
+              $query = $mysqli -> query ("select * FROM tbl_tipos_persona");
+              while ($resultado = mysqli_fetch_array($query))
+               {
+               echo '<option value="'.$resultado['id_tipo_persona'].'"  > '.$resultado['tipo_persona'].'</option>' ;
+               }
+
+          }
+          
+
+        ?>
                     </select>
                   </div>
-                  <input class="form-control" id="persona1" name="persona1" value="<?php echo $_SESSION['id_tipo_persona']; ?>" hidden>
-
+                
 
                 </div>
               </div>
