@@ -975,7 +975,10 @@ ob_end_flush();
                                             <tr>
                                                 <!-- <th>#</th> -->
                                                 <th>Información Profesional</th>
-
+                                                <th>Preferencia Área</th>
+                                                <th>Experiencia Académica</th>
+                                                <th>Preferencia Asignatura</th>
+                                                <th>Desea impartir</th>
                                             </tr>
                                         </thead>
                                         <tbody id="id_profe">

@@ -45,7 +45,11 @@ function mostrar_docente(id_persona_valor) {
       $("#input8").val(data.nombre);
       // $("#txt_num_doc").val(data.num_empleado);
       var tr = "<tr>";
-      (tr += "<td>" + data.formacion_academica + "</td>");
+      (tr += "<th>" + data.formacion_academica + "</th>");
+      (tr += "<th>" + data.pregunta1 + "</th>");
+      (tr += "<th>" + data.pregunta2 + "</th>");
+      (tr += "<th>" + data.pregunta3 + "</th>");
+      (tr += "<th>" + data.pregunta4 + "</th>");
       tr += "</tr>";
       $("#id_profe").html(tr);
       // console.log(tr);
