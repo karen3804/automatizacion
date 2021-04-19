@@ -286,8 +286,8 @@ ob_end_flush();
                                         <th>Asignatura</th>
                                         <th>Unidades Val.</th>
                                         <th>Sección</th>
-                                        <th>Hora Inicio</th>
-                                        <th>Hora Final</th>
+                                        <th>Hi</th>
+                                        <th>Hf</th>
                                         <th>Dia</th>
                                         <th>Aula</th>
                                         <th>Edificio</th>
@@ -306,8 +306,8 @@ ob_end_flush();
                                         <th>Asignatura</th>
                                         <th>Unidades Val.</th>
                                         <th>Sección</th>
-                                        <th>Hora Inicio</th>
-                                        <th>Hora Final</th>
+                                        <th>Hi</th>
+                                        <th>Hf</th>
                                         <th>Día</th>
                                         <th>Aula</th>
                                         <th>Edificio</th>
@@ -382,12 +382,12 @@ ob_end_flush();
                                 <div class="form-group">
                                     <label>N# Docente:</label>
                                     <input class="form-control" type="text" id="txt_num_doc_edita" name="txt_num_doc_edita" value="" readonly>
-                                   
+
 
                                 </div>
                             </div>
-                            
-                            
+
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="hidden">
@@ -694,7 +694,7 @@ ob_end_flush();
                                     <td><select class="form-control-lg select2" onchange="mostrar_modalidad($('#modalidad').val());" id="modalidad" name="modalidad"></td>
                                 </div>
                             </div>
-                            
+
 
                             <div class="col-md-5">
                                 <div class="form-group">
@@ -895,7 +895,7 @@ ob_end_flush();
         <!-- modal informacion docente -->
         <div id="modal2" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <!--      Para centrado-->
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg">
 
                 <!--  <div class="modal-dialog" role="document">-->
                 <div class="modal-content">
@@ -1050,7 +1050,7 @@ ob_end_flush();
     </div>
 
 
-</body>
+    </body>
 
 </html>
 
