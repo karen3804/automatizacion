@@ -45,7 +45,11 @@ function mostrar_docente(id_persona_valor) {
       $("#input8").val(data.nombre);
       // $("#txt_num_doc").val(data.num_empleado);
       var tr = "<tr>";
-      (tr += "<td>" + data.formacion_academica + "</td>");
+      (tr += "<th>" + data.formacion_academica + "</th>");
+      (tr += "<th>" + data.pregunta1 + "</th>");
+      (tr += "<th>" + data.pregunta2 + "</th>");
+      (tr += "<th>" + data.pregunta3 + "</th>");
+      (tr += "<th>" + data.pregunta4 + "</th>");
       tr += "</tr>";
       $("#id_profe").html(tr);
       // console.log(tr);
@@ -362,9 +366,46 @@ $(document).ready(function () {
   });
 });
 
+
+$("#modalidad").change(function () {
+  var selected_modalidad = modalidad.options[modalidad.selectedIndex].text;
+
+  if (selected_modalidad == "Virtual") {
+
+    $("#edificio").prop("disabled", true);
+    $("#aula").prop("disabled", true);
+    
+    $.post("../Controlador/edificio.php").done(function (respuesta) {
+      $("#edificio").html(respuesta);
+    });
+
+    $.post("../Controlador/aula.php").done(function (respuesta) {
+      $("#aula").html(respuesta);
+    });
+
+    document.getElementById("capacidad").value = "";
+  
+
+  } else {
+    $("#edificio").prop("disabled", false);
+    $("#aula").prop("disabled", false);
+
+    $.post("../Controlador/edificio.php").done(function (respuesta) {
+      $("#edificio").html(respuesta);
+    });
+
+    $.post("../Controlador/aula.php").done(function (respuesta) {
+      $("#aula").html(respuesta);
+    });
+  
+    document.getElementById("capacidad").value = "";
+  }
+
+});
+
+
 // GUARDAR CARGA NUEVO
 function crear_carga_academica() {
-  var idcarga = $("#txt_carga_id").val();
   var id_doc = $("#id_select").val();
   var aula = $("#aula").val();
   var num_doc = $("#txt_num_doc").val();
@@ -380,37 +421,9 @@ function crear_carga_academica() {
   var matri = $("#txt_matriculados").val();
   var id_periodo = $("#txt_id_periodo").val();
   var tipo_periodo = $("#txt_tipo_periodo").val();
+  var selected_modalidad = modalidad.options[modalidad.selectedIndex].text;
 
-  if (
-    $("#txt_num_doc").val().length == 0 ||
-    $("#txt_seccion").val().length == 0 ||
-    hora_inicial.value == 0 ||
-    hora_final.value == 0 ||
-    $("#edificio").val().length == 0 ||
-    $("#modalidad").val().length == 0 ||
-    $("#aula").val().length == 0 ||
-    $("#hora_inicial").val().value == "" ||
-    $("#hora_final").val().value == "" ||
-    $("#txt_matriculados").val().length == 0 ||
-    $("#capacidad").val().length == 0
-  ) {
-
-    swal({
-      title: "alerta",
-      text: "Llene o seleccione los campos vacios",
-      type: "warning",
-      showConfirmButton: true,
-      timer: 15000,
-    });
-  } else {
-    swal({
-      title: "alerta",
-      text: "Por favor espere",
-      type: "warning",
-      showConfirmButton: false,
-      timer: 20000,
-    });
-
+  if (selected_modalidad == "Virtual") {
     var hora_inicial = document.getElementById("hora_inicial").value;
     var hora_final = document.getElementById("hora_final").value;
     var horas_validas = document.getElementById("txt_hras_validas").value;
@@ -459,99 +472,9 @@ function crear_carga_academica() {
               dangerMode: true,
             }).then((willDelete) => {
               if (willDelete) {
-                $.post(
-                  "../Controlador/reporte_carga_controlador.php?op=existe_carga",
-                  {
-                    hora_inicial: hora_inicial,
-                    id_periodo: id_periodo,
-                    hora_final: hora_final,
-                    id_aula: aula
-                  },
-            
-                  function (data, status) {
-                    console.log(data);
-                    data = JSON.parse(data);
-                    /*si no tiene datos va copiar  */
-                    $("#txt_registro_crear").val(data.registro);
-                    var registro = $("#txt_registro_crear").val();
-            
-                    if (registro > 0) {
-                      swal({
-                        title: "Alerta",
-                        text:
-                          "Ya hay una carga asignada a esa hora, Hora Inicial: " +
-                          hora_inicial +
-                          ",Hora Final: " +
-                          hora_final,
-                        type: "warning",
-                        showConfirmButton: true,
-                        timer: 6000,
-                      });
-                      document.getElementById("txt_registro_crear").value = "";
-                    } else {
-                      $.ajax({
-                        url: "../Controlador/crear_carga_controlador.php",
-                        type: "POST",
-                        data: {
-                          control: control,
-                          seccion: seccion,
-                          num_alumnos: matri,
-                          id_persona: id_doc,
-                          id_aula: aula,
-                          id_asignatura: id_asignatura,
-                          dias: dias,
-                          id_modalidad: id_modalidad,
-                          hora_inicial: hora_inicial,
-                          hora_final: hora_final,
-                        },
-                      }).done(function (resp) {
-                        if (resp > 0) {
-                          $("#ModalTask").modal("hide");
-                          swal(
-                            "Buen trabajo!",
-                            "datos actualizados correctamente!",
-                            "success"
-                          );
-                          document.getElementById("txt_registro_crear").value = "";
-            
-                          limpiar();
-                          table.ajax.reload();
-                        } else {
-                          swal(
-                            "Alerta!",
-                            "No se pudo completar la actualización",
-                            "warning"
-                          );
-                          document.getElementById("txt_registro_crear").value = "";
-                        }
-                      });
-                    }
-                  }
-                );
-              } else {
-                swal("Cancelado!");
-                
-              }
-            });
-
-            document.getElementById("txt_contar_carga").value = "";
-          }else{
-            $.post(
-              "../Controlador/reporte_carga_controlador.php?op=existe_carga",
-              {
-                hora_inicial: hora_inicial,
-                id_periodo: id_periodo,
-                hora_final: hora_final,
-                id_aula: aula
-              },
-        
-              function (data, status) {
-                console.log(data);
-                data = JSON.parse(data);
-                /*si no tiene datos va copiar  */
                 $("#txt_registro_crear").val(data.registro);
                 var registro = $("#txt_registro_crear").val();
-        
+
                 if (registro > 0) {
                   swal({
                     title: "Alerta",
@@ -567,14 +490,13 @@ function crear_carga_academica() {
                   document.getElementById("txt_registro_crear").value = "";
                 } else {
                   $.ajax({
-                    url: "../Controlador/crear_carga_controlador.php",
+                    url: "../Controlador/crear_carga_virtual_controlador.php",
                     type: "POST",
                     data: {
                       control: control,
                       seccion: seccion,
                       num_alumnos: matri,
                       id_persona: id_doc,
-                      id_aula: aula,
                       id_asignatura: id_asignatura,
                       dias: dias,
                       id_modalidad: id_modalidad,
@@ -586,11 +508,11 @@ function crear_carga_academica() {
                       $("#ModalTask").modal("hide");
                       swal(
                         "Buen trabajo!",
-                        "Datos actualizados correctamente!",
+                        "datos actualizados correctamente!",
                         "success"
                       );
                       document.getElementById("txt_registro_crear").value = "";
-        
+
                       limpiar();
                       table.ajax.reload();
                     } else {
@@ -603,12 +525,303 @@ function crear_carga_academica() {
                     }
                   });
                 }
+              } else {
+                swal("Cancelado!");
+
               }
-            );
+            });
+
+            document.getElementById("txt_contar_carga").value = "";
+          } else {
+            $("#txt_registro_crear").val(data.registro);
+            var registro = $("#txt_registro_crear").val();
+
+            if (registro > 0) {
+              swal({
+                title: "Alerta",
+                text:
+                  "Ya hay una carga asignada a esa hora, Hora Inicial: " +
+                  hora_inicial +
+                  ",Hora Final: " +
+                  hora_final,
+                type: "warning",
+                showConfirmButton: true,
+                timer: 6000,
+              });
+              document.getElementById("txt_registro_crear").value = "";
+            } else {
+              $.ajax({
+                url: "../Controlador/crear_carga_virtual_controlador.php",
+                type: "POST",
+                data: {
+                  control: control,
+                  seccion: seccion,
+                  num_alumnos: matri,
+                  id_persona: id_doc,
+                  id_asignatura: id_asignatura,
+                  dias: dias,
+                  id_modalidad: id_modalidad,
+                  hora_inicial: hora_inicial,
+                  hora_final: hora_final,
+                },
+              }).done(function (resp) {
+                if (resp > 0) {
+                  $("#ModalTask").modal("hide");
+                  swal(
+                    "Buen trabajo!",
+                    "Datos actualizados correctamente!",
+                    "success"
+                  );
+                  document.getElementById("txt_registro_crear").value = "";
+
+                  limpiar();
+                  table.ajax.reload();
+                } else {
+                  swal(
+                    "Alerta!",
+                    "No se pudo completar la actualización",
+                    "warning"
+                  );
+                  document.getElementById("txt_registro_crear").value = "";
+                }
+              });
+            }
           }
-            
+
         }
       );
+    }
+  } else {
+
+    if (
+      $("#txt_num_doc").val().length == 0 ||
+      $("#txt_seccion").val().length == 0 ||
+      hora_inicial.value == 0 ||
+      hora_final.value == 0 ||
+      $("#modalidad").val().length == 0 ||
+      $("#hora_inicial").val().value == "" ||
+      $("#hora_final").val().value == "" ||
+      $("#txt_matriculados").val().length == 0 ||
+      $("#capacidad").val().length == 0 ||
+      $("#aula").val().length == 0 ||
+      $("#edificio").val().length == 0
+
+    ) {
+
+      swal({
+        title: "alerta",
+        text: "Llene o seleccione los campos vacios",
+        type: "warning",
+        showConfirmButton: true,
+        timer: 15000,
+      });
+    } else {
+      swal({
+        title: "alerta",
+        text: "Por favor espere",
+        type: "warning",
+        showConfirmButton: false,
+        timer: 20000,
+      });
+
+      var hora_inicial = document.getElementById("hora_inicial").value;
+      var hora_final = document.getElementById("hora_final").value;
+      var horas_validas = document.getElementById("txt_hras_validas").value;
+
+      if (hora_inicial > hora_final) {
+        swal({
+          title: "alerta",
+          text: "Hora inicial incorrecta",
+          type: "warning",
+          showConfirmButton: true,
+          timer: 20000,
+        });
+        document.getElementById("hora_inicial").value = "";
+        document.getElementById("hora_final").value = "";
+      } else if (hora_inicial == hora_final) {
+        swal({
+          title: "alerta",
+          text: "Las horas son iguales",
+          type: "warning",
+          showConfirmButton: true,
+          timer: 20000,
+        });
+        // alert("Las horas son iguales");
+        document.getElementById("hora_final").value = "";
+      } else {
+
+        $.post(
+          "../Controlador/reporte_carga_controlador.php?op=contar_carga",
+          {
+            id_persona: id_doc,
+          },
+
+          function (data, status) {
+            console.log(data);
+            data = JSON.parse(data);
+            $("#txt_contar_carga").val(data.carga);
+            var contar = $("#txt_contar_carga").val();
+
+            if (contar >= 3) {
+              swal({
+                title: "Alerta!",
+                text:
+                  "Este docente tiene 3 cargas asignadas, desea continuar?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              }).then((willDelete) => {
+                if (willDelete) {
+                  $.post(
+                    "../Controlador/reporte_carga_controlador.php?op=existe_carga",
+                    {
+                      hora_inicial: hora_inicial,
+                      id_periodo: id_periodo,
+                      hora_final: hora_final,
+                      id_aula: aula
+                    },
+
+                    function (data, status) {
+                      console.log(data);
+                      data = JSON.parse(data);
+                      /*si no tiene datos va copiar  */
+                      $("#txt_registro_crear").val(data.registro);
+                      var registro = $("#txt_registro_crear").val();
+
+                      if (registro > 0) {
+                        swal({
+                          title: "Alerta",
+                          text:
+                            "Ya hay una carga asignada a esa hora, Hora Inicial: " +
+                            hora_inicial +
+                            ",Hora Final: " +
+                            hora_final,
+                          type: "warning",
+                          showConfirmButton: true,
+                          timer: 6000,
+                        });
+                        document.getElementById("txt_registro_crear").value = "";
+                      } else {
+                        $.ajax({
+                          url: "../Controlador/crear_carga_controlador.php",
+                          type: "POST",
+                          data: {
+                            control: control,
+                            seccion: seccion,
+                            num_alumnos: matri,
+                            id_persona: id_doc,
+                            id_aula: aula,
+                            id_asignatura: id_asignatura,
+                            dias: dias,
+                            id_modalidad: id_modalidad,
+                            hora_inicial: hora_inicial,
+                            hora_final: hora_final,
+                          },
+                        }).done(function (resp) {
+                          if (resp > 0) {
+                            $("#ModalTask").modal("hide");
+                            swal(
+                              "Buen trabajo!",
+                              "datos actualizados correctamente!",
+                              "success"
+                            );
+                            document.getElementById("txt_registro_crear").value = "";
+
+                            limpiar();
+                            table.ajax.reload();
+                          } else {
+                            swal(
+                              "Alerta!",
+                              "No se pudo completar la actualización",
+                              "warning"
+                            );
+                            document.getElementById("txt_registro_crear").value = "";
+                          }
+                        });
+                      }
+                    }
+                  );
+                } else {
+                  swal("Cancelado!");
+
+                }
+              });
+
+              document.getElementById("txt_contar_carga").value = "";
+            } else {
+              $.post(
+                "../Controlador/reporte_carga_controlador.php?op=existe_carga",
+                {
+                  hora_inicial: hora_inicial,
+                  id_periodo: id_periodo,
+                  hora_final: hora_final,
+                  id_aula: aula
+                },
+
+                function (data, status) {
+                  console.log(data);
+                  data = JSON.parse(data);
+                  /*si no tiene datos va copiar  */
+                  $("#txt_registro_crear").val(data.registro);
+                  var registro = $("#txt_registro_crear").val();
+
+                  if (registro > 0) {
+                    swal({
+                      title: "Alerta",
+                      text:
+                        "Ya hay una carga asignada a esa hora, Hora Inicial: " +
+                        hora_inicial +
+                        ",Hora Final: " +
+                        hora_final,
+                      type: "warning",
+                      showConfirmButton: true,
+                      timer: 6000,
+                    });
+                    document.getElementById("txt_registro_crear").value = "";
+                  } else {
+                    $.ajax({
+                      url: "../Controlador/crear_carga_controlador.php",
+                      type: "POST",
+                      data: {
+                        control: control,
+                        seccion: seccion,
+                        num_alumnos: matri,
+                        id_persona: id_doc,
+                        id_aula: aula,
+                        id_asignatura: id_asignatura,
+                        dias: dias,
+                        id_modalidad: id_modalidad,
+                        hora_inicial: hora_inicial,
+                        hora_final: hora_final,
+                      },
+                    }).done(function (resp) {
+                      if (resp > 0) {
+                        $("#ModalTask").modal("hide");
+                        swal(
+                          "Buen trabajo!",
+                          "Datos actualizados correctamente!",
+                          "success"
+                        );
+                        document.getElementById("txt_registro_crear").value = "";
+
+                        limpiar();
+                        table.ajax.reload();
+                      } else {
+                        swal(
+                          "Alerta!",
+                          "No se pudo completar la actualización",
+                          "warning"
+                        );
+                        document.getElementById("txt_registro_crear").value = "";
+                      }
+                    });
+                  }
+                }
+              );
+            }
+          }
+        );
+      }
     }
   }
 }
@@ -886,15 +1099,15 @@ function valida_horario_crear() {
       buttons: true,
       dangerMode: true,
     })
-    .then((willDelete) => {
-      if (willDelete) {
-       
-        
-      } else {
-        
-        document.getElementById("hora_final").value = "";
-      }
-    });
+      .then((willDelete) => {
+        if (willDelete) {
+
+
+        } else {
+
+          document.getElementById("hora_final").value = "";
+        }
+      });
   }
 
   if (hora_final > hra_salida) {
@@ -905,36 +1118,37 @@ function valida_horario_crear() {
       buttons: true,
       dangerMode: true,
     })
-    .then((willDelete) => {
-      if (willDelete) {
-       
-        
-      } else {
-        
-        document.getElementById("hora_final").value = "";
-      }
-    });
+      .then((willDelete) => {
+        if (willDelete) {
+
+
+        } else {
+
+          document.getElementById("hora_final").value = "";
+        }
+      });
   }
 }
 
 function valida_matriculados() {
   var capacidad = document.getElementById("capacidad").value;
   var matriculados = document.getElementById("txt_matriculados").value;
-  if (matriculados > capacidad) {
-     swal({
-       title: "Alerta",
-       text: "Esta excediendo la capacidad, desea continuar?",
-       icon: "warning",
-       buttons: true,
-       dangerMode: true,
-     }).then((willDelete) => {
-       if (willDelete) {
-       } else {
-         document.getElementById("txt_matriculados").value = "";
-       }
-     });
+  var selected_modalidad = modalidad.options[modalidad.selectedIndex].text;
+  if (matriculados > capacidad && selected_modalidad != "Virtual") {
+    swal({
+      title: "Alerta",
+      text: "Esta excediendo la capacidad, desea continuar?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+      } else {
+        document.getElementById("txt_matriculados").value = "";
+      }
+    });
   }
- 
+
 }
 
 // function prueba() {
@@ -957,27 +1171,27 @@ function valida_matriculados() {
 //   }
 // }
 
-$(document).ready(function() {
+$(document).ready(function () {
 
   $('.select2').select2({
-      placeholder: 'Select una opcion',
-      theme: 'bootstrap4',
-      tags: true,
+    placeholder: 'Select una opcion',
+    theme: 'bootstrap4',
+    tags: true,
   });
 
 });
 
-function comprobar(){
- 
-  var periodo_num = document.getElementById('num_periodo').value; 
-  var max_periodo = document.getElementById('max_periodo').value; 
-  if(periodo_num > max_periodo){
-   document.getElementById('num_periodo').value = max_periodo;
-  
-  } else{
-  
+function comprobar() {
+
+  var periodo_num = document.getElementById('num_periodo').value;
+  var max_periodo = document.getElementById('max_periodo').value;
+  if (periodo_num > max_periodo) {
+    document.getElementById('num_periodo').value = max_periodo;
+
+  } else {
+
   }
-   
-  }
+
+}
 
 

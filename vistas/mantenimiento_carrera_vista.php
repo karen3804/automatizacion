@@ -40,8 +40,8 @@ if (isset($_REQUEST['msj'])) {
 
 
 
-        $sqltabla = "SELECT tbl_carrera.id_carrera AS id_carrera,tbl_carrera.Descripcion AS Descripcion,tbl_carrera.Id_facultad AS Id_facultad,
-(SELECT f.nombre FROM tbl_facultades f WHERE f.Id_facultad= tbl_carrera.Id_facultad LIMIT 1) AS facultad
+        $sqltabla = "SELECT *,
+(SELECT f.nombre FROM tbl_facultades as f WHERE f.Id_facultad= tbl_carrera.Id_facultad LIMIT 1) AS nombre
 FROM tbl_carrera";
         $resultadotabla = $mysqli->query($sqltabla);
     }
@@ -93,8 +93,8 @@ if ($visualizacion == 0) {
 
 
     /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
-    $sqltabla = "SELECT tbl_carrera.id_carrera AS id_carrera,tbl_carrera.Descripcion AS Descripcion,tbl_carrera.Id_facultad AS Id_facultad,
-(SELECT f.nombre FROM tbl_facultades f WHERE f.Id_facultad= tbl_carrera.Id_facultad LIMIT 1) AS facultad
+    $sqltabla = "SELECT *,
+(SELECT f.nombre FROM tbl_facultades as f WHERE f.Id_facultad= tbl_carrera.Id_facultad LIMIT 1) AS nombre
 FROM tbl_carrera";
     $resultadotabla = $mysqli->query($sqltabla);
 
@@ -102,8 +102,8 @@ FROM tbl_carrera";
 
     /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
     if (isset($_GET['Descripcion'])) {
-        $sqltabla = "SELECT tbl_carrera.id_carrera AS id_carrera,tbl_carrera.Descripcion AS Descripcion,tbl_carrera.Id_facultad AS Id_facultad,
-(SELECT f.nombre FROM tbl_facultades f WHERE f.Id_facultad= tbl_carrera.Id_facultad LIMIT 1) AS facultad
+        $sqltabla = "SELECT *,
+(SELECT f.nombre FROM tbl_facultades as f WHERE f.Id_facultad= tbl_carrera.Id_facultad LIMIT 1) AS nombre
 FROM tbl_carrera";
         $resultadotabla = $mysqli->query($sqltabla);
 
@@ -113,8 +113,8 @@ FROM tbl_carrera";
         /* Iniciar la variable de sesion y la crea */
         /* Hace un select para mandar a traer todos los datos de la 
  tabla donde rol sea igual al que se ingreso en el input */
-        $sql = "SELECT tbl_carrera.id_carrera AS id_carrera,tbl_carrera.Descripcion AS Descripcion,tbl_carrera.Id_facultad AS Id_facultad,
-(SELECT f.nombre FROM tbl_facultades f WHERE f.Id_facultad= tbl_carrera.Id_facultad LIMIT 1) AS facultad
+        $sql = "SELECT *,
+(SELECT f.nombre FROM tbl_facultades as f WHERE f.Id_facultad= tbl_carrera.Id_facultad LIMIT 1) AS nombre
 FROM tbl_carrera WHERE Descripcion = '$Descripcion'";
         $resultado = $mysqli->query($sql);
         /* Manda a llamar la fila */
@@ -124,7 +124,7 @@ FROM tbl_carrera WHERE Descripcion = '$Descripcion'";
         $_SESSION['id_carrera'] = $row['id_carrera'];
         $_SESSION['Descripcion'] = $row['Descripcion'];
         $_SESSION['Id_facultad'] = $row['Id_facultad'];
-        $_SESSION['facultad'] = $row['facultad'];
+        $_SESSION['nombre'] = $row['nombre'];
 
 
         /*Aqui levanto el modal*/
@@ -225,7 +225,7 @@ ob_end_flush();
                         <?php while ($row = $resultadotabla->fetch_array(MYSQLI_ASSOC)) { ?>
                             <tr>
                                 <td><?php echo $row['Descripcion']; ?></td>
-                                <td><?php echo $row['facultad']; ?></td>
+                                <td><?php echo $row['nombre']; ?></td>
 
                                 <td style="text-align: center;">
 
@@ -298,19 +298,42 @@ ob_end_flush();
                                         <label>Modificar Carrera</label>
 
 
-                                        <input class="form-control" type="text" id="txdescripcion" name="txtdescripcion" value="<?php echo $_SESSION['Descripcion']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event);MismaLetra('txtdescripcion');" onkeypress="return sololetras(event)" maxlength="30">
+                                        <input class="form-control" type="text" id="txdescripcion" name="txtdescripcion" value="<?php echo $_SESSION['Descripcion']; ?>" required style="text-transform: uppercase" onkeyup="DobleEspacio(this, event);MismaLetra('txtdescripcion');" onkeypress="return sololetras(event)" maxlength="60">
 
                                     </div>
 
 
-                                    <div class="form-group">
-                                        <label>Facultad</label>
-                                        <select class="form-control-lg select2" type="text" id="cbm_facultad" name="cmb_facultad" style="width: 100%;">
-                                            <option value="">Seleccione una opción</option>
-                                        </select>
-                                    </div>
-                                    <input class="form-control" id="facultad1" name="facultad1" value="<?php echo $_SESSION['Id_facultad']; ?>" hidden>
+                                    <div class="form-group ">
+                          <label class="control-label">Facultad</label>
+                          <select class="form-control" name="facultad1" required="">
+        <option value="0"  >Seleccione una opción:</option>
+                  <?php
 
+          if(isset($_SESSION['Id_facultad']))
+          {
+                $query = $mysqli -> query ("select * FROM tbl_facultades  where Id_facultad<>$_SESSION[Id_facultad] ");
+                while ($resultado = mysqli_fetch_array($query)) 
+                {
+                echo '<option value="'.$resultado['Id_facultad'].'"  > '.$resultado['nombre'].'</option>' ;
+                }
+
+                        echo '<option value="'.$_SESSION['Id_facultad'].'" selected="" >  '.$_SESSION['nombre'].'</option>' ;
+          } 
+          else
+          {
+              $query = $mysqli -> query ("select * FROM tbl_facultades ");
+              while ($resultado = mysqli_fetch_array($query))
+               {
+               echo '<option value="'.$resultado['Id_facultad'].'"  > '.$resultado['nombre'].'</option>' ;
+               }
+
+          }
+          
+
+        ?>
+        
+      </select>
+                          </div>
 
                                 </div>
                             </div>

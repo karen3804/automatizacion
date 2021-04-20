@@ -61,6 +61,19 @@ class modeloCarga
             return 0;
         }
     }
+    function modificar_carga_academica_virtual($control, $seccion, $hra_inicio, $hra_final, $num_alumnos, $id_asignatura, $dias, $id_modalidad, $id_carga_academica)
+    {
+
+        global $instancia_conexion;
+
+        $sql = "call proc_actualizar_carga_academica_virtual('$control','$seccion','$hra_inicio','$hra_final','$num_alumnos','$id_asignatura','$dias','$id_modalidad','$id_carga_academica')";
+
+        if ($consulta = $instancia_conexion->ejecutarConsulta($sql)) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
     function crear_carga_academica($control, $seccion, $num_alumnos, $id_persona, $id_aula, $id_asignatura, $dias, $id_modalidad, $hora_inicial, $hora_final)
     {
@@ -151,6 +164,22 @@ class modeloCarga
                 $arreglo["data"][] = $consulta_VU;
             }
             return $arreglo;
+        }
+    }
+
+    function crear_carga_virtual($control, $seccion, $num_alumnos, $id_persona, $id_asignatura, $dias, $id_modalidad, $hora_inicial, $hora_final)
+    {
+
+        global $instancia_conexion;
+
+        $sql = "call proc_insert_carga_virtual('$control', '$seccion', '$num_alumnos', '$id_persona', '$id_asignatura', '$dias', '$id_modalidad', '$hora_inicial', '$hora_final')";
+
+        if ($consulta = $instancia_conexion->ejecutarConsulta($sql)) {
+            $Id_objeto=46;
+            return 1;
+            bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'],'INSERTO' , 'UNA CARGA ACADEMICA');
+        } else {
+            return 0;
         }
     }
 

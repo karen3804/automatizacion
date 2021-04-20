@@ -40,8 +40,8 @@ if (isset($_REQUEST['msj'])) {
 
 
 
-    $sqltabla = "SELECT tbl_municipios_hn.id_municipio AS id_municipio,tbl_municipios_hn.municipio AS municipio,tbl_municipios_hn.codigo AS codigo,tbl_municipios_hn.id_departamento AS id_departamento,
-(SELECT d.departamento FROM tbl_departamentos d WHERE d.id_departamento= tbl_municipios_hn.id_departamento LIMIT 1) AS departamento
+    $sqltabla = "SELECT *,
+(SELECT d.departamento FROM tbl_departamentos as d WHERE d.id_departamento= tbl_municipios_hn.id_departamento LIMIT 1) AS departamento
 FROM tbl_municipios_hn";
     $resultadotabla = $mysqli->query($sqltabla);
   }
@@ -93,8 +93,8 @@ if ($visualizacion == 0) {
 
   /* Manda a llamar todos las datos de la tabla para llenar el gridview  */
   /*$sqltabla = "select  municipio, codigo, id_departamento FROM tbl_municipios_hn";*/
-  $sqltabla="SELECT tbl_municipios_hn.id_municipio AS id_municipio,tbl_municipios_hn.municipio AS municipio,tbl_municipios_hn.codigo AS codigo,tbl_municipios_hn.id_departamento AS id_departamento,
-(SELECT d.departamento FROM tbl_departamentos d WHERE d.id_departamento= tbl_municipios_hn.id_departamento LIMIT 1) AS departamento
+  $sqltabla="SELECT *,
+(SELECT d.departamento FROM tbl_departamentos as d WHERE d.id_departamento= tbl_municipios_hn.id_departamento LIMIT 1) AS departamento
 FROM tbl_municipios_hn";
   $resultadotabla = $mysqli->query($sqltabla);
 
@@ -102,8 +102,8 @@ FROM tbl_municipios_hn";
 
   /* Esta condicion sirve para  verificar el valor que se esta enviando al momento de dar click en el icono modicar */
   if (isset($_GET['municipio'])) {
-    $sqltabla = "SELECT tbl_municipios_hn.id_municipio AS id_municipio,tbl_municipios_hn.municipio AS municipio,tbl_municipios_hn.codigo AS codigo,tbl_municipios_hn.id_departamento AS id_departamento,
-(SELECT d.departamento FROM tbl_departamentos d WHERE d.id_departamento= tbl_municipios_hn.id_departamento LIMIT 1) AS departamento
+    $sqltabla = "SELECT *,
+(SELECT d.departamento FROM tbl_departamentos as d WHERE d.id_departamento= tbl_municipios_hn.id_departamento LIMIT 1) AS departamento
 FROM tbl_municipios_hn";
     $resultadotabla = $mysqli->query($sqltabla);
 
@@ -113,8 +113,8 @@ FROM tbl_municipios_hn";
     /* Iniciar la variable de sesion y la crea */
     /* Hace un select para mandar a traer todos los datos de la 
  tabla donde rol sea igual al que se ingreso en el input */
-    $sql = "SELECT tbl_municipios_hn.id_municipio AS id_municipio,tbl_municipios_hn.municipio AS municipio,tbl_municipios_hn.codigo AS codigo,tbl_municipios_hn.id_departamento AS id_departamento,
-(SELECT d.departamento FROM tbl_departamentos d WHERE d.id_departamento= tbl_municipios_hn.id_departamento LIMIT 1) AS departamento
+    $sql = "SELECT *,
+(SELECT d.departamento FROM tbl_departamentos as d WHERE d.id_departamento= tbl_municipios_hn.id_departamento LIMIT 1) AS departamento
 FROM tbl_municipios_hn WHERE municipio = '$municipio'";
     $resultado = $mysqli->query($sql);
     /* Manda a llamar la fila */
@@ -315,14 +315,38 @@ ob_end_flush();
 
                   </div>
 
-                  <div class="form-group">
-                    <label>Departamento</label>
-                    <select class="form-control-lg select2" type="text" id="cbm_departamento" name="cmb_departamento" style="width: 100%;">
-                      <option value="">Seleccione una opción</option>
-                    </select>
-                  </div>
-                  <input class="form-control" id="departamento1" name="departamento1" value="<?php echo $_SESSION['id_departamento']; ?>" hidden>
+                 <div class="form-group ">
+                          <label class="control-label">Departamentos</label>
+                          <select class="form-control" name="departamento1" required="">
+        <option value="0"  >Seleccione un Departamento:</option>
+                  <?php
 
+          if(isset($_SESSION['id_departamento']))
+          {
+                $query = $mysqli -> query ("select * FROM tbl_departamentos  where id_departamento<>$_SESSION[id_departamento] ");
+                while ($resultado = mysqli_fetch_array($query)) 
+                {
+                echo '<option value="'.$resultado['id_departamento'].'"  > '.$resultado['departamento'].'</option>' ;
+                }
+
+                        echo '<option value="'.$_SESSION['id_departamento'].'" selected="" >  '.$_SESSION['departamento'].'</option>' ;
+          } 
+          else
+          {
+              $query = $mysqli -> query ("select * FROM tbl_departamentos ");
+              while ($resultado = mysqli_fetch_array($query))
+               {
+               echo '<option value="'.$resultado['id_departamento'].'"  > '.$resultado['departamento'].'</option>' ;
+               }
+
+          }
+          
+
+        ?>
+        
+      </select>
+                          </div>
+                          
 
                 </div>
               </div>

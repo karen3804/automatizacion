@@ -97,7 +97,7 @@ ob_end_flush();
                     <div class="col-sm-6">
 
 
-                        <h1>Grados Academicos</h1>
+                        <h1>Grados Académicos</h1>
                     </div>
 
 
@@ -106,7 +106,7 @@ ob_end_flush();
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
                             <li class="breadcrumb-item"><a href="../vistas/menu_mantenimiento.php">Menu Mantenimiento</a></li>
-                            <li class="breadcrumb-item"><a href="../vistas/mantenimiento_grados_academicos_vista.php"> Mantenimiento Grados Academicos</a></li>
+                            <li class="breadcrumb-item"><a href="../vistas/mantenimiento_grados_academicos_vista.php"> Mantenimiento Grados Académicos</a></li>
                         </ol>
                     </div>
 
@@ -125,7 +125,7 @@ ob_end_flush();
 
                     <div class="card card-default ">
                         <div class="card-header center">
-                            <h3 class="card-title">Nuevo Grado Academico</h3>
+                            <h3 class="card-title">Nuevo Grado Académico</h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -138,12 +138,12 @@ ob_end_flush();
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group ">
-                                        <label>Ingrese el Grado Academico</label>
+                                        <label>Ingrese el Grado Académico</label>
                                         <input class="form-control " type="text" id="txtgradoacademico" name="txtgradoacademico" required="" maxlength="30" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txtgradoacademico');" onkeypress="return sololetras(event)"  onkeypress="return comprobar(this.value, event, this.id)">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Descripcion</label>
+                                        <label>Descripción</label>
                                         <input class="form-control" type="text" id="txtdescripcion" name="txtdescripcion" required="" maxlength="30" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('txtdescripcion');" onkeypress="return sololetras(event)"  onkeypress="return comprobar(this.value, event, this.id)">
                                     </div>
 
