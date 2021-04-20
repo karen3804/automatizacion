@@ -216,6 +216,7 @@ $sql_datos_modal="SELECT px.valor as valor, concat(p.nombres,' ',p.apellidos) as
       <html>
       <head>
         <title></title>
+        <script type="text/javascript" src="../js/calculo_fecha_pps.js"></script>
       </head>
       <body >
 
@@ -322,12 +323,12 @@ $sql_datos_modal="SELECT px.valor as valor, concat(p.nombres,' ',p.apellidos) as
 
 <!--Creacion del modal-->
 
-<form action="../Controlador/aprobar_practica_coordinacion_controlador.php" method="post"  data-form="update" autocomplete="off"  >
+<!--<form action="../Controlador/aprobar_practica_coordinacion_controlador.php" method="post"  data-form="update" autocomplete="off"  >-->
 
-
+<form method="post" id="formulario">
 
  <div class="modal fade" id="modal_aprobacion_practica">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Práctica  Profesional Supervisada</h4>
@@ -343,7 +344,7 @@ $sql_datos_modal="SELECT px.valor as valor, concat(p.nombres,' ',p.apellidos) as
         <div class="card-body">
           <div class="row">
 
-            <div class="col-sm-12">
+            <div class="col-sm-6">
              <div class="form-group">
                <label>Estudiante</label>
                <input class="form-control" type="text" id="txt_estudiante_documento" name="txt_estudiante_documento" value="<?php echo strtoupper($_SESSION['txt_estudiante']) ?>" readonly="readonly">
@@ -354,21 +355,60 @@ $sql_datos_modal="SELECT px.valor as valor, concat(p.nombres,' ',p.apellidos) as
              <input class="form-control" type="text" id="txt_empresa" name="txt_empresa" hidden="true"value="<?php echo strtoupper( $_SESSION['empresa']) ?>" readonly="readonly">
 
 
-              <div class="col-sm-12">
+              <div class="col-sm-6">
                <div class="form-group">
                 <label>Horas Practica</label>
                 <select class="form-control" name="cb_horas_practica" id="cb_horas_practica">
                   <option value="0">Seleccione una opción :</option>
                   <option value="400">400</option>
                   <option value="800">800</option>
-                 
-
-
                 </select>
               </div>
             </div>
-
-             <div class="col-sm-12">
+            <div class="col-sm-4">
+                  <div class="form-group">
+                  
+                        <center> <h5>Horario de PPS</h5></center>
+                        
+                        <center> <label for="cars">Fecha de inicio</label>  </center>
+                        <input type="date" placeholder="Escribe tu nombre" name="fecha_inicio" class="form-control" id="fecha_inicio" required autofocus title="Ingresa tu nombre porfavor">
+                        <center> <h5>Días de Trabajo</h5></center>
+                          <select class="form-control"name="dias" id="dias">
+                          <option value="">Seleccione una opción :</option>
+                          <option value="4">Lu-Ju</option>
+                          <option value="5">Lu-Vi</option>
+                          <option value="5.5">Lu-Sa</option>
+                          </select>
+                          <br>
+                  </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                          <center> <h5>Horario de Trabajo</h5></center>
+                          <center> <label>Entrada</label> </center>
+                          <input type="time" name="horario_incio" id="horario_incio" class="form-control" required autofocus title="Ingresa tu apeliido porfavor">
+                          <center><label>Salida</label>  </center>
+                    <input type="time" name="horario_fin" id="horario_fin" class="form-control" required autofocus title="Ingresa tu apeliido porfavor">
+                </div>
+            </div>
+            <div class="col-sm-4">
+               <div class="form-group">
+                         <center> <h5>Fecha de finalización de PPS</h5></center>
+                         <center><label>Fecha</label>  </center>
+                         <input type="date" placeholder="Escribe tu nombre" name="fecha_finalizacion" class="form-control" id="fecha_finalizacion"  autofocus title="Ingresa tu nombre porfavor">
+                         
+              </div>
+            </div>
+            <div class="col-sm-12">
+               <div class="form-group">
+               
+                         <center><button type="button" id="btnEnviar" class="btn btn-primary" name="btnEnviar">Calcular Fecha</button></center>
+                         
+                    
+              </div>
+            </div>
+            </form>
+            <div class="col-sm-12">
                <div class="form-group">
                 <label>Aprobar PPS</label>
                 <select class="form-control" name="cb_practica" id="cb_practica"  onchange="Mostrar_motivo();">
@@ -379,9 +419,10 @@ $sql_datos_modal="SELECT px.valor as valor, concat(p.nombres,' ',p.apellidos) as
 
 
                 </select>
+             
               </div>
-            </div>
 
+            </div>
             <div class="col-sm-12">
               <div class="form-group">
                 <label>Motivo</label>
@@ -409,7 +450,7 @@ $sql_datos_modal="SELECT px.valor as valor, concat(p.nombres,' ',p.apellidos) as
     <!--Footer del modal-->
     <div class="modal-footer justify-content-between">
       <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      <button type="submit" class="btn btn-primary" id="btn_aprobacion_rechazo_practica" name="btn_aprobacion_rechazo_practica"  <?php echo $_SESSION['btn_aprobacion_rechazo_practica']; ?> >Guardar Cambios</button>
+      <button type="button" class="btn btn-primary" id="btn_aprobacion_rechazo_practica" name="btn_aprobacion_rechazo_practica"  <?php echo $_SESSION['btn_aprobacion_rechazo_practica']; ?> >Guardar Cambios</button>
     </div>
 
 
@@ -424,6 +465,26 @@ $sql_datos_modal="SELECT px.valor as valor, concat(p.nombres,' ',p.apellidos) as
 
 
 </form>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <center><h4 class="modal-title"></h4></center>
+        </div>
+        <div class="modal-body">
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <form action="" method="post"  data-form="update" autocomplete="off"  >

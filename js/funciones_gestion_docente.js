@@ -90,17 +90,21 @@ function TablaDocente() {
 				exportOptions: {
 					columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 				},
-				title: "Universidad Nacional Autónoma De Honduras"
+				/*  title: "Universidad Nacional Autónoma De Honduras"
                 + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
-                + " Departamento De Informática ",
-                messageTop: "REPORTE DE DOCENTES                                           " + "FECHA: "+ fechaYHora,
+				+ " Departamento De Informática ",  */
+				tittle: "DEPARTAMENTO DE INFORMÁTICA",
+				messageTop: "REPORTE DE DOCENTES                                           " + "FECHA: " + fechaYHora,
+				 
       },
       {
         extend: "pdfHtml5",
 		download:'open',
-        customize: function (doc) {
-			doc.content.splice(1, 0, {
-				margin: 12,
+		  customize: function (doc) {
+			
+			  doc.content.splice(0, 0, {
+				 
+				 margin: [0, 12], 
 				alignment: 'left', 
 				width: 100,
 				height: 100,
@@ -120,23 +124,47 @@ function TablaDocente() {
               ],
               margin: [10, 0],
             };
-          };
-		 
-		  
-        },
-
+			  };
+			  doc["header"] = function () {
+				  return {
+					  columns: [
+						  {
+							  
+							 /* width: , */
+						  /* height: 10, */
+							 
+							  alignment: "center",
+							  text: [
+								 
+								  " UNIVERSIDAD NACIONAL AUTÓNOMA DE HONDURAS                                                                                                                                                                                                                                                                                                                                   "
+								  + "      FACULTAD DE CIENCIAS ECONÓMICAS, ADMINISTRATIVAS Y CONTABLES                                                                                                                                                                                                                                                                                                                           "
+								  + " DEPARTAMENTO DE INFORMÁTICA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           "
+								  + "REPORTE DE DOCENTES                                                                                                                       ",
+							  ],
+						  },
+					  ],
+					  margin: [0, 4],
+				  };
+			  };
+			 
+			// Create a header
+		
+			 
+			
+},
+		
         text: '<i class="fas fa-file-pdf"></i> ',
         titleAttr: "Exportar a PDF",
         className: "btn btn-danger",
         orientation: "landscape",
-        pageSize: "Legal",
+        pageSize: "legal",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        }, 
-		title: "Universidad Nacional Autónoma De Honduras                                                                                                                                                                                                                                "
-		+ " Facultad De Ciencias Económicas,Administrativas Y Contables                                                                                                                      "
-		+ " Departamento De Informática                                                                                               																												" +  "REPORTE DE DOCENTES",
-		  messageTop: "FECHA: " + fechaYHora + "     PERIODO: "+ num_periodo +" AÑO: "+ num_año, //Coloca el título dentro del PDF
+          columns: [1, 2, 3, 4, 7, 8, 9, 10],
+		}, 
+	
+		 //Coloca el título dentro del PDF
+		  title: "REPORTE DE DOCENTES ",
+		  messageTop: "FECHA: " + fechaYHora + "     PERIODO: " + num_periodo + " AÑO: " + num_año,
 	  },
 	  
 	  

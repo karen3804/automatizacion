@@ -22,6 +22,7 @@ class myPDF extends FPDF{
 
 
         global $mysqli;
+        $id = $_SESSION['id_usuario'];
         $sql2 = $mysqli->prepare("SELECT tbl_periodo.id_periodo AS id_periodo, tbl_periodo.num_periodo AS num_periodo, tbl_periodo.num_anno AS num_anno, tbl_periodo.fecha_adic_canc AS fecha_adic_canc, tbl_periodo.fecha_desbloqueo AS fecha_desbloqueo,
 (SELECT tp.descripcion FROM tbl_tipo_periodo AS tp INNER JOIN tbl_periodo AS pdo ON tp.id_tipo_periodo=pdo.id_tipo_periodo
 			WHERE tp.id_tipo_periodo= tbl_periodo.id_tipo_periodo LIMIT 1) AS tipo_periodo,
@@ -32,7 +33,7 @@ ORDER BY id_periodo DESC LIMIT 1;");
         $sql2->execute();
         $resultado2 = $sql2->get_result();
         $row2 = $resultado2->fetch_array(MYSQLI_ASSOC);
-        $sql = "SELECT tp.nombres, tp.apellidos FROM tbl_personas tp INNER JOIN tbl_usuarios us ON us.id_persona=tp.id_persona WHERE us.Id_usuario= 2";
+        $sql = "SELECT tp.nombres, tp.apellidos FROM tbl_personas tp INNER JOIN tbl_usuarios us ON us.id_persona=tp.id_persona WHERE us.Id_usuario= $id";
         $resultado = $mysqli->query($sql);
         while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
@@ -54,7 +55,7 @@ ORDER BY id_periodo DESC LIMIT 1;");
         $this->Cell(48, 10, "ACTIVIDAD DOCENTE: ", 0, 0, 'C' );
         $this->Cell(400, 10, "FECHA: " . $fecha, 0, 0, 'C');
         $this->ln();
-            $this->Cell(70, 10, "" . $row['nombres'] . ' ' . $row['apellidos'], 0, 0, 'C');
+            $this->Cell(90, 10, "" . utf8_decode( $row['nombres'] . ' ' . $row['apellidos']), 0, 0, 'C');
         
         }
         
