@@ -175,7 +175,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                 <h3> Departamento De Informática </h2>
     </center>
 
-    <img style="margin-left: 100px;" hidden src="../Imagenes_Perfil_Docente/imagen23053148.png" alt="" class="brand-image img-circle elevation-3" height="175" width="175"  id="foto_carrera">
+    <img style="margin-left: 100px;" hidden src="../Imagenes_Perfil_Docente/imagen23053148.png" alt="" class="brand-image img-circle elevation-3" height="185" width="170" id="foto_carrera">
 
     <input hidden class="form-control" type="text" id="fecha_actual" name="fecha_actual" style="margin-left: 140px;" value="<?php echo date("d/m/y"); ?>">
 
@@ -190,7 +190,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
-                            <li class="breadcrumb-item active">Seguridad</li>
+                            <li class="breadcrumb-item active">Perfil Docente</li>
                         </ol>
                     </div>
 
@@ -205,70 +205,25 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
             <div class="container-fluid">
                 <form action="" method="post" role="form" enctype="multipart/form-data" data-form="perfil" autocomplete="off" class="FormularioAjax">
 
+
                     <div class="card card-default">
                         <div class="card-header" id="datos_docente">
-                            <h3 class="card-title">Datos Docente</h3>
+                            <h3 class="card-title">Datos Personales</h3>
 
                             <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse" id="boton_colapse"><i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" id="boton_colapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+
                             </div>
                         </div>
-
-
                         <!-- /.card-header -->
-
-                        <div class="col-sm-12">
-
-                            <div class="col-sm-2">
-                                <div class="card-body" class="text-center">
-
-                                    <!-- <div class="" style="right: 520px;" id="foto_carrera">
-                                        
-                                    </div> -->
-                                    
-
-                                    <div class="col-sm-2">
-
-                                        
-
-                                        <img style="margin-left: 680px;" src="" alt="" class="brand-image img-circle elevation-3" id="foto" height="175" width="175">
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <p class="text-center" style="margin-top: 20px;" id="parrafo_boton_editar">
-
-                            <form action="" method="POST" role="form" enctype="multipart/form-data" id="frmimagen">
-                                <div class="form-group">
-                                    <!-- FOTOGRAFIA  -->
-                                    <input hidden type="file" accept=".png, .jpg, .JPG, .jpeg" maxlength="8388608" name="imagen" id="imagen" style="text-transform: uppercase">
-                                </div>
-                                <button style="color:white;font-weight: bold;" type="button" id="btn_mostrar" class="btn btn-info" onclick="MostrarBoton();"></i>Cambiar foto de Perfil</button>
-
-                                <button style="color:white;font-weight: bold;" hidden type="submit" id="btn_foto" class="btn btn-dark btn_foto"></i>Guardar
-                                    foto de Perfil</button>
-                                <input class="form-control" hidden value="<?php echo $usuario ?>" type="text" name="id_persona" id="id_persona">
-
-                            </form>
-
-                            <button type="button" style="color:white;font-weight: bold;" class="btn btn-info" onclick="habilitar_editar();" id="editar_info" name="editar_info"><i class="fas fa-user-edit"></i>Editar Información</button>
-
-                            <button hidden type="button" style="color:white;font-weight: bold;" class="btn btn-info" onclick="desabilitar();" id="btn_editar" name="btn_editar"><i class="fas fa-user-edit"></i>Editar Información</button>
-
-                            <button class="btn btn-info" style="color:white;font-weight: bold;" id="btn_editar_curri" name="btn_editar_curri"><i class="fas fa-print"></i>Imprimir</button>
-
-                            </p>
-
-                            <p class="text-center" style="margin-top: 20px;">
-                                <button hidden type="button" class="btn btn-info" id="btn_guardar_edicion" name="btn_guardar_edicion" onclick="EditarPerfil($('#Nombre').val(),$('#txt_apellido').val(),$('#identidad').val(),$('#estado_civil_text').val()); ver_estado_civil();"><i class="fas fa-user-edit"></i>Guardar Información</button>
-                            </p>
+                        <div class="card-body">
+                            <div class="row">
 
 
-                            <div class="d-flex justify-content-around flex-row bd-highlight row">
 
-                                <div class="col" id="parrafo_numEmpleado">
+                                <div class="col-sm-2" id="parrafo_numEmpleado">
                                     <label for="">Nº Empleado:</label>
 
                                     <div class="form-group">
@@ -280,7 +235,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                     </div>
                                 </div>
 
-                                <div class="col">
+                                <div class="col-sm-4">
                                     <label for="">Nombre:</label>
 
                                     <div class="form-group">
@@ -292,7 +247,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                     </div>
                                 </div>
 
-                                <div class="col">
+                                <div class="col-sm-4">
                                     <label for="">Apellido(s):</label>
 
                                     <div class="form-group">
@@ -302,19 +257,18 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col" id="parrafor_jornada">
-                                    <label for="">Jornada:</label>
 
-                                    <div class="form-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="icono_jornada"><i class="fas fa-user icon"></i></span>
-                                            <input disabled name="" type="text" class="form-control" id="jornada">
-
-                                        </div>
-                                    </div>
                                 </div>
-                                <div class="col" id="parrafo_genero">
+
+
+                                <div class=" col-sm-1">
+
+                                    <img style="margin-left: 0px;" src="" alt="" class="brand-image img-circle elevation-3" id="foto" height="155" width="140">
+
+                                </div>
+
+
+                                <div class="col-sm-3" id="parrafo_genero">
                                     <label for="email">Género:</label>
 
                                     <div class="form-group">
@@ -328,12 +282,8 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <input type="text" name="mayoria_edad" id="mayoria_edad" hidden readonly onload="mayoria_edad()">
-                            <div class="d-flex justify-content-around flex-row bd-highlight row">
-
-
-                                <div class="col" id="parrafo_identidad">
+                                <input type="text" name="mayoria_edad" id="mayoria_edad" hidden readonly onload="mayoria_edad()">
+                                <div class="col-sm-3" id="parrafo_identidad">
                                     <label for="">Nº Identidad:</label>
 
                                     <div class="form-group">
@@ -348,47 +298,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
                                 </div>
 
-
-                                <div class="col" id="parrafo_nacionalidad">
-                                    <label for="">Nacionalidad:</label>
-
-                                    <div class="form-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="icono_nacionalidad"><i class="fas fa-flag"></i></span>
-                                            <input disabled name="" type="text" onkeyup="Mayuscula('nacionalidad');" class="form-control" id="nacionalidad">
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col" id="parrafo_categoria">
-                                    <label for="">Categoría:</label>
-
-                                    <div class="form-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="icono_categoria"><i class="fas fa-user icon"></i></span>
-                                            <input disabled name="" type="text" class="form-control" id="categoria">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <input class="form-control" readonly hidden id="age" name="age" maxlength="25" value="" required style="text-transform: uppercase">
-                                <div class="col" id="parrafo_nacimiento">
-                                    <label for="">Fecha Nacimiento:</label>
-
-                                    <div class="form-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="icono_nacimiento"><i class="far fa-calendar-alt"></i></span>
-                                            <input disabled="true" value="" type="date" name="Fecha" id="fecha" class="form-control" onblur="valida_mayoria()" onkeydown="return false">
-                                        </div>
-
-                                    </div>
-                                    <p hidden id="Textofecha" style="color:red;">¡El docente debe ser mayor de edad! </p>
-
-                                </div>
-
-                                <div class="col" id="parrafo_estadoC">
+                                <div class="col-sm-2" id="parrafo_estadoC">
                                     <label for="">Estado Civil:</label>
 
                                     <div class="form-group">
@@ -403,8 +313,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="col" id="parrafo_sued">
+                                <div class="col-sm-2" id="parrafo_sued">
                                     <label for="">Sued:</label>
 
                                     <div class="form-group">
@@ -417,90 +326,172 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                     </div>
                                 </div>
 
-                            </div>
-                            
-                            <div class="d-flex justify-content-around flex-row bd-highlight row">
 
-                                <div class="col-md-20" id="curriculum_parrafo">
+                                <div class="col-sm-2">
+                                    <p class="text-center" style="margin-top: 20px;" id="parrafo_boton_editar">
+
+                                    <form action="" method="POST" role="form" enctype="multipart/form-data" id="frmimagen">
+                                        <div class="form-group">
+                                            <!-- FOTOGRAFIA  -->
+                                            <input hidden type="file" accept=".png, .jpg, .JPG, .jpeg" maxlength="8388608" name="imagen" id="imagen" style="text-transform: uppercase">
+                                        </div>
+                                        <button style="color:white;font-weight: bold;" type="button" id="btn_mostrar" class="btn btn-warning" onclick="MostrarBoton();"></i>Cambiar foto de Perfil</button>
+
+                                        <button style="color:white;font-weight: bold;" hidden type="submit" id="btn_foto" class="btn btn-dark btn_foto"></i>Guardar
+                                            foto de Perfil</button>
+                                        <input class="form-control" hidden value="<?php echo $usuario ?>" type="text" name="id_persona" id="id_persona">
+
+                                    </form>
+                                    </p>
+
+                                </div>
+
+
+                                <div class="col-sm-2" id="parrafor_jornada">
+                                    <label for="">Jornada:</label>
 
                                     <div class="form-group">
                                         <div class="input-group-prepend">
-                                            <button class="btn btn-info " id="" name=""> <a href="" target="_blank" id="curriculum" style="color:white;font-weight: bold;">Curriculum</a></button>
+                                            <span class="input-group-text" id="icono_jornada"><i class="fas fa-user icon"></i></span>
+                                            <input disabled name="" type="text" class="form-control" id="jornada">
 
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-sm-3" id="parrafo_nacionalidad">
+                                    <label for="">Nacionalidad:</label>
 
-                                <div class="col-md-20" id="parrafo_curriculum">
                                     <div class="form-group">
                                         <div class="input-group-prepend">
+                                            <span class="input-group-text" id="icono_nacionalidad"><i class="fas fa-flag"></i></span>
+                                            <input disabled name="" type="text" onkeyup="Mayuscula('nacionalidad');" class="form-control" id="nacionalidad">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2" id="parrafo_categoria">
+                                    <label for="">Categoría:</label>
+
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="icono_categoria"><i class="fas fa-user icon"></i></span>
+                                            <input disabled name="" type="text" class="form-control" id="categoria">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <input class="form-control" readonly hidden id="age" name="age" maxlength="25" value="" required style="text-transform: uppercase">
+
+                                <div class="col-sm-3" id="parrafo_nacimiento">
+                                    <label for="">Fecha Nacimiento:</label>
+
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="icono_nacimiento"><i class="far fa-calendar-alt"></i></span>
+                                            <input disabled="true" value="" type="date" name="Fecha" id="fecha" class="form-control" onblur="valida_mayoria()" onkeydown="return false">
+                                        </div>
+
+                                    </div>
+                                    <p hidden id="Textofecha" style="color:red;">¡El docente debe ser mayor de edad! </p>
+
+                                </div>
+
+
+
+
+
+
+                                <div class="col-sm-12">
+                                    <div class="btn-group">
+
+
+                                        &nbsp;&nbsp;
+
+                                        <div class="input-group-prepend" id="parrafo_curriculum">
 
                                             <form action="" method="POST" role="form" enctype="multipart/form-data" id="frmimagen">
                                                 <button style="color:white;font-weight: bold;" type="button" id="btn_mostrar_curriculum" class="btn btn-info" onclick="MostrarBotonCurriculum();"></i>Actualizar Curriculum</button>
 
                                                 <input hidden class="btn btn-info" type="file" accept=".doc, .docx, .pdf" maxlength="60" id="c_vitae" name="c_vitae" value="" style="text-transform: uppercase">
-
+                                                &nbsp;&nbsp;
                                                 <button hidden type="submit" id="btn_curriculum" class="btn btn-dark btn_curriculum"></i>Guardar Curriculum</button>
                                                 <input class="form-control" hidden value="<?php echo $usuario ?>" type="text" name="id_persona" id="id_persona">
                                             </form>
 
                                         </div>
+                                        <div class="" id="curriculum_parrafo">
+                                            &nbsp;&nbsp;
+                                            <button class="btn btn-info " id="descargar_curriculum" name=""> <a href="" target="_blank" id="curriculum" style="color:white;font-weight: bold;">Descargar Curriculum</a></button>
+                                        </div>
+                                            &nbsp;&nbsp;
+                                            <button class="btn btn-info" style="color:white;font-weight: bold;" id="btn_editar_curri" name="btn_editar_curri"><i class="fas fa-print"></i>Imprimir Perfil</button>
+
+
+                                            &nbsp;&nbsp;
+
+                                            <!-- <p class="text-center" style="margin-top: 20px;"></p> -->
+
+                                            <button type="button" style="color:white;font-weight: bold;" class="btn btn-info" onclick="habilitar_editar();" id="editar_info" name="editar_info"><i class="fas fa-user-edit"></i>Editar Información</button>
+
+                                            <button hidden type="button" style="color:white;font-weight: bold;" class="btn btn-info" onclick="desabilitar();" id="btn_editar" name="btn_editar"><i class="fas fa-user-edit"></i>Editar Información</button>
+
+
+
+                                            &nbsp;&nbsp;
+                                            <!-- <p class="text-center" style="margin-top: 20px;"> -->
+                                            <button hidden type="button" class="btn btn-info" id="btn_guardar_edicion" name="btn_guardar_edicion" onclick="EditarPerfil($('#Nombre').val(),$('#txt_apellido').val(),$('#identidad').val(),$('#estado_civil_text').val()); ver_estado_civil();"><i class="fas fa-user-edit"></i>Guardar Información</button>
+                                            <!-- </p> -->
+                                        </div>
                                     </div>
+
+
+
                                 </div>
                             </div>
-
                         </div>
 
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">Contactos</h3>
 
-                        <div class="d-flex justify-content-around flex-row bd-highlight row">
-                            <div class="card " style="width:420px;border-color:gray;" id="card_telefono">
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <!--CONTACTOS-->
+
+                                <!--  <div class="card " style="width:420px;border-color:gray;">
                                 <div class="card-body">
                                     <h4 class="card-title">Contactos</h4>
                                     <div class="form-group card-text">
-                                        <!-- TABLA CONTACTOS -->
-                                        <button type="button" name="add" id="add" class="btn btn-primary card-title" data-toggle="modal" data-target="#ModalTel">Agregar Teléfono</button>
+                                        <!TABLA CONTACTOS -->
+                                <!--  <button type="button" name="add" id="add" class="btn btn-primary card-title" data-toggle="modal" data-target="#ModalTelefonos">Agregar
+                                            Telefono</button>
 
                                         <table class="table table-bordered table-striped m-0">
                                             <thead>
                                                 <tr>
 
-                                                    <th>Teléfono</th>
-                                                    <th id="eliminar_telefono_tabla">Eliminar</th>
+                                                    <th>Telefono</th>
+                                                    <th>Eliminar</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody id="tbData2"></tbody>
                                         </table>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="card " style="width:420px;border-color:gray;">
-                                <div class="card-body">
-                                    <h4 class="card-title">Correo</h4>
-                                    <div class="form-group card-text">
-                                        <!-- TABLA CORREO -->
-                                        <button type="button" name="add_correo" id="add_correo" class="btn btn-primary card-title" data-toggle="modal" data-target="#ModalCorreo">Agregar Correo</button>
-
-                                        <table class="table table-bordered table-striped m-0">
-                                            <thead>
-                                                <tr>
-
-                                                    <th>Correo</th>
-                                                    <th id="eliminar_correo_tabla">Eliminar</th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody id="tbDataCorreo1"></tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <!---card-->
+                                </div> -->
+                                <!--  </div> -->
+                                <!---card-->
 
 
-                            <!--Modal para telefono-->
-                            <div class="modal fade" tabindex="-1" role="dialog" id="ModalTel">
+                                <!-- Modal para telefono -->
+                                <!--   <div class="modal fade" tabindex="-1" role="dialog" id="ModalTelefonos">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -511,275 +502,325 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                         </div>
 
                                         <div class="modal-body">
+
+
+
+
                                             <div class="container">
                                                 <div class="form-group">
-                                                    <label for="">Teléfono</label>
-                                                    <input required type="text" name="tel" id="tel" class="form-control name_list" data-inputmask="'mask': ' 9999-9999'" data-mask required>
+                                                    <label for="">Tipo de Contacto</label>
+                                                    <select class="form-control" onchange="" id="tipo_contacto" name="">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <div class="form-group">
+                                                    <label for="" id="lbl_tipo">Contacto</label>
+                                                    <input hidden type="text" name="tel" id="txt_contacto_tel" class="form-control name_list" data-inputmask="'mask': ' 9999-9999'" data-mask required>
+
+                                                    <input required type="text" name="tel" id="txt_contacto" class="form-control name_list" required>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-success" onclick="addTel()">Agregar</button>
+                                            <button type="button" class="btn btn-success" onclick="">Agregar</button>
                                             <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <!--CERRANDO MODAL TELEFONO-->
+                                <!--CERRANDO MODAL TELEFONO-->
 
-                            <!--Modal para correo-->
-                            <div class="modal fade" tabindex="-1" role="dialog" id="ModalCorreo">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Datos</h5>
-                                            <button class="close" data-dismiss="modal">
-                                                &times;
-                                            </button>
-                                        </div>
+                                <div class="d-flex justify-content-around flex-row bd-highlight row">
+                                    <div class="card " style="width:420px;border-color:gray;" id="card_telefono">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Contactos</h4>
+                                            <div class="form-group card-text">
+                                                <!-- TABLA CONTACTOS -->
+                                                <button type="button" name="add" id="add" class="btn btn-info card-title" data-toggle="modal" data-target="#ModalTel">Agregar Teléfono</button>
 
-                                        <div class="modal-body">
-                                            <div class="container">
-                                                <div class="form-group">
-                                                    <label for="">Correo</label>
-                                                    <input required type="email" name="correo" id="correo" class="form-control name_list">
-                                                </div>
+                                                <table class="table table-bordered table-striped m-0">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th>Teléfono</th>
+                                                            <th id="eliminar_telefono_tabla">Eliminar</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbData2"></tbody>
+                                                </table>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-success" onclick="addCorreo()">Agregar</button>
-                                            <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                    <div class="card " style="width:420px;border-color:gray;">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Correo</h4>
+                                            <div class="form-group card-text">
+                                                <!-- TABLA CORREO -->
+                                                <button type="button" name="add_correo" id="add_correo" class="btn btn-info card-title" data-toggle="modal" data-target="#ModalCorreo">Agregar Correo</button>
+
+                                                <table class="table table-bordered table-striped m-0">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th>Correo</th>
+                                                            <th id="eliminar_correo_tabla">Eliminar</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbDataCorreo1"></tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                    <!---card-->
 
 
-
-                            <div class="card " style="width:420px;border-color:gray;" id="parrafo_encuesta">
-                                <div class="card-body">
-                                    <h4 class="card-title">Encuesta Docente</h4>
-                                    <div class="card-text">
-                                        <button type="button" id="btn_modal1" class="btn btn-info " onclick="pregunta1();">Pregunta 1</button>
-                                        <button type="button" id="btn_modal2" class="btn btn-info " onclick="pregunta2();">Pregunta 2</button>
-                                        <button type="button" id="btn_modal3" class="btn btn-info " onclick="pregunta3();">Pregunta 3</button>
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-
-
-                            <div class="card " style="width:600px;border-color:gray;" id="parrafo_comisiones">
-                                <!--comisiones-->
-                                <div class="card-body">
-                                    <h4 class="card-title">Comisiones y Actividades</h4>
-                                    <div class="card-text">
-                                        <table class="table table-bordered table-striped m-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Comisión</th>
-                                                    <th>Actividad</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="tbl_comisiones"></tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-
-                            </div><!-- Comisiones-->
-
-                            <div class="card " style="width:600px;border-color:gray;" id="parrafo_formacion">
-                                <!--comisiones-->
-
-                                <div class="card-body">
-                                    <h4 class="card-title ">Formación Académica</h4><br>
-
-
-                                    <!-- <ul class="card-text" id="ulFormacion">
-
-                                    </ul> -->
-                                    <div class="card-body">
-                                        <button type="button" class="btn btn-primary card-title" data-toggle="modal" data-target="#myModal">Agregar Formación Académica <i class="fa fa-user-plus"></i></button>
-                                        <h4 class="card-title"></h4>
-                                        <div class="card-text">
-                                            <table class="table table-bordered table-striped m-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>Grado</th>
-                                                        <th>Especialidad</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tbl_especialidad"></tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-
-
-                                    <!-- The Modal -->
-                                    <div class="modal fade" id="myModal">
-                                        <div class="modal-dialog modal-dialog-centered">
+                                    <!--Modal para telefono-->
+                                    <div class="modal fade" tabindex="-1" role="dialog" id="ModalTel">
+                                        <div class="modal-dialog" role="document">
                                             <div class="modal-content">
-
-                                                <!-- Modal Header -->
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Nueva Formación Académica</h4>
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h5 class="modal-title">Datos</h5>
+                                                    <button class="close" data-dismiss="modal">
+                                                        &times;
+                                                    </button>
                                                 </div>
 
-                                                <!-- Modal body -->
                                                 <div class="modal-body">
-                                                    <br>
-                                                    <label for="">GRADO ACADÉMICO:</label>
-
-                                                    <div class="form-group">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
-                                                            &nbsp; <select class="form-control" onchange="mostrar($('#id_select').val());" id="id_select" name="">
-
-                                                            </select>
-
-
+                                                    <div class="container">
+                                                        <div class="form-group">
+                                                            <label for="">Teléfono</label>
+                                                            <input required type="text" name="tel" id="tel" class="form-control name_list" data-inputmask="'mask': ' 9999-9999'" data-mask required>
                                                         </div>
                                                     </div>
-
-                                                    <label for="">ESPECIALIDAD:</label>
-                                                    <div class="form-group">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i class="fas fa-file-code"></i></span>
-                                                            &nbsp;<select hidden id="select_especialidad" class="form-control" name="">
-                                                                <input id="especialidad" class="form-control" type="text" onkeyup="Mayuscula('especialidad');">
-                                                            </select>
-
-
-                                                        </div>
-                                                    </div>
-
-                                                    <br>
-
                                                 </div>
 
-                                                <!-- Modal footer -->
                                                 <div class="modal-footer">
-                                                    <button type="button" id="guardarFormacion" class="btn btn-primary">Guardar Formación Académica <i class="fa fa-user-plus"></i></button>
+                                                    <button type="button" class="btn btn-success" onclick="addTel()">Agregar</button>
+                                                    <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <!--CERRANDO MODAL TELEFONO-->
+
+                                    <!--Modal para correo-->
+                                    <div class="modal fade" tabindex="-1" role="dialog" id="ModalCorreo">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Datos</h5>
+                                                    <button class="close" data-dismiss="modal">
+                                                        &times;
+                                                    </button>
                                                 </div>
 
+                                                <div class="modal-body">
+                                                    <div class="container">
+                                                        <div class="form-group">
+                                                            <label for="">Correo</label>
+                                                            <input required type="email" name="correo" id="correo" class="form-control name_list">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success" onclick="addCorreo()">Agregar</button>
+                                                    <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
-                            </div><!-- Comisiones-->
-
-
-
-
-                            <!--CONTACTOS-->
-                            <!-- <div class="card " style="width:420px;border-color:gray;">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Contactos</h4>
-                                        <div class="form-group card-text"> -->
-                            <!-- TABLA CONTACTOS -->
-                            <!-- <button type="button" name="add" id="add" class="btn btn-primary card-title"
-                                                data-toggle="modal" data-target="#ModalTelefonos">Agregar
-                                                Telefono</button>
-
-                                            <table class="table table-bordered table-striped m-0">
-                                                <thead>
-                                                    <tr>
-
-                                                        <th>Telefono</th>
-                                                        <th>Eliminar</th> 
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tbData2"></tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div> -->
-                            <!---card-->
-
-
-                            <!-- Modal para telefono
-                                <div class="modal fade" tabindex="-1" role="dialog" id="ModalTelefonos">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Datos</h5>
-                                                <button class="close" data-dismiss="modal">
-                                                    &times;
-                                                </button>
-                                            </div>
-
-                                            <div class="modal-body">
-
-
-
-
-                                                <div class="container">
-                                                    <div class="form-group">
-                                                        <label for="">Tipo de Contacto</label>
-                                                        <select class="form-control"
-                                                            onchange="" id="tipo_contacto"
-                                                            name="">
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="container">
-                                                    <div class="form-group">
-                                                        <label for="" id="lbl_tipo">Contacto</label>
-                                                        <input hidden  type="text" name="tel" id="txt_contacto_tel"
-                                                            class="form-control name_list"
-                                                      data-inputmask="'mask': ' 9999-9999'" data-mask required
-                                                            >
-
-                                                            <input required type="text" name="tel" id="txt_contacto"
-                                                            class="form-control name_list"
-                                                     required
-                                                            >
-                                                    </div>
-                                                </div>
-                                            </div>
-  
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-success"
-                                                    onclick="">Agregar</button>
-                                                <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
-
-                            <!--CERRANDO MODAL TELEFONO-->
-
+                            </div>
                         </div>
 
 
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">Formación Académica y Comisiones</h3>
 
-                    </div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="d-flex justify-content-around flex-row bd-highlight row">
+
+                                    <div class="card " style="width:500px;border-color:gray;" id="parrafo_formacion">
+                                        <!--comisiones-->
+
+                                        <div class="card-body">
+                                            <h4 class="card-title ">Formación Académica</h4><br>
+
+
+                                            <!-- <ul class="card-text" id="ulFormacion">
+
+                                    </ul> -->
+                                            <div class="card-body">
+                                                <button type="button" class="btn btn-info card-title" data-toggle="modal" data-target="#myModal">Agregar Formación Académica <i class="fa fa-user-plus"></i></button>
+                                                <h4 class="card-title"></h4>
+                                                <div class="card-text">
+                                                    <table class="table table-bordered table-striped m-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>Grado</th>
+                                                                <th>Especialidad</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbl_especialidad"></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
 
 
 
+                                            <!-- The Modal -->
 
+                                        </div>
+                                    </div><!-- Comisiones-->
+
+
+
+                                    <div class="card " style="width:500px;border-color:gray;" id="parrafo_comisiones">
+                                        <!--comisiones-->
+                                        <div class="card-body">
+                                            <h4 class="card-title">Comisiones y Actividades</h4>
+                                            <div class="card-body">
+
+                                                <table class="table table-bordered table-striped m-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Comisión</th>
+                                                            <th>Actividad</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_comisiones"></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                    </div><!-- Comisiones-->
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">Preferencia Docente en Base a Experiencias Profesionales</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="d-flex justify-content-around flex-row bd-highlight row">
+                                    <div class="card " style="width:420px;border-color:gray;" id="parrafo_encuesta">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Encuesta Docente</h4>
+                                            <div class="card-text">
+                                                <button type="button" id="btn_modal1" class="btn btn-info " onclick="pregunta1();">Pregunta 1</button>
+                                                <button type="button" id="btn_modal2" class="btn btn-info " onclick="pregunta2();">Pregunta 2</button>
+                                                <button type="button" id="btn_modal3" class="btn btn-info " onclick="pregunta3();">Pregunta 3</button>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                </form>
             </div>
-            </form>
+
+        </section>
 
 
 
 
     </div>
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Nueva Formación Académica</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <br>
+                    <label for="">GRADO ACADÉMICO:</label>
+
+                    <div class="form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            &nbsp; <select class="form-control" onchange="mostrar($('#id_select').val());" id="id_select" name="">
+
+                            </select>
+
+
+                        </div>
+                    </div>
+
+                    <label for="">ESPECIALIDAD:</label>
+                    <div class="form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-file-code"></i></span>
+                            &nbsp;<select hidden id="select_especialidad" class="form-control" name="">
+                                <input id="especialidad" class="form-control" type="text" onkeyup="Mayuscula('especialidad');">
+                            </select>
+
+
+                        </div>
+                    </div>
+
+                    <br>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" id="guardarFormacion" class="btn btn-primary">Guardar Formación Académica <i class="fa fa-user-plus"></i></button>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
 
 
 
