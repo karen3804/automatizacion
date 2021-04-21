@@ -317,11 +317,14 @@ var addTask = () => {
 		viewlist();
 		limpiarTEL();
 	}
+
+	
 };
 
 function limpiarTEL() {
 	document.getElementById('tel').value = '';
 }
+
 
 var viewlist = () => {
 	if (list.length <= 3) {
@@ -343,6 +346,8 @@ var viewlist = () => {
 			$('#ModalTask1').modal('hide');
 		}
 	}
+
+	
 };
 
 var saveAll = () => {
@@ -841,6 +846,31 @@ function seleccionar() {
 	$('#select_especialidad').val(0);
 }
 
+
+$(document).ready(function () {
+	$("#tel").keyup(function () {
+		var value = $(this).val();
+		$("#telefonox").val(value);
+	});
+});
+
+
+$(document).ready(function () {
+	$("#especialidad").keyup(function () {
+		var value = $(this).val();
+		$("#especialidadx").val(value);
+	});
+});
+
+
+$(document).ready(function () {
+	$("#email").keyup(function () {
+		var value = $(this).val();
+		$("#correosx").val(value);
+	});
+});
+
+
 //FECHA MAXIMA HOY
 let today = new Date();
 let dd = today.getDate();
@@ -1022,6 +1052,10 @@ function RegistarDocente(
 	var idcategoria = $('#categoria').children('option:selected').val();
 	var foto = document.getElementById('seleccionararchivo');
 	var curriculo = document.getElementById('curriculum');
+	var telefonox = $("#telefonox").val();
+	var correosx = $("#correosx").val();
+	var especialidadx = $("#especialidadx").val();
+	
 	var n = identidad.search('_');
 	if (
 		n != -1 ||
@@ -1040,7 +1074,14 @@ function RegistarDocente(
 		tipo_docente.length == 0 ||
 		fecha_ingreso.length == 0 ||
 		idjornada == null ||
-		idcategoria == null
+		idcategoria == null ||
+		telefonox.length == 0 ||
+		correosx.length == 0 ||
+		especialidadx.length == 0
+		
+		
+		
+
 	) {
 		swal({
 			title: 'alerta',
@@ -1089,9 +1130,10 @@ function RegistarDocente(
 
 		//window.location.href = window.location.href;
 		swal('Buen trabajo!', 'Los datos se insertaron correctamente!', 'success');
+		refrescar(10000);
 	}
 
-	refrescar(10000);
+	
 }
 
 //FUNCION PARA REGISTRAR DOCENTE EN CASO DE QUE ELIJA UNA NACIONALIDAD EXTRANGERA

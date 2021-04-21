@@ -297,12 +297,12 @@ ob_end_flush();
                             <div class="form-group">
                               <label for="">Teléfono</label>
                               <input type="text" name="tel" id="tel" class="form-control name_list" data-inputmask="'mask': '9999-9999'" data-mask required>
-
+                              
                             </div>
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button class="btn btn-success" onclick="addTask()">Agregar</button>
+                          <button class="btn btn-success" onclick="addTask(); ">Agregar</button>
                           <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                         </div>
                       </div>
@@ -310,7 +310,11 @@ ob_end_flush();
                   </div>
 
 
-
+                      <!-- copia del input telefonos -->
+                      <input hidden type="text" name="telefonox" id="telefonox" class="form-control name_list" data-inputmask="'mask': '9999-9999'" data-mask required readonly>
+                      <input hidden type="email" class="form-control" id="correosx" name="correosx" maxlength="30" readonly>
+                      <input hidden type="text" name="especialidadx" id="especialidadx" class="form-control " readonly required>
+                      
                   <div class="col-sm-4">
                     <div class="form-group">
 
