@@ -1155,6 +1155,9 @@ function RegistarDocente2(
 	var idcategoria = $('#categoria').children('option:selected').val();
 	var foto = document.getElementById('seleccionararchivo');
 	var curriculo = document.getElementById('curriculum');
+	var telefonox = $("#telefonox").val();
+	var correosx = $("#correosx").val();
+	var especialidadx = $("#especialidadx").val();
 	//var n = identidad.search("_");
 	if (
 		//n != -1 ||
@@ -1173,7 +1176,10 @@ function RegistarDocente2(
 		tipo_docente.length == 0 ||
 		fecha_ingreso.length == 0 ||
 		idjornada == null ||
-		idcategoria == null
+		idcategoria == null ||
+		telefonox.length == 0 ||
+		correosx.length == 0 ||
+		especialidadx.length == 0
 	) {
 		swal({
 			title: 'alerta',
