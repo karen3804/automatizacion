@@ -52,6 +52,7 @@ $resultado_permisos = $mysqli->query($sql_permisos);
    $_SESSION['carga_academica_vista'] = 'none';
    $_SESSION['docentes_vista'] = 'none';
    $_SESSION['mantemiento_carga_academica']='none';
+   $_SESSION['mantemiento_carga_academica1'] = 'none';
    
 
 
@@ -351,7 +352,11 @@ if ($_SESSION['pantalla']>='34' and $_SESSION['pantalla']<='38' )
          $_SESSION['docentes_vista'] = "block";
       }
    }
-
+   if ($_SESSION['pantalla'] == '94') {
+      if ($_SESSION['confirmacion'] == 'block') {
+         $_SESSION['mantemiento_carga_academica1'] = "block";
+      }
+   }
 
    if ($_SESSION['pantalla'] == '70') {
       if ($_SESSION['confirmacion'] == 'block') {
