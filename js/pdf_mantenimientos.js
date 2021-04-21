@@ -76,6 +76,10 @@ $(document).ready(function() {
                 exportOptions: {
                   columns: [0, 1, 2, 3, 4],
                 },
+                customize: function(doc) {
+                  doc.content[2].margin = [ 100, 0, 100, 0 ] 
+                },
+
                 title: "Universidad Nacional Autónoma De Honduras                                                                                                                                                                                           "
                 + " Facultad De Ciencias Económicas, Administrativas Y Contables                                                                                                                                                                                                                                "
                 + "                                                                                           Departamento De Informática                                                                                                                                                                                                                                                 "
@@ -161,6 +165,11 @@ $(document).ready(function() {
                 
                   columns: [0, 1, 2],
                 },
+
+                customize: function(doc) {
+                  doc.content[2].margin = [ 100, 0, 100, 0 ]
+                },
+
                 title: "Universidad Nacional Autónoma De Honduras"
                 + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
                 + " Departamento De Informática                                                                  "
@@ -245,6 +254,9 @@ $(document).ready(function() {
                   columns: [1, 2, 3, 4],
                 },
                 
+                customize: function(doc) {
+                  doc.content[2].margin = [ 100, 0, 100, 0 ]
+                },
                 title: "Universidad Nacional Autónoma De Honduras"
                 + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
                 + " Departamento De Informática                                                                  "
@@ -329,7 +341,10 @@ $(document).ready(function() {
                 exportOptions: {
                   columns: [0, 1],
                 },
-                
+                customize: function(doc) {
+                  doc.content[2].margin = [ 100, 0, 100, 0 ]
+                },
+
                 title: "Universidad Nacional Autónoma De Honduras"
                 + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
                 + " Departamento De Informática                                                                  "
@@ -417,6 +432,9 @@ $(document).ready(function() {
                   columns: [0, 1],
                 },
                 
+                customize: function(doc) {
+                  doc.content[2].margin = [ 100, 0, 100, 0 ]
+                },
                 title: "Universidad Nacional Autónoma De Honduras"
                 + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
                 + " Departamento De Informática                                                                  "
@@ -501,7 +519,10 @@ $(document).ready(function() {
                 exportOptions: {
                   columns: [0],
                 },
-                
+                customize: function(doc) {
+                  doc.content[2].margin = [ 100, 0, 100, 0 ]
+                },
+
                 title: "Universidad Nacional Autónoma De Honduras"
                 + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
                 + " Departamento De Informática                                                                  "
@@ -587,6 +608,9 @@ $(document).ready(function() {
                   columns: [0,1],
                 },
                 
+                customize: function(doc) {
+                  doc.content[2].margin = [ 100, 0, 100, 0 ]
+                },
                 title: "Universidad Nacional Autónoma De Honduras"
                 + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
                 + " Departamento De Informática                                                                  "
@@ -671,7 +695,9 @@ $(document).ready(function() {
                 exportOptions: {
                   columns: [0,1],
                 },
-                
+                customize: function(doc) {
+                  doc.content[2].margin = [ 100, 0, 100, 0 ]
+                },
                 title: "Universidad Nacional Autónoma De Honduras"
                 + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
                 + " Departamento De Informática                                                                  "
@@ -756,7 +782,9 @@ $(document).ready(function() {
                 exportOptions: {
                   columns: [0],
                 },
-                
+                customize: function(doc) {
+                  doc.content[2].margin = [ 100, 0, 100, 0 ]
+                },
                 title: "Universidad Nacional Autónoma De Honduras"
                 + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
                 + " Departamento De Informática                                                                  "
@@ -841,7 +869,9 @@ $(document).ready(function() {
                 exportOptions: {
                   columns: [0],
                 },
-                
+                customize: function(doc) {
+                  doc.content[2].margin = [ 100, 0, 100, 0 ]
+                },
                 title: "Universidad Nacional Autónoma De Honduras"
                 + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
                 + " Departamento De Informática                                                                  "
@@ -926,7 +956,9 @@ $(document).ready(function() {
               exportOptions: {
                 columns: [0,1],
               },
-              
+              customize: function(doc) {
+                doc.content[2].margin = [ 100, 0, 100, 0 ]
+              },
               title: "Universidad Nacional Autónoma De Honduras"
               + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
               + " Departamento De Informática                                                                  "
@@ -1011,7 +1043,9 @@ $(document).ready(function() {
               exportOptions: {
                 columns: [0,1],
               },
-              
+              customize: function(doc) {
+                doc.content[2].margin = [ 100, 0, 100, 0 ]
+              },
               title: "Universidad Nacional Autónoma De Honduras"
               + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
               + " Departamento De Informática                                                                  "
@@ -1096,7 +1130,9 @@ $(document).ready(function() {
               exportOptions: {
                 columns: [0,1,2],
               },
-              
+              customize: function(doc) {
+                doc.content[2].margin = [ 100, 0, 100, 0 ]
+              },
               title: "Universidad Nacional Autónoma De Honduras"
               + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
               + " Departamento De Informática                                                                  "
@@ -1181,7 +1217,9 @@ $(document).ready(function() {
               exportOptions: {
                 columns: [0,1],
               },
-              
+              customize: function(doc) {
+                doc.content[2].margin = [ 100, 0, 100, 0 ]
+              },
               title: "Universidad Nacional Autónoma De Honduras"
               + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
               + " Departamento De Informática                                                                  "
@@ -1266,7 +1304,9 @@ $(document).ready(function() {
               exportOptions: {
                 columns: [1,2,3,4,5,6],
               },
-              
+              customize: function(doc) {
+                doc.content[2].margin = [ 100, 0, 100, 0 ]
+              },
               title: "Universidad Nacional Autónoma De Honduras"
               + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
               + " Departamento De Informática                                                                  "
@@ -1351,7 +1391,9 @@ $(document).ready(function() {
               exportOptions: {
                 columns: [0,1],
               },
-              
+              customize: function(doc) {
+                doc.content[2].margin = [ 100, 0, 100, 0 ]
+              },
               title: "Universidad Nacional Autónoma De Honduras"
               + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
               + " Departamento De Informática                                                                  "
@@ -1436,7 +1478,9 @@ $(document).ready(function() {
               exportOptions: {
                 columns: [1],
               },
-              
+              customize: function(doc) {
+                doc.content[2].margin = [ 100, 0, 100, 0 ]
+              },
               title: "Universidad Nacional Autónoma De Honduras"
               + " Facultad De Ciencias Económicas,               Administrativas Y Contables                   "
               + " Departamento De Informática                                                                  "
