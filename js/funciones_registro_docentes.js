@@ -630,19 +630,31 @@ function ValidarIdentidad(identidad) {
 		var year = currentTime.getFullYear();
 		var anio = identidad.substring(5, 9);
 		//console.log(year-anio);
-		if (year - anio < mayor_edad) {
+		if (year < anio ) {
 			//swal("Aviso", "Debe ser mayor de edad", "warning");
-			$('#Textomayor').removeAttr('hidden');
+			$('#Textomayor1').removeAttr('hidden');
+				$("#identidad").val("");
+				$("#identidad").attr("placeholder", "____-____-_____");
 			//$("#identidad").val("");
 			//$("#identidad").attr("placeholder", "____-____-_____");
-		} else {
-			$('#Textomayor').attr('hidden', 'hidden');
-		}
+		} else if(year - anio < mayor_edad)
+		
+		{
+			$('#Textomayor').removeAttr('hidden');
 
+			
+		}
+		else {
+
+			$('#Textomayor').attr('hidden', 'hidden');
+			$('#Textomayor1').attr('hidden', 'hidden');
+
+		}
 		if (anio == '0000') {
 			swal('Aviso', 'Año invalido', 'warning');
 			$('#identidad').val('');
 			$('#identidad').attr('placeholder', '____-____-_____');
+			$('#Textomayor').attr('hidden', 'hidden');
 		} else {
 		}
 	}
@@ -654,6 +666,7 @@ function ValidarIdentidad(identidad) {
 			swal('Aviso', 'no se permiten 5 ceros', 'warning');
 			$('#identidad').val('');
 			$('#identidad').attr('placeholder', '____-____-_____');
+			$('#Textomayor').attr('hidden', 'hidden');
 		} else {
 		}
 	}
@@ -992,6 +1005,29 @@ function valida_jornada_hora() {
 	}
 }
 
+$("#jornada").change(function () {
+	var selected_jornada = jornada.options[jornada.selectedIndex].text;
+  
+	  if (selected_jornada == "TIEMPO COMPLETO") {
+  
+		  document.getElementById("txt_hi").value = "";
+		  document.getElementById("txt_hf").value = "";
+	
+	  
+	  } else if (selected_jornada == "MEDIO TIEMPO") {
+  
+	  document.getElementById("txt_hi").value = "";
+	  document.getElementById("txt_hf").value = "";
+		  
+	 
+	  } else if (selected_jornada == "POR HORA") {
+  
+		  document.getElementById("txt_hi").value = "";
+		  document.getElementById("txt_hf").value = "";
+	  }
+  
+  });
+
 //CUANDO SE ELIGE LA JORNADA CAMBIAN LOS HORARIOS
 $('#jornada').change(function() {
 	var jornada = $(this).val();
@@ -1021,14 +1057,18 @@ $('#cb_nacionalidad').change(function() {
 		$('#btn_guardar_registro_docentes2').removeAttr('hidden');
 		$('#identidad').attr('hidden', 'hidden');
 		$('#btn_guardar_registro_docentes').attr('hidden', 'hidden');
+		$('#btn_guardar_registro_docentes').attr('hidden', 'hidden');
+		$('#label1').attr('hidden', 'hidden');
+		$('#label2').removeAttr('hidden');
 		identidad.disabled = true;
 		pasaporte.disabled = false;
 	} else {
 		$('#pasaporte').attr('hidden', 'hidden');
 		$('#Textopasaporte').attr('hidden', 'hidden');
 		$('#btn_guardar_registro_docentes2').attr('hidden', 'hidden');
-		$('#btn_guardar_registro_docentes').removeAttr('hidden');
+		$('#label1').removeAttr('hidden');
 		$('#identidad').removeAttr('hidden');
+		$('#label2').attr('hidden', 'hidden');
 		pasaporte.disabled = true;
 		identidad.disabled = false;
 	}
@@ -1067,76 +1107,108 @@ function RegistarDocente(
 		identidad.length == 0 ||
 		nacionalidad == null ||
 		estado == null ||
-		fecha_nacimiento.length == 0 ||
-		hi == null ||
-		hf == null ||
-		nempleado.length == 0 ||
-		tipo_docente.length == 0 ||
-		fecha_ingreso.length == 0 ||
-		idjornada == null ||
-		idcategoria == null ||
-		telefonox.length == 0 ||
-		correosx.length == 0 ||
-		especialidadx.length == 0
-		
-		
-		
+		fecha_nacimiento.length == 0 
+			
 
 	) {
 		swal({
 			title: 'alerta',
-			text: 'Llene o seleccione los campos vacios correctamente',
+			text: 'Rellene o seleccione los campos vacíos de Datos Personales',
 			type: 'warning',
 			showConfirmButton: true,
 			timer: 15000
 		});
-	} else {
-		nombre = nombre.toUpperCase();
-		apellidos = apellidos.toUpperCase();
-		identidad = identidad.toUpperCase();
-		nacionalidad = nacionalidad.toUpperCase();
-		tipo_docente = tipo_docente.toUpperCase();
+	
+	}else if (
+		telefonox.length == 0 ||
+		correosx.length == 0 ||
+		especialidadx.length == 0
+	){
+		swal({
+			title: 'alerta',
+			text: 'Rellene o seleccione los campos vacíos de Contactos y Formación Académica',
+			type: 'warning',
+			showConfirmButton: true,
+			timer: 15000
+		});		
+		
+	}else{
+		if (
 
-		estado = estado.toUpperCase();
-		sexo = sexo.toUpperCase();
-
-		$.post(
-			'../Controlador/registro_docente_controlador.php?op=registar',
-			{
-				nombre: nombre,
-				apellidos: apellidos,
-				sexo: sexo,
-				identidad: identidad,
-				nacionalidad: nacionalidad,
-				estado: estado,
-				fecha_nacimiento: fecha_nacimiento,
-				hi: hi,
-				hf: hf,
-				nempleado: nempleado,
-				tipo_docente: tipo_docente,
-				fecha_ingreso: fecha_ingreso,
-				idjornada: idjornada,
-				idcategoria: idcategoria
-			},
-			function(e) {
-				saveAll();
-				saveAll2();
-				saveAll3();
-				saveAll5();
-				Registrar();
-				Registrarcurriculum();
-			}
-		);
-
-		//window.location.href = window.location.href;
-		swal('Buen trabajo!', 'Los datos se insertaron correctamente!', 'success');
-		refrescar(10000);
+		nempleado.length == 0 ||
+		fecha_ingreso.length == 0 ||
+		idjornada == null ||
+		idcategoria == null ||
+		hi == null ||
+		hf == null ||
+		tipo_docente.length == 0
+			
+			) {
+				swal({
+					title: 'alerta',
+					text: 'Rellene o seleccione los campos vacíos de Información Docente',
+					type: 'warning',
+					showConfirmButton: true,
+					timer: 15000
+				});
+		} else {
+			nombre = nombre.toUpperCase();
+			apellidos = apellidos.toUpperCase();
+			identidad = identidad.toUpperCase();
+			nacionalidad = nacionalidad.toUpperCase();
+			tipo_docente = tipo_docente.toUpperCase();
+	
+			estado = estado.toUpperCase();
+			sexo = sexo.toUpperCase();
+	
+			$.post(
+				'../Controlador/registro_docente_controlador.php?op=registar',
+				{
+					nombre: nombre,
+					apellidos: apellidos,
+					sexo: sexo,
+					identidad: identidad,
+					nacionalidad: nacionalidad,
+					estado: estado,
+					fecha_nacimiento: fecha_nacimiento,
+					hi: hi,
+					hf: hf,
+					nempleado: nempleado,
+					tipo_docente: tipo_docente,
+					fecha_ingreso: fecha_ingreso,
+					idjornada: idjornada,
+					idcategoria: idcategoria
+				},
+				function(e) {
+					saveAll();
+					saveAll2();
+					saveAll3();
+					saveAll5();
+					Registrar();
+					Registrarcurriculum();
+				}
+			);
+	
+			//window.location.href = window.location.href;
+			swal({
+				title: "alerta",
+				text: "Por favor espere un momento",
+				type: "warning",
+				showConfirmButton: false,
+				timer: 10000,
+				
+				});
+				
+				refrescar(10000);
+			
+		}
+		
 	}
 
 	
 }
 
-//FUNCION PARA REGISTRAR DOCENTE EN CASO DE QUE ELIJA UNA NACIONALIDAD EXTRANGERA
+//FUNCION PARA REGISTRAR DOCENTE EN CASO DE QUE ELIJA UNA NACIONALIDAD EXTRANJERA
 function RegistarDocente2(
 	nombre,
 	apellidos,
@@ -1169,26 +1241,49 @@ function RegistarDocente2(
 		pasaporte.length == 0 ||
 		nacionalidad == null ||
 		estado == null ||
-		fecha_nacimiento.length == 0 ||
-		hi == null ||
-		hf == null ||
-		nempleado.length == 0 ||
-		tipo_docente.length == 0 ||
-		fecha_ingreso.length == 0 ||
-		idjornada == null ||
-		idcategoria == null ||
-		telefonox.length == 0 ||
-		correosx.length == 0 ||
-		especialidadx.length == 0
+		fecha_nacimiento.length == 0 
+		
 	) {
 		swal({
 			title: 'alerta',
-			text: 'Llene o seleccione los campos vacios correctamente',
+			text: 'Llene o seleccione los campos vacios de Datos Personales',
 			type: 'warning',
 			showConfirmButton: true,
 			timer: 15000
 		});
-	} else {
+	}else if (
+		telefonox.length == 0 ||
+		correosx.length == 0 ||
+		especialidadx.length == 0
+	){
+		swal({
+			title: 'alerta',
+			text: 'Rellene o seleccione los campos vacíos de Contactos y Formación Académica',
+			type: 'warning',
+			showConfirmButton: true,
+			timer: 15000
+		});		
+		
+	}else{
+		if (
+
+		nempleado.length == 0 ||
+		fecha_ingreso.length == 0 ||
+		idjornada == null ||
+		idcategoria == null ||
+		hi == null ||
+		hf == null ||
+		tipo_docente.length == 0
+			
+			) {
+				swal({
+					title: 'alerta',
+					text: 'Rellene o seleccione los campos vacíos de Información Docente',
+					type: 'warning',
+					showConfirmButton: true,
+					timer: 15000
+				});
+		}else {
 		nombre = nombre.toUpperCase();
 		apellidos = apellidos.toUpperCase();
 		nacionalidad = nacionalidad.toUpperCase();
@@ -1226,15 +1321,26 @@ function RegistarDocente2(
 		);
 
 		//window.location.href = window.location.href;
-		swal('Buen trabajo!', 'Los datos se insertaron correctamente!', 'success');
+		swal({
+			title: "alerta",
+			text: "Por favor espere un momento",
+			type: "warning",
+			showConfirmButton: false,
+			timer: 10000,
+			
+			});
+			refrescar(10000);
 	}
 
-	refrescar(10000);
+	
+}
 }
 
 //FUNCION PARA ACTUALIZAR PAGINA DESPUES DE 10 SEGUNDOS DE HABER GUARDADO
 function refrescar(tiempo) {
 	setTimeout('location.reload(true);', tiempo);
+	swal('Buen trabajo!', 'Los datos se insertaron correctamente!', 'success');
+
 }
 
 //FUNCION DE PREVISUALIZACION DE IMAGEN

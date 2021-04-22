@@ -125,27 +125,11 @@ ob_end_flush();
                 <div class="row">
 
                   <div class="col-sm-12" style="text-align: center">
-                    <div class="col-sm-2" style="left: 450px;">
-
-
-                      <!--FOTOGRAFIA -->
-                      <!-- <label>Foto</label> -->
                       <img src="../Imagenes_Perfil_Docente/default-avatar.png" class="brand-image img-circle elevation-3" id="mostrarimagen" height="175" width="175">
-                      <input class="form-control-file" type="file" accept="image/x-png,image/gif,image/jpeg" id="seleccionararchivo" name="seleccionararchivo" required><br><br>
-
-
-                    </div>
+                      <input class="form-control-file" type="file" style="text-align: center" accept="image/x-png,image/gif,image/jpeg" id="seleccionararchivo" name="seleccionararchivo" required><br><br>
+                    
                   </div>
-                  <!--  <div class="col-sm-12">
-
-
-                  <hr >
-
-                </div> -->
-
-
-
-                  <div class="col-sm-3">
+             <div class="col-sm-3">
                     <div class="form-group">
                       <!-- NOMBRES -->
 
@@ -181,7 +165,8 @@ ob_end_flush();
                   </div>
 
                   <div class="col-sm-3">
-                    <label for="">Nº Identidad:</label>
+                    <label id="label1"for="">Nº Identidad:</label>
+                    <label hidden id="label2" for="">Nº Pasaporte:</label>
 
                     <div class="form-group">
                       <div class="input-group-prepend">
@@ -195,6 +180,7 @@ ob_end_flush();
                     <p hidden id="TextoIdentidad" style="color:red;">¡Ya existe un registro con esta identidad! </p>
                     <p hidden id="Textopasaporte" style="color:red;">¡Ya existe un registro con este pasaporte! </p>
                     <p hidden id="Textomayor" style="color:red;">¡Es menor de edad! </p>
+                    <p hidden id="Textomayor1" style="color:red;">¡Año incorrecto! </p>
 
                   </div>
 
@@ -494,7 +480,7 @@ ob_end_flush();
 
                   </div>
 
-                  <div class="col-sm-3">
+                  <div class="col-sm-2">
                     <div class="form-group">
                       <!-- HORARIO DE ENTRADA -->
                       <label>Horario Entrada</label>
@@ -505,7 +491,7 @@ ob_end_flush();
                     </div>
                   </div>
 
-                  <div class="col-sm-3">
+                  <div class="col-sm-2">
                     <div class="form-group">
                       <!-- HORARIO DE SALIDA -->
                       <label>Horario Salida</label>
