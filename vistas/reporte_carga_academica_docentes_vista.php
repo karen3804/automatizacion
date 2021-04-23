@@ -396,6 +396,7 @@ ob_end_flush();
       }
     </script>
     <script language="javascript">
+    
       function ventana1() {
         window.open("../Controlador/reporte_carga_academica_docente.php", "REPORTE");
       }
