@@ -91,6 +91,9 @@ ORDER BY id_periodo DESC LIMIT 1;");
     function headerTable1()
     {
         $this->ln();
+        $this->SetFont('times', '', 12);
+        $this->Cell(156, 10, utf8_decode("ACTIVIDADES DE INVESTIGACIÓN, VINCULACIÓN UNAH-SOCIEDAD, U OTRAS"), 0, 0, 'C');
+        $this->ln();
         $this->SetFont('Times', 'B', 10);
         $this->SetLineWidth(0.3);
         $this->Cell(50, 10, "COMISIONES", 1, 0, 'C');
@@ -105,7 +108,7 @@ ORDER BY id_periodo DESC LIMIT 1;");
 
         global $instancia_conexion;
         $id = $_SESSION['id_persona'];
-        $sql = "call sel_reporte_docente()";
+        $sql = "call sel_reporte_docente('$id')";
         $stmt = $instancia_conexion->ejecutarConsulta($sql);
         while ($reg = $stmt->fetch_object()) {
 
@@ -125,6 +128,8 @@ ORDER BY id_periodo DESC LIMIT 1;");
 
     function viewTable1()
     {
+       
+        $id1 = $_SESSION['id_usuario'];
 
         $mysqli = new mysqli('167.114.169.207', 'informat_admin', 'HLo{Q3e{)II^', 'informat_automatizacion');
 
@@ -133,7 +138,7 @@ ORDER BY id_periodo DESC LIMIT 1;");
             exit();
         }
 
-        $consulta = "call sel_comisiones_reporte()";
+        $consulta = "call sel_comisiones_reporte('$id1')";
 
         if ($sentencia = $mysqli->prepare($consulta)) {
 
