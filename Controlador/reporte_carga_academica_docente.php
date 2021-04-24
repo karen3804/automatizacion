@@ -144,7 +144,7 @@ ORDER BY id_periodo DESC LIMIT 1;");
 
             $sentencia->execute();
 
-            $sentencia->bind_result($comision, $actividad, $horas_semanales);
+            $sentencia->bind_result($id_actividad, $comision, $actividad, $horas_semanales);
 
             while ($sentencia->fetch()) {
                 $this->SetFont('Times', '', 10);
