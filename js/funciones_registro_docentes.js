@@ -1057,7 +1057,7 @@ $('#cb_nacionalidad').change(function() {
 		$('#btn_guardar_registro_docentes2').removeAttr('hidden');
 		$('#identidad').attr('hidden', 'hidden');
 		$('#btn_guardar_registro_docentes').attr('hidden', 'hidden');
-		$('#btn_guardar_registro_docentes').attr('hidden', 'hidden');
+		//$('#btn_guardar_registro_docentes').attr('hidden', 'hidden');
 		$('#label1').attr('hidden', 'hidden');
 		$('#label2').removeAttr('hidden');
 		identidad.disabled = true;
@@ -1065,6 +1065,7 @@ $('#cb_nacionalidad').change(function() {
 	} else {
 		$('#pasaporte').attr('hidden', 'hidden');
 		$('#Textopasaporte').attr('hidden', 'hidden');
+		$('#btn_guardar_registro_docentes').removeAttr('hidden');
 		$('#btn_guardar_registro_docentes2').attr('hidden', 'hidden');
 		$('#label1').removeAttr('hidden');
 		$('#identidad').removeAttr('hidden');
@@ -1152,6 +1153,8 @@ function RegistarDocente(
 					timer: 15000
 				});
 		} else {
+			
+				
 			nombre = nombre.toUpperCase();
 			apellidos = apellidos.toUpperCase();
 			identidad = identidad.toUpperCase();
@@ -1179,6 +1182,7 @@ function RegistarDocente(
 					idjornada: idjornada,
 					idcategoria: idcategoria
 				},
+				
 				function(e) {
 					saveAll();
 					saveAll2();
@@ -1186,20 +1190,23 @@ function RegistarDocente(
 					saveAll5();
 					Registrar();
 					Registrarcurriculum();
+					
 				}
+				
 			);
 	
 			//window.location.href = window.location.href;
+			
 			swal({
 				title: "alerta",
 				text: "Por favor espere un momento",
 				type: "warning",
 				showConfirmButton: false,
-				timer: 10000,
+				timer: 8000,
 				
 				});
-				
 				refrescar(10000);
+				mensaje();
 			
 		}
 		
@@ -1326,10 +1333,11 @@ function RegistarDocente2(
 			text: "Por favor espere un momento",
 			type: "warning",
 			showConfirmButton: false,
-			timer: 10000,
+			timer: 8000,
 			
 			});
 			refrescar(10000);
+			mensaje();
 	}
 
 	
@@ -1339,8 +1347,14 @@ function RegistarDocente2(
 //FUNCION PARA ACTUALIZAR PAGINA DESPUES DE 10 SEGUNDOS DE HABER GUARDADO
 function refrescar(tiempo) {
 	setTimeout('location.reload(true);', tiempo);
-	swal('Buen trabajo!', 'Los datos se insertaron correctamente!', 'success');
 
+
+}
+
+function mensaje() {
+	setTimeout(function() {
+		swal('Buen trabajo!', 'Los datos se insertaron correctamente!', 'success');
+	 }, 9000);
 }
 
 //FUNCION DE PREVISUALIZACION DE IMAGEN
@@ -1403,3 +1417,9 @@ function Registrarcurriculum() {
 	});
 	return false;
 }
+
+/* window.addEventListener('click', () => {
+    var tiempo = setInterval(() => {
+        alert("tres segundos pasados");
+    }, 3000);
+}) */
