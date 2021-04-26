@@ -38,39 +38,57 @@ $(document).ready(function () {
 
   function eliminar() {
     let i = ContarTel();
-    var confirmLeave = confirm(
-      "¿Desea Eliminar el Número de teléfono del docente?"
-    );
-    if (confirmLeave == true) {
-      var id = $(this).attr("id");
-      var eliminar_tel = document.getElementById("tel1" + id).value;
-      console.log(eliminar_tel);
-      $("#row" + id).remove();
-      console.log(id);
-      $.post(
-        "../Controlador/perfil_docente_controlador.php?op=EliminarTelefono",
-        { eliminar_tel: eliminar_tel },
-        function (e) { }
-      );
-      i--;
-    }
+
+    swal({
+      title: "Estas seguro?",
+      text: "¿Desea Eliminar el Número de teléfono del docente?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        var id = $(this).attr("id");
+        var eliminar_tel = document.getElementById("tel1" + id).value;
+        console.log(eliminar_tel);
+        $("#row" + id).remove();
+        console.log(id);
+        $.post(
+          "../Controlador/perfil_docente_controlador.php?op=EliminarTelefono",
+          { eliminar_tel: eliminar_tel },
+          function (e) {}
+        );
+        i--;
+     
+      }
+    });
   }
+
   function eliminarCorreo() {
     let i = ContarCorreo();
-    var confirmLeave = confirm("¿Desea Eliminar el correo del docente?");
-    if (confirmLeave == true) {
-      var id = $(this).attr("id");
-      var eliminar_correo = document.getElementById("correo" + id).value;
-      console.log(eliminar_correo);
-      $("#row2" + id).remove();
-      console.log(id);
-      $.post(
-        "../Controlador/perfil_docente_controlador.php?op=EliminarCorreo",
-        { eliminar_correo: eliminar_correo },
-        function (e) { }
-      );
-      i--;
-    }
+
+    swal({
+      title: "Estas seguro?",
+      text: "¿Desea Eliminar el correo del docente?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+       
+        var id = $(this).attr("id");
+        var eliminar_correo = document.getElementById("correo" + id).value;
+        console.log(eliminar_correo);
+        $("#row2" + id).remove();
+        console.log(id);
+        $.post(
+          "../Controlador/perfil_docente_controlador.php?op=EliminarCorreo",
+          { eliminar_correo: eliminar_correo },
+          function (e) {}
+        );
+        i--;
+     
+      }
+    });
   }
   function AgregarTel() {
     var id = $(this).attr("id");
@@ -80,7 +98,7 @@ $(document).ready(function () {
   $(document).on("click", ".btn_eliminar_correo", eliminarCorreo);
   // $(document).on("click", ".btn_add", AgregarTel);
   $(document).on("click", ".btn_foto", imagen);
-  $(document).on('click', '.btn_curriculum', Registrarcurriculum);
+  $(document).on("click", ".btn_curriculum", Registrarcurriculum);
 
   TraerDatos();
 });
@@ -89,7 +107,6 @@ $(document).ready(function () {
 ----------------------------------------------------------------------
 */
 function EditarPerfil(nombre, apellido, identidad, nacionalidad, estado) {
-
   var n = identidad.search("_");
   var id_persona = $("#id_persona").val();
   var nombre = $("#Nombre").val();
@@ -99,23 +116,37 @@ function EditarPerfil(nombre, apellido, identidad, nacionalidad, estado) {
   var estado_civil = $("#ver_estado").val();
   var genero = $("#ver_genero").val();
 
-  if (nombre == '' || apellido == '' || nacionalidad == '' || estado_civil == '' || genero == '') {
+  if (
+    nombre == "" ||
+    apellido == "" ||
+    nacionalidad == "" ||
+    estado_civil == "" ||
+    genero == ""
+  ) {
     swal({
       title: "Campos Vacios!",
-      text:
-        "Tiene campos en blanco",
+      text: "Tiene campos en blanco",
       type: "warning",
       showConfirmButton: true,
       timer: 10000,
     });
   } else {
-    $.post("../Controlador/perfil_docente_controlador.php?op=EditarPerfil", { Nombre: nombre, apellido: apellido, identidad: identidad, id_persona: id_persona, nacionalidad: nacionalidad, estado_civil: estado_civil, sexo: genero }, function (e) {
-
-    });
+    $.post(
+      "../Controlador/perfil_docente_controlador.php?op=EditarPerfil",
+      {
+        Nombre: nombre,
+        apellido: apellido,
+        identidad: identidad,
+        id_persona: id_persona,
+        nacionalidad: nacionalidad,
+        estado_civil: estado_civil,
+        sexo: genero,
+      },
+      function (e) {}
+    );
     swal({
       title: "Actualizado!",
-      text:
-        "Datos actualizados correctamente",
+      text: "Datos actualizados correctamente",
       type: "success",
       showConfirmButton: true,
       timer: 10000,
@@ -137,17 +168,16 @@ function AgregarEspecialidad(grado, especialidad) {
     "../Controlador/perfil_docente_controlador.php?op=AgregarEpecialidad",
     { grado: grado, especialidad: especialidad, id_persona: id_persona },
     function (e) {
-    
-      alert("se agrego correctamente, asegurate de actualizar tu curriculum");
+      swal(
+        "Buen trabajo!",
+        "se agrego correctamente, asegurate de actualizar tu curriculum",
+        "success"
+      );
+
       limpiartext();
-     especialidad()
-
+      especialidad();
     }
-    
-     
   );
-
-   
 }
 
 function limpiartext() {
@@ -165,7 +195,7 @@ function AgregarTelefono(telefono) {
     $.post(
       "../Controlador/perfil_docente_controlador.php?op=AgregarTelefono",
       { telefono: telefono, id_persona: id_persona },
-      function (e) { }
+      function (e) {}
     );
   }
 }
@@ -202,19 +232,19 @@ function TraerDatos() {
 
           $("#tbDataCorreo1").append(
             '<tr id="row2' +
-            m +
-            '">' +
-            '<td id="celda2' +
-            m +
-            '"><input maxlength="9"  id="correo' +
-            m +
-            '"  type="correo" name="correo" class="form-control name_list" value="' +
-            data["all"][i].valor +
-            '"/></td>' +
-            '<td><button type="button" name="eliminar_correo" id="' +
-            m +
-            '" class="btn btn-danger btn_eliminar_correo">X</button></td>' +
-            "</tr>"
+              m +
+              '">' +
+              '<td id="celda2' +
+              m +
+              '"><input maxlength="9"  id="correo' +
+              m +
+              '"  type="correo" name="correo" class="form-control name_list" value="' +
+              data["all"][i].valor +
+              '"/></td>' +
+              '<td><button type="button" name="eliminar_correo" id="' +
+              m +
+              '" class="btn btn-danger btn_eliminar_correo">X</button></td>' +
+              "</tr>"
           );
         } else {
           j = ContarTel();
@@ -223,19 +253,19 @@ function TraerDatos() {
 
           $("#tbData2").append(
             '<tr id="row' +
-            n +
-            '">' +
-            '<td id="celda' +
-            n +
-            '"><input maxlength="9"    onkeyup="javascript:mascara()" id="tel1' +
-            n +
-            '"  type="tel1" name="tel1" class="form-control name_list" value="' +
-            data["all"][i].valor +
-            '" placeholder="___-___"/></td>' +
-            '<td><button type="button" name="remove" id="' +
-            n +
-            '" class="btn btn-danger btn_remove">X</button></td>' +
-            "</tr>"
+              n +
+              '">' +
+              '<td id="celda' +
+              n +
+              '"><input maxlength="9"    onkeyup="javascript:mascara()" id="tel1' +
+              n +
+              '"  type="tel1" name="tel1" class="form-control name_list" value="' +
+              data["all"][i].valor +
+              '" placeholder="___-___"/></td>' +
+              '<td><button type="button" name="remove" id="' +
+              n +
+              '" class="btn btn-danger btn_remove">X</button></td>' +
+              "</tr>"
           );
         }
 
@@ -287,16 +317,13 @@ $("#guardarFormacion").click(function () {
   if (grado == "SELECCIONAR" || txt_especialidad == "") {
     alert("Debe Elegir Un grado y Su especialidad.");
   } else {
-
     AgregarEspecialidad(grado, txt_especialidad);
     agregarFormacion(txt_especialidad);
     $("#myModal").modal("hide");
     seleccionar();
     $("#id_select").val(0);
     $("#especialidad").val("");
-     especialidad();
-
-
+    especialidad();
   }
 });
 
@@ -406,34 +433,34 @@ function addTel() {
   } else {
     if (valtel($("#tel").val()) == 0) {
       //aqui debo validar que no se agregue a la tabla ...
-    
-     swal("Alerta", "ingresar un número válido", "warning");
+
+      swal("Alerta", "ingresar un número válido", "warning");
 
       limpiarTEL();
       return false;
     } else {
       $("#tbData2").append(
         '<tr id="row' +
-        n +
-        '">' +
-        '<td id="celda' +
-        n +
-        '"><input maxlength="9"    onkeyup="javascript:mascara()" id="tel1' +
-        n +
-        '"  type="tel1" name="tel1" class="form-control name_list" value="' +
-        telefono.value +
-        '" placeholder="___-___"/></td>' +
-        '<td><button type="button" name="remove" id="' +
-        n +
-        '" class="btn btn-danger btn_remove">X</button></td>' +
-        "</tr>"
+          n +
+          '">' +
+          '<td id="celda' +
+          n +
+          '"><input maxlength="9"    onkeyup="javascript:mascara()" id="tel1' +
+          n +
+          '"  type="tel1" name="tel1" class="form-control name_list" value="' +
+          telefono.value +
+          '" placeholder="___-___"/></td>' +
+          '<td><button type="button" name="remove" id="' +
+          n +
+          '" class="btn btn-danger btn_remove">X</button></td>' +
+          "</tr>"
       );
 
       AgregarTelefono(telefono.value);
       telefono.value = "";
       $("#ModalTel").modal("hide");
-    console.log(n);
-   }
+      console.log(n);
+    }
   }
 }
 function correovalido(correo1) {
@@ -451,15 +478,14 @@ function correovalido(correo1) {
 function imagen() {
   var frmData = new FormData();
   var imagen = $("#imagen").val();
-  if (imagen == '') {
-
-    document.getElementById('imagen').hidden = true;
-    document.getElementById('btn_foto').hidden = true;
-    document.getElementById('btn_mostrar').hidden = false;
-  }else{
+  if (imagen == "") {
+    document.getElementById("imagen").hidden = true;
+    document.getElementById("btn_foto").hidden = true;
+    document.getElementById("btn_mostrar").hidden = false;
+  } else {
     frmData.append("imagen", $("input[name=imagen]")[0].files[0]);
     frmData.append("id_persona", $("#id_persona").val());
-  
+
     $.ajax({
       url: "../Controlador/perfil_docente_controlador.php?op=CambiarFoto",
       type: "post",
@@ -467,10 +493,10 @@ function imagen() {
       processData: false,
       contentType: false,
       cache: false,
-  
+
       success: function (data) {
         data = JSON.parse(data);
-  
+
         $("#foto").attr("src", data);
         $("#imagen").val("");
         $("#btn_mostrar").removeAttr("hidden");
@@ -478,10 +504,9 @@ function imagen() {
         $("#btn_foto").attr("hidden", "hidden");
       },
     });
-  
+
     return false;
   }
-  
 }
 
 //CARGAR TABLA DE ACTIVIDADES
@@ -496,18 +521,18 @@ function Actividades() {
       for (i = 0; i < data.actividades.length; ++i) {
         $("#tbl_comisiones").append(
           '<tr id="row' +
-          i +
-          '">' +
-          "<td>" +
-          (i + 1) +
-          "</td>" +
-          "<td>" +
-          data["actividades"][i].comision +
-          "</td>" +
-          "<td>" +
-          data["actividades"][i].actividad +
-          "</td>" +
-          "</tr>"
+            i +
+            '">' +
+            "<td>" +
+            (i + 1) +
+            "</td>" +
+            "<td>" +
+            data["actividades"][i].comision +
+            "</td>" +
+            "<td>" +
+            data["actividades"][i].actividad +
+            "</td>" +
+            "</tr>"
         );
       }
     }
@@ -713,7 +738,7 @@ function MismaLetra(id_input) {
     if (str1 == str2 && str1 == str3 && str2 == str3) {
       swal({
         title: "Alerta",
-        text:"Letra escritas 3 veces consecutivas",
+        text: "Letra escritas 3 veces consecutivas",
         type: "warning",
         showConfirmButton: true,
         timer: 10000,
@@ -726,7 +751,6 @@ function MismaLetra(id_input) {
 //document.getElementById('Nombre').addEventListener('keyup',MismaLetra);
 
 $("#btn_editar_curri").click(function () {
-
   // document.getElementById('parrafo_numEmpleado').hidden = true;
   // document.getElementById('parrafo_boton_editar').hidden = true;
   // document.getElementById('parrafo_curriculum').hidden = true;
@@ -744,12 +768,12 @@ $("#btn_editar_curri").click(function () {
   // document.getElementById('icono_categoria').hidden = true;
   // document.getElementById('boton_colapse').hidden = true;
   // document.getElementById('datos_docente').hidden = true;
-  document.getElementById('titulo_1').hidden = false;
+  document.getElementById("titulo_1").hidden = false;
   // document.getElementById('eliminar_telefono_tabla').hidden = true;
   // document.getElementById('eliminar_correo_tabla').hidden = true;
-  document.getElementById('foto_carrera').hidden = false;
-  document.getElementById('fecha_actual').hidden = false;
-  
+  document.getElementById("foto_carrera").hidden = false;
+  document.getElementById("fecha_actual").hidden = false;
+
   // $('button').attr('hidden','hidden');
 
   window.print();
@@ -779,11 +803,11 @@ $("#btn_editar_curri").click(function () {
   // document.getElementById('icono_categoria').hidden = false;
   // document.getElementById('boton_colapse').hidden = false;
   // document.getElementById('datos_docente').hidden = false;
-  document.getElementById('titulo_1').hidden = true;
+  document.getElementById("titulo_1").hidden = true;
   // document.getElementById('eliminar_telefono_tabla').hidden = false;
   // document.getElementById('eliminar_correo_tabla').hidden = false;
-  document.getElementById('foto_carrera').hidden = true;
-  document.getElementById('fecha_actual').hidden = true;
+  document.getElementById("foto_carrera").hidden = true;
+  document.getElementById("fecha_actual").hidden = true;
   // $('button').removeAttr('hidden');
   // document.getElementById('btn_foto').hidden = true;
   // document.getElementById('btn_editar').hidden = true;
@@ -851,8 +875,6 @@ function ventana() {
   window.open("../vistas/encuesta_docente_vista.php", "Encuesta");
 }
 
-
-
 $("#btn_modal1").click(function () {
   var persona = $("#id_persona").val();
   console.log(persona);
@@ -886,30 +908,24 @@ function alerta() {
 }
 
 function Registrarcurriculum() {
-
   var formData = new FormData();
   var curriculum = $("#c_vitae")[0].files[0];
-  formData.append('c', curriculum);
+  formData.append("c", curriculum);
   formData.append("id_persona", $("#id_persona").val());
 
   $.ajax({
-    url: '../Controlador/perfil_docente_controlador.php?op=cambiarCurriculum',
-    type: 'post',
+    url: "../Controlador/perfil_docente_controlador.php?op=cambiarCurriculum",
+    type: "post",
     data: formData,
     contentType: false,
     processData: false,
     success: function (respuesta) {
-      if (respuesta = 1) {
-
-        swal(
-          "Actualizado!",
-          "Datos actualizados correctamente!",
-          "success"
-        );
+      if ((respuesta = 1)) {
+        swal("Actualizado!", "Datos actualizados correctamente!", "success");
 
         window.location = "../vistas/perfil_docentes_vista.php";
       }
-    }
+    },
   });
   return false;
 }
@@ -921,9 +937,7 @@ function AgregarCorreo(correo) {
   $.post(
     "../Controlador/perfil_docente_controlador.php?op=AgregarCorreo",
     { correo: correo, id_persona: id_persona },
-    function (e) {
-     
-    }
+    function (e) {}
   );
 }
 //contar correos existentes para solo permitir los requeridos
@@ -954,27 +968,27 @@ function addCorreo() {
   } else {
     if (correovalido($("#correo").val()) == 0) {
       //aqui debo validar que no se agregue a la tabla ...
-      
-           swal("Alerta", "ingresar un correo válido", "warning");
+
+      swal("Alerta", "ingresar un correo válido", "warning");
 
       limpiarCor();
       return false;
     } else {
       $("#tbDataCorreo1").append(
         '<tr id="row' +
-        n +
-        '">' +
-        '<td id="celda' +
-        n +
-        '"><input maxlength="9" id="correo' +
-        n +
-        '"  type="correo" name="correo" class="form-control name_list" value="' +
-        correo +
-        '"/></td>' +
-        '<td><button type="button" name="removeCorreo" id="' +
-        n +
-        '" class="btn btn-danger btn_removeCorreo">X</button></td>' +
-        "</tr>"
+          n +
+          '">' +
+          '<td id="celda' +
+          n +
+          '"><input maxlength="9" id="correo' +
+          n +
+          '"  type="correo" name="correo" class="form-control name_list" value="' +
+          correo +
+          '"/></td>' +
+          '<td><button type="button" name="removeCorreo" id="' +
+          n +
+          '" class="btn btn-danger btn_removeCorreo">X</button></td>' +
+          "</tr>"
       );
 
       AgregarCorreo(correo);
@@ -1013,7 +1027,6 @@ function mostrar_estado_civil(id_estado_civil) {
     { id_estado_civil: id_estado_civil },
     function (data, status) {
       data = JSON.parse(data);
-
     }
   );
 }
@@ -1022,12 +1035,15 @@ function mostrar_estado_civil(id_estado_civil) {
 function ver_estado() {
   var id_persona = $("#id_persona").val();
 
-  $.post("../Controlador/perfil_docente_controlador.php?op=ver_estado_c", { id_persona: id_persona }, function (data, status) {
-    data = JSON.parse(data);
+  $.post(
+    "../Controlador/perfil_docente_controlador.php?op=ver_estado_c",
+    { id_persona: id_persona },
+    function (data, status) {
+      data = JSON.parse(data);
 
-    $("#ver_estado").val(data.estado_civil)
-
-  });
+      $("#ver_estado").val(data.estado_civil);
+    }
+  );
 }
 
 //      PARA CUANDO CAMBIA EL VALOR DEL COMBOBOX E.C.
@@ -1039,8 +1055,6 @@ $("#estado_civil").change(function () {
 
 //      ------------------------------
 
-
-
 //      COMBOBOX GENERO----------------
 function llenar_genero() {
   var cadena = "&activar=activar";
@@ -1049,7 +1063,6 @@ function llenar_genero() {
     type: "POST",
     data: cadena,
     success: function (r) {
-
       $("#genero").html(r).fadeIn();
     },
   });
@@ -1062,7 +1075,6 @@ function mostrar_genero(id_genero) {
     { id_genero: id_genero },
     function (data, status) {
       data = JSON.parse(data);
-
     }
   );
 }
@@ -1071,12 +1083,15 @@ function mostrar_genero(id_genero) {
 function ver_genero() {
   var id_persona = $("#id_persona").val();
 
-  $.post("../Controlador/perfil_docente_controlador.php?op=ver_genero", { id_persona: id_persona }, function (data, status) {
-    data = JSON.parse(data);
+  $.post(
+    "../Controlador/perfil_docente_controlador.php?op=ver_genero",
+    { id_persona: id_persona },
+    function (data, status) {
+      data = JSON.parse(data);
 
-    $("#ver_genero").val(data.sexo)
-
-  });
+      $("#ver_genero").val(data.sexo);
+    }
+  );
 }
 
 $("#genero").change(function () {
@@ -1085,56 +1100,53 @@ $("#genero").change(function () {
   $("#ver_genero").val(id_tipo_periodo);
 });
 
-
 //VER SUED
 function ver_sued() {
   var id_persona = $("#id_persona").val();
 
-  $.post("../Controlador/perfil_docente_controlador.php?op=ver_sued", { id_persona: id_persona }, function (data, status) {
-    data = JSON.parse(data);
+  $.post(
+    "../Controlador/perfil_docente_controlador.php?op=ver_sued",
+    { id_persona: id_persona },
+    function (data, status) {
+      data = JSON.parse(data);
 
-    $("#sued").val(data.valor)
-
-  });
+      $("#sued").val(data.valor);
+    }
+  );
 }
 
 //       -------------------------
 
 function habilitar_editar() {
-  document.getElementById('estado_civil').hidden = false;
-  document.getElementById('ver_estado').hidden = true;
-  document.getElementById('Nombre').disabled = false;
-  document.getElementById('txt_apellido').disabled = false;
-  document.getElementById('identidad').disabled = false;
-  document.getElementById('btn_guardar_edicion').hidden = false;
-  document.getElementById('editar_info').hidden = true;
-  document.getElementById('btn_editar').hidden = false;
-  document.getElementById('genero').hidden = false;
-  document.getElementById('ver_genero').hidden = true;
-
+  document.getElementById("estado_civil").hidden = false;
+  document.getElementById("ver_estado").hidden = true;
+  document.getElementById("Nombre").disabled = false;
+  document.getElementById("txt_apellido").disabled = false;
+  document.getElementById("identidad").disabled = false;
+  document.getElementById("btn_guardar_edicion").hidden = false;
+  document.getElementById("editar_info").hidden = true;
+  document.getElementById("btn_editar").hidden = false;
+  document.getElementById("genero").hidden = false;
+  document.getElementById("ver_genero").hidden = true;
 }
 
 function desabilitar() {
-  document.getElementById('estado_civil').hidden = true;
-  document.getElementById('ver_estado').hidden = false;
-  document.getElementById('Nombre').disabled = true;
-  document.getElementById('txt_apellido').disabled = true;
-  document.getElementById('identidad').disabled = true;
-  document.getElementById('editar_info').hidden = false;
-  document.getElementById('btn_editar').hidden = true;
-  document.getElementById('btn_guardar_edicion').hidden = true;
-  document.getElementById('genero').hidden = true;
-  document.getElementById('ver_genero').hidden = false;
-
+  document.getElementById("estado_civil").hidden = true;
+  document.getElementById("ver_estado").hidden = false;
+  document.getElementById("Nombre").disabled = true;
+  document.getElementById("txt_apellido").disabled = true;
+  document.getElementById("identidad").disabled = true;
+  document.getElementById("editar_info").hidden = false;
+  document.getElementById("btn_editar").hidden = true;
+  document.getElementById("btn_guardar_edicion").hidden = true;
+  document.getElementById("genero").hidden = true;
+  document.getElementById("ver_genero").hidden = false;
 }
 
 function ver_estado_civil() {
-
-  document.getElementById('estado_civil').hidden = true;
-  document.getElementById('ver_estado').hidden = false
-
+  document.getElementById("estado_civil").hidden = true;
+  document.getElementById("ver_estado").hidden = false;
 }
-
 
 function insertar_pregunta1() {
   var id_persona = $("#id_persona").val();
@@ -1230,30 +1242,28 @@ function eliminar_pregunta1(persona) {
   $.post(
     "../Controlador/perfil_docente_controlador.php?op=EliminarPregunta1",
     { id_persona: persona },
-    function (e) { }
+    function (e) {}
   );
 }
 function eliminar_pregunta2(persona) {
   $.post(
     "../Controlador/perfil_docente_controlador.php?op=EliminarPregunta2",
     { id_persona: persona },
-    function (e) { }
+    function (e) {}
   );
 }
 function eliminar_pregunta3(persona) {
   $.post(
     "../Controlador/perfil_docente_controlador.php?op=EliminarPregunta3",
     { id_persona: persona },
-    function (e) { }
+    function (e) {}
   );
 }
 function eliminar_pregunta4(persona) {
   $.post(
     "../Controlador/perfil_docente_controlador.php?op=EliminarPregunta4",
     { id_persona: persona },
-    function (e) {
-
-    }
+    function (e) {}
   );
 }
 
@@ -1347,7 +1357,6 @@ function enviarpregunta4() {
   );
 }
 
-
 function especialidad() {
   var id_persona = $("#id_persona").val();
 
@@ -1360,31 +1369,30 @@ function especialidad() {
       for (i = 0; i < data.especialidad.length; i++) {
         $("#tbl_especialidad").append(
           '<tr id="rowe' +
-          i +
-          '">' +
-          '<td id="celda' +
-          i +
-          '"><input maxlength="9" id="tel1' +
-          i +
-          '" type="tel" name="tel"readonly hidden class="form-control name_list" value="' +
-          data["especialidad"][i].id_grado_aca_personas +
-          '" placeholder="___-___"/></td>' +
-          "<td>" +
-          data["especialidad"][i].grado_academico +
-          "</td>" +
-          "<td>" +
-          data["especialidad"][i].especialidad +
-          "</td>" +
-          '<td><button type="button" name="remove" id="' +
-          i +
-          '" class="btn btn-danger btn_remove_espe">X</button></td>' +
-          "</tr>"
+            i +
+            '">' +
+            '<td id="celda' +
+            i +
+            '"><input maxlength="9" id="tel1' +
+            i +
+            '" type="tel" name="tel"readonly hidden class="form-control name_list" value="' +
+            data["especialidad"][i].id_grado_aca_personas +
+            '" placeholder="___-___"/></td>' +
+            "<td>" +
+            data["especialidad"][i].grado_academico +
+            "</td>" +
+            "<td>" +
+            data["especialidad"][i].especialidad +
+            "</td>" +
+            '<td><button type="button" name="remove" id="' +
+            i +
+            '" class="btn btn-danger btn_remove_espe">X</button></td>' +
+            "</tr>"
         );
       }
     }
   );
   limpiar();
-
 }
 
 function limpiar() {
@@ -1392,7 +1400,6 @@ function limpiar() {
 }
 $(document).ready(function () {
   function eliminar_espe() {
-
     var id_persona = $("#id_persona").val();
     var confirmLeave = confirm("¿Desea eliminar la formación del docente?");
     if (confirmLeave == true) {
@@ -1404,14 +1411,10 @@ $(document).ready(function () {
       $.post(
         "../Controlador/perfil_docente_controlador.php?op=eliminar_formacion",
         { eliminar_formacion: eliminar_formacion, id_persona: id_persona },
-        function (e) { }
+        function (e) {}
       );
 
-      swal(
-        "Buen trabajo!",
-        "¡ Se eliminaron !",
-        "success"
-      );
+      swal("Buen trabajo!", "¡ Se eliminaron !", "success");
     }
   }
 
@@ -1454,4 +1457,3 @@ $(document).ready(function () {
 // $("#tabla_especialidad_grado").dataTable({
 //   paging: false, //Ocultar paginación
 // });
-

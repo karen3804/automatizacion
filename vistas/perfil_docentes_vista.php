@@ -143,6 +143,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
 <head>
     <!-- Latest compiled and minified CSS -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style type="text/css" media="print">
         @page {
@@ -423,54 +424,54 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                             &nbsp;&nbsp;
                                             <button class="btn btn-info " id="descargar_curriculum" name=""> <a href="" target="_blank" id="curriculum" style="color:white;font-weight: bold;">Descargar Curriculum</a></button>
                                         </div>
-                                            &nbsp;&nbsp;
-                                            <button class="btn btn-info" style="color:white;font-weight: bold;" id="btn_editar_curri" name="btn_editar_curri"><i class="fas fa-print"></i>Imprimir Perfil</button>
+                                        &nbsp;&nbsp;
+                                        <button class="btn btn-info" style="color:white;font-weight: bold;" id="btn_editar_curri" name="btn_editar_curri"><i class="fas fa-print"></i>Imprimir Perfil</button>
 
 
-                                            &nbsp;&nbsp;
+                                        &nbsp;&nbsp;
 
-                                            <!-- <p class="text-center" style="margin-top: 20px;"></p> -->
+                                        <!-- <p class="text-center" style="margin-top: 20px;"></p> -->
 
-                                            <button type="button" style="color:white;font-weight: bold;" class="btn btn-info" onclick="habilitar_editar();" id="editar_info" name="editar_info"><i class="fas fa-user-edit"></i>Editar Información</button>
+                                        <button type="button" style="color:white;font-weight: bold;" class="btn btn-info" onclick="habilitar_editar();" id="editar_info" name="editar_info"><i class="fas fa-user-edit"></i>Editar Información</button>
 
-                                            <button hidden type="button" style="color:white;font-weight: bold;" class="btn btn-info" onclick="desabilitar();" id="btn_editar" name="btn_editar"><i class="fas fa-user-edit"></i>Editar Información</button>
+                                        <button hidden type="button" style="color:white;font-weight: bold;" class="btn btn-info" onclick="desabilitar();" id="btn_editar" name="btn_editar"><i class="fas fa-user-edit"></i>Editar Información</button>
 
 
 
-                                            &nbsp;&nbsp;
-                                            <!-- <p class="text-center" style="margin-top: 20px;"> -->
-                                            <button hidden type="button" class="btn btn-info" id="btn_guardar_edicion" name="btn_guardar_edicion" onclick="EditarPerfil($('#Nombre').val(),$('#txt_apellido').val(),$('#identidad').val(),$('#estado_civil_text').val()); ver_estado_civil();"><i class="fas fa-user-edit"></i>Guardar Información</button>
-                                            <!-- </p> -->
-                                        </div>
+                                        &nbsp;&nbsp;
+                                        <!-- <p class="text-center" style="margin-top: 20px;"> -->
+                                        <button hidden type="button" class="btn btn-info" id="btn_guardar_edicion" name="btn_guardar_edicion" onclick="EditarPerfil($('#Nombre').val(),$('#txt_apellido').val(),$('#identidad').val(),$('#estado_civil_text').val()); ver_estado_civil();"><i class="fas fa-user-edit"></i>Guardar Información</button>
+                                        <!-- </p> -->
                                     </div>
-
-
-
                                 </div>
+
+
+
                             </div>
                         </div>
+                    </div>
 
-                        <div class="card card-default">
-                            <div class="card-header">
-                                <h3 class="card-title">Contactos</h3>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Contactos</h3>
 
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
 
-                                </div>
                             </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <!--CONTACTOS-->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <!--CONTACTOS-->
 
-                                <!--  <div class="card " style="width:420px;border-color:gray;">
+                            <!--  <div class="card " style="width:420px;border-color:gray;">
                                 <div class="card-body">
                                     <h4 class="card-title">Contactos</h4>
                                     <div class="form-group card-text">
                                         <!TABLA CONTACTOS -->
-                                <!--  <button type="button" name="add" id="add" class="btn btn-primary card-title" data-toggle="modal" data-target="#ModalTelefonos">Agregar
+                            <!--  <button type="button" name="add" id="add" class="btn btn-primary card-title" data-toggle="modal" data-target="#ModalTelefonos">Agregar
                                             Telefono</button>
 
                                         <table class="table table-bordered table-striped m-0">
@@ -486,12 +487,12 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                         </table>
                                     </div>
                                 </div> -->
-                                <!--  </div> -->
-                                <!---card-->
+                            <!--  </div> -->
+                            <!---card-->
 
 
-                                <!-- Modal para telefono -->
-                                <!--   <div class="modal fade" tabindex="-1" role="dialog" id="ModalTelefonos">
+                            <!-- Modal para telefono -->
+                            <!--   <div class="modal fade" tabindex="-1" role="dialog" id="ModalTelefonos">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -532,225 +533,225 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                 </div>
                             </div> -->
 
+                            <!--CERRANDO MODAL TELEFONO-->
+
+                            <div class="d-flex justify-content-around flex-row bd-highlight row">
+                                <div class="card " style="width:420px;border-color:gray;" id="card_telefono">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Contactos</h4>
+                                        <div class="form-group card-text">
+                                            <!-- TABLA CONTACTOS -->
+                                            <button type="button" name="add1" id="add1" class="btn btn-info card-title" data-toggle="modal" data-target="#ModalTel">Agregar Teléfono</button>
+
+                                            <table class="table table-bordered table-striped m-0">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th>Teléfono</th>
+                                                        <th id="eliminar_telefono_tabla">Eliminar</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbData2"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card " style="width:420px;border-color:gray;">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Correo</h4>
+                                        <div class="form-group card-text">
+                                            <!-- TABLA CORREO -->
+                                            <button type="button" name="add_correo1" id="add_correo1" class="btn btn-info card-title" data-toggle="modal" data-target="#ModalCorreo">Agregar Correo</button>
+
+                                            <table class="table table-bordered table-striped m-0">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th>Correo</th>
+                                                        <th id="eliminar_correo_tabla">Eliminar</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbDataCorreo1"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---card-->
+
+
+                                <!--Modal para telefono-->
+                                <div class="modal fade" tabindex="-1" role="dialog" id="ModalTel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Datos</h5>
+                                                <button class="close" data-dismiss="modal">
+                                                    &times;
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="container">
+                                                    <div class="form-group">
+                                                        <label for="">Teléfono</label>
+                                                        <input required type="text" name="tel1" id="tel1" class="form-control name_list" data-inputmask="'mask': ' 9999-9999'" data-mask required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success" onclick="addTel()">Agregar</button>
+                                                <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!--CERRANDO MODAL TELEFONO-->
 
-                                <div class="d-flex justify-content-around flex-row bd-highlight row">
-                                    <div class="card " style="width:420px;border-color:gray;" id="card_telefono">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Contactos</h4>
-                                            <div class="form-group card-text">
-                                                <!-- TABLA CONTACTOS -->
-                                                <button type="button" name="add1" id="add1" class="btn btn-info card-title" data-toggle="modal" data-target="#ModalTel">Agregar Teléfono</button>
-
-                                                <table class="table table-bordered table-striped m-0">
-                                                    <thead>
-                                                        <tr>
-
-                                                            <th>Teléfono</th>
-                                                            <th id="eliminar_telefono_tabla">Eliminar</th>
-
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="tbData2"></tbody>
-                                                </table>
+                                <!--Modal para correo-->
+                                <div class="modal fade" tabindex="-1" role="dialog" id="ModalCorreo">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Datos</h5>
+                                                <button class="close" data-dismiss="modal">
+                                                    &times;
+                                                </button>
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="card " style="width:420px;border-color:gray;">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Correo</h4>
-                                            <div class="form-group card-text">
-                                                <!-- TABLA CORREO -->
-                                                <button type="button" name="add_correo1" id="add_correo1" class="btn btn-info card-title" data-toggle="modal" data-target="#ModalCorreo">Agregar Correo</button>
-
-                                                <table class="table table-bordered table-striped m-0">
-                                                    <thead>
-                                                        <tr>
-
-                                                            <th>Correo</th>
-                                                            <th id="eliminar_correo_tabla">Eliminar</th>
-
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="tbDataCorreo1"></tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!---card-->
-
-
-                                    <!--Modal para telefono-->
-                                    <div class="modal fade" tabindex="-1" role="dialog" id="ModalTel">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Datos</h5>
-                                                    <button class="close" data-dismiss="modal">
-                                                        &times;
-                                                    </button>
-                                                </div>
-
-                                                <div class="modal-body">
-                                                    <div class="container">
-                                                        <div class="form-group">
-                                                            <label for="">Teléfono</label>
-                                                            <input required type="text" name="tel1" id="tel1" class="form-control name_list" data-inputmask="'mask': ' 9999-9999'" data-mask required>
-                                                        </div>
+                                            <div class="modal-body">
+                                                <div class="container">
+                                                    <div class="form-group">
+                                                        <label for="">Correo</label>
+                                                        <input required type="email" name="correo" id="correo" class="form-control name_list">
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-success" onclick="addTel()">Agregar</button>
-                                                    <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                                </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success" onclick="addCorreo()">Agregar</button>
+                                                <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!--CERRANDO MODAL TELEFONO-->
-
-                                    <!--Modal para correo-->
-                                    <div class="modal fade" tabindex="-1" role="dialog" id="ModalCorreo">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Datos</h5>
-                                                    <button class="close" data-dismiss="modal">
-                                                        &times;
-                                                    </button>
-                                                </div>
-
-                                                <div class="modal-body">
-                                                    <div class="container">
-                                                        <div class="form-group">
-                                                            <label for="">Correo</label>
-                                                            <input required type="email" name="correo" id="correo" class="form-control name_list">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-success" onclick="addCorreo()">Agregar</button>
-                                                    <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
+
                             </div>
                         </div>
+                    </div>
 
 
-                        <div class="card card-default">
-                            <div class="card-header">
-                                <h3 class="card-title">Formación Académica y Comisiones</h3>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Formación Académica y Comisiones</h3>
 
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
 
-                                </div>
                             </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="d-flex justify-content-around flex-row bd-highlight row">
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="d-flex justify-content-around flex-row bd-highlight row">
 
-                                    <div class="card " style="width:500px;border-color:gray;" id="parrafo_formacion">
-                                        <!--comisiones-->
+                                <div class="card " style="width:500px;border-color:gray;" id="parrafo_formacion">
+                                    <!--comisiones-->
 
-                                        <div class="card-body">
-                                            <h4 class="card-title ">Formación Académica</h4><br>
+                                    <div class="card-body">
+                                        <h4 class="card-title ">Formación Académica</h4><br>
 
 
-                                            <!-- <ul class="card-text" id="ulFormacion">
+                                        <!-- <ul class="card-text" id="ulFormacion">
 
                                     </ul> -->
-                                            <div class="card-body">
-                                                <button type="button" class="btn btn-info card-title" data-toggle="modal" data-target="#myModal">Agregar Formación Académica <i class="fa fa-user-plus"></i></button>
-                                                <h4 class="card-title"></h4>
-                                                <div class="card-text">
-                                                    <table class="table table-bordered table-striped m-0">
-                                                        <thead>
-                                                            <tr>
-                                                                <th></th>
-                                                                <th>Grado</th>
-                                                                <th>Especialidad</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody id="tbl_especialidad"></tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-
-
-
-                                            <!-- The Modal -->
-
-                                        </div>
-                                    </div><!-- Comisiones-->
-
-
-
-                                    <div class="card " style="width:500px;border-color:gray;" id="parrafo_comisiones">
-                                        <!--comisiones-->
                                         <div class="card-body">
-                                            <h4 class="card-title">Comisiones y Actividades</h4>
-                                            <div class="card-body">
-
+                                            <button type="button" class="btn btn-info card-title" data-toggle="modal" data-target="#myModal">Agregar Formación Académica <i class="fa fa-user-plus"></i></button>
+                                            <h4 class="card-title"></h4>
+                                            <div class="card-text">
                                                 <table class="table table-bordered table-striped m-0">
                                                     <thead>
                                                         <tr>
-                                                            <th>#</th>
-                                                            <th>Comisión</th>
-                                                            <th>Actividad</th>
+                                                            <th></th>
+                                                            <th>Grado</th>
+                                                            <th>Especialidad</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="tbl_comisiones"></tbody>
+                                                    <tbody id="tbl_especialidad"></tbody>
                                                 </table>
                                             </div>
                                         </div>
 
 
-                                    </div><!-- Comisiones-->
 
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card card-default">
-                            <div class="card-header">
-                                <h3 class="card-title">Preferencia Docente en Base a Experiencias Profesionales</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-
-                                </div>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="d-flex justify-content-around flex-row bd-highlight row">
-                                    <div class="card " style="width:420px;border-color:gray;" id="parrafo_encuesta">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Encuesta Docente</h4>
-                                            <div class="card-text">
-                                                <button type="button" id="btn_modal1" class="btn btn-info " onclick="pregunta1();">Pregunta 1</button>
-                                                <button type="button" id="btn_modal2" class="btn btn-info " onclick="pregunta2();">Pregunta 2</button>
-                                                <button type="button" id="btn_modal3" class="btn btn-info " onclick="pregunta3();">Pregunta 3</button>
-                                            </div>
-                                        </div>
-
+                                        <!-- The Modal -->
 
                                     </div>
+                                </div><!-- Comisiones-->
+
+
+
+                                <div class="card " style="width:500px;border-color:gray;" id="parrafo_comisiones">
+                                    <!--comisiones-->
+                                    <div class="card-body">
+                                        <h4 class="card-title">Comisiones y Actividades</h4>
+                                        <div class="card-body">
+
+                                            <table class="table table-bordered table-striped m-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Comisión</th>
+                                                        <th>Actividad</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbl_comisiones"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+                                </div><!-- Comisiones-->
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Preferencia Docente en Base a Experiencias Profesionales</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="d-flex justify-content-around flex-row bd-highlight row">
+                                <div class="card " style="width:420px;border-color:gray;" id="parrafo_encuesta">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Encuesta Docente</h4>
+                                        <div class="card-text">
+                                            <button type="button" id="btn_modal1" class="btn btn-info " onclick="pregunta1();">Pregunta 1</button>
+                                            <button type="button" id="btn_modal2" class="btn btn-info " onclick="pregunta2();">Pregunta 2</button>
+                                            <button type="button" id="btn_modal3" class="btn btn-info " onclick="pregunta3();">Pregunta 3</button>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
+                    </div>
 
 
                 </form>
