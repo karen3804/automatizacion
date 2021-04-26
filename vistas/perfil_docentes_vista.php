@@ -540,7 +540,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                             <h4 class="card-title">Contactos</h4>
                                             <div class="form-group card-text">
                                                 <!-- TABLA CONTACTOS -->
-                                                <button type="button" name="add" id="add" class="btn btn-info card-title" data-toggle="modal" data-target="#ModalTel">Agregar Teléfono</button>
+                                                <button type="button" name="add1" id="add1" class="btn btn-info card-title" data-toggle="modal" data-target="#ModalTel">Agregar Teléfono</button>
 
                                                 <table class="table table-bordered table-striped m-0">
                                                     <thead>
@@ -562,7 +562,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                             <h4 class="card-title">Correo</h4>
                                             <div class="form-group card-text">
                                                 <!-- TABLA CORREO -->
-                                                <button type="button" name="add_correo" id="add_correo" class="btn btn-info card-title" data-toggle="modal" data-target="#ModalCorreo">Agregar Correo</button>
+                                                <button type="button" name="add_correo1" id="add_correo1" class="btn btn-info card-title" data-toggle="modal" data-target="#ModalCorreo">Agregar Correo</button>
 
                                                 <table class="table table-bordered table-striped m-0">
                                                     <thead>
@@ -596,7 +596,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
                                                     <div class="container">
                                                         <div class="form-group">
                                                             <label for="">Teléfono</label>
-                                                            <input required type="text" name="tel" id="tel" class="form-control name_list" data-inputmask="'mask': ' 9999-9999'" data-mask required>
+                                                            <input required type="text" name="tel1" id="tel1" class="form-control name_list" data-inputmask="'mask': ' 9999-9999'" data-mask required>
                                                         </div>
                                                     </div>
                                                 </div>

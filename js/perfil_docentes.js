@@ -13,36 +13,37 @@ $(document).ready(function () {
 
   seleccionar();
 
-  $("#add").click(function () {
+  $("#add1").click(function () {
     let i = ContarTel();
 
     if (i >= 3) {
-      alert("Numero maximo de telefonos es de 2");
+      alert("Número máximo de teléfonos es de 3");
       return false;
     } else {
       i++;
     }
+    console.log(i);
   });
 
-  $("#add_correo").click(function () {
-    let i = ContarCorreo();
+  $("#add_correo1").click(function () {
+    let j = ContarCorreo();
 
-    if (i >= 2) {
-      alert("Numero maximo de correos es de 2");
+    if (j >= 2) {
+      alert("Número máximo de correos es de 2");
       return false;
     } else {
-      i++;
+      j++;
     }
   });
 
   function eliminar() {
     let i = ContarTel();
     var confirmLeave = confirm(
-      "¿Desea Eliminar el Número de telefono del docente?"
+      "¿Desea Eliminar el Número de teléfono del docente?"
     );
     if (confirmLeave == true) {
       var id = $(this).attr("id");
-      var eliminar_tel = document.getElementById("tel" + id).value;
+      var eliminar_tel = document.getElementById("tel1" + id).value;
       console.log(eliminar_tel);
       $("#row" + id).remove();
       console.log(id);
@@ -226,9 +227,9 @@ function TraerDatos() {
             '">' +
             '<td id="celda' +
             n +
-            '"><input maxlength="9"    onkeyup="javascript:mascara()" id="tel' +
+            '"><input maxlength="9"    onkeyup="javascript:mascara()" id="tel1' +
             n +
-            '"  type="tel" name="tel" class="form-control name_list" value="' +
+            '"  type="tel1" name="tel1" class="form-control name_list" value="' +
             data["all"][i].valor +
             '" placeholder="___-___"/></td>' +
             '<td><button type="button" name="remove" id="' +
@@ -270,7 +271,7 @@ function ContarTel() {
   let inputs = document.getElementsByTagName("input");
   let cont = 0;
   for (let index = 0; index < inputs.length; index++) {
-    if ($(inputs[index]).attr("type") == "tel") {
+    if ($(inputs[index]).attr("type") == "tel1") {
       cont++;
     }
   }
@@ -389,11 +390,11 @@ function valtel(tel) {
   }
 }
 function limpiarTEL() {
-  document.getElementById("tel").value = "";
+  document.getElementById("tel1").value = "";
 }
 //Agregar Telefono en el front
 function addTel() {
-  var telefono = document.getElementById("tel");
+  var telefono = document.getElementById("tel1");
 
   j = ContarTel();
   let n = 1 + j;
@@ -405,7 +406,8 @@ function addTel() {
   } else {
     if (valtel($("#tel").val()) == 0) {
       //aqui debo validar que no se agregue a la tabla ...
-      swal("ingresar un numero valido");
+    
+     swal("Alerta", "ingresar un número válido", "warning");
 
       limpiarTEL();
       return false;
@@ -416,9 +418,9 @@ function addTel() {
         '">' +
         '<td id="celda' +
         n +
-        '"><input maxlength="9"    onkeyup="javascript:mascara()" id="tel' +
+        '"><input maxlength="9"    onkeyup="javascript:mascara()" id="tel1' +
         n +
-        '"  type="tel" name="tel" class="form-control name_list" value="' +
+        '"  type="tel1" name="tel1" class="form-control name_list" value="' +
         telefono.value +
         '" placeholder="___-___"/></td>' +
         '<td><button type="button" name="remove" id="' +
@@ -430,7 +432,8 @@ function addTel() {
       AgregarTelefono(telefono.value);
       telefono.value = "";
       $("#ModalTel").modal("hide");
-    }
+    console.log(n);
+   }
   }
 }
 function correovalido(correo1) {
@@ -919,7 +922,7 @@ function AgregarCorreo(correo) {
     "../Controlador/perfil_docente_controlador.php?op=AgregarCorreo",
     { correo: correo, id_persona: id_persona },
     function (e) {
-      alert("se inserto");
+      alert("se inserto correctamente");
     }
   );
 }
@@ -947,11 +950,12 @@ function addCorreo() {
   console.log(correo);
 
   if (correo.length == 0) {
-    alert("Completar El Campo Telefono Por Favor");
+    alert("Completar El Campo correo Por Favor");
   } else {
     if (correovalido($("#correo").val()) == 0) {
       //aqui debo validar que no se agregue a la tabla ...
-      swal("ingresar un correo valido");
+      
+           swal("Alerta", "ingresar un correo válido", "warning");
 
       limpiarCor();
       return false;
@@ -1390,7 +1394,7 @@ $(document).ready(function () {
   function eliminar_espe() {
 
     var id_persona = $("#id_persona").val();
-    var confirmLeave = confirm("¿Desea eliminar la formacion del docente?");
+    var confirmLeave = confirm("¿Desea eliminar la formación del docente?");
     if (confirmLeave == true) {
       var id = $(this).attr("id");
       var eliminar_formacion = document.getElementById("tel1" + id).value;
