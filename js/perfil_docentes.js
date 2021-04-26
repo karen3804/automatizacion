@@ -922,7 +922,7 @@ function AgregarCorreo(correo) {
     "../Controlador/perfil_docente_controlador.php?op=AgregarCorreo",
     { correo: correo, id_persona: id_persona },
     function (e) {
-      alert("se inserto correctamente");
+     
     }
   );
 }
