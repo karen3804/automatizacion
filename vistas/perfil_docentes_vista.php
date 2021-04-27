@@ -136,6 +136,8 @@ AND pad.id_persona = '$usuario');";
 $consulta11 = $mysqli->query($sql11);
 $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
+
+$fechaActual = date('d-m-Y H:i:s');
 ?>
 
 <!DOCTYPE html>
@@ -178,7 +180,7 @@ $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
     <img style="margin-left: 100px;" hidden src="../Imagenes_Perfil_Docente/imagen23053148.png" alt="" class="brand-image img-circle elevation-3" height="185" width="170" id="foto_carrera">
 
-    <input hidden class="form-control" type="text" id="fecha_actual" name="fecha_actual" style="margin-left: 140px;" value="<?php echo date("d/m/y"); ?>">
+    <input hidden class="form-control" type="text" id="fecha_actual" name="fecha_actual" style="margin-left: 90px;" value="<?php echo $fechaActual ?>">
 
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
