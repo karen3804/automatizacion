@@ -200,7 +200,7 @@ ob_end_flush();
 
                     <thead>
                         <tr>
-                            <th hidden>ID </th>
+                            <th># </th>
                             <th>Área</th>
                             <th>MODIFICAR</th>
                             <th>ELIMINAR</th>
@@ -209,7 +209,7 @@ ob_end_flush();
                     <tbody>
                     <?php while ($row = $resultadotabla->fetch_array(MYSQLI_ASSOC)) { ?>
                             <tr>
-                                <td hidden><?php echo $row['id_area']; ?></td>
+                                <td ><?php echo $row['id_area']; ?></td>
                                 <td><?php echo $row['area']; ?></td>
 
 
