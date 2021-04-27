@@ -509,6 +509,36 @@ function imagen() {
   }
 }
 
+
+
+//============================
+//      TAMAÑO DE FOTO       =
+//============================
+var uploadField = document.getElementById('imagen');
+
+uploadField.onchange = function() {
+	if (this.files[0].size >5242880) {
+		//alert("Archivo muy grande!");
+		swal('Error', 'Archivo muy grande!', 'warning');
+
+		this.value = '';
+	}
+};
+
+//============================
+//      TAMAÑO DE CURRICULUM =
+//============================
+ var uploadField = document.getElementById('c_vitae');
+
+uploadField.onchange = function() {
+	if (this.files[0].size > 15728640) {
+		//alert("Archivo muy grande!");
+		swal('Error', 'Archivo muy grande!', 'warning');
+
+		this.value = '';
+	}
+}; 
+
 //CARGAR TABLA DE ACTIVIDADES
 function Actividades() {
   var id_persona = $("#id_persona").val();

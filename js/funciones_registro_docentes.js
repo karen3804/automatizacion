@@ -953,7 +953,7 @@ $(document).ready(function() {
 var uploadField = document.getElementById('seleccionararchivo');
 
 uploadField.onchange = function() {
-	if (this.files[0].size > 5242880) {
+	if (this.files[0].size >5242880) {
 		//alert("Archivo muy grande!");
 		swal('Error', 'Archivo muy grande!', 'warning');
 
@@ -962,18 +962,18 @@ uploadField.onchange = function() {
 };
 
 //============================
-//      TAMAÑO DE FOTO       =
+//      TAMAÑO DE CURRICULUM    =
 //============================
-var uploadField = document.getElementById('seleccionararchivo');
+ var uploadField = document.getElementById('curriculum');
 
 uploadField.onchange = function() {
-	if (this.files[0].size > 5242880) {
+	if (this.files[0].size > 15728640) {
 		//alert("Archivo muy grande!");
 		swal('Error', 'Archivo muy grande!', 'warning');
 
 		this.value = '';
 	}
-};
+}; 
 
 //VALIDAR QUE SI LAS HORAS A INGRESAR COINCIDEN CON LA JORNADA
 function valida_jornada_hora() {
@@ -1417,9 +1417,3 @@ function Registrarcurriculum() {
 	});
 	return false;
 }
-
-/* window.addEventListener('click', () => {
-    var tiempo = setInterval(() => {
-        alert("tres segundos pasados");
-    }, 3000);
-}) */
