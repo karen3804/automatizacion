@@ -137,7 +137,7 @@ $consulta11 = $mysqli->query($sql11);
 $row11 = $consulta11->fetch_all(MYSQLI_ASSOC);
 
 
-$fechaActual = date('d-m-Y H:i:s');
+$fechaActual = date('d-m-Y h:i:s');
 ?>
 
 <!DOCTYPE html>

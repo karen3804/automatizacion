@@ -431,7 +431,7 @@ function addTel() {
   if (n1 != -1 || telefono.value.length == 0) {
     alert("Completar El Campo Telefono Por Favor");
   } else {
-    if (valtel($("#tel").val()) == 0) {
+    if (valtel($("#tel1").val()) == 0) {
       //aqui debo validar que no se agregue a la tabla ...
 
       swal("Alerta", "ingresar un número válido", "warning");
