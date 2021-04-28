@@ -1857,7 +1857,7 @@ $(document).ready(function() {
   async: false,
   processing: true,
       dom: 'Bfrtip',
-      // buttons: [
+      buttons: [
       //     {
       //         extend: "excelHtml5",
       //         text: '<i class="fas fa-file-excel"></i> ',
