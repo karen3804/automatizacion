@@ -75,7 +75,7 @@ ob_end_flush();
 <head>
 
 
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../plugins/datatables/datatables.min.css" />
     <!--datables estilo bootstrap 4 CSS-->
     <link rel="stylesheet" type="text/css" href="../plugins/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
