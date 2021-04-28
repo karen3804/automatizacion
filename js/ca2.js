@@ -37,7 +37,7 @@ function mostrar_docente(id_persona_valor) {
       data = JSON.parse(data);
       console.log(data);
       // mostrarform(true);
-      $("#id").val(data.Id);
+      $("#id").val(data.id_persona);
       $("#input2").val(data.Categoria);
       $("#input5").val(data.Hora_Salida);
       $("#input6").val(data.Hora_Entrada);
@@ -594,7 +594,6 @@ function crear_carga_academica() {
   } else {
 
     if (
-      $("#txt_num_doc").val().length == 0 ||
       $("#txt_seccion").val().length == 0 ||
       hora_inicial.value == 0 ||
       hora_final.value == 0 ||
