@@ -29,7 +29,7 @@ if ($_POST['txt_estado_civil']  <>' ' and  $_POST['txt_descripcion']<> '')
         echo '<script type="text/javascript">
                     swal({
                        title:"",
-                       text:"Lo sentimos el estado ya existe",
+                       text:"Lo sentimos el estado civil ya existe",
                        type: "error",
                        showConfirmButton: false,
                        timer: 3000
