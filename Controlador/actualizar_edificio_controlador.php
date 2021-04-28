@@ -24,7 +24,7 @@ $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 if ($existe['nombre'] == 1) {/*
 header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
 
-    header("location:../vistas/mantenimiento_edificio.php?msj=1");
+    header("location:../vistas/mantenimiento_edificio_vista.php?msj=1");
 } else {
 
     $sql = "call proc_actualizar_edificio('$edificio','$codigo','$_SESSION[usuario]','$id_edificio' )";
