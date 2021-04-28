@@ -587,7 +587,7 @@ ob_end_flush();
             <button type="submit" class="btn btn-primary btn-lg" id="btn_guardar_registro_docentes" name="btn_guardar_registro_docentes" onclick="RegistarDocente($('#txt_nombres').val(), $('#txt_apellidos').val(), $('#cb_genero').val(), $('#identidad').val(), $('#cb_nacionalidad').val(), $('#cb_ecivil').val(), $('#txt_fecha_nacimiento').val(), $('#txt_hi').val(), $('#txt_hf').val(), $('#txt_n_empleado').val(), $('#tipo_docente').val(), $('#txt_fecha_ingreso').val());   ">
               <i class="zmdi zmdi-floppy"></i>GUARDAR</button>
               <button hidden type="submit" class="btn btn-primary btn-lg" id="btn_guardar_registro_docentes2" name="btn_guardar_registro_docentes2" onclick="RegistarDocente2($('#txt_nombres').val(), $('#txt_apellidos').val(), $('#cb_genero').val(), $('#pasaporte').val(), $('#cb_nacionalidad').val(), $('#cb_ecivil').val(), $('#txt_fecha_nacimiento').val(), $('#txt_hi').val(), $('#txt_hf').val(), $('#txt_n_empleado').val(), $('#tipo_docente').val(), $('#txt_fecha_ingreso').val());   ">
-              <i class="zmdi zmdi-floppy"></i>GUARDAR1</button>
+              <i class="zmdi zmdi-floppy"></i>GUARDAR</button>
           </p>
 
         </section>
