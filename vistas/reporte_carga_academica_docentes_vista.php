@@ -295,7 +295,7 @@ ob_end_flush();
               </div>
               <div class="col-sm-4">
                 <label>Horas</label>
-                <input class="form-control" type="text" id="txt_horas" name="txt_horas" values="" onkeypress="return Numeros(event)">
+                <input class="form-control" type="text" id="txt_horas" name="txt_horas" values="" onkeypress="return Numeros(event)" maxlength="2">
               </div>
             </div>
           </div>
