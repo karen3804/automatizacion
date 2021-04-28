@@ -24,7 +24,7 @@ $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 if ($existe['Descripcion'] == 1) {/*
 header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
 
-    header("location:../vistas/mantenimiento_decripcion_vista.php?msj=1");
+    header("location:../vistas/mantenimiento_carrera_vista.php?msj=1");
 } else {
 
     $sql = "call proc_actualizar_carrera('$Descripcion','$Id_facultad','$_SESSION[usuario]','$id_carrera' )";
