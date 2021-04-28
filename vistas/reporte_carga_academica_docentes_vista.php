@@ -251,7 +251,7 @@ ob_end_flush();
                 <th>#</th>
                 <th>COMISIÓN</th>
                 <th>ACTIVIDAD </th>
-                <th>HORAS</th>
+                <th>HORAS SEMANALES</th>
                 <th>AGREGAR HORAS</th>
               </tr>
             </thead>

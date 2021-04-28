@@ -148,8 +148,8 @@ ORDER BY id_periodo DESC LIMIT 1;");
 
             while ($sentencia->fetch()) {
                 $this->SetFont('Times', '', 10);
-                $this->Cell(50, 10, $comision, 1, 0, 'C');
-                $this->Cell(50, 10, $actividad, 1, 0, 'C');
+                $this->Cell(80, 10, $comision, 1, 0, 'C');
+                $this->Cell(80, 10, $actividad, 1, 0, 'C');
                 $this->Cell(50, 10, $horas_semanales, 1, 0, 'C');
                 $this->ln();
             }
