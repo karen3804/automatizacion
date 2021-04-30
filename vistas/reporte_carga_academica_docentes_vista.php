@@ -187,7 +187,7 @@ ob_end_flush();
       <div class="card-header">
         <h3 class="card-title">Carga Académica Docente </h3>
         <br>
-        <a href="../Controlador/reporteExcelCA_Docentes.php" class="fas fa-file-excel" title=" Exportar Carga a Excel"></a>
+       <!--  <a href="../Controlador/reporteExcelCA_Docentes.php" class="fas fa-file-excel" title=" Exportar Carga a Excel"></a> -->
 
       <!--   <a href="" onclick="ventana1()" class="fas fa-file-pdf" title=" Exportar Carga a PDF"></a> -->
         <!--COMBOBOX-->
@@ -236,7 +236,7 @@ ob_end_flush();
         <div class="card-header">
           <h3 class="card-title">Actividades de Investigación, Vinculación UNAH-Sociedad, u otra </h3>
           <br>
-          <a href="../Controlador/reporteExcelactividades_Docentes.php" class="fas fa-file-excel" title=" Exportar Actividades a Excel"></a>
+         <!--  <a href="../Controlador/reporteExcelactividades_Docentes.php" class="fas fa-file-excel" title=" Exportar Actividades a Excel"></a> -->
           <!-- <a href="" onclick="ventana()" class="fas fa-file-pdf" title=" Exportar Actividades a PDF"></a> -->
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
