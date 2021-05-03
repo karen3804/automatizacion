@@ -1,8 +1,8 @@
 <?php
 session_start();
-
-require_once('../clases/Conexion.php');
-require_once('../clases/funcion_bitacora.php');
+error_reporting(0);
+require_once ('../clases/Conexion.php');
+require_once ('../clases/funcion_bitacora.php');
 
 
 $edificio= strtoupper($_POST['txtedificio']);
