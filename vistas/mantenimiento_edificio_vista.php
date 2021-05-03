@@ -1,11 +1,11 @@
 <?php
-session_start();
 ob_start();
-require_once('../vistas/pagina_inicio_vista.php');
-require_once('../clases/Conexion.php');
-require_once('../clases/funcion_bitacora.php');
-require_once('../clases/funcion_visualizar.php');
-require_once('../clases/funcion_permisos.php');
+session_start();
+require_once ('../vistas/pagina_inicio_vista.php');
+require_once ('../clases/Conexion.php');
+require_once ('../clases/funcion_bitacora.php');
+require_once ('../clases/funcion_visualizar.php');
+require_once ('../clases/funcion_permisos.php');
 
 //Lineas de msj al cargar pagina de acuerdo a actualizar o eliminar datos
 if (isset($_REQUEST['msj'])) {
