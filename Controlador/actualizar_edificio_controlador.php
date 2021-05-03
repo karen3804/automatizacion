@@ -23,7 +23,8 @@ $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 if ($existe['nombre'] == 1) {/*
 header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
 
-    header("location:../vistas/mantenimiento_edificio_vista.php?msj=1");
+    // header("location:../vistas/mantenimiento_edificio_vista.php?msj=1");
+    echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/mantenimiento_edificio_vista.php?msj=1'); </script>";
 } else {
 
     $sql = "call proc_actualizar_edificio('$edificio','$codigo','$_SESSION[usuario]','$id_edificio' )";
@@ -50,9 +51,11 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
         $resultado = $mysqli->query($sql);
 
         if ($resultado == true) {
-            header("location:../vistas/mantenimiento_edificio_vista.php?msj=2");
+            // header("location:../vistas/mantenimiento_edificio_vista.php?msj=2");
+            echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/mantenimiento_edificio_vista.php?msj=2'); </script>";
         } else {
-            header("location:../vistas/mantenimiento_edificio_vista.php?msj=3");
+            // header("location:../vistas/mantenimiento_edificio_vista.php?msj=3");
+            echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/mantenimiento_edificio_vista.php?msj=3'); </script>";
         }
     } elseif ($valor_viejo['nombre'] <> $edificio) {
 
@@ -63,9 +66,11 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
         $resultado = $mysqli->query($sql);
 
         if ($resultado == true) {
-            header("location:../vistas/mantenimiento_edificio_vista.php?msj=2");
+            // header("location:../vistas/mantenimiento_edificio_vista.php?msj=2");
+            echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/mantenimiento_edificio_vista.php?msj=2'); </script>";
         } else {
-            header("location:../vistas/mantenimiento_edificio_vista.php?msj=3");
+            // header("location:../vistas/mantenimiento_edificio_vista.php?msj=3");
+            echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/mantenimiento_edificio_vista.php?msj=3'); </script>";
         }
     } elseif ($valor_viejo['codigo'] <> $codigo) 
     {
@@ -77,12 +82,15 @@ header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
         $resultado = $mysqli->query($sql);
 
         if ($resultado == true) {
-            header("location:../vistas/mantenimiento_edificio_vista.php?msj=2");
+            // header("location:../vistas/mantenimiento_edificio_vista.php?msj=2");
+            echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/mantenimiento_edificio_vista.php?msj=2'); </script>";
         } else {
-            header("location:../vistas/mantenimiento_edificio_vista.php?msj=3");
+            // header("location:../vistas/mantenimiento_edificio_vista.php?msj=3");
+            echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/mantenimiento_edificio_vista.php?msj=3'); </script>";
         }
     } else {
         /*header("location: ../contenidos/editarRoles-view.php?msj=3&Rol=$Rol2 ");*/
         header("location:../vistas/mantenimiento_edificio_vista.php?msj=3");
+        echo "<script> window.location.replace('https://www.informaticaunah.com/automatizacion/vistas/mantenimiento_edificio_vista.php?msj=3'); </script>";
     }
 }
