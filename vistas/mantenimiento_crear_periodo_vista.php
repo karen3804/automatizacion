@@ -42,7 +42,7 @@ if ($visualizacion == 0) {
 
 
 
-    if (permisos::permiso_insertar($Id_objeto) == '1') {
+    if (permisos::permiso_insertar($Id_objeto) == '55') {
         $_SESSION['btn_guardar_periodo'] = "";
     } else {
         $_SESSION['btn_guardar_periodo'] = "disabled";
