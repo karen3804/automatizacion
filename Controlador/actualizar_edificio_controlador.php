@@ -1,6 +1,7 @@
 <?php
-session_start();
 error_reporting(0);
+session_start();
+
 require_once ('../clases/Conexion.php');
 require_once ('../clases/funcion_bitacora.php');
 
