@@ -94,7 +94,7 @@ if ($visualizacion == 0) {
     bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A mantenimiento período');
 
 
-    if (permisos::permiso_modificar($Id_objeto) == '55') {
+    if (permisos::permiso_modificar($Id_objeto) == '1') {
         $_SESSION['btn_modificar_periodo'] = "";
     } else {
         $_SESSION['btn_modificar_periodo'] = "disabled";
