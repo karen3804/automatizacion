@@ -20,6 +20,7 @@ if (isset($_REQUEST['msj'])) {
         showConfirmButton: false,
         timer: 3000
     });
+    $(".FormularioAjax")[0].reset();
 </script>';
     }
 
@@ -34,6 +35,7 @@ if (isset($_REQUEST['msj'])) {
         showConfirmButton: false,
         timer: 3000
     });
+    $(".FormularioAjax")[0].reset();
 </script>';
 
 
@@ -53,6 +55,7 @@ FROM tbl_edificios";
         showConfirmButton: false,
         timer: 3000
     });
+    $(".FormularioAjax")[0].reset();
 </script>';
     }
 }
