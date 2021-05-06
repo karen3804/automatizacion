@@ -116,7 +116,7 @@ ob_end_flush();
           <div class="col-sm-6">
 
 
-            <h1>Gestion de Egresados</h1>
+            <h1>Gestión de Egresados</h1>
           </div>
 
                 <div class="col-sm-6">
@@ -153,7 +153,7 @@ ob_end_flush();
                 <thead>
                 <tr>
                   <th>NOMBRE</th>
-                  <th>TELEFONO FIJO</th>
+                  <th>TELÉFONO FIJO</th>
                   <th >CELULAR</th>
                   <th >CORREO PERSONAL</th>
                   <th>MODIFICAR</th>
@@ -240,7 +240,7 @@ ob_end_flush();
 
                   <div class="col-sm-4">
                   <div class="form-group">
-                  <label>Telefono Fijo</label>
+                  <label>Teléfono Fijo</label>
                        <input class="form-control" type="text" id="txt_telefono_fijo" name="txt_telefono_fijo"   value="<?php echo $_SESSION['telefono_gestion_egresado'];?>"  data-inputmask='"mask": " 9999-9999"' data-mask>
                   </div>
                 </div>
@@ -261,7 +261,7 @@ ob_end_flush();
 
                   <div class="col-sm-6">
                   <div class="form-group">
-                  <label>Posee Maestria</label>
+                  <label>Posee Maestría</label>
              <select class="form-control" name="cb_maestria" id="cb_maestria" onchange="Mostrarmaestria();"> 
             <option value="<?php echo $_SESSION['posee_maestria_gestion_egresado'];?>"><?php echo $_SESSION['posee_maestria_gestion_egresado'];?> </option>
                    <option value="<?php if ($_SESSION['posee_maestria_gestion_egresado']=="SI") {
@@ -282,7 +282,7 @@ echo "SI";
 
                   <div class="col-sm-6">
                   <div class="form-group">
-                  <label name="lblmaestria" id="lblmaestria">Maestria</label>
+                  <label name="lblmaestria" id="lblmaestria">Maestría</label>
                    <input class="form-control" type="text" id="txtmaestria" name="txtmaestria"  value="<?php echo $_SESSION['maestria_gestion_egresado'];?>"  onkeyup="DobleEspacio(this, event)" style="text-transform: uppercase" maxlength="50">
                 </div>
                  </div>
@@ -356,7 +356,7 @@ echo "SI";
 
                   <div class="col-sm-4">
                   <div class="form-group">
-                  <label name="lbllaboradireccion" id="lbllaboradireccion">Direccion</label>
+                  <label name="lbllaboradireccion" id="lbllaboradireccion">Dirección</label>
                     <input class="form-control" type="text"  maxlength="150" id="txt_direccion_empresa" name="txt_direccion_empresa"  value="<?php echo $_SESSION['direccion_empresa_gestion_egresado'];?>"  style="text-transform: uppercase"  onkeyup="DobleEspacio(this, event)" >
                 </div>
                  </div>
@@ -365,7 +365,7 @@ echo "SI";
 
                   <div class="col-sm-4">
                   <div class="form-group">
-                   <label name="lbllaboratelefono" id="lbllaboratelefono">Telefono</label>
+                   <label name="lbllaboratelefono" id="lbllaboratelefono">Teléfono</label>
                     <input class="form-control" type="text" id="txt_telefono_empresa" name="txt_telefono_empresa"  value="<?php echo $_SESSION['telefono_empresa_gestion_egresado'];?>" data-inputmask='"mask": " 9999-9999"' data-mask>
                 </div>
                  </div>

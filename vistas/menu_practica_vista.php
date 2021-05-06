@@ -18,6 +18,7 @@ $_SESSION['gestion_inscripcion_menu']="No
 }
 
 
+
 if (permiso_ver('15')=='1')
  {
   
@@ -25,10 +26,20 @@ if (permiso_ver('15')=='1')
 }
 else
 {
-$_SESSION['registrar_clases_aprobadas_menu']="No 
-  tiene permisos para visualizar";
+$_SESSION['registrar_clases_aprobadas_menu']="No";
+}
+
+if (permiso_ver('14')=='1')
+ {
+  
+  $_SESSION['mantenimiento_dias_feriados']="...";
+}
+else
+{
+$_SESSION['mantenimiento_dias_feriados']="No tiene permisos para visualizar";
 
 }
+
 
 if (permiso_ver('16')=='1')
  {
@@ -114,6 +125,21 @@ $_SESSION['aprobacion_rechazo_practica_menu']="No
 
 
 
+
+   <div class="col-6 col-sm-6 col-md-4">
+   <div class="small-box bg-primary">
+   <div class="inner">
+    <h5>Mantenimiento días feriado </h5>
+   <p><?php echo $_SESSION['mantenimiento_dias_feriados']; ?></p> 
+  </div>
+  <div class="icon">
+    <i class="fas fa-user-edit"></i>
+  </div>
+  <a href="../vistas/gestion_dias_feriados_vista.php" class="small-box-footer">
+    Ir <i class="fas fa-arrow-circle-right"></i>
+  </a>
+</div>
+</div>
 
 
     
