@@ -39,7 +39,7 @@ public static function permiso_insertar($permiso_insertar)
                 
                    }    
 
-function permiso_eliminar($permiso_eliminar)
+public static function permiso_eliminar($permiso_eliminar)
 
                    {
 
