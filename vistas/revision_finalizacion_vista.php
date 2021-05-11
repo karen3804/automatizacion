@@ -26,7 +26,7 @@ if($visualizacion==0){
 
   
 $counter = 0;
-$sql_tabla = json_decode( file_get_contents('http://34.203.186.135/Automatizacion/api/finalizacion_practica.php'), true );
+$sql_tabla = json_decode( file_get_contents('http://informaticaunah.com/automatizacion/api/finalizacion_practica.php'), true );
 
 
 
@@ -93,7 +93,9 @@ $sql_tabla = json_decode( file_get_contents('http://34.203.186.135/Automatizacio
                   </tr>
                 </thead>
                 <tbody>
-                  <?php while($counter< count($sql_tabla["ROWS"])) { ?>
+                  <?php 
+                  if($sql_tabla["ROWS"]!=""){
+                  while($counter< count($sql_tabla["ROWS"])) { ?>
                 <tr>
                 <td><?php echo $sql_tabla["ROWS"][$counter]["nombres"].' '.$sql_tabla["ROWS"][$counter]["apellidos"]; ?></td>
                 <td><?php echo $sql_tabla["ROWS"][$counter]["valor"]; ?></td>
@@ -106,7 +108,7 @@ $sql_tabla = json_decode( file_get_contents('http://34.203.186.135/Automatizacio
                     </a>
                 </td>
                </tr>
-               <?php   $counter = $counter + 1; } ?>
+               <?php   $counter = $counter + 1; }} ?>
              </tbody>
             </table>
          </div>
