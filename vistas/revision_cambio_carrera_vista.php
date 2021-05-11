@@ -25,7 +25,7 @@ if($visualizacion==0){
 }
 $tipo= $_GET['tipo'];
 $counter = 0;
-$sql_tabla = json_decode( file_get_contents('http://34.203.186.135/Automatizacion/api/cambio_carrera.php?tipo='.$tipo), true );
+$sql_tabla = json_decode( file_get_contents('http://informaticaunah.com/automatizacion/api/cambio_carrera.php?tipo='.$tipo), true );
 
 
 ?>

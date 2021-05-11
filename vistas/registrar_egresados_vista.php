@@ -63,6 +63,7 @@ ob_end_flush();
 <!DOCTYPE html>
 <html>
 <head>
+   <script src="../js/Validacion_registrar_egresados.js"></script>
   <title></title>
 </head>
 <body >
@@ -97,7 +98,7 @@ ob_end_flush();
             <div class="container-fluid">
   <!-- pantalla 1 -->
       
-<form action="../Controlador/guardar_egresado_controlador.php" method="post"  data-form="save" autocomplete="off" class="FormularioAjax">
+<form action="../Controlador/guardar_egresado_controlador.php" method="post"  data-form="save" autocomplete="off" class="FormularioAjax" >
 
  <div class="card card-default">
           <div class="card-header">
@@ -124,7 +125,7 @@ ob_end_flush();
                  <div class="col-sm-4">
                   <div class="form-group">
                   <label>Nº de Cuenta</label>
-                    <input class="form-control" type="text" id="txt_cuenta" name="txt_cuenta"  value="" required  onkeyup="Espacio(this, event)" onkeypress="return Numeros(event)"  maxlength="12">
+                    <input class="form-control" type="text" id="txt_cuenta" name="txt_cuenta" maxlength="11" pattern="[0-9]{11}" required onkeyup="Espacio(this,event)" onkeypress="return Numeros(event)" title="El número de cuenta no es valido">
                 </div>
                  </div>
 
@@ -142,14 +143,14 @@ ob_end_flush();
                  <div class="col-sm-4">
                   <div class="form-group">
                   <label>Teléfono Fijo</label>
-                    <input class="form-control" type="text" id="txt_telefono_fijo" name="txt_telefono_fijo"  value="" data-inputmask='"mask": " 9999-9999"' data-mask>
+                    <input class="form-control" type="text" id="txt_telefono_fijo" name="txt_telefono_fijo" pattern="[2][2][0-9]{6}" value="" maxlength="8" onkeypress="return Numeros(event)" title="El número que ingresó no es correcto" required>
                 </div>
                  </div>
 
                  <div class="col-sm-4">
                   <div class="form-group">
                   <label>Celular</label>
-                    <input class="form-control" type="text" id="txt_telefono_celular" name="txt_telefono_celular"  value="" data-inputmask='"mask": " 9999-9999"' data-mask>
+                    <input class="form-control" type="text" id="txt_telefono_celular" name="txt_telefono_celular" pattern="[3|8|9][0-9]{7}" value="" required onkeypress="return Numeros(event)" maxlength="8" title="El número que ingresó no es correcto">
                 </div>
                  </div>
 
@@ -261,7 +262,7 @@ ob_end_flush();
                   
             </div>
                 <p class="text-center" style="margin-top: 20px;">
-                <button type="submit" class="btn btn-primary" id="btn_guardar_egresados" name="btn_guardar_egresados">  <?php echo $_SESSION['btn_guardar_egresados']; ?><i class="zmdi zmdi-floppy"></i>Guardar</button>
+                <button type="submit" class="btn btn-primary" id="btn_guardar_egresados" name="btn_guardar_egresados"> <?php echo $_SESSION['btn_guardar_egresados']; ?><i class="zmdi zmdi-floppy"></i>Guardar</button>
               </p>
           </div>
 

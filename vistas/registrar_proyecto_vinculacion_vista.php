@@ -446,14 +446,26 @@ ob_end_flush();
                       <div class="col-sm-4">
                   <div class="form-group">
                   <label> Departamento  </label>
-                    <input class="form-control" type="text" id="txt_departamento_pais" name="txt_departamento_pais"  value="" required  onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" style="text-transform: uppercase" maxlength="20">
+                   <select class="form-control select2" style="width: 100%;" name="combo_depto" id="combo_depto" required="">
+          <option value="0"  >Seleccione el Departamento</option>
+        <?php
+          $query = $mysqli -> query ("SELECT * FROM tbl_departamentos");
+          while ($resultado = mysqli_fetch_array($query)) {
+            echo '<option value="'.$resultado['id_departamento'].'"> '.$resultado['departamento'].'</option>' ;
+          }  
+        ?>
+                </select>
                 </div>
                  </div>
 
                    <div class="col-sm-4">
                   <div class="form-group">
                   <label> Municipio  </label>
-                    <input class="form-control" type="text" id="txt_municipio" name="txt_municipio"  value="" required  onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" style="text-transform: uppercase" maxlength="50">
+                  <select class="form-control select2" style="width: 100%;" name="combo_muni" id="combo_muni" required="">
+          <option value="0"  >Seleccione el Municipio</option>
+
+
+                </select>
                 </div>
                  </div>
 
@@ -545,6 +557,23 @@ ob_end_flush();
 
 
 </div>
+
+<!--Llenar combo box municipios -->
+<script>
+$(function () {
+ $("#combo_depto").change(function () {
+    var el_departamento = $(this).val();
+    console.log(el_departamento);
+
+    $.post("../Controlador/municipios.php", {
+      id_departamento: el_departamento,
+    }).done(function (respuesta) {
+      $("#combo_muni").html(respuesta);
+      console.log(respuesta);
+    });
+  });
+});
+</script>
 
 
 
