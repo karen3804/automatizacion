@@ -45,13 +45,21 @@ else
 
 
    $counter = 0;
+<<<<<<< Updated upstream
    $sql_tabla_egresados = json_decode( file_get_contents('http://informaticaunah.com/automatizacion/api/egresados_api.php'), true );
+=======
+   $sql_tabla_egresados = json_decode( file_get_contents('http://localhost/automatizacion/api/egresados_api.php'), true );
+>>>>>>> Stashed changes
 
 if (isset($_GET['id_egresado'])) 
 {
 
   $_SESSION["id_egresado"] = $_GET['id_egresado']; 
+<<<<<<< Updated upstream
 $sql_egresados = json_decode( file_get_contents("http://informaticaunah.com/automatizacion/api/egresados_api.php?id_egresado=".$_SESSION["id_egresado"]), true );
+=======
+$sql_egresados = json_decode( file_get_contents("http://localhost/automatizacion/api/egresados_api.php?id_egresado=".$_SESSION["id_egresado"]), true );
+>>>>>>> Stashed changes
  $_SESSION["nombre_completo_gestion"]=$sql_egresados["ROWS"][0]["nombre"];
  $_SESSION["telefono_gestion_egresado"]=$sql_egresados["ROWS"][0]["telefono_egresado"];
  $_SESSION["celular_gestion_egresado"]=$sql_egresados["ROWS"][0]["celular_egresado"];

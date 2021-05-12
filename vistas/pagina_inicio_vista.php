@@ -407,7 +407,75 @@ if (session_status() === PHP_SESSION_NONE) {
               </ul>
 
               <!---- ----->
+              <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_solicitudes'] ?>">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-info"></i>
+                <p>
+                  Inventario 
+                  <i class="fas fa-angle-left right"></i>
+                  <span class="badge badge-info right"></span>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
 
+              <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
+                  <a href="../vistas/gestionK_producto_vista.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p> Producto</p>
+                  </a>
+                </li>
+                <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
+                  <a href="../vistas/registrar_producto_vista.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p> Mantenimiento </p>
+                    <i class="fas fa-angle-left right"></i>
+                    <span class="badge badge-info right"></span>
+                  </a>
+                   <ul class="nav nav-treeview">
+                      <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
+                        <a href="../vistas/registrar_producto_vista.php" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Tipo Adquisición</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
+                        <a href="../vistas/registrar_producto_vista.php" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Tipo Transacción</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
+                        <a href="../vistas/registrar_producto_vista.php" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Tipo Estado</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
+                        <a href="../vistas/registrar_producto_vista.php" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Tipo Características</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
+                        <a href="../vistas/registrar_producto_vista.php" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Tipo Producto</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item" style="display:<?php echo $_SESSION['btn_ayuda'] ?>">
+                        <a href="../vistas/registrar_producto_vista.php" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Tipo Ubicación</p>
+                        </a>
+                      </li>
+
+                    </ul>
+                </li>
 
 
           </ul>
