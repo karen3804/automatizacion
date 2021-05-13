@@ -56,6 +56,8 @@ if (session_status() === PHP_SESSION_NONE) {
   <link rel="stylesheet" type="text/css" href="../plugins/sweetalert2/sweetalert2.min.css">
   <link rel="stylesheet" href="../dist/css/sweetalert2.css">
   <script src="../js/funciones.js"></script>
+
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -380,11 +382,18 @@ if (session_status() === PHP_SESSION_NONE) {
                 <li class="nav-item" style="display:<?php echo $_SESSION['mantemiento_carga_academica'] ?>">
                   <a href="../vistas/menu_mantenimiento.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p> Mantenimiento</p>
+                    <p> Mantenimientos Docentes</p>
+                  </a>
+                </li>
+                <li class="nav-item" style="display:<?php echo $_SESSION['mantemiento_carga_academica1'] ?>">
+                  <a href="../vistas/menu_mantenimiento_carga.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p> Mantenimientos Carga </p>
                   </a>
                 </li>
 
               </ul>
+
             </li>
             <!----About ----->
 

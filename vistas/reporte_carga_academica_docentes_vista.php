@@ -157,7 +157,7 @@ ob_end_flush();
 
       <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana()"> Reporte Actividades a PDF</a> </button> -->
       <div class=" px-12">
-        <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana3()">Exportar a PDF</a> </button>
+        <button class="btn btn-success "> <i class="fas fa-file-pdf"></i> <a style="font-weight: bold;" onclick="ventana1()">Exportar a PDF</a> </button>
       </div>
       <script type="text/javascript" language="javascript">
         function ventana3() {
@@ -187,9 +187,9 @@ ob_end_flush();
       <div class="card-header">
         <h3 class="card-title">Carga Académica Docente </h3>
         <br>
-        <a href="../Controlador/reporteExcelCA_Docentes.php" class="fas fa-file-excel" title=" Exportar Carga a Excel"></a>
+       <!--  <a href="../Controlador/reporteExcelCA_Docentes.php" class="fas fa-file-excel" title=" Exportar Carga a Excel"></a> -->
 
-        <a href="" onclick="ventana1()" class="fas fa-file-pdf" title=" Exportar Carga a PDF"></a>
+      <!--   <a href="" onclick="ventana1()" class="fas fa-file-pdf" title=" Exportar Carga a PDF"></a> -->
         <!--COMBOBOX-->
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -236,8 +236,8 @@ ob_end_flush();
         <div class="card-header">
           <h3 class="card-title">Actividades de Investigación, Vinculación UNAH-Sociedad, u otra </h3>
           <br>
-          <a href="../Controlador/reporteExcelactividades_Docentes.php" class="fas fa-file-excel" title=" Exportar Actividades a Excel"></a>
-          <a href="" onclick="ventana()" class="fas fa-file-pdf" title=" Exportar Actividades a PDF"></a>
+         <!--  <a href="../Controlador/reporteExcelactividades_Docentes.php" class="fas fa-file-excel" title=" Exportar Actividades a Excel"></a> -->
+          <!-- <a href="" onclick="ventana()" class="fas fa-file-pdf" title=" Exportar Actividades a PDF"></a> -->
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
           </div>
@@ -251,7 +251,7 @@ ob_end_flush();
                 <th>#</th>
                 <th>COMISIÓN</th>
                 <th>ACTIVIDAD </th>
-                <th>HORAS</th>
+                <th>HORAS SEMANALES</th>
                 <th>AGREGAR HORAS</th>
               </tr>
             </thead>
@@ -295,7 +295,7 @@ ob_end_flush();
               </div>
               <div class="col-sm-4">
                 <label>Horas</label>
-                <input class="form-control" type="text" id="txt_horas" name="txt_horas" values="" onkeypress="return Numeros(event)">
+                <input class="form-control" type="text" id="txt_horas" name="txt_horas" values="" onkeypress="return Numeros(event)" maxlength="2">
               </div>
             </div>
           </div>
@@ -396,6 +396,7 @@ ob_end_flush();
       }
     </script>
     <script language="javascript">
+    
       function ventana1() {
         window.open("../Controlador/reporte_carga_academica_docente.php", "REPORTE");
       }

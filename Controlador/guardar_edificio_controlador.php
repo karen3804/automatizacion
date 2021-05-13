@@ -29,7 +29,7 @@ if ($_POST['txt_edificio']  <>' ' and  $_POST['txt_codigo']<> '')
         echo '<script type="text/javascript">
                     swal({
                        title:"",
-                       text:"Lo sentimos el estado ya existe",
+                       text:"Lo sentimos el edificio ya existe",
                        type: "error",
                        showConfirmButton: false,
                        timer: 3000

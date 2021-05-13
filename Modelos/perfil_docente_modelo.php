@@ -1,6 +1,7 @@
 <?php
-require_once('../clases/conexion_mantenimientos.php');
 session_start();
+require_once('../clases/conexion_mantenimientos.php');
+
 //require_once "../clases/Conexion.php";
 
 $instancia_conexion = new conexion();

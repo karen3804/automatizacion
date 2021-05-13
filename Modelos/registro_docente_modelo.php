@@ -18,7 +18,7 @@ class modelo_registro_docentes
         return $instancia_conexion->ejecutarConsulta($sql);
 
     }
-    public function registar2($nombre,$apellidos,$sexo,$pasaporte,$nacionalidad,$estado,$fecha_nacimiento,$hi,$hf,$nempleado,$fecha_ingreso,$idcategoria,$idjornada){
+    public function registar2($nombre,$apellidos,$sexo,$pasaporte,$nacionalidad,$estado,$fecha_nacimiento,$hi,$hf,$nempleado,$tipo_docente,$fecha_ingreso,$idcategoria,$idjornada){
         global $instancia_conexion;
         $sql="call proc_insertar_docentes_personas ('$nombre', '$apellidos', '$sexo', '$pasaporte', '$nacionalidad', '$estado', '$fecha_nacimiento', '1', 'ACTIVO', '$idjornada', '$idcategoria', '$hi', '$hf', '$nempleado', '$fecha_ingreso', '$tipo_docente')";
         

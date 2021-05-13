@@ -1,8 +1,6 @@
 <?php
-ob_start();
-
 session_start();
-
+ob_start();
 require_once('../vistas/pagina_inicio_vista.php');
 require_once('../clases/Conexion.php');
 require_once('../clases/funcion_bitacora.php');
@@ -197,7 +195,7 @@ ob_end_flush();
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
-                            <li class="breadcrumb-item active"><a href="../vistas/menu_mantenimiento.php">Menu Mantenimiento</a></li>
+                            <li class="breadcrumb-item active"><a href="../vistas/menu_mantenimiento_carga.php">Menu Mantenimiento</a></li>
                             <li class="breadcrumb-item active"><a href="../vistas/mantenimiento_crear_periodo_vista.php">Nuevo Período</a></li>
                         </ol>
                     </div>

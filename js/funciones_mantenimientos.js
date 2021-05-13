@@ -193,5 +193,3 @@ function llenar_tipo_periodo() {
   llenar_carrera();
 
 
-
-

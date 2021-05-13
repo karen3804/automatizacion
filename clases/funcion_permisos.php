@@ -4,7 +4,7 @@ class permisos {
 
 
 
-function permiso_modificar($permiso_modificar)
+public static function permiso_modificar($permiso_modificar)
 
                    {
 
@@ -22,7 +22,7 @@ function permiso_modificar($permiso_modificar)
 
 
 
-function permiso_insertar($permiso_insertar)
+public static function permiso_insertar($permiso_insertar)
 
                    {
 
@@ -39,7 +39,7 @@ function permiso_insertar($permiso_insertar)
                 
                    }    
 
-function permiso_eliminar($permiso_eliminar)
+public static function permiso_eliminar($permiso_eliminar)
 
                    {
 

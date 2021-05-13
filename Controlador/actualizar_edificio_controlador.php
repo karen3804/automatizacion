@@ -1,9 +1,8 @@
 <?php
-
 session_start();
 
-require_once('../clases/Conexion.php');
-require_once('../clases/funcion_bitacora.php');
+require_once ('../clases/Conexion.php');
+require_once ('../clases/funcion_bitacora.php');
 
 
 $edificio= strtoupper($_POST['txtedificio']);
@@ -24,18 +23,10 @@ $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 if ($existe['nombre'] == 1) {/*
 header("location: ../contenidos/editarRoles-view.php?msj=1&Rol=$Rol2 ");*/
 
-    header("location:../vistas/mantenimiento_edificio.php?msj=1");
+    header("location:../vistas/mantenimiento_edificio_vista.php?msj=1");
 } else {
 
     $sql = "call proc_actualizar_edificio('$edificio','$codigo','$_SESSION[usuario]','$id_edificio' )";
-
-
-
-
-
-
-
-
     $valor = "select nombre, codigo from tbl_edificios WHERE id_edificio= '$id_edificio'";
     $result_valor = $mysqli->query($valor);
     $valor_viejo = $result_valor->fetch_array(MYSQLI_ASSOC);

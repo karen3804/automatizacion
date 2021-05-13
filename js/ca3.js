@@ -630,45 +630,101 @@ function modificar_carga_academica() {
   if (selected_modalidad == 'Virtual') {
     var id_aula_v = 'NULL';
 
+    //  swal({
+    //    title: "alerta",
+    //    text: "Por favor espere",
+    //    type: "warning",
+    //    showConfirmButton: false,
+    //    timer: 20000,
+    //  });
+
+      var hora_inicial = document.getElementById("cbm_hi_edita").value;
+      var hora_final = document.getElementById("cbm_hf_edita").value;
+      var horas_validas = document.getElementById("txt_hras_validas").value;
+
+    if (
+      idcarga.length == 0 ||
+      // num_doce.length == 0 ||
+      // nombre_doce.length == 0 ||
+      // cod_asig.length == 0 ||
+      cb_asig == null ||
+      seccion.length == 0 ||
+      cb_hi == null ||
+      cb_hf == null ||
+      dias.length == 0 ||
+      // cb_edif.length == 0 ||
+     // cb_aula == null ||
+      matriculados.length == 0 ||
+      cb_modalidad == null
+    ) {
+
      swal({
        title: "alerta",
-       text: "Por favor espere",
+       text: "Llene o seleccione los campos vacios",
        type: "warning",
-       showConfirmButton: false,
-       timer: 20000,
+       showConfirmButton: true,
+       timer: 15000,
      });
 
-     $.ajax({
-       url: "../Controlador/modificar_carga_virtual_controlador.php",
-       type: "POST",
-       data: {
-         // cod_asig: ,
-         control: control,
-         seccion: seccion,
-         hora_inicial: cb_hi,
-         hora_final: cb_hf,
-         num_alumnos: matriculados,
-      // id_aula: id_aula_v,
-         id_asignatura: cb_asig,
-         dias: dias,
-         id_modalidad: cb_modalidad,
-         // cb_edif: rol,
-         id_carga_academica: idcarga,
-       },
-     }).done(function (resp) {
-       if (resp > 0) {
-         $("#modal_editar").modal("hide");
-         swal("Buen trabajo!", "datos actualizados correctamente!", "success");
-         document.getElementById("txt_registro").value = "";
+    } else {
+      if (hora_inicial > hora_final) {
+        swal({
+          title: "alerta",
+          text: "Hora inicial incorrecta",
+          type: "warning",
+          showConfirmButton: true,
+          timer: 20000,
+        });
+        document.getElementById("cbm_hi_edita").value = "";
+        document.getElementById("cbm_hf_edita").value = "";
+      } else if (hora_inicial == hora_final) {
+        swal({
+          title: "alerta",
+          text: "Las horas son iguales",
+          type: "warning",
+          showConfirmButton: true,
+          timer: 20000,
+        });
+        // alert("Las horas son iguales");
+        // document.getElementById("cbm_hi_edita").value = "";
+        document.getElementById("cbm_hf_edita").value = "";
+      } else {
+        $.ajax({
+          url: "../Controlador/modificar_carga_virtual_controlador.php",
+          type: "POST",
+          data: {
+            // cod_asig: ,
+            control: control,
+            seccion: seccion,
+            hora_inicial: cb_hi,
+            hora_final: cb_hf,
+            num_alumnos: matriculados,
+            // id_aula: id_aula_v,
+            id_asignatura: cb_asig,
+            dias: dias,
+            id_modalidad: cb_modalidad,
+            // cb_edif: rol,
+            id_carga_academica: idcarga,
+          },
+        }).done(function (resp) {
+          if (resp > 0) {
+            $("#modal_editar").modal("hide");
+            swal(
+              "Buen trabajo!",
+              "datos actualizados correctamente!",
+              "success"
+            );
+            document.getElementById("txt_registro").value = "";
 
-         cerrar();
-         table.ajax.reload();
-       } else {
-         swal("Alerta!", "No se pudo completar la actualización", "warning");
-         document.getElementById("txt_registro").value = "";
-       }
-     });
-
+            cerrar();
+            table.ajax.reload();
+          } else {
+            swal("Alerta!", "No se pudo completar la actualización", "warning");
+            document.getElementById("txt_registro").value = "";
+          }
+        });
+      }
+    }
     
 
   } else {
